@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بوابة الشركاء — منصة جسر للتأهيل والرعاية عن بُعد</title>
+  <meta name="description" content="انضم إلى شبكة شركاء منصة جسر: المستشفيات، مراكز التأهيل، الجمعيات الخيرية، ومزودو الأجهزة الطبية. قدم طلب الشراكة والاعتماد الآن.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00507d",
+            "primary-dark": "#003756",
+            "primary-light": "#0284c7",
+            "primary-container": "#0369a1",
+            "secondary": "#006a61",
+            "surface": "#ffffff",
+            "surface-container-low": "#f8fafd",
+            "surface-container": "#eef3f8",
+            "on-surface": "#0d1c2e",
+            "on-surface-variant": "#475569",
+            "outline-variant": "#e2e8f0"
+          },
+          fontFamily: {
+            sans: ["'IBM Plex Sans Arabic'", "'IBM Plex Sans'", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-40 glass-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-2 shadow-sm border border-outline-variant">
+            <img src="assets/images/logo.png" alt="جسر" class="w-full h-full object-contain">
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold text-primary leading-none">جسر</span>
+            <span class="text-[11px] font-medium text-on-surface-variant mt-1">للتأهيل والرعاية عن بُعد</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-2">
+          <a href="index.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">الرئيسية</a>
+          <a href="about.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">من نحن</a>
+          <a href="services.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">خدماتنا</a>
+          <a href="partners.html" class="px-3 py-2 text-sm font-bold text-primary rounded-lg">شركاؤنا</a>
+          <a href="faq.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">الأسئلة الشائعة</a>
+          <a href="contact.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">تواصل معنا</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="index.html#home" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm">
+            العودة للرئيسية
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow pt-28 pb-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Page Title -->
+      <div class="text-center space-y-3">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">الشراكات المؤسسية</span>
+        <h1 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight">
+          كن شريكًا في منظومة جسر للرعاية التأهيلية
+        </h1>
+        <p class="text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+          نعمل مع المستشفيات والمراكز التأهيلية والجمعيات الخيرية وموردي الأجهزة الطبية لبناء شبكة متكاملة تخدم المستفيد أينما كان.
+        </p>
+      </div>
+
+      <!-- Categories Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-3 shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">local_hospital</span>
+          </div>
+          <h2 class="text-lg font-bold text-on-surface">المستشفيات والمجمعات الطبية</h2>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            ربط مرضى التأهيل بالرعاية المنزلية بعد الخروج، وتقليل فترات التنويم، ومتابعة الالتزام بالتمارين لتقليل الانتكاسات الحركية.
+          </p>
+          <a href="../المستشفيات و المراكز/index.html" class="inline-block text-xs font-bold text-primary hover:underline">الانتقال لبوابة المستشفيات ←</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-3 shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">physical_therapy</span>
+          </div>
+          <h2 class="text-lg font-bold text-on-surface">مراكز التأهيل والعلاج الطبيعي</h2>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            توسيع نطاق المتابعة السريرية خارج جدران المركز، وتزويد المعالجين بأدوات رقمية متقدمة لتصميم الخطط ومراجعة التمارين.
+          </p>
+          <a href="../المختص/الرئيسية/index.html" class="inline-block text-xs font-bold text-secondary hover:underline">الانتقال لبوابة الأخصائيين ←</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-3 shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-800 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">volunteer_activism</span>
+          </div>
+          <h2 class="text-lg font-bold text-on-surface">الجمعيات والمؤسسات غير الربحية</h2>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            كفالة البرامج التأهيلية للأسر المستحقة، ودعم بنك الأجهزة المساعدة وتوفير الكراسي والدعامات وقياس الأثر المجتمعي.
+          </p>
+          <a href="../الجمعيات/index.html" class="inline-block text-xs font-bold text-teal-800 hover:underline">الانتقال لبوابة الجمعيات ←</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-3 shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">accessible</span>
+          </div>
+          <h2 class="text-lg font-bold text-on-surface">شركات ومتاجر الأجهزة الطبية</h2>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            عرض الأجهزة التعويضية والمساعدة وتيسير طلبها وصيانتها بالتنسيق مع الأخصائيين لضمان ملاءمتها لقياسات المستفيد.
+          </p>
+          <span class="inline-block text-xs text-on-surface-variant">ربط معتمد عبر بنك الأجهزة</span>
+        </div>
+
+      </div>
+
+      <!-- Application Form -->
+      <div class="bg-white p-8 rounded-3xl border border-outline-variant shadow-sm space-y-6">
+        <div class="border-b border-outline-variant pb-4">
+          <h2 class="text-xl font-bold text-on-surface">نموذج طلب الانضمام كشريك معتمد</h2>
+          <p class="text-xs text-on-surface-variant mt-1">تتم دراسة الطلبات من قِبل لجنة الحوكمة والتراخيص الطبية خلال 3 أيام عمل.</p>
+        </div>
+
+        <form id="partner-page-form" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1">اسم المنشأة أو المؤسسة *</label>
+              <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-outline-variant text-xs">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1">تصنيف المنشأة *</label>
+              <select required class="w-full px-4 py-2.5 rounded-xl border border-outline-variant text-xs">
+                <option value="hospital">مستشفى أو مجمع طبي</option>
+                <option value="rehab">مركز تأهيل وعلاج طبيعي</option>
+                <option value="charity">جمعية خيرية أو مؤسسة مانحة</option>
+                <option value="devices">شركة / متجر أجهزة طبية</option>
+                <option value="pharmacy">صيدلية أو مركز دوائي</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1">اسم الشخص المفوض للتواصل *</label>
+              <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-outline-variant text-xs">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1">الصفة أو المسمى الوظيفي *</label>
+              <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-outline-variant text-xs">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1">رقم هاتف التواصل *</label>
+              <input type="tel" required class="w-full px-4 py-2.5 rounded-xl border border-outline-variant text-xs">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1">البريد الإلكتروني الرسمي *</label>
+              <input type="email" required class="w-full px-4 py-2.5 rounded-xl border border-outline-variant text-xs">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1">نبذة عن الخدمات وفرص التعاون المقترحة *</label>
+            <textarea rows="4" required class="w-full px-4 py-2.5 rounded-xl border border-outline-variant text-xs"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary-dark transition shadow-sm">
+            إرسال طلب الشراكة
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-outline-variant py-8 text-center text-xs text-on-surface-variant">
+    <p>جميع الحقوق محفوظة لمنصة جسر للتأهيل والرعاية عن بُعد © 2026</p>
+  </footer>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('partner-page-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('تم استلام طلب الشراكة بنجاح! سيقوم فريق الحوكمة بمراجعته والتواصل معكم قريباً.');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

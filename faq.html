@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مركز المساعدة والأسئلة الشائعة — منصة جسر</title>
+  <meta name="description" content="إجابات وافية وشاملة عن كل ما يتعلق بمنصة جسر للتأهيل والرعاية عن بُعد: التقييم، التمارين، الأخصائيين، الحسابات، الخصوصية.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00507d",
+            "primary-dark": "#003756",
+            "primary-light": "#0284c7",
+            "primary-container": "#0369a1",
+            "secondary": "#006a61",
+            "surface": "#ffffff",
+            "surface-container-low": "#f8fafd",
+            "surface-container": "#eef3f8",
+            "on-surface": "#0d1c2e",
+            "on-surface-variant": "#475569",
+            "outline-variant": "#e2e8f0"
+          },
+          fontFamily: {
+            sans: ["'IBM Plex Sans Arabic'", "'IBM Plex Sans'", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-40 glass-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-2 shadow-sm border border-outline-variant">
+            <img src="assets/images/logo.png" alt="جسر" class="w-full h-full object-contain">
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold text-primary leading-none">جسر</span>
+            <span class="text-[11px] font-medium text-on-surface-variant mt-1">للتأهيل والرعاية عن بُعد</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-2">
+          <a href="index.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">الرئيسية</a>
+          <a href="about.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">من نحن</a>
+          <a href="services.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">خدماتنا</a>
+          <a href="partners.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">شركاؤنا</a>
+          <a href="faq.html" class="px-3 py-2 text-sm font-bold text-primary rounded-lg">الأسئلة الشائعة</a>
+          <a href="contact.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">تواصل معنا</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="index.html#home" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm">
+            العودة للرئيسية
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow pt-28 pb-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Page Title -->
+      <div class="text-center space-y-3">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">مركز المساعدة</span>
+        <h1 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight">
+          الأسئلة الشائعة والمعلومات الإرشادية
+        </h1>
+        <p class="text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+          إجابات وافية وموثقة عن كافة استفسارات الأسر والمستفيدين والجهات الصحية.
+        </p>
+      </div>
+
+      <!-- FAQ Container -->
+      <div class="space-y-4">
+        
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">ما هي منصة جسر للتأهيل والرعاية عن بُعد؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            جسر هي منصة وطنية متخصصة تهدف إلى تسهيل وصول الأشخاص ذوي الاحتياجات التأهيلية وأسرهم إلى برامج التأهيل والمتابعة السريرية المنزلية، عبر ربطهم بأخصائيين معتمدين ومشرفين حركيين ومؤسسات صحية وجمعيات داعمة.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">من يستطيع استخدام منصة جسر؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            تخدم المنصة خمس فئات رئيسية: المستفيدون وأولياء أمورهم، الأخصائيون السريريون المعالجون، المشرفون الحركيون، المستشفيات ومراكز التأهيل، والجمعيات والمؤسسات غير الربحية.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">كيف أقوم بتسجيل مستفيد جديد في المنصة؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            يمكن التسجيل بسهولة عبر بوابة المستفيد باختيار 'إنشاء حساب جديد'، وإدخال البيانات الأساسية للمستفيد وولي أمره وتأكيد رقم الهاتف، ثم الانتقال المباشر لاستكمال التقييم الوظيفي المبدئي.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">كيف يتم تقييم حالة المستفيد؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            يبدأ التقييم بنموذج رقمي استرشادي للإجابة على استبيان حركي ميسر (فحص التوازن، المشي، المفاصل)، يلي ذلك مراجعة سريرية متخصصة من قِبل الأخصائي المعالج عبر المنصة، أو التنسيق لموعد حضوري إذا تطلبت الحالة.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">من الذي يضع خطة التأهيل للمستفيد؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            يضع خطة التأهيل حصرياً الأخصائي السريري المعالج المرخص، بناءً على التقييم السريري الدقيق وقدرات المستفيد الفردية. لا تعتمد الخطط على نماذج عشوائية أو ذكاء اصطناعي دون اعتماد الأخصائي.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">كيف تُنفذ التمارين التأهيلية من المنزل؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            يصل المستفيد إلى جدول تمارينه عبر التطبيق، حيث يعرض كل تمرين بمقطع فيديو عالي الجودة مشروح باللغة العربية مع عدد التكرارات والتعليمات الوقائية، وبإشراف المشرف الحركي والمساعد التقني المساند.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">كيف أتواصل مع الأخصائي المعالج المتابع للحالة؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            توفر المنصة رسائل نصية وصوتية سريرية آمنة، بالإضافة إلى إمكانية رفع مقاطع فيديو توثق أداء التمرين لتلقي التغذية الراجعة، وحجز استشارات مراجعة مرئية دورية.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">كيف أحجز استشارة تأهيلية عن بُعد؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            من خلال قائمة 'المواعيد والاستشارات' في حساب المستفيد، يمكنك اختيار الأخصائي المعالج والاطلاع على المواعيد المتاحة وحجز الجلسة المرئية مباشرة والتذكير بها قبل موعدها.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">كيف أحصل على موعد حضوري في مركز أو مستشفى؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            إذا أوصى الأخصائي بضرورة التدخل السريري الحضوري، يمكن تنسيق موعد مباشر من خلال المنصة لدى أحد المستشفيات أو المراكز التأهيلية الشريكة المسجلة في شبكة جسر.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">هل يمكن الوصول إلى التمارين واستخدامها دون اتصال بالإنترنت؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            نعم، يتيح تطبيق المستفيد ميزة 'تحميل التمارين للمشاهدة بدون إنترنت'، مما يضمن استمرارية أداء الخطة اليومية حتى في ظروف انقطاع أو ضعف التغطية الشبكية.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">كيف تنضم المستشفيات ومراكز التأهيل إلى منظومة جسر؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            يمكن للمؤسسات الصحية تقديم طلب انضمام عبر بوابة 'المستشفيات والمراكز' أو زر 'طلب شراكة'، حيث يقوم فريق الحوكمة بمراجعة التراخيص الطبية واعتماد حساب المنشأة وتدريب كوادرها.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">كيف تتعاون الجمعيات والمؤسسات غير الربحية مع المنصة؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            تتعاون الجمعيات من خلال دعم كفالة برامج التأهيل للأسر الأشد حاجة، وتغذية بنك الأجهزة المساعدة، واستقبال طلبات الدعم المحولة عبر المنصة بما يحقق التكافل الاجتماعي والتوزيع العادل للخدمات.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+          <h2 class="text-base font-bold text-primary">كيف تضمن منصة جسر حماية بيانات المستفيدين وسجلاتهم الطبية؟</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            تطبق المنصة أعلى معايير التشفير (End-to-End Encryption)، وتخضع لسياسات خصوصية البيانات الصحية الصارمة، بحيث لا يُسمح بالاطلاع على السجلات إلا للأخصائي المصرح له ولأولياء الأمور المعتمدين.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Return button -->
+      <div class="text-center pt-4">
+        <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition">
+          <span class="material-symbols-outlined text-lg">arrow_back</span>
+          <span>العودة إلى الصفحة الرئيسية</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-outline-variant py-8 text-center text-xs text-on-surface-variant">
+    <p>جميع الحقوق محفوظة لمنصة جسر للتأهيل والرعاية عن بُعد © 2026</p>
+  </footer>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عن منصة جسر — الرؤية والرسالة والقيم</title>
+  <meta name="description" content="تعرّف على منصة جسر للتأهيل والرعاية عن بُعد: قصة التأسيس، المشكلة التي نعالجها، الرؤية، الرسالة، والأهداف الاستراتيجية.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00507d",
+            "primary-dark": "#003756",
+            "primary-light": "#0284c7",
+            "primary-container": "#0369a1",
+            "primary-fixed": "#cde5ff",
+            "secondary": "#006a61",
+            "secondary-dark": "#004d46",
+            "surface": "#ffffff",
+            "surface-container-low": "#f8fafd",
+            "surface-container": "#eef3f8",
+            "on-surface": "#0d1c2e",
+            "on-surface-variant": "#475569",
+            "outline-variant": "#e2e8f0"
+          },
+          fontFamily: {
+            sans: ["'IBM Plex Sans Arabic'", "'IBM Plex Sans'", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-40 glass-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-2 shadow-sm border border-outline-variant">
+            <img src="assets/images/logo.png" alt="جسر" class="w-full h-full object-contain">
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold text-primary leading-none">جسر</span>
+            <span class="text-[11px] font-medium text-on-surface-variant mt-1">للتأهيل والرعاية عن بُعد</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-2">
+          <a href="index.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">الرئيسية</a>
+          <a href="about.html" class="px-3 py-2 text-sm font-bold text-primary rounded-lg">من نحن</a>
+          <a href="services.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">خدماتنا</a>
+          <a href="partners.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">شركاؤنا</a>
+          <a href="faq.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">الأسئلة الشائعة</a>
+          <a href="contact.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">تواصل معنا</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button type="button" data-lang-toggle class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-on-surface-variant border border-outline-variant hover:bg-surface-container">
+            <span class="material-symbols-outlined text-base">language</span>
+            <span data-i18n="nav.langSwitch">English</span>
+          </button>
+          <button type="button" data-open-portals class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm">
+            دخول المنصة
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow pt-28 pb-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Page Title -->
+      <div class="text-center space-y-3">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">عن المشروع</span>
+        <h1 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight">
+          نبذة تعريفية عن منصة جسر للتأهيل والرعاية عن بُعد
+        </h1>
+        <p class="text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+          مشروع رقمي صحي إنساني يسعى لمد جسور الرعاية المتخصصة إلى كل منزل، وتيسير سبل التعافي والاستقلالية الوظيفية.
+        </p>
+      </div>
+
+      <!-- Founding Story -->
+      <div class="bg-white p-8 rounded-3xl border border-outline-variant shadow-sm space-y-4">
+        <h2 class="text-xl font-bold text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined">history_edu</span>
+          فكرة التأسيس والانطلاقة
+        </h2>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          انطلقت فكرة منصة «جسر للتأهيل والرعاية عن بُعد» استجابةً للتحديات اليومية التي تعيشها أسر الأشخاص ذوي الإعاقة الحركية والاحتياجات التأهيلية. تكرار المشاوير العلاجية أسبوعياً إلى المستشفيات أو المراكز المتخصصة يفرض ضغوطاً جسدية ونفسية واقتصادية كبيرة على المريض والأسرة معاً.
+        </p>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          من هنا وُلدت فكرة جسر: توظيف أحدث التقنيات الرقمية الموثوقة لربط المريض بالأخصائي السريري المعالج والمشرف الحركي والمؤسسات الصحية الداعمة، لبناء بيئة رعاية منزلية مستمرة تتيح أداء التمارين بأمان ومتابعة التطور خطوة بخطوة.
+        </p>
+      </div>
+
+      <!-- Problem and Solution -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-red-50/60 p-6 rounded-3xl border border-red-200 space-y-3">
+          <h3 class="text-base font-bold text-red-800 flex items-center gap-2">
+            <span class="material-symbols-outlined">warning</span>
+            التحديات التي واجهت الأسر
+          </h3>
+          <ul class="text-xs sm:text-sm text-red-900/80 space-y-2 list-disc list-inside leading-relaxed">
+            <li>مشاق التنقل المتكرر وتكاليف النقل المجهزة.</li>
+            <li>تباعد المواعيد في العيادات والمراكز التأهيلية.</li>
+            <li>الضغط والازدحام في أقسام التأهيل بالمستشفيات.</li>
+            <li>انقطاع المتابعة بين الجلسات السريرية داخل المنزل.</li>
+            <li>صعوبة معرفة الأداء الحركي السليم للتمارين المنزلية.</li>
+          </ul>
+        </div>
+
+        <div class="bg-secondary/10 p-6 rounded-3xl border border-secondary/20 space-y-3">
+          <h3 class="text-base font-bold text-secondary-dark flex items-center gap-2">
+            <span class="material-symbols-outlined">task_alt</span>
+            الحلول التي توفرها منصة جسر
+          </h3>
+          <ul class="text-xs sm:text-sm text-secondary-dark/90 space-y-2 list-disc list-inside leading-relaxed">
+            <li>تأهيل منزلي ميسر بتمارين فيديو موجهة ومجدولة.</li>
+            <li>إشراف سريري مستمر وتواصل آمن مع الأخصائي.</li>
+            <li>مساعد تقني لحساب التكرارات والإرشاد الصوتي.</li>
+            <li>تخفيف الضغط على المنشآت الصحية بتفريغ المواعيد للحالات الحرجة.</li>
+            <li>ربط الحالات بالجمعيات وبنك الأجهزة المساعدة.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Vision & Mission -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-primary text-white p-6 rounded-3xl space-y-3">
+          <h3 class="text-lg font-bold">الرؤية</h3>
+          <p class="text-xs sm:text-sm text-primary-fixed leading-relaxed">
+            أن نكون المنظومة الرقمية الرائدة في التأهيل والرعاية الصحية المنزلية عن بُعد على مستوى المنطقة، موفرين رعاية شاملة لكل بيت بجودة سريرية موثوقة.
+          </p>
+        </div>
+        <div class="bg-secondary text-white p-6 rounded-3xl space-y-3">
+          <h3 class="text-lg font-bold">الرسالة</h3>
+          <p class="text-xs sm:text-sm text-secondary-fixed leading-relaxed">
+            تمكين الأشخاص ذوي الاحتياجات التأهيلية وأسرهم عبر تقنيات سهلة الوصول تربطهم بالكوادر الطبية والمشرفين الحركيين والمؤسسات الداعمة، لتقديم رعاية منزلية مستمرة تحفظ الكرامة وتيسر الحياة.
+          </p>
+        </div>
+      </div>
+
+      <!-- Clinical & Ethical Charter -->
+      <div class="bg-white p-8 rounded-3xl border border-outline-variant shadow-sm space-y-4">
+        <h2 class="text-xl font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary">verified_user</span>
+          ميثاق الأخلاقيات السريرية والخصوصية
+        </h2>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          تلتزم منصة جسر بأعلى المعايير المهنية الطبية:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-on-surface-variant">
+          <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant/60">
+            <h4 class="font-bold text-on-surface mb-1">عدم تقديم وعود علاجية وهمية</h4>
+            <p>التأهيل الطبي رحلة تراكمية تتفاوت بحسب حالة كل فرد، ونحن نلتزم بالشفافية المطلقة دون ادعاءات غير مؤكدة.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant/60">
+            <h4 class="font-bold text-on-surface mb-1">سرية السجلات الطبية</h4>
+            <p>تشفير كامل لكافة التقييمات ومقاطع التمارين ولا يُتاح الاطلاع عليها إلا للأخصائي السريري المسؤول.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant/60">
+            <h4 class="font-bold text-on-surface mb-1">الذكاء الاصطناعي كمساند فقط</h4>
+            <p>المساعد الذكي أداة إرشاد ومتابعة تكرارات، ولا يحل بأي شكل محل القرار أو التقييم الطبي السريري للأخصائي.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant/60">
+            <h4 class="font-bold text-on-surface mb-1">اعتماد الكوادر المرخصة</h4>
+            <p>جميع الأخصائيين المعتمدين في المنصة يحملون تراخيص مزاولة مهنة سارية وموثقة من الهيئات الصحية المختصة.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Return button -->
+      <div class="text-center pt-4">
+        <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition">
+          <span class="material-symbols-outlined text-lg">arrow_back</span>
+          <span>العودة إلى الصفحة الرئيسية</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-outline-variant py-8 text-center text-xs text-on-surface-variant">
+    <p>جميع الحقوق محفوظة لمنصة جسر للتأهيل والرعاية عن بُعد © 2026</p>
+  </footer>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

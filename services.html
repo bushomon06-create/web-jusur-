@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل خدمات منصة جسر للتأهيل والرعاية عن بُعد</title>
+  <meta name="description" content="استعرض الدليل الشامل لخدمات منصة جسر: التقييم المبدئي، خطط التأهيل الفردية، التمارين المنزلية، المتابعة السريرية، المساعد الذكي، ومجتمعات الدعم.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00507d",
+            "primary-dark": "#003756",
+            "primary-light": "#0284c7",
+            "primary-container": "#0369a1",
+            "primary-fixed": "#cde5ff",
+            "secondary": "#006a61",
+            "secondary-dark": "#004d46",
+            "surface": "#ffffff",
+            "surface-container-low": "#f8fafd",
+            "surface-container": "#eef3f8",
+            "on-surface": "#0d1c2e",
+            "on-surface-variant": "#475569",
+            "outline-variant": "#e2e8f0"
+          },
+          fontFamily: {
+            sans: ["'IBM Plex Sans Arabic'", "'IBM Plex Sans'", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-40 glass-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-2 shadow-sm border border-outline-variant">
+            <img src="assets/images/logo.png" alt="جسر" class="w-full h-full object-contain">
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold text-primary leading-none">جسر</span>
+            <span class="text-[11px] font-medium text-on-surface-variant mt-1">للتأهيل والرعاية عن بُعد</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-2">
+          <a href="index.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">الرئيسية</a>
+          <a href="about.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">من نحن</a>
+          <a href="services.html" class="px-3 py-2 text-sm font-bold text-primary rounded-lg">خدماتنا</a>
+          <a href="partners.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">شركاؤنا</a>
+          <a href="faq.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">الأسئلة الشائعة</a>
+          <a href="contact.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">تواصل معنا</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button type="button" data-lang-toggle class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-on-surface-variant border border-outline-variant hover:bg-surface-container">
+            <span class="material-symbols-outlined text-base">language</span>
+            <span data-i18n="nav.langSwitch">English</span>
+          </button>
+          <a href="index.html#home" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm">
+            العودة للرئيسية
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow pt-28 pb-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Page Title -->
+      <div class="text-center space-y-3">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">الدليل الكامل</span>
+        <h1 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight">
+          دليل خدمات منصة جسر للتأهيل والرعاية عن بُعد
+        </h1>
+        <p class="text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+          عشر خدمات تأهيلية سريرية وتقنية متكاملة تغطي كافة مراحل التعافي المنزلي والرعاية التشاركية.
+        </p>
+      </div>
+
+      <!-- Services List (Deep-dive Cards) -->
+      <div class="space-y-6">
+
+        <!-- 1. Initial Assessment -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-outline-variant shadow-sm hover-lift">
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
+                <span class="material-symbols-outlined text-3xl">assignment</span>
+              </div>
+              <div class="space-y-2">
+                <span class="inline-block px-3 py-0.5 rounded-full text-xs font-semibold bg-primary-soft text-primary">الخدمة الأولى — التقييم</span>
+                <h2 class="text-xl font-bold text-on-surface">1. التقييم المبدئي للمستفيد</h2>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                  استبيان رقمي استرشادي يقيس القدرات الوظيفية للمستفيد في مجالات التوازن، المشي، الجلوس، وحركة المفاصل. يهدف التقييم إلى توجيه الحالة نحو التخصص السريري المناسب وجمع التاريخ المرضي قبل اللقاء بالأخصائي.
+                </p>
+                <div class="pt-2 text-xs text-on-surface-variant space-y-1">
+                  <p><strong>الفئة المستفيدة:</strong> المستفيد الجديد أو ولي أمره.</p>
+                  <p><strong>المخرجات:</strong> تقرير وظيفي تمهيدي يُحال آلياً لملف الحالة لدى الأخصائي.</p>
+                </div>
+              </div>
+            </div>
+            <div class="shrink-0 flex flex-col gap-2 w-full md:w-auto">
+              <a href="../تحديد مشكلة المستفيد/تحديد المشكلة.html" class="px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition text-center">
+                بدء التقييم المبدئي
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Individual Rehabilitation Plans -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-outline-variant shadow-sm hover-lift">
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0 border border-secondary/20">
+                <span class="material-symbols-outlined text-3xl">health_and_safety</span>
+              </div>
+              <div class="space-y-2">
+                <span class="inline-block px-3 py-0.5 rounded-full text-xs font-semibold bg-secondary-soft text-secondary">الخدمة الثانية — الخطط السريرية</span>
+                <h2 class="text-xl font-bold text-on-surface">2. خطط التأهيل الفردية</h2>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                  برامج تأهيلية مخصصة وموجهة يصيغها الأخصائي السريري المعالج بدقة وفق احتياجات وقدرات كل مستفيد، تشمل تحديد التمارين، وتكراراتها، وفترات الراحة، والتدرج الزمني لتحقيق الأهداف الوظيفية.
+                </p>
+                <div class="pt-2 text-xs text-on-surface-variant space-y-1">
+                  <p><strong>الفئة المستفيدة:</strong> المستفيدون بعد التقييم السريري المعتمد.</p>
+                  <p><strong>المخرجات:</strong> خطة علاجية تفاعلية مجدولة تظهر في حساب المستفيد وتطبيق الهاتف.</p>
+                </div>
+              </div>
+            </div>
+            <div class="shrink-0 flex flex-col gap-2 w-full md:w-auto">
+              <a href="../المختص/الرئيسية/index.html" class="px-5 py-2.5 rounded-xl bg-secondary text-white text-xs font-semibold hover:bg-secondary-dark transition text-center">
+                بوابة الأخصائي
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Guided Home Exercises -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-outline-variant shadow-sm hover-lift">
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 border border-amber-200">
+                <span class="material-symbols-outlined text-3xl">fitness_center</span>
+              </div>
+              <div class="space-y-2">
+                <span class="inline-block px-3 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800">الخدمة الثالثة — الوسائط التعليمية</span>
+                <h2 class="text-xl font-bold text-on-surface">3. التمارين المنزلية الموجهة</h2>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                  مكتبة وسائط تعليمية عالية الدقة توضح الطريقة السليمة لأداء التمارين وتفادي الحركات الخاطئة، مع إمكانية التنزيل والتشغيل دون اتصال بالإنترنت، بإشراف وتدقيق من المشرف الحركي.
+                </p>
+                <div class="pt-2 text-xs text-on-surface-variant space-y-1">
+                  <p><strong>الفئة المستفيدة:</strong> المستفيد والأسرة ومقدمو الرعاية المنزلية.</p>
+                  <p><strong>المخرجات:</strong> تنفيذ دقيق وآمن للحركات الحركية المعتمدة.</p>
+                </div>
+              </div>
+            </div>
+            <div class="shrink-0 flex flex-col gap-2 w-full md:w-auto">
+              <a href="../المستفيد/الصفحة الرئيسية/الرئيسية/code.html" class="px-5 py-2.5 rounded-xl bg-amber-700 text-white text-xs font-semibold hover:bg-amber-800 transition text-center">
+                تطبيق المستفيد
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Clinical Specialist Follow-up -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-outline-variant shadow-sm hover-lift">
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-blue-100 text-blue-800 flex items-center justify-center shrink-0 border border-blue-200">
+                <span class="material-symbols-outlined text-3xl">support_agent</span>
+              </div>
+              <div class="space-y-2">
+                <span class="inline-block px-3 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-800">الخدمة الرابعة — التواصل السريري</span>
+                <h2 class="text-xl font-bold text-on-surface">4. المتابعة مع المختصين</h2>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                  قنوات اتصال منتظمة وموثوقة تربط الأسر بالأخصائي المعالج لمتابعة الاستجابة، مراجعة مقاطع أداء التمارين، وتلقي الملاحظات التعديلية لضمان سلامة المسار العلاجي.
+                </p>
+              </div>
+            </div>
+            <div class="shrink-0 flex flex-col gap-2 w-full md:w-auto">
+              <a href="../المختص/الرئيسية/index.html" class="px-5 py-2.5 rounded-xl bg-blue-700 text-white text-xs font-semibold hover:bg-blue-800 transition text-center">
+                قنوات التواصل
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Smart Exercise Assistant -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-outline-variant shadow-sm hover-lift">
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-800 flex items-center justify-center shrink-0 border border-indigo-200">
+                <span class="material-symbols-outlined text-3xl">smart_toy</span>
+              </div>
+              <div class="space-y-2">
+                <span class="inline-block px-3 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-800">الخدمة الخامسة — مساند تقني</span>
+                <h2 class="text-xl font-bold text-on-surface">5. المساعد الذكي للتمارين</h2>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                  مساعد تقني يدعم متابعة أداء التمرين وإرشاد المستفيد صوتياً وبصرياً أثناء الجلسة، وتذكيره بالمواعيد، ولا يحل بأي حال من الأحوال محل المختص المعالج.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 to 10 Quick Summary List -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+            <h3 class="font-bold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-teal-600">trending_up</span>
+              6. متابعة التقدم والالتزام
+            </h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              تسجيل مؤتمت للإنجازات اليومية ومعدلات الالتزام، مع رسوم بيانية توضح نسب التطور الحركي للأسرة والأخصائي.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+            <h3 class="font-bold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-sky-600">calendar_month</span>
+              7. الاستشارات والمواعيد
+            </h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              جدولة مرنة للاستشارات الافتراضية المرئية عن بُعد والتنسيق للمواعيد السريرية الحضورية في المنشآت الشريكة.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+            <h3 class="font-bold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-purple-600">groups</span>
+              8. مجتمعات الدعم الأسري
+            </h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              مجموعات إرشادية آمنة تتيح للأسر والمستفيدين تبادل الخبرات العملية والدعم النفسي والتأهيلي التشاركي.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
+            <h3 class="font-bold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-emerald-600">accessible</span>
+              9. بنك الأجهزة المساعدة
+            </h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              دليل تعاوني للتعرف على الأجهزة التعويضية والمساعدة وطلبها أو التبرع بها عبر الجمعيات الخيرية الشريكة.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2 md:col-span-2">
+            <h3 class="font-bold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-cyan-600">description</span>
+              10. التقارير والمتابعة السريرية
+            </h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              إصدار تقارير تأهيلية دورية معتمدة توضح مسار التحسن ومشاركتها مع المستشفيات والجهات الداعمة بضوابط خصوصية صارمة.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Return button -->
+      <div class="text-center pt-4">
+        <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition">
+          <span class="material-symbols-outlined text-lg">arrow_back</span>
+          <span>العودة إلى الصفحة الرئيسية</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-outline-variant py-8 text-center text-xs text-on-surface-variant">
+    <p>جميع الحقوق محفوظة لمنصة جسر للتأهيل والرعاية عن بُعد © 2026</p>
+  </footer>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
