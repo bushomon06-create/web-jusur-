@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مركز المساعدة والأسئلة الشائعة — منصة جسر</title>
-  <meta name="description" content="إجابات وافية وشاملة عن كل ما يتعلق بمنصة جسر للتأهيل والرعاية عن بُعد: التقييم، التمارين، الأخصائيين، الحسابات، الخصوصية.">
+  <title>الأسئلة الشائعة — منصة جسور للتأهيل</title>
+  <meta name="description"
+    content="إجابات وافية وشاملة عن كل ما يتعلق بمنصة جسور للتأهيل والرعاية عن بُعد: التقييم، التمارين، الأخصائيين، الحسابات، الخصوصية.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
@@ -36,35 +41,60 @@
     };
   </script>
   <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-40 glass-header">
+  <!-- Supabase Client Library & Unified Data Handler -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+</head>
+
+<body class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col font-sans">
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" style="transform: scaleX(0);"></div>
+
+  <!-- Unified Clean Header -->
+  <header
+    class="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-outline-variant/60 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <a href="index.html" class="flex items-center gap-3.5">
-          <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-2 shadow-sm border border-outline-variant">
-            <img src="assets/images/logo.png" alt="جسر" class="w-full h-full object-contain">
+        <!-- Right: Logo & Name -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div
+            class="w-11 h-11 rounded-2xl bg-surface-container flex items-center justify-center p-2 shadow-sm border border-outline-variant group-hover:border-primary/40 transition">
+            <img src="assets/images/logo.png" alt="شعار منصة جسور للتأهيل" class="w-full h-full object-contain">
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-bold text-primary leading-none">جسر</span>
-            <span class="text-[11px] font-medium text-on-surface-variant mt-1">للتأهيل والرعاية عن بُعد</span>
+            <span class="text-xl font-bold text-primary leading-none tracking-tight">جسور للتأهيل</span>
+            <span class="text-[11px] font-medium text-on-surface-variant mt-1">للرعاية والتأهيل عن بُعد</span>
           </div>
         </a>
 
-        <nav class="hidden lg:flex items-center gap-2">
-          <a href="index.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">الرئيسية</a>
-          <a href="about.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">من نحن</a>
-          <a href="services.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">خدماتنا</a>
-          <a href="partners.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">شركاؤنا</a>
-          <a href="faq.html" class="px-3 py-2 text-sm font-bold text-primary rounded-lg">الأسئلة الشائعة</a>
-          <a href="contact.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">تواصل معنا</a>
+        <!-- Center: Exactly 4 Text Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 sm:gap-2">
+          <a href="about.html"
+            class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition"
+            data-i18n="nav.about">عن المنصة</a>
+          <a href="services.html"
+            class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition"
+            data-i18n="nav.services">الخدمات</a>
+          <a href="partners.html"
+            class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition"
+            data-i18n="nav.partners">الشركاء</a>
+          <a href="faq.html" class="px-4 py-2 text-sm font-bold text-primary bg-primary/5 rounded-xl transition"
+            data-i18n="nav.faq">الأسئلة الشائعة</a>
         </nav>
 
+        <!-- Left: Language Switcher + Single Login Button -->
         <div class="flex items-center gap-3">
-          <a href="index.html#home" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm">
-            العودة للرئيسية
+          <button type="button" data-lang-toggle
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-on-surface-variant border border-outline-variant hover:bg-surface-container transition">
+            <span class="material-symbols-outlined text-base">language</span>
+            <span data-i18n="nav.langSwitch">English</span>
+          </button>
+          <a href="login.html"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm"
+            data-i18n="nav.login">
+            <span class="material-symbols-outlined text-base">login</span>
+            <span>تسجيل الدخول</span>
           </a>
         </div>
       </div>
@@ -73,132 +103,402 @@
 
   <!-- Main Content -->
   <main class="flex-grow pt-28 pb-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      
-      <!-- Page Title -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+      <!-- Page Header -->
       <div class="text-center space-y-3">
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">مركز المساعدة</span>
+        <span
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">
+          <span class="material-symbols-outlined text-sm">help_outline</span>
+          <span>مركز المساعدة والمعرفة</span>
+        </span>
         <h1 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight">
-          الأسئلة الشائعة والمعلومات الإرشادية
+          الأسئلة الشائعة والإرشادية
         </h1>
-        <p class="text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
-          إجابات وافية وموثقة عن كافة استفسارات الأسر والمستفيدين والجهات الصحية.
+        <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+          إجابات وافية وموثقة عن كافة استفسارات الأسر والمستفيدين والجهات الصحية ومسار التأهيل.
         </p>
       </div>
 
-      <!-- FAQ Container -->
-      <div class="space-y-4">
-        
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">ما هي منصة جسر للتأهيل والرعاية عن بُعد؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            جسر هي منصة وطنية متخصصة تهدف إلى تسهيل وصول الأشخاص ذوي الاحتياجات التأهيلية وأسرهم إلى برامج التأهيل والمتابعة السريرية المنزلية، عبر ربطهم بأخصائيين معتمدين ومشرفين حركيين ومؤسسات صحية وجمعيات داعمة.
-          </p>
+      <!-- Live Search Bar -->
+      <div class="relative max-w-xl mx-auto">
+        <span
+          class="material-symbols-outlined absolute start-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
+        <input type="text" id="faq-search-input" placeholder="ابحث في الأسئلة الشائعة والإرشادات..."
+          class="w-full ps-12 pe-4 py-3.5 rounded-2xl border border-outline-variant bg-white focus:outline-none focus:border-primary shadow-sm text-sm transition">
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        <button type="button"
+          class="faq-filter-tab px-4 py-2 rounded-xl text-xs font-bold bg-primary text-white shadow-sm transition"
+          data-category="all">
+          الكل (13)
+        </button>
+        <button type="button"
+          class="faq-filter-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-on-surface-variant border border-outline-variant hover:border-primary transition"
+          data-category="general">
+          عن المنصة
+        </button>
+        <button type="button"
+          class="faq-filter-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-on-surface-variant border border-outline-variant hover:border-primary transition"
+          data-category="clinical">
+          الخطط والتقييم السريري
+        </button>
+        <button type="button"
+          class="faq-filter-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-on-surface-variant border border-outline-variant hover:border-primary transition"
+          data-category="exercises">
+          التمارين والمساعد التقني
+        </button>
+        <button type="button"
+          class="faq-filter-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-on-surface-variant border border-outline-variant hover:border-primary transition"
+          data-category="partners">
+          الشراكات والجهات
+        </button>
+      </div>
+
+      <!-- FAQ Container (13 Questions) -->
+      <div class="space-y-3.5">
+
+        <!-- Q1 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="general">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">ما هي منصة جسور للتأهيل والرعاية عن بُعد؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              منصة جسور للتأهيل هي منظومة وطنية متخصصة تهدف إلى تسهيل وصول الأشخاص ذوي الاحتياجات التأهيلية وأسرهم إلى برامج التأهيل
+              والمتابعة السريرية المنزلية، عبر ربطهم بأخصائيين معتمدين ومشرفين حركيين ومؤسسات صحية وجمعيات داعمة.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">من يستطيع استخدام منصة جسر؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            تخدم المنصة خمس فئات رئيسية: المستفيدون وأولياء أمورهم، الأخصائيون السريريون المعالجون، المشرفون الحركيون، المستشفيات ومراكز التأهيل، والجمعيات والمؤسسات غير الربحية.
-          </p>
+        <!-- Q2 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="general">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">من يستطيع استخدام منصة جسور للتأهيل؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              تخدم المنصة خمس فئات رئيسية: المستفيدون وأولياء أمورهم، الأخصائيون السريريون المعالجون، المشرفون الحركيون،
+              المستشفيات ومراكز التأهيل، والجمعيات والمؤسسات غير الربحية.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">كيف أقوم بتسجيل مستفيد جديد في المنصة؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            يمكن التسجيل بسهولة عبر بوابة المستفيد باختيار 'إنشاء حساب جديد'، وإدخال البيانات الأساسية للمستفيد وولي أمره وتأكيد رقم الهاتف، ثم الانتقال المباشر لاستكمال التقييم الوظيفي المبدئي.
-          </p>
+        <!-- Q3 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="general">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">كيف أقوم بتسجيل مستفيد جديد في المنصة؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              يمكن التسجيل بسهولة عبر اختيار بوابة المستفيد في صفحة تسجيل الدخول، ثم اختيار 'إنشاء حساب جديد'، وإدخال
+              البيانات الأساسية للمستفيد وتأكيد رقم الهاتف، ثم الانتقال المباشر لاستكمال التقييم الوظيفي المبدئي.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">كيف يتم تقييم حالة المستفيد؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            يبدأ التقييم بنموذج رقمي استرشادي للإجابة على استبيان حركي ميسر (فحص التوازن، المشي، المفاصل)، يلي ذلك مراجعة سريرية متخصصة من قِبل الأخصائي المعالج عبر المنصة، أو التنسيق لموعد حضوري إذا تطلبت الحالة.
-          </p>
+        <!-- Q4 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="clinical">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">كيف يتم تقييم حالة المستفيد؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              يبدأ التقييم بنموذج رقمي استرشادي للإجابة على استبيان حركي ميسر (فحص التوازن، المشي، المفاصل)، يلي ذلك
+              مراجعة سريرية متخصصة من قِبل الأخصائي المعالج عبر المنصة، أو التنسيق لموعد حضوري إذا تطلبت الحالة.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">من الذي يضع خطة التأهيل للمستفيد؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            يضع خطة التأهيل حصرياً الأخصائي السريري المعالج المرخص، بناءً على التقييم السريري الدقيق وقدرات المستفيد الفردية. لا تعتمد الخطط على نماذج عشوائية أو ذكاء اصطناعي دون اعتماد الأخصائي.
-          </p>
+        <!-- Q5 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="clinical">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">من الذي يضع خطة التأهيل للمستفيد؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              يضع خطة التأهيل حصرياً الأخصائي السريري المعالج المرخص، بناءً على التقييم السريري الدقيق وقدرات المستفيد
+              الفردية. لا تعتمد الخطط على نماذج عشوائية أو ذكاء اصطناعي دون اعتماد الأخصائي.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">كيف تُنفذ التمارين التأهيلية من المنزل؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            يصل المستفيد إلى جدول تمارينه عبر التطبيق، حيث يعرض كل تمرين بمقطع فيديو عالي الجودة مشروح باللغة العربية مع عدد التكرارات والتعليمات الوقائية، وبإشراف المشرف الحركي والمساعد التقني المساند.
-          </p>
+        <!-- Q6 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="exercises">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">كيف تُنفذ التمارين التأهيلية من المنزل؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              يصل المستفيد إلى جدول تمارينه عبر التطبيق، حيث يعرض كل تمرين بمقطع فيديو عالي الجودة مشروح باللغة العربية
+              مع عدد التكرارات والتعليمات الوقائية، وبإشراف المشرف الحركي والمساعد التقني المساند.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">كيف أتواصل مع الأخصائي المعالج المتابع للحالة؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            توفر المنصة رسائل نصية وصوتية سريرية آمنة، بالإضافة إلى إمكانية رفع مقاطع فيديو توثق أداء التمرين لتلقي التغذية الراجعة، وحجز استشارات مراجعة مرئية دورية.
-          </p>
+        <!-- Q7 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="clinical">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">كيف أتواصل مع الأخصائي المعالج المتابع للحالة؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              توفر المنصة رسائل نصية وصوتية سريرية آمنة، بالإضافة إلى إمكانية رفع مقاطع فيديو توثق أداء التمرين لتلقي
+              التغذية الراجعة، وحجز استشارات مراجعة مرئية دورية.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">كيف أحجز استشارة تأهيلية عن بُعد؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            من خلال قائمة 'المواعيد والاستشارات' في حساب المستفيد، يمكنك اختيار الأخصائي المعالج والاطلاع على المواعيد المتاحة وحجز الجلسة المرئية مباشرة والتذكير بها قبل موعدها.
-          </p>
+        <!-- Q8 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="clinical">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">كيف أحجز استشارة تأهيلية عن بُعد؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              من خلال قائمة 'المواعيد والاستشارات' في حساب المستفيد، يمكنك اختيار الأخصائي المعالج والاطلاع على المواعيد
+              المتاحة وحجز الجلسة المرئية مباشرة والتذكير بها قبل موعدها.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">كيف أحصل على موعد حضوري في مركز أو مستشفى؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            إذا أوصى الأخصائي بضرورة التدخل السريري الحضوري، يمكن تنسيق موعد مباشر من خلال المنصة لدى أحد المستشفيات أو المراكز التأهيلية الشريكة المسجلة في شبكة جسر.
-          </p>
+        <!-- Q9 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="clinical">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">كيف أحصل على موعد حضوري في مركز أو مستشفى؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              إذا أوصى الأخصائي بضرورة التدخل السريري الحضوري، يمكن تنسيق موعد مباشر من خلال المنصة لدى أحد المستشفيات
+              أو المراكز التأهيلية الشريكة المسجلة في شبكة جسور للتأهيل.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">هل يمكن الوصول إلى التمارين واستخدامها دون اتصال بالإنترنت؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            نعم، يتيح تطبيق المستفيد ميزة 'تحميل التمارين للمشاهدة بدون إنترنت'، مما يضمن استمرارية أداء الخطة اليومية حتى في ظروف انقطاع أو ضعف التغطية الشبكية.
-          </p>
+        <!-- Q10 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="exercises">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">هل يمكن الوصول إلى التمارين واستخدامها دون اتصال بالإنترنت؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              نعم، يتيح تطبيق المستفيد ميزة 'تحميل التمارين للمشاهدة بدون إنترنت'، مما يضمن استمرارية أداء الخطة اليومية
+              حتى في ظروف انقطاع أو ضعف التغطية الشبكية.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">كيف تنضم المستشفيات ومراكز التأهيل إلى منظومة جسر؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            يمكن للمؤسسات الصحية تقديم طلب انضمام عبر بوابة 'المستشفيات والمراكز' أو زر 'طلب شراكة'، حيث يقوم فريق الحوكمة بمراجعة التراخيص الطبية واعتماد حساب المنشأة وتدريب كوادرها.
-          </p>
+        <!-- Q11 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="partners">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">كيف تنضم المستشفيات ومراكز التأهيل إلى منظومة جسور للتأهيل؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              يمكن للمؤسسات الصحية تقديم طلب انضمام واعتماد رسمي عبر صفحة الشركاء بالمنصة، حيث يقوم فريق
+              الحوكمة الطبية بمراجعة التراخيص وسجلات الاعتماد وتفعيل الربط المؤسسي.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">كيف تتعاون الجمعيات والمؤسسات غير الربحية مع المنصة؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            تتعاون الجمعيات من خلال دعم كفالة برامج التأهيل للأسر الأشد حاجة، وتغذية بنك الأجهزة المساعدة، واستقبال طلبات الدعم المحولة عبر المنصة بما يحقق التكافل الاجتماعي والتوزيع العادل للخدمات.
-          </p>
+        <!-- Q12 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="partners">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">كيف تتعاون الجمعيات والمؤسسات غير الربحية مع المنصة؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              تتعاون الجمعيات من خلال الاشتراك في باقات كفالة برامج التأهيل وإصدار أكواد التفعيل للأسر الأشد حاجة،
+              وتغذية بنك الأجهزة المساعدة وتتبع أثر التدخلات التأهيلية بدقة.
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-2">
-          <h2 class="text-base font-bold text-primary">كيف تضمن منصة جسر حماية بيانات المستفيدين وسجلاتهم الطبية؟</h2>
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            تطبق المنصة أعلى معايير التشفير (End-to-End Encryption)، وتخضع لسياسات خصوصية البيانات الصحية الصارمة، بحيث لا يُسمح بالاطلاع على السجلات إلا للأخصائي المصرح له ولأولياء الأمور المعتمدين.
-          </p>
+        <!-- Q13 -->
+        <div class="faq-item bg-white rounded-2xl border border-outline-variant overflow-hidden shadow-card transition"
+          data-category="general">
+          <button type="button"
+            class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
+            aria-expanded="false">
+            <span class="faq-question">كيف تضمن منصة جسور للتأهيل حماية بيانات المستفيدين وسجلاتهم الطبية؟</span>
+            <span
+              class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out px-5">
+            <p class="faq-answer text-xs sm:text-sm text-on-surface-variant pb-5 leading-relaxed">
+              تطبق المنصة أعلى معايير التشفير (End-to-End Encryption)، وتخضع لسياسات خصوصية البيانات الصحية الصارمة (Row
+              Level Security في Supabase)،
+              بحيث لا يُسمح بالاطلاع على السجلات إلا للأخصائي المصرح له ولأولياء الأمور المعتمدين.
+            </p>
+          </div>
         </div>
 
       </div>
 
-      <!-- Return button -->
-      <div class="text-center pt-4">
-        <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition">
-          <span class="material-symbols-outlined text-lg">arrow_back</span>
-          <span>العودة إلى الصفحة الرئيسية</span>
-        </a>
+      <!-- Still have questions? CTA card -->
+      <div class="p-8 rounded-3xl bg-white border border-outline-variant text-center space-y-4 shadow-card">
+        <h3 class="text-lg font-bold text-on-surface">لم تجد إجابة لاستفسارك؟</h3>
+        <p class="text-sm text-on-surface-variant max-w-md mx-auto">
+          فريق الدعم الفني والاستشاري الطبي في منصة جسور للتأهيل متاح للإجابة على جميع تساؤلاتكم.
+        </p>
+        <div class="pt-2">
+          <a href="contact.html"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-xs sm:text-sm font-semibold hover:bg-primary-dark transition shadow-sm">
+            <span class="material-symbols-outlined text-base">support_agent</span>
+            <span>تواصل مع فريق الدعم</span>
+          </a>
+        </div>
       </div>
 
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-white border-t border-outline-variant py-8 text-center text-xs text-on-surface-variant">
-    <p>جميع الحقوق محفوظة لمنصة جسر للتأهيل والرعاية عن بُعد © 2026</p>
+  <footer class="bg-white border-t border-outline-variant py-12 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center p-1.5 border border-outline-variant">
+            <img src="assets/images/logo.png" alt="جسور للتأهيل" class="w-full h-full object-contain">
+          </div>
+          <div>
+            <span class="text-base font-bold text-primary block leading-none">جسور للتأهيل</span>
+            <span class="text-xs text-on-surface-variant mt-1 block">المنصة السحابية المتقدمة لربط ومتابعة التأهيل
+              الحركي عن بُعد</span>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-6 text-sm text-on-surface-variant">
+          <a href="contact.html" class="hover:text-primary transition" data-i18n="footer.contact">تواصل معنا</a>
+          <a href="privacy.html" class="hover:text-primary transition" data-i18n="footer.privacy">سياسة الخصوصية</a>
+          <a href="terms.html" class="hover:text-primary transition" data-i18n="footer.terms">الشروط والأحكام</a>
+          <a href="javascript:void(0)" onclick="openA11yModal()" class="hover:text-primary transition"
+            data-i18n="footer.a11y">أدوات تيسير الوصول</a>
+        </nav>
+      </div>
+
+      <div
+        class="mt-8 pt-6 border-t border-outline-variant/60 text-center text-xs text-on-surface-variant flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span>© 2026 منصة جسور للتأهيل والرعاية عن بُعد. جميع الحقوق محفوظة.</span>
+        <span class="text-slate-400">صُمم بمعايير طبية وتقنية آمنة</span>
+      </div>
+    </div>
   </footer>
+
+  <!-- Accessibility Modal (Clean & Non-intrusive) -->
+  <div id="a11y-modal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="a11y-title">
+    <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeA11yModal()"></div>
+    <div
+      class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-white p-6 rounded-3xl shadow-2xl border border-outline-variant z-10 space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-xl">accessibility_new</span>
+          <h3 id="a11y-title" class="text-sm font-bold text-on-surface" data-i18n="a11y.title">أدوات تيسير الوصول</h3>
+        </div>
+        <button type="button" onclick="closeA11yModal()"
+          class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <div class="space-y-2.5">
+        <div class="flex gap-2">
+          <button type="button" id="a11y-font-bigger"
+            class="flex-1 py-2 px-3 bg-surface-container rounded-xl text-xs font-semibold hover:bg-primary/10 hover:text-primary transition"
+            data-i18n="a11y.fontBigger">تكبير الخط</button>
+          <button type="button" id="a11y-font-normal"
+            class="flex-1 py-2 px-3 bg-surface-container rounded-xl text-xs font-semibold hover:bg-primary/10 hover:text-primary transition"
+            data-i18n="a11y.fontNormal">الافتراضي</button>
+        </div>
+        <button type="button" id="a11y-contrast"
+          class="w-full py-2 px-3 bg-surface-container rounded-xl text-xs font-semibold hover:bg-primary/10 hover:text-primary transition text-start flex items-center justify-between"
+          data-i18n="a11y.contrastToggle">
+          <span>وضع التباين العالي</span>
+          <span class="material-symbols-outlined text-sm">contrast</span>
+        </button>
+        <button type="button" id="a11y-motion"
+          class="w-full py-2 px-3 bg-surface-container rounded-xl text-xs font-semibold hover:bg-primary/10 hover:text-primary transition text-start flex items-center justify-between"
+          data-i18n="a11y.motionToggle">
+          <span>إيقاف الحركة</span>
+          <span class="material-symbols-outlined text-sm">motion_photos_off</span>
+        </button>
+        <button type="button" id="a11y-reset" class="w-full py-1 text-center text-xs text-red-600 hover:underline"
+          data-i18n="a11y.reset">استعادة الإعدادات الافتراضية</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING SCROLL TO TOP BUTTON (Only floating button) -->
+  <button type="button" id="scroll-top-btn"
+    class="scroll-top-floating-btn hidden fixed bottom-6 left-6 z-40 w-11 h-11 rounded-full bg-primary text-white shadow-lg border border-white items-center justify-center focus:outline-none opacity-0 hover:bg-primary-dark transition"
+    aria-label="العودة لأعلى الصفحة">
+    <span class="material-symbols-outlined text-xl">arrow_upward</span>
+  </button>
 
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
+
 </html>

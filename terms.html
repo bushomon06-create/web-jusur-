@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الشروط والأحكام وميثاق الاستخدام — منصة جسر</title>
-  <meta name="description" content="الشروط والأحكام وميثاق الاستخدام لمنصة جسر للتأهيل والرعاية عن بُعد.">
+  <title>الشروط والأحكام وميثاق الاستخدام — منصة جسور للتأهيل</title>
+  <meta name="description" content="الشروط والأحكام وميثاق الاستخدام لمنصة جسور للتأهيل والرعاية عن بُعد.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
@@ -36,26 +40,51 @@
     };
   </script>
   <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-40 glass-header">
+  <!-- Supabase Client Library & Unified Data Handler -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+</head>
+
+<body class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col font-sans">
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" style="transform: scaleX(0);"></div>
+
+  <!-- Unified Clean Header -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-outline-variant/60 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <a href="index.html" class="flex items-center gap-3.5">
-          <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-2 shadow-sm border border-outline-variant">
-            <img src="assets/images/logo.png" alt="جسر" class="w-full h-full object-contain">
+        <!-- Right: Logo & Name -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-11 h-11 rounded-2xl bg-surface-container flex items-center justify-center p-2 shadow-sm border border-outline-variant group-hover:border-primary/40 transition">
+            <img src="assets/images/logo.png" alt="شعار منصة جسور للتأهيل" class="w-full h-full object-contain">
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-bold text-primary leading-none">جسر</span>
-            <span class="text-[11px] font-medium text-on-surface-variant mt-1">للتأهيل والرعاية عن بُعد</span>
+            <span class="text-xl font-bold text-primary leading-none tracking-tight">جسور للتأهيل</span>
+            <span class="text-[11px] font-medium text-on-surface-variant mt-1">للرعاية والتأهيل عن بُعد</span>
           </div>
         </a>
 
+        <!-- Center: Exactly 4 Text Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 sm:gap-2">
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition" data-i18n="nav.about">عن المنصة</a>
+          <a href="services.html" class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition" data-i18n="nav.services">الخدمات</a>
+          <a href="partners.html" class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition" data-i18n="nav.partners">الشركاء</a>
+          <a href="faq.html" class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition" data-i18n="nav.faq">الأسئلة الشائعة</a>
+        </nav>
+
+        <!-- Left: Language Switcher + Single Login Button -->
         <div class="flex items-center gap-3">
-          <a href="index.html#home" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm">
-            العودة للرئيسية
+          <button type="button" data-lang-toggle
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-on-surface-variant border border-outline-variant hover:bg-surface-container transition">
+            <span class="material-symbols-outlined text-base">language</span>
+            <span data-i18n="nav.langSwitch">English</span>
+          </button>
+          <a href="login.html"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm"
+            data-i18n="nav.login">
+            <span class="material-symbols-outlined text-base">login</span>
+            <span>تسجيل الدخول</span>
           </a>
         </div>
       </div>
@@ -64,63 +93,74 @@
 
   <!-- Main Content -->
   <main class="flex-grow pt-28 pb-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 bg-white p-8 sm:p-12 rounded-3xl border border-outline-variant shadow-sm">
-      
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 bg-white p-8 sm:p-12 rounded-3xl border border-outline-variant shadow-card">
+
       <div>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary mb-2">الشروط القانونية</span>
-        <h1 class="text-2xl sm:text-3xl font-bold text-on-surface">الشروط والأحكام وميثاق الاستخدام</h1>
-        <p class="text-xs text-on-surface-variant mt-1">آخر تحديث: 2026</p>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary mb-3">
+          <span class="material-symbols-outlined text-sm">gavel</span>
+          <span>الميثاق القانوني والتنظيمي</span>
+        </span>
+        <h1 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">الشروط والأحكام وميثاق الاستخدام</h1>
+        <p class="text-xs text-on-surface-variant mt-2">آخر تحديث: نوفمبر 2026</p>
       </div>
 
       <div class="space-y-6 text-sm text-on-surface-variant leading-relaxed">
-        
+
         <section class="space-y-2">
           <h2 class="text-base font-bold text-on-surface">1. الموافقة على الشروط</h2>
           <p>
-            باستخدامك لمنصة «جسر للتأهيل والرعاية عن بُعد» أو أي من تطبيقاتها وبواباتها، فإنك تقر بموافقتك الكاملة على هذه الشروط والأحكام، وعلى الالتزام بكافة الإرشادات الطبية والتقنية الصادرة من المنصة.
+            باستخدامك لمنصة «جسور للتأهيل والرعاية عن بُعد» أو أي من تطبيقاتها وبواباتها، فإنك تقر بموافقتك الكاملة على
+            هذه الشروط والأحكام، وعلى الالتزام بكافة الإرشادات الطبية والتقنية الصادرة من الكوادر السريرية المعتمدة.
           </p>
         </section>
 
         <section class="space-y-2">
           <h2 class="text-base font-bold text-on-surface">2. طبيعة الخدمات والإخلاء الطبي</h2>
           <p>
-            تقدم جسر خدمات الربط السريري والإرشاد التأهيلي المنزلي، ولا تُعد بديلاً عن أقسام الطوارئ الطبية أو التدخلات الجراحية الفورية. في حالات الطوارئ الحادة، يجب التوجه فوراً لأقرب مستشفى أو الاتصال بالهلال الأحمر (997).
+            تقدم منصة جسور للتأهيل خدمات الربط السريري والإرشاد التأهيلي المنزلي، ولا تُعد بديلاً عن أقسام الطوارئ الطبية أو التدخلات
+            الجراحية الفورية. في حالات الطوارئ الحادة، يجب التوجه فوراً لأقرب مستشفى أو الاتصال بالهلال الأحمر (997).
           </p>
           <p>
-            المساعد الذكي المدمج في المنصة هو أداة تقنية مساندة لحساب التكرارات والإرشاد الصوتي، ولا يقوم بتشخيص الأمراض أو تعديل الخطط العلاجية دون إشراف الأخصائي المعالج.
+            المساعد الذكي المدمج في المنصة هو أداة تقنية مساندة لحساب التكرارات والإرشاد الصوتي، ولا يقوم بتشخيص الأمراض
+            أو تعديل الخطط العلاجية دون اعتماد صريح ومباشر من الأخصائي المعالج.
           </p>
         </section>
 
         <section class="space-y-2">
           <h2 class="text-base font-bold text-on-surface">3. مسؤوليات المستفيد وولي الأمر</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>تقديم معلومات صحية ووظيفية دقيقة وصادقة أثناء التقييم المبدئي.</li>
+          <ul class="list-disc list-inside space-y-1.5 ps-2">
+            <li>تقديم معلومات صحية ووظيفية دقيقة وصادقة أثناء التقييم المبدئي والاستشارات الدورية.</li>
             <li>الالتزام بتعليمات الأمان أثناء تنفيذ التمارين المنزلية وعدم تحميل المستفيد فوق طاقته.</li>
-            <li>المحافظة على سرية بيانات تسجيل الدخول وتحديثها دورياً.</li>
-            <li>إبلاغ الأخصائي فوراً عند الشعور بأي ألم حاد أو مضاعفات غير متوقعة.</li>
+            <li>المحافظة على سرية بيانات تسجيل الدخول وأكواد التفعيل الممنوحة.</li>
+            <li>إبلاغ الأخصائي فوراً عند الشعور بأي ألم حاد أو مضاعفات غير متوقعة أثناء التمارين.</li>
           </ul>
         </section>
 
         <section class="space-y-2">
           <h2 class="text-base font-bold text-on-surface">4. مسؤوليات الكوادر السريرية والمؤسسات</h2>
           <p>
-            يلتزم الأخصائيون والمشرفون الحركيون والمستشفيات والجمعيات بالعمل وفق التراخيص النظامية الصادرة لهم، والامتثال لأخلاقيات الممارسة الطبية والتأهيلية، وتقديم الرعاية بأعلى درجات المهنية والأمانة.
+            يلتزم الأخصائيون والمشرفون الحركيون والمستشفيات والجمعيات بالعمل وفق التراخيص النظامية الصادرة لهم،
+            والامتثال لأخلاقيات الممارسة الطبية والتأهيلية، وتقديم الرعاية بأعلى درجات المهنية والأمانة.
           </p>
         </section>
 
         <section class="space-y-2">
           <h2 class="text-base font-bold text-on-surface">5. الملكية الفكرية</h2>
           <p>
-            كافة المحتويات والتمارين المصورة والشعارات والأنظمة البرمجية هي ملكية فكرية حصرية لمنصة جسر والجهات المطورة لها، ولا يجوز نسخها أو إعادة نشرها تجارياً دون إذن كتابي مسبق.
+            كافة المحتويات والتمارين المصورة والشعارات والأنظمة البرمجية هي ملكية فكرية حصرية لمنصة جسور للتأهيل والجهات المطورة
+            لها، ولا يجوز نسخها أو إعادة نشرها تجارياً دون إذن كتابي مسبق.
           </p>
         </section>
 
       </div>
 
-      <div class="pt-6 border-t border-outline-variant text-center">
+      <div class="pt-6 border-t border-outline-variant flex items-center justify-between">
         <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
-          <span class="material-symbols-outlined text-base">arrow_back</span>
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
           <span>العودة إلى الصفحة الرئيسية</span>
+        </a>
+        <a href="privacy.html" class="text-xs text-on-surface-variant hover:text-primary transition">
+          الانتقال إلى سياسة الخصوصية ←
         </a>
       </div>
 
@@ -128,11 +168,74 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-white border-t border-outline-variant py-8 text-center text-xs text-on-surface-variant">
-    <p>جميع الحقوق محفوظة لمنصة جسر للتأهيل والرعاية عن بُعد © 2026</p>
+  <footer class="bg-white border-t border-outline-variant py-12 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center p-1.5 border border-outline-variant">
+            <img src="assets/images/logo.png" alt="جسور للتأهيل" class="w-full h-full object-contain">
+          </div>
+          <div>
+            <span class="text-base font-bold text-primary block leading-none">جسور للتأهيل</span>
+            <span class="text-xs text-on-surface-variant mt-1 block">المنصة السحابية المتقدمة لربط ومتابعة التأهيل الحركي عن بُعد</span>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-6 text-sm text-on-surface-variant">
+          <a href="contact.html" class="hover:text-primary transition" data-i18n="footer.contact">تواصل معنا</a>
+          <a href="privacy.html" class="hover:text-primary transition" data-i18n="footer.privacy">سياسة الخصوصية</a>
+          <a href="terms.html" class="text-primary font-bold" data-i18n="footer.terms">الشروط والأحكام</a>
+          <a href="javascript:void(0)" onclick="openA11yModal()" class="hover:text-primary transition" data-i18n="footer.a11y">أدوات تيسير الوصول</a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-outline-variant/60 text-center text-xs text-on-surface-variant flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span>© 2026 منصة جسور للتأهيل والرعاية عن بُعد. جميع الحقوق محفوظة.</span>
+        <span class="text-slate-400">صُمم بمعايير طبية وتقنية آمنة</span>
+      </div>
+    </div>
   </footer>
+
+  <!-- Accessibility Modal (Clean & Non-intrusive) -->
+  <div id="a11y-modal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="a11y-title">
+    <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeA11yModal()"></div>
+    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-white p-6 rounded-3xl shadow-2xl border border-outline-variant z-10 space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-xl">accessibility_new</span>
+          <h3 id="a11y-title" class="text-sm font-bold text-on-surface" data-i18n="a11y.title">أدوات تيسير الوصول</h3>
+        </div>
+        <button type="button" onclick="closeA11yModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <div class="space-y-2.5">
+        <div class="flex gap-2">
+          <button type="button" id="a11y-font-bigger" class="flex-1 py-2 px-3 bg-surface-container rounded-xl text-xs font-semibold hover:bg-primary/10 hover:text-primary transition" data-i18n="a11y.fontBigger">تكبير الخط</button>
+          <button type="button" id="a11y-font-normal" class="flex-1 py-2 px-3 bg-surface-container rounded-xl text-xs font-semibold hover:bg-primary/10 hover:text-primary transition" data-i18n="a11y.fontNormal">الافتراضي</button>
+        </div>
+        <button type="button" id="a11y-contrast" class="w-full py-2 px-3 bg-surface-container rounded-xl text-xs font-semibold hover:bg-primary/10 hover:text-primary transition text-start flex items-center justify-between" data-i18n="a11y.contrastToggle">
+          <span>وضع التباين العالي</span>
+          <span class="material-symbols-outlined text-sm">contrast</span>
+        </button>
+        <button type="button" id="a11y-motion" class="w-full py-2 px-3 bg-surface-container rounded-xl text-xs font-semibold hover:bg-primary/10 hover:text-primary transition text-start flex items-center justify-between" data-i18n="a11y.motionToggle">
+          <span>إيقاف الحركة</span>
+          <span class="material-symbols-outlined text-sm">motion_photos_off</span>
+        </button>
+        <button type="button" id="a11y-reset" class="w-full py-1 text-center text-xs text-red-600 hover:underline" data-i18n="a11y.reset">استعادة الإعدادات الافتراضية</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING SCROLL TO TOP BUTTON (Only floating button) -->
+  <button type="button" id="scroll-top-btn"
+    class="scroll-top-floating-btn hidden fixed bottom-6 left-6 z-40 w-11 h-11 rounded-full bg-primary text-white shadow-lg border border-white items-center justify-center focus:outline-none opacity-0 hover:bg-primary-dark transition"
+    aria-label="العودة لأعلى الصفحة">
+    <span class="material-symbols-outlined text-xl">arrow_upward</span>
+  </button>
 
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
+
 </html>

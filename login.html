@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول — منصة جسور للتأهيل والرعاية عن بُعد</title>
+  <meta name="description"
+    content="تسجيل الدخول الموحد لبوابات منصة جسور للتأهيل: المستفيدون، الكوادر الطبية، والمؤسسات الشريكة.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00507d",
+            "primary-dark": "#003756",
+            "primary-light": "#0284c7",
+            "secondary": "#006a61",
+            "surface": "#ffffff",
+            "surface-container-low": "#f8fafd",
+            "surface-container": "#eef3f8",
+            "on-surface": "#0d1c2e",
+            "on-surface-variant": "#475569",
+            "outline-variant": "#e2e8f0"
+          },
+          fontFamily: {
+            sans: ["'IBM Plex Sans Arabic'", "'IBM Plex Sans'", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Supabase Client Library & Unified Data Handler -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+</head>
+
+<body
+  class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col justify-between font-sans selection:bg-primary/10 selection:text-primary">
+
+  <!-- Simple Calm Header -->
+  <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
+    <!-- Right: Jisr Logo & Brand -->
+    <a href="index.html" class="flex items-center gap-3 group focus:outline-none">
+      <div
+        class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center p-2 shadow-sm border border-outline-variant group-hover:border-primary/40 transition">
+        <img src="assets/images/logo.png" alt="جسور للتأهيل" class="w-full h-full object-contain">
+      </div>
+      <div class="flex flex-col">
+        <span class="text-xl font-bold text-primary tracking-tight leading-none">جسور للتأهيل</span>
+        <span class="text-[11px] font-medium text-on-surface-variant mt-1">الرعاية والتأهيل الحركي عن بُعد</span>
+      </div>
+    </a>
+
+    <!-- Left: Return to Home Only -->
+    <a href="index.html"
+      class="inline-flex items-center gap-1.5 text-xs font-semibold text-on-surface-variant hover:text-primary transition px-4 py-2 rounded-xl bg-white border border-outline-variant shadow-sm">
+      <span class="material-symbols-outlined text-base">arrow_forward</span>
+      <span>العودة للرئيسية</span>
+    </a>
+  </header>
+
+  <!-- Centered Single White Card: Sign In -->
+  <main class="flex-grow flex items-center justify-center px-4 sm:px-6 py-6">
+    <div class="w-full max-w-md bg-white rounded-3xl border border-outline-variant shadow-card p-8 sm:p-10 space-y-6">
+
+      <!-- Card Title & Subtitle -->
+      <div class="text-center space-y-1.5">
+        <h1 class="text-2xl font-bold text-on-surface tracking-tight">تسجيل الدخول</h1>
+        <p class="text-xs text-on-surface-variant">أدخل بريدك الإلكتروني وكلمة المرور للمتابعة إلى بوابتك</p>
+      </div>
+
+      <!-- Alert / Status Notice Area (Hidden by default) -->
+      <div id="login-alert" class="hidden p-4 rounded-2xl text-xs leading-relaxed flex items-start gap-3 transition-all"
+        role="alert">
+        <span id="login-alert-icon" class="material-symbols-outlined text-lg shrink-0 mt-0.5">info</span>
+        <div id="login-alert-text" class="flex-1 font-medium"></div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="unified-login-form" class="space-y-4" onsubmit="handleUnifiedLogin(event)">
+        <!-- Email Field -->
+        <div class="space-y-1.5">
+          <label for="login-email" class="block text-xs font-semibold text-on-surface">البريد الإلكتروني</label>
+          <div class="relative">
+            <span
+              class="material-symbols-outlined absolute start-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">mail</span>
+            <input type="email" id="login-email" required placeholder="name@example.com"
+              class="w-full ps-11 pe-4 py-3 rounded-xl border border-outline-variant bg-[#fcfdff] text-xs text-on-surface placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition">
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label for="login-password" class="block text-xs font-semibold text-on-surface">كلمة المرور</label>
+            <a href="javascript:void(0)" onclick="handleForgotPassword()"
+              class="text-[11px] font-medium text-primary hover:underline">نسيت كلمة المرور؟</a>
+          </div>
+          <div class="relative">
+            <span
+              class="material-symbols-outlined absolute start-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">lock</span>
+            <input type="password" id="login-password" required placeholder="••••••••"
+              class="w-full ps-11 pe-11 py-3 rounded-xl border border-outline-variant bg-[#fcfdff] text-xs text-on-surface placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition">
+            <button type="button" onclick="togglePasswordVisibility()"
+              class="absolute end-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface focus:outline-none">
+              <span id="pwd-toggle-icon" class="material-symbols-outlined text-lg">visibility</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="btn-login-submit"
+          class="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-xs sm:text-sm font-bold shadow-sm transition-all flex items-center justify-center gap-2 mt-2">
+          <span id="btn-login-spinner"
+            class="material-symbols-outlined text-lg animate-spin hidden">progress_activity</span>
+          <span id="btn-login-label">دخول</span>
+        </button>
+      </form>
+
+      <!-- Light Divider -->
+      <div class="border-t border-outline-variant/80 my-5"></div>
+
+      <!-- Exactly Two Options for Newcomers -->
+      <div class="space-y-3 pt-1">
+        <!-- Option 1: Beneficiary Sign Up / App -->
+        <div class="text-center">
+          <p class="text-xs text-on-surface-variant">
+            هل أنت مستفيد جديد؟
+            <a href="../المستفيد/التسجيل/انشاء حساب جديد.html" class="text-primary font-bold hover:underline ms-1">
+              تحميل التطبيق أو إنشاء حساب مستفيد
+            </a>
+          </p>
+        </div>
+
+        <!-- Option 2: Secondary Button for Partner / Specialist Accreditation Application -->
+        <div>
+          <a href="partners.html#apply-form"
+            class="w-full py-2.5 px-3 rounded-xl border border-outline-variant bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-primary text-xs font-semibold transition flex items-center justify-center gap-2 text-center">
+            <span class="material-symbols-outlined text-base">verified</span>
+            <span>تقديم طلب انضمام كأخصائي أو شريك</span>
+          </a>
+          <p class="text-[10px] text-center text-slate-400 mt-1.5">
+            يخضع انضمام الأخصائيين والجهات الصحية لحوكمة ومراجعة التراخيص قبل التفعيل.
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Role Switcher for Investors / Reviewers -->
+      <div class="pt-2 border-t border-outline-variant/60">
+        <details class="text-[11px] text-slate-500 cursor-pointer group">
+          <summary class="font-medium hover:text-primary flex items-center justify-between py-1">
+            <span>تجربة بوابات المنصة بالحسابات السريعة (Demo)</span>
+            <span
+              class="material-symbols-outlined text-sm group-open:rotate-180 transition-transform">expand_more</span>
+          </summary>
+          <div class="grid grid-cols-2 gap-1.5 pt-2">
+            <button type="button" onclick="fillAndLogin('beneficiary@jisr.sa', '123456')"
+              class="p-1.5 rounded-lg bg-surface-container text-right text-[11px] font-semibold text-primary hover:bg-primary/10 transition">
+              👤 مستفيد (لوحة التطبيق)
+            </button>
+            <button type="button" onclick="fillAndLogin('specialist@jisr.sa', '123456')"
+              class="p-1.5 rounded-lg bg-surface-container text-right text-[11px] font-semibold text-secondary hover:bg-secondary/10 transition">
+              🩺 أخصائي معالج
+            </button>
+            <button type="button" onclick="fillAndLogin('supervisor@jisr.sa', '123456')"
+              class="p-1.5 rounded-lg bg-surface-container text-right text-[11px] font-semibold text-slate-700 hover:bg-slate-200 transition">
+              🏃 مشرف حركي
+            </button>
+            <button type="button" onclick="fillAndLogin('hospital@jisr.sa', '123456')"
+              class="p-1.5 rounded-lg bg-surface-container text-right text-[11px] font-semibold text-blue-700 hover:bg-blue-100 transition">
+              🏥 مستشفى ومركز
+            </button>
+            <button type="button" onclick="fillAndLogin('charity@jisr.sa', '123456')"
+              class="p-1.5 rounded-lg bg-surface-container text-right text-[11px] font-semibold text-teal-800 hover:bg-teal-100 transition">
+              🤝 جمعية ومؤسسة راعية
+            </button>
+            <button type="button" onclick="fillAndLogin('pending@jisr.sa', '123456')"
+              class="p-1.5 rounded-lg bg-surface-container text-right text-[11px] font-semibold text-amber-700 hover:bg-amber-100 transition">
+              ⏳ حساب تحت الاعتماد
+            </button>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Clean Bottom Sub-footer -->
+  <footer class="w-full text-center py-4 text-xs text-slate-400">
+    <p>© 2026 منصة جسور للتأهيل والرعاية عن بُعد. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <!-- Script Logic -->
+  <script>
+    function togglePasswordVisibility() {
+      const pwd = document.getElementById('login-password');
+      const icon = document.getElementById('pwd-toggle-icon');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        pwd.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+
+    function showAlert(message, type = 'error') {
+      const alertBox = document.getElementById('login-alert');
+      const alertIcon = document.getElementById('login-alert-icon');
+      const alertText = document.getElementById('login-alert-text');
+
+      alertBox.className = 'p-4 rounded-2xl text-xs leading-relaxed flex items-start gap-3 transition-all';
+      if (type === 'error' || type === 'ACCOUNT_REJECTED') {
+        alertBox.classList.add('bg-red-50', 'text-red-900', 'border', 'border-red-200');
+        alertIcon.textContent = 'error';
+        alertIcon.className = 'material-symbols-outlined text-lg shrink-0 mt-0.5 text-red-600';
+      } else if (type === 'warning' || type === 'ACCOUNT_PENDING') {
+        alertBox.classList.add('bg-amber-50', 'text-amber-900', 'border', 'border-amber-200');
+        alertIcon.textContent = 'hourglass_top';
+        alertIcon.className = 'material-symbols-outlined text-lg shrink-0 mt-0.5 text-amber-600';
+      } else {
+        alertBox.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-200');
+        alertIcon.textContent = 'check_circle';
+        alertIcon.className = 'material-symbols-outlined text-lg shrink-0 mt-0.5 text-emerald-600';
+      }
+
+      alertText.textContent = message;
+      alertBox.classList.remove('hidden');
+    }
+
+    function hideAlert() {
+      document.getElementById('login-alert').classList.add('hidden');
+    }
+
+    function handleForgotPassword() {
+      const email = document.getElementById('login-email').value.trim();
+      if (!email) {
+        showAlert('يرجى كتابة بريدك الإلكتروني في الحقل أعلاه أولاً لإرسال رابط استعادة كلمة المرور.', 'warning');
+        document.getElementById('login-email').focus();
+        return;
+      }
+      showAlert('تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني: ' + email, 'success');
+    }
+
+    function fillAndLogin(email, pwd) {
+      document.getElementById('login-email').value = email;
+      document.getElementById('login-password').value = pwd;
+      handleUnifiedLogin(new Event('submit'));
+    }
+
+    async function handleUnifiedLogin(e) {
+      if (e) e.preventDefault();
+      hideAlert();
+
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      if (!email || !password) {
+        showAlert('يرجى إدخال البريد الإلكتروني وكلمة المرور.', 'error');
+        return;
+      }
+
+      const submitBtn = document.getElementById('btn-login-submit');
+      const spinner = document.getElementById('btn-login-spinner');
+      const label = document.getElementById('btn-login-label');
+
+      submitBtn.disabled = true;
+      spinner.classList.remove('hidden');
+      label.textContent = 'جارٍ التحقق...';
+
+      try {
+        const result = await window.jisrDB.login(email, password);
+
+        if (result.error) {
+          showAlert(result.error.message, result.error.code || 'error');
+          submitBtn.disabled = false;
+          spinner.classList.add('hidden');
+          label.textContent = 'دخول';
+          return;
+        }
+
+        const profile = result.profile;
+        label.textContent = 'تم التحقق! جارٍ التوجيه...';
+
+        // التوجيه الفوري وفق الدور السريري / المؤسسي المعتمد
+        setTimeout(async () => {
+          await routeUserByRole(profile);
+        }, 400);
+
+      } catch (err) {
+        showAlert('حدث خطأ غير متوقع أثناء تسجيل الدخول: ' + err.message, 'error');
+        submitBtn.disabled = false;
+        spinner.classList.add('hidden');
+        label.textContent = 'دخول';
+      }
+    }
+
+    async function routeUserByRole(profile) {
+      const role = profile.role || 'beneficiary';
+
+      switch (role) {
+        case 'beneficiary':
+          window.location.href = '../المستفيد/الصفحة الرئيسية/الرئيسية/code.html';
+          break;
+
+        case 'specialist':
+          window.location.href = '../المختص/الرئيسية/index.html';
+          break;
+
+        case 'motor_supervisor':
+          window.location.href = '../المشرف الحركي/الرئيسية.html';
+          break;
+
+        case 'hospital_admin':
+          window.location.href = '../المستشفيات و المراكز/index.html';
+          break;
+
+        case 'charity_admin':
+          // فحص بوابة الاشتراك المشروطة للجمعيات
+          try {
+            const sub = await window.jisrDB.getCharityActiveSubscription(profile.id);
+            if (sub && sub.hasActiveSub && sub.remaining_days > 0) {
+              window.location.href = '../الجمعيات/الواجهة الاساسية.html';
+            } else {
+              window.location.href = '../الجمعيات/index.html';
+            }
+          } catch (e) {
+            window.location.href = '../الجمعيات/index.html';
+          }
+          break;
+
+        case 'owner':
+        case 'admin':
+          window.location.href = '../لوحة تحكم المالك/index.html';
+          break;
+
+        default:
+          window.location.href = '../المستفيد/الصفحة الرئيسية/الرئيسية/code.html';
+          break;
+      }
+    }
+
+    // فحص سبب التحويل إن وجد من auth-guard
+    window.addEventListener('DOMContentLoaded', () => {
+      const reason = sessionStorage.getItem('jisr_redirect_reason');
+      if (reason === 'unauthenticated') {
+        showAlert('يرجى تسجيل الدخول أولاً للوصول إلى لوحة التحكم المطلوبة.', 'warning');
+      } else if (reason === 'role_mismatch') {
+        showAlert('لا تملك الصلاحيات الكافية للوصول إلى تلك البوابة. يرجى تسجيل الدخول بالحساب المناسب.', 'error');
+      } else if (reason === 'not_approved') {
+        showAlert('حسابك بانتظار اعتماد الإدارة الطبية. سيتم إشعاركم فور تفعيل الحساب.', 'warning');
+      }
+      sessionStorage.removeItem('jisr_redirect_reason');
+    });
+  </script>
+</body>
+
+</html>

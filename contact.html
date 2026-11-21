@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مركز التواصل والدعم الفني — منصة جسر</title>
-  <meta name="description" content="تواصل مع إدارة منصة جسر للتأهيل والرعاية عن بُعد: قنوات الاتصال، طلبات الشراكة، والدعم الفني المباشر للأسر والمؤسسات.">
+  <title>تواصل معنا — منصة جسور للتأهيل والرعاية عن بُعد</title>
+  <meta name="description"
+    content="تواصل مع إدارة منصة جسور للتأهيل: قنوات الاتصال الرسمية، الاستفسارات العامة، والدعم الفني المباشر.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
@@ -19,8 +24,8 @@
             "primary": "#00507d",
             "primary-dark": "#003756",
             "primary-light": "#0284c7",
-            "primary-container": "#0369a1",
             "secondary": "#006a61",
+            "secondary-dark": "#004d46",
             "surface": "#ffffff",
             "surface-container-low": "#f8fafd",
             "surface-container": "#eef3f8",
@@ -30,120 +35,371 @@
           },
           fontFamily: {
             sans: ["'IBM Plex Sans Arabic'", "'IBM Plex Sans'", "sans-serif"]
+          },
+          boxShadow: {
+            "subtle": "0 2px 8px -2px rgba(13, 28, 46, 0.04), 0 1px 4px -1px rgba(13, 28, 46, 0.02)",
+            "card": "0 10px 30px -5px rgba(13, 28, 46, 0.05), 0 4px 10px -3px rgba(13, 28, 46, 0.02)"
           }
         }
       }
     };
   </script>
   <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-40 glass-header">
+  <!-- Centralized Supabase Configuration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+</head>
+
+<body
+  class="bg-[#f8fafd] text-on-surface antialiased selection:bg-primary-fixed selection:text-primary min-h-screen flex flex-col justify-between">
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link" data-i18n="skipLink">التخطي إلى المحتوى الرئيسي</a>
+
+  <!-- ========================================================================
+       TOP HEADER / NAVBAR (UNIFIED & CLEAN)
+       ======================================================================== -->
+  <header id="main-header"
+    class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-white/85 backdrop-blur-md border-b border-slate-200/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <a href="index.html" class="flex items-center gap-3.5">
-          <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-2 shadow-sm border border-outline-variant">
-            <img src="assets/images/logo.png" alt="جسر" class="w-full h-full object-contain">
+
+        <!-- Right: Logo & Identity -->
+        <a href="index.html" class="flex items-center gap-3.5 group focus:outline-none">
+          <div
+            class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center p-2 shadow-2xs border border-slate-200/80 group-hover:border-primary/40 transition">
+            <img src="assets/images/logo.png" alt="شعار منصة جسور للتأهيل" class="w-full h-full object-contain">
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-bold text-primary leading-none">جسر</span>
-            <span class="text-[11px] font-medium text-on-surface-variant mt-1">للتأهيل والرعاية عن بُعد</span>
+            <span class="text-xl font-bold text-primary tracking-tight leading-none">جسور للتأهيل</span>
+            <span class="text-[11px] font-medium text-slate-500 mt-1 leading-tight tracking-wide">للرعاية والتأهيل عن بُعد</span>
           </div>
         </a>
 
-        <nav class="hidden lg:flex items-center gap-2">
-          <a href="index.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">الرئيسية</a>
-          <a href="about.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">من نحن</a>
-          <a href="services.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">خدماتنا</a>
-          <a href="partners.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">شركاؤنا</a>
-          <a href="faq.html" class="px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-lg">الأسئلة الشائعة</a>
-          <a href="contact.html" class="px-3 py-2 text-sm font-bold text-primary rounded-lg">تواصل معنا</a>
+        <!-- Center: Exactly 4 Dedicated Independent Page Links -->
+        <nav class="hidden md:flex items-center gap-8" aria-label="شريط التنقل الرئيسي">
+          <a href="about.html"
+            class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1"
+            data-i18n="nav.about">عن المنصة</a>
+          <a href="services.html"
+            class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1"
+            data-i18n="nav.services">الخدمات</a>
+          <a href="partners.html"
+            class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1"
+            data-i18n="nav.partners">الشركاء</a>
+          <a href="faq.html"
+            class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1"
+            data-i18n="nav.faq">الأسئلة الشائعة</a>
         </nav>
 
-        <div class="flex items-center gap-3">
-          <a href="index.html#home" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm">
-            العودة للرئيسية
+        <!-- Left: Language Switcher & Primary Login Button -->
+        <div class="hidden md:flex items-center gap-3">
+          <button type="button" data-lang-toggle
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-primary hover:bg-slate-100/70 transition border border-slate-200"
+            aria-label="تبديل لغة الموقع">
+            <span class="material-symbols-outlined text-base">language</span>
+            <span data-i18n="nav.langSwitch">English</span>
+          </button>
+
+          <a href="login.html"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-2xs hover:shadow-subtle">
+            <span class="material-symbols-outlined text-base">login</span>
+            <span data-i18n="nav.login">تسجيل الدخول</span>
           </a>
         </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button type="button" id="mobile-menu-toggle"
+          class="md:hidden p-2 rounded-xl text-slate-600 hover:text-primary hover:bg-slate-100 transition"
+          aria-label="القائمة الرئيسية" aria-expanded="false">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-6 space-y-4 shadow-xl">
+      <nav class="flex flex-col space-y-2">
+        <a href="about.html"
+          class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">عن
+          المنصة</a>
+        <a href="services.html"
+          class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الخدمات</a>
+        <a href="partners.html"
+          class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الشركاء</a>
+        <a href="faq.html"
+          class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الأسئلة
+          الشائعة</a>
+      </nav>
+      <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+        <button type="button" data-lang-toggle
+          class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold text-slate-600 border border-slate-200">
+          <span class="material-symbols-outlined text-base">language</span>
+          <span data-i18n="nav.langSwitch">English</span>
+        </button>
+        <a href="login.html"
+          class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition text-center shadow-2xs">
+          <span class="material-symbols-outlined text-base">login</span>
+          <span>تسجيل الدخول</span>
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="flex-grow pt-28 pb-20">
+  <!-- ========================================================================
+       MAIN CONTENT: CONTACT & MESSAGING
+       ======================================================================== -->
+  <main id="main-content" class="flex-grow pt-28 pb-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      
+
       <!-- Page Title -->
       <div class="text-center space-y-3">
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">قنوات التواصل</span>
+        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary">
+          قنوات التواصل والاستفسارات
+        </span>
         <h1 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight">
           مركز الدعم والتواصل المباشر
         </h1>
-        <p class="text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
-          نحن في خدمتكم للإجابة على استفساراتكم ومتابعة طلباتكم بكل اهتمام.
+        <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl mx-auto">
+          يسعدنا استقبال استفساراتكم واقتراحاتكم لمساندة الأسر وخدمة شركاء المنظومة التأهيلية.
         </p>
       </div>
 
-      <!-- Contact Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-3 shadow-sm">
-          <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+      <!-- Quick Contact Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-card space-y-2.5">
+          <div
+            class="w-11 h-11 rounded-2xl bg-primary/10 text-primary flex items-center justify-center border border-primary/20">
             <span class="material-symbols-outlined text-2xl">alternate_email</span>
           </div>
-          <h2 class="text-base font-bold text-on-surface">البريد الإلكتروني المعتمد</h2>
-          <p class="text-xs text-on-surface-variant leading-relaxed">للاستفسارات العامة والمراسلات الإدارية الرسمية والشراكات.</p>
-          <a href="mailto:info@jisr-care.org" class="text-sm font-bold text-primary hover:underline">info@jisr-care.org</a>
+          <h2 class="text-sm font-bold text-slate-800">البريد الإلكتروني المعتمد</h2>
+          <p class="text-xs text-slate-500 leading-relaxed">للمراسلات العامة والاستفسارات المؤسسية وملاحظات الخدمة.</p>
+          <a href="mailto:info@jisr-care.org"
+            class="inline-block text-xs font-bold text-primary hover:underline">info@jisr-care.org</a>
         </div>
 
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-3 shadow-sm">
-          <div class="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center">
-            <span class="material-symbols-outlined text-2xl">call</span>
-          </div>
-          <h2 class="text-base font-bold text-on-surface">مركز خدمة المستفيدين</h2>
-          <p class="text-xs text-on-surface-variant leading-relaxed">متاح من الأحد إلى الخميس من 8:00 صباحاً حتى 5:00 مساءً.</p>
-          <span class="text-sm font-bold text-secondary">الرقم الموحد: 920000000</span>
-        </div>
-
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-3 shadow-sm">
-          <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-800 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-card space-y-2.5">
+          <div
+            class="w-11 h-11 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center border border-secondary/20">
             <span class="material-symbols-outlined text-2xl">headset_mic</span>
           </div>
-          <h2 class="text-base font-bold text-on-surface">الدعم الفني والتقني</h2>
-          <p class="text-xs text-on-surface-variant leading-relaxed">فريق مساندة لحل أي مشكلات تقنية في التطبيق أو تسجيل الدخول.</p>
-          <a href="mailto:support@jisr-care.org" class="text-sm font-bold text-teal-800 hover:underline">support@jisr-care.org</a>
-        </div>
-
-        <div class="bg-white p-6 rounded-3xl border border-outline-variant space-y-3 shadow-sm">
-          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center">
-            <span class="material-symbols-outlined text-2xl">location_on</span>
-          </div>
-          <h2 class="text-base font-bold text-on-surface">المقر والمنطقة</h2>
-          <p class="text-xs text-on-surface-variant leading-relaxed">المملكة العربية السعودية — الرياض، لخدمة كافة مناطق ومحافظات المملكة.</p>
-          <span class="text-xs text-on-surface-variant">خدمات رقمية عن بُعد متوفرة على مدار الساعة</span>
+          <h2 class="text-sm font-bold text-slate-800">خدمة المستفيدين والدعم الفني</h2>
+          <p class="text-xs text-slate-500 leading-relaxed">متاح يومياً للرد على التساؤلات وحل أي مشكلات تقنية في
+            الاستخدام.</p>
+          <span class="inline-block text-xs font-bold text-secondary">الرقم الموحد: 920000000</span>
         </div>
 
       </div>
 
-      <!-- Return button -->
-      <div class="text-center pt-4">
-        <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition">
-          <span class="material-symbols-outlined text-lg">arrow_back</span>
-          <span>العودة إلى الصفحة الرئيسية</span>
-        </a>
+      <!-- Contact Message Submission Form Card -->
+      <div class="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200/80 shadow-card space-y-6">
+        <div class="space-y-1.5 border-b border-slate-100 pb-4">
+          <h2 class="text-lg font-bold text-on-surface">إرسال رسالة أو استفسار</h2>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            املأ الحقول التالية وسيتواصل معك الفريق الإداري عبر وسيلة التواصل المحددة.
+          </p>
+        </div>
+
+        <div id="contact-alert" class="hidden"></div>
+
+        <form id="contact-form" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="contact-name" class="block text-xs font-bold text-slate-700 mb-1.5">الاسم الكامل *</label>
+              <input type="text" id="contact-name" required placeholder="مثال: عبدالله السبيعي"
+                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition">
+            </div>
+
+            <div>
+              <label for="contact-info" class="block text-xs font-bold text-slate-700 mb-1.5">رقم الهاتف أو البريد
+                الإلكتروني *</label>
+              <input type="text" id="contact-info" required placeholder="05XXXXXXXX أو name@domain.com"
+                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition">
+            </div>
+          </div>
+
+          <div>
+            <label for="contact-type" class="block text-xs font-bold text-slate-700 mb-1.5">نوع الاستفسار أو الموضوع
+              *</label>
+            <select id="contact-type" required
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition">
+              <option value="general">استفسار عام عن خدمات المنصة</option>
+              <option value="partnership">استفسار حول الشراكات المؤسسية والاعتماد</option>
+              <option value="beneficiary">دعم المستفيدين ومسارات التأهيل المنزلي</option>
+              <option value="technical_support">الدعم الفني والتقني للبوابات</option>
+              <option value="complaints">ملاحظات واقتراحات التحسين</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="contact-message" class="block text-xs font-bold text-slate-700 mb-1.5">نص الرسالة أو الاستفسار
+              *</label>
+            <textarea id="contact-message" rows="4" required placeholder="اكتب تفاصيل استفسارك أو طلبك بوضوح..."
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"></textarea>
+          </div>
+
+          <div class="pt-2">
+            <button type="submit" id="contact-submit-btn"
+              class="w-full py-3.5 px-6 rounded-xl bg-primary text-white text-xs sm:text-sm font-bold hover:bg-primary-dark transition shadow-2xs inline-flex items-center justify-center gap-2">
+              <span>إرسال الرسالة</span>
+              <span class="material-symbols-outlined text-base">send</span>
+            </button>
+          </div>
+        </form>
       </div>
 
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-white border-t border-outline-variant py-8 text-center text-xs text-on-surface-variant">
-    <p>جميع الحقوق محفوظة لمنصة جسر للتأهيل والرعاية عن بُعد © 2026</p>
+  <!-- ========================================================================
+       CLEAN FOOTER (NO INTERNAL PORTALS LINKS)
+       ======================================================================== -->
+  <footer class="bg-white border-t border-slate-200/80 pt-12 pb-8 text-on-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
+
+        <div class="md:col-span-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center p-2 border border-primary/20">
+              <img src="assets/images/logo.png" alt="شعار جسور للتأهيل" class="w-full h-full object-contain">
+            </div>
+            <div>
+              <span class="text-lg font-bold text-primary block leading-none">جسور للتأهيل</span>
+              <span class="text-[11px] text-slate-500 mt-1 block">منظومة الرعاية والتأهيل الطبي المنزلي وعن بُعد</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed max-w-md">
+            مشروع رقمي صحي متخصص يربط أصحاب الاحتياجات التأهيلية بنخبة من المختصين والمشرفين الحركيين والجهات المانحة
+            لتقديم رعاية منزلية موثوقة ومستمرة.
+          </p>
+        </div>
+
+        <div class="md:col-span-3 space-y-3">
+          <h3 class="text-xs font-bold text-slate-800 tracking-wider uppercase">استكشف المنصة</h3>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li><a href="about.html" class="hover:text-primary transition">عن المنصة ورسالتها</a></li>
+            <li><a href="services.html" class="hover:text-primary transition">الخدمات التأهيلية</a></li>
+            <li><a href="partners.html" class="hover:text-primary transition">شبكة الشركاء والاعتماد</a></li>
+            <li><a href="faq.html" class="hover:text-primary transition">الأسئلة الشائعة</a></li>
+            <li><a href="contact.html" class="text-primary font-bold">تواصل مع الإدارة</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3 space-y-3">
+          <h3 class="text-xs font-bold text-slate-800 tracking-wider uppercase">السياسات والحوكمة</h3>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li><a href="privacy.html" class="hover:text-primary transition">سياسة الخصوصية وحماية البيانات</a></li>
+            <li><a href="terms.html" class="hover:text-primary transition">الشروط والأحكام</a></li>
+            <li>
+              <button type="button" id="footer-a11y-btn"
+                class="hover:text-primary transition text-start inline-flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">accessibility_new</span>
+                <span>أدوات تيسير الوصول الرقمي</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div
+        class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 text-center sm:text-start">
+        <p>جميع الحقوق محفوظة لمنصة جسور للتأهيل والرعاية عن بُعد © 2026</p>
+        <div class="flex items-center gap-3">
+          <a href="privacy.html" class="hover:text-primary transition">الخصوصية</a>
+          <span>•</span>
+          <a href="terms.html" class="hover:text-primary transition">الشروط</a>
+          <span>•</span>
+          <a href="login.html" class="text-primary font-bold hover:underline">بوابة تسجيل الدخول</a>
+        </div>
+      </div>
+
+    </div>
   </footer>
 
+  <!-- Accessibility Settings Modal -->
+  <div id="a11y-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs" aria-modal="true"
+    role="dialog">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-xl">accessibility_new</span>
+          <h3 class="text-sm font-bold text-on-surface">أدوات تيسير الوصول</h3>
+        </div>
+        <button type="button" id="close-a11y-modal" class="text-slate-400 hover:text-slate-600">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <div class="space-y-2.5 text-xs">
+        <div class="flex gap-2">
+          <button type="button" id="a11y-font-bigger"
+            class="flex-1 py-2 px-3 bg-slate-100 rounded-xl font-semibold hover:bg-primary/10 hover:text-primary transition">تكبير
+            الخط</button>
+          <button type="button" id="a11y-font-normal"
+            class="flex-1 py-2 px-3 bg-slate-100 rounded-xl font-semibold hover:bg-primary/10 hover:text-primary transition">الخط
+            الافتراضي</button>
+        </div>
+        <button type="button" id="a11y-contrast"
+          class="w-full py-2.5 px-3 bg-slate-100 rounded-xl font-semibold hover:bg-primary/10 hover:text-primary transition text-center">تبديل
+          التباين العالي</button>
+        <button type="button" id="a11y-motion"
+          class="w-full py-2.5 px-3 bg-slate-100 rounded-xl font-semibold hover:bg-primary/10 hover:text-primary transition text-center">تقليل
+          الحركة والانتقالات</button>
+        <button type="button" id="a11y-reset"
+          class="w-full py-2 text-center text-xs text-red-600 hover:underline pt-2">إعادة ضبط الإعدادات</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING SCROLL TO TOP BUTTON ONLY -->
+  <button type="button" id="scroll-top-btn"
+    class="scroll-top-floating-btn hidden fixed bottom-6 end-6 z-30 w-11 h-11 rounded-full bg-primary text-white shadow-lg border border-white items-center justify-center focus:outline-none opacity-0 hover:bg-primary-dark transition-all duration-200"
+    aria-label="العودة لأعلى الصفحة">
+    <span class="material-symbols-outlined text-xl">arrow_upward</span>
+  </button>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const a11yModal = document.getElementById('a11y-modal');
+      const openBtn = document.getElementById('footer-a11y-btn');
+      const closeBtn = document.getElementById('close-a11y-modal');
+
+      if (openBtn && a11yModal) {
+        openBtn.addEventListener('click', () => {
+          a11yModal.classList.remove('hidden');
+          a11yModal.classList.add('flex');
+        });
+      }
+      if (closeBtn && a11yModal) {
+        closeBtn.addEventListener('click', () => {
+          a11yModal.classList.add('hidden');
+          a11yModal.classList.remove('flex');
+        });
+      }
+      if (a11yModal) {
+        a11yModal.addEventListener('click', (e) => {
+          if (e.target === a11yModal) {
+            a11yModal.classList.add('hidden');
+            a11yModal.classList.remove('flex');
+          }
+        });
+      }
+    });
+  </script>
 </body>
+
 </html>

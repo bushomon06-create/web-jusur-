@@ -1,5 +1,5 @@
 /**
- * جسر للتأهيل والرعاية عن بُعد - Jisr Tele-Rehabilitation Platform
+ * منصة جسور للتأهيل والرعاية عن بُعد - Jusoor Tele-Rehabilitation Platform
  * Internationalization (i18n) Engine & Translations
  */
 
@@ -9,23 +9,26 @@ const translations = {
     "nav.home": "الرئيسية",
     "nav.about": "من نحن",
     "nav.services": "خدماتنا",
+    "nav.matcher": "محدد المسار",
     "nav.howItWorks": "كيف تعمل المنصة؟",
-    "nav.forWhom": "لمن صُممت جسر؟",
+    "nav.forWhom": "لمن صُممت جسور للتأهيل؟",
     "nav.partners": "شركاؤنا",
     "nav.stories": "قصص وتجارب",
     "nav.faq": "الأسئلة الشائعة",
     "nav.contact": "تواصل معنا",
     "nav.downloadApp": "تحميل التطبيق",
     "nav.enterPlatform": "دخول المنصة",
+    "nav.login": "تسجيل الدخول",
     "nav.userPortals": "بوابات المستخدمين",
     "nav.langSwitch": "English",
     "skipLink": "التخطي إلى المحتوى الرئيسي",
 
     // Hero Section
     "hero.badge": "منصة وطنية متخصصة في الرعاية التأهيلية عن بُعد",
-    "hero.title": "جسر يربطك برحلة تأهيل أكثر سهولة وأمانًا من منزلك",
+    "hero.title": "جسور للتأهيل يربطك برحلة تأهيل أكثر سهولة وأمانًا من منزلك",
     "hero.subtitle": "منصة رقمية متخصصة تُمكّن الأشخاص ذوي الاحتياجات التأهيلية وأسرهم من الحصول على خطط تأهيلية متكاملة ومتابعة مستمرة بإشراف نخبة من الأخصائيين المعتمدين والمشرفين الحركيين والمؤسسات الصحية.",
-    "hero.ctaServices": "اكتشف خدماتنا",
+    "hero.ctaStart": "ابدأ رحلتك الآن",
+    "hero.ctaServices": "استكشف خدماتنا",
     "hero.ctaDownload": "تحميل التطبيق",
     "hero.ctaAssessment": "بدء التقييم المبدئي",
     "hero.statRehab": "تأهيل منزلي منظم",
@@ -34,7 +37,7 @@ const translations = {
     "hero.statSupervisionSub": "ربط مباشر بالأخصائيين",
     "hero.statFamily": "رعاية متكاملة للأسرة",
     "hero.statFamilySub": "تقليل تكاليف وتحديات التنقل",
-    "hero.diagramTitle": "منظومة جسر المتكاملة للرعاية التشاركية",
+    "hero.diagramTitle": "منظومة جسور للتأهيل المتكاملة للرعاية التشاركية",
     "hero.nodeBeneficiary": "المستفيد والأسرة",
     "hero.nodeSpecialist": "الأخصائي المعالج",
     "hero.nodeSupervisor": "المشرف الحركي",
@@ -43,9 +46,9 @@ const translations = {
     // About Section
     "about.tag": "من نحن",
     "about.title": "تمكين ورعاية متصلة بروح إنسانية وتقنية متطورة",
-    "about.intro": "منصة «جسر للتأهيل والرعاية عن بُعد» هي مبادرة تقنية متخصصة تهدف إلى إعادة صياغة تجربة التأهيل الطبي والرعاية الصحية المنزلية، من خلال تذليل العقبات الجغرافية والمالية التي تواجه الأسر والأشخاص ذوي الإعاقة.",
+    "about.intro": "منصة «جسور للتأهيل والرعاية عن بُعد» هي مبادرة تقنية متخصصة تهدف إلى إعادة صياغة تجربة التأهيل الطبي والرعاية الصحية المنزلية، من خلال تذليل العقبات الجغرافية والمالية التي تواجه الأسر والأشخاص ذوي الإعاقة.",
     "about.foundingIdea": "فكرة التأسيس",
-    "about.foundingIdeaDesc": "انطلقت فكرة جسر استجابةً لحاجة إنسانية ملحة: معاناة الأسر في الوصول المستمر إلى مراكز التأهيل، وصعوبة التنقل المتكرر، وتفاوت المتابعة المنزلية بين الجلسات السريرية، ما دفعنا لابتكار بيئة رقمية آمنة تربط جميع أطراف الرعاية.",
+    "about.foundingIdeaDesc": "انطلقت فكرة جسور للتأهيل استجابةً لحاجة إنسانية ملحة: معاناة الأسر في الوصول المستمر إلى مراكز التأهيل، وصعوبة التنقل المتكرر، وتفاوت المتابعة المنزلية بين الجلسات السريرية، ما دفعنا لابتكار بيئة رقمية آمنة تربط جميع أطراف الرعاية.",
     "about.problem": "المشكلة التي نعالجها",
     "about.problemDesc": "قلة توفر مراكز التأهيل المتخصصة في بعض المناطق، وارتفاع تكاليف التنقل، وطول فترات الانتظار، والضغط المتزايد على المستشفيات، وضعف استمرارية التمارين التأهيلية في بيئة المنزل.",
     "about.importance": "أهمية التأهيل المنزلي",
@@ -71,7 +74,7 @@ const translations = {
     "about.valIntegrationDesc": "ربط منظومة الرعاية بالكامل في حلقة تواصل مهنية واحدة بين جميع المعنيين.",
 
     // Services Section
-    "services.tag": "خدمات جسر",
+    "services.tag": "خدمات جسور للتأهيل",
     "services.title": "منظومة خدمات تأهيلية متكاملة صُممت لراحتكم",
     "services.subtitle": "حلول مدروسة تغطي جميع مراحل رحلة التأهيل من التقييم الأولي وحتى التعافي والاستقلالية التامة.",
     "services.btnExplore": "تفاصيل الخدمة",
@@ -121,7 +124,7 @@ const translations = {
 
     // How it works Section
     "how.tag": "رحلة المستفيد",
-    "how.title": "كيف تعمل منصة جسر؟",
+    "how.title": "كيف تعمل منصة جسور للتأهيل؟",
     "how.subtitle": "خطوات بسيطة وواضحة ترتب رحلتك من التقييم الأولي وحتى تحقيق الاستقلالية الحركية",
     "step1.num": "01",
     "step1.title": "إنشاء الحساب وإضافة بيانات المستفيد",
@@ -147,7 +150,7 @@ const translations = {
 
     // Who it is for Section
     "forWhom.tag": "الفئات المستفيدة",
-    "forWhom.title": "لمن صُممت منصة جسر؟",
+    "forWhom.title": "لمن صُممت منصة جسور للتأهيل؟",
     "forWhom.subtitle": "حلول متخصصة ومصممة خصيصاً لكل فاعل في منظومة الرعاية والتأهيل",
     
     "target.1.title": "المستفيدون وأولياء الأمور",
@@ -176,7 +179,7 @@ const translations = {
     "target.5.btn": "بوابة الجمعيات",
 
     // User Portals Drawer
-    "drawer.title": "اختر بوابتك للوصول إلى جسر",
+    "drawer.title": "اختر بوابتك للوصول إلى جسور للتأهيل",
     "drawer.subtitle": "بوابات رقمية مستقلة مخصصة لكل شريك في رحلة التأهيل",
     "drawer.close": "إغلاق القائمة",
     "drawer.assessmentPill": "هل تحتاج لتقييم حالتك أولاً؟ اضغط هنا لبدء الفحص الوظيفي المبدئي",
@@ -212,17 +215,17 @@ const translations = {
     "partners.catSpecialists": "الأخصائيون والكوادر السريرية",
     "partners.catPharmacies": "الصيدليات ومراكز الدواء",
     "partners.catDevices": "متاجر الأجهزة الطبية والمساعدة",
-    "partners.cta": "كن شريكًا مع جسر",
+    "partners.cta": "كن شريكًا مع جسور للتأهيل",
     "partners.note": "جميع الشراكات تخضع لاتفاقيات حوكمة طبية معتمدة ومعايير امتثال موحدة.",
 
     // Stories Section
     "stories.tag": "أثر ورعاية",
     "stories.title": "قصص وتجارب من رحلة التأهيل",
-    "stories.subtitle": "نماذج واقعية تعكس التزام جسر بمساعدة الأسر على تخطي التحديات بروح من الأمل والعزيمة",
+    "stories.subtitle": "نماذج واقعية تعكس التزام جسور للتأهيل بمساعدة الأسر على تخطي التحديات بروح من الأمل والعزيمة",
     "stories.privacyNote": "تُعرض التجارب وفق موافقات صريحة، مع احترام تام للخصوصية والمعايير الأخلاقية والطبية.",
     "story.1.title": "استعادة الاستقلالية في بيئة المنزل",
     "story.1.user": "أسرة مستفيد - تأهيل حركي بعد جراحة",
-    "story.1.text": "«كانت صعوبة الانتقال بالسيارة إلى المركز مرتين أسبوعياً تشكل هاجساً حقيقياً. منصة جسر مكّنتنا من متابعة الخطة اليومية بدقة وبتوجيه مستمر من الأخصائي، مما زاد من ثقتنا وتطور الحركة بشكل ملحوظ.»",
+    "story.1.text": "«كانت صعوبة الانتقال بالسيارة إلى المركز مرتين أسبوعياً تشكل هاجساً حقيقياً. منصة جسور للتأهيل مكّنتنا من متابعة الخطة اليومية بدقة وبتوجيه مستمر من الأخصائي، مما زاد من ثقتنا وتطور الحركة بشكل ملحوظ.»",
     "story.1.service": "الخدمة: خطة التأهيل الفردية والمتابعة السريرية",
 
     "story.2.title": "تخفيف القلق ومتابعة منتظمة",
@@ -237,7 +240,7 @@ const translations = {
 
     // FAQ Section
     "faq.tag": "الأسئلة الشائعة",
-    "faq.title": "إجابات واضحة لكل ما تود معرفته عن جسر",
+    "faq.title": "إجابات واضحة لكل ما تود معرفته عن جسور للتأهيل",
     "faq.subtitle": "جمعنا لك أهم التساؤلات المتعلقة بآلية العمل والخصوصية والاستفادة من الخدمات",
     "faq.searchPlaceholder": "ابحث في الأسئلة الشائعة...",
     "faq.tabAll": "الكل",
@@ -247,10 +250,10 @@ const translations = {
     "faq.tabPartners": "الشراكات والخصوصية",
 
     // 13 Questions & Answers
-    "faq.q1": "ما هي منصة جسر للتأهيل والرعاية عن بُعد؟",
-    "faq.a1": "جسر هي منصة وطنية متخصصة تهدف إلى تسهيل وصول الأشخاص ذوي الاحتياجات التأهيلية وأسرهم إلى برامج التأهيل والمتابعة السريرية المنزلية، عبر ربطهم بأخصائيين معتمدين ومشرفين حركيين ومؤسسات صحية وجمعيات داعمة.",
+    "faq.q1": "ما هي منصة جسور للتأهيل والرعاية عن بُعد؟",
+    "faq.a1": "منصة جسور للتأهيل هي منظومة وطنية متخصصة تهدف إلى تسهيل وصول الأشخاص ذوي الاحتياجات التأهيلية وأسرهم إلى برامج التأهيل والمتابعة السريرية المنزلية، عبر ربطهم بأخصائيين معتمدين ومشرفين حركيين ومؤسسات صحية وجمعيات داعمة.",
 
-    "faq.q2": "من يستطيع استخدام منصة جسر؟",
+    "faq.q2": "من يستطيع استخدام منصة جسور للتأهيل؟",
     "faq.a2": "تخدم المنصة خمس فئات رئيسية: المستفيدون وأولياء أمورهم، الأخصائيون السريريون المعالجون، المشرفون الحركيون، المستشفيات ومراكز التأهيل، والجمعيات والمؤسسات غير الربحية.",
 
     "faq.q3": "كيف أقوم بتسجيل مستفيد جديد في المنصة؟",
@@ -272,22 +275,22 @@ const translations = {
     "faq.a8": "من خلال قائمة 'المواعيد والاستشارات' في حساب المستفيد، يمكنك اختيار الأخصائي المعالج والاطلاع على المواعيد المتاحة وحجز الجلسة المرئية مباشرة والتذكير بها قبل موعدها.",
 
     "faq.q9": "كيف أحصل على موعد حضوري في مركز أو مستشفى؟",
-    "faq.a9": "إذا أوصى الأخصائي بضرورة التدخل السريري الحضوري، يمكن تنسيق موعد مباشر من خلال المنصة لدى أحد المستشفيات أو المراكز التأهيلية الشريكة المسجلة في شبكة جسر.",
+    "faq.a9": "إذا أوصى الأخصائي بضرورة التدخل السريري الحضوري، يمكن تنسيق موعد مباشر من خلال المنصة لدى أحد المستشفيات أو المراكز التأهيلية الشريكة المسجلة في شبكة جسور للتأهيل.",
 
     "faq.q10": "هل يمكن الوصول إلى التمارين واستخدامها دون اتصال بالإنترنت؟",
     "faq.a10": "نعم، يتيح تطبيق المستفيد ميزة 'تحميل التمارين للمشاهدة بدون إنترنت'، مما يضمن استمرارية أداء الخطة اليومية حتى في ظروف انقطاع أو ضعف التغطية الشبكية.",
 
-    "faq.q11": "كيف تنضم المستشفيات ومراكز التأهيل إلى منظومة جسر؟",
+    "faq.q11": "كيف تنضم المستشفيات ومراكز التأهيل إلى منظومة جسور للتأهيل؟",
     "faq.a11": "يمكن للمؤسسات الصحية تقديم طلب انضمام عبر بوابة 'المستشفيات والمراكز' أو زر 'طلب شراكة'، حيث يقوم فريق الحوكمة بمراجعة التراخيص الطبية واعتماد حساب المنشأة وتدريب كوادرها.",
 
     "faq.q12": "كيف تتعاون الجمعيات والمؤسسات غير الربحية مع المنصة؟",
     "faq.a12": "تتعاون الجمعيات من خلال دعم كفالة برامج التأهيل للأسر الأشد حاجة، وتغذية بنك الأجهزة المساعدة، واستقبال طلبات الدعم المحولة عبر المنصة بما يحقق التكافل الاجتماعي والتوزيع العادل للخدمات.",
 
-    "faq.q13": "كيف تضمن منصة جسر حماية بيانات المستفيدين وسجلاتهم الطبية؟",
+    "faq.q13": "كيف تضمن منصة جسور للتأهيل حماية بيانات المستفيدين وسجلاتهم الطبية؟",
     "faq.a13": "تطبق المنصة أعلى معايير التشفير (End-to-End Encryption)، وتخضع لسياسات خصوصية البيانات الصحية الصارمة، بحيث لا يُسمح بالاطلاع على السجلات إلا للأخصائي المصرح له ولأولياء الأمور المعتمدين.",
 
     // App Download Section
-    "app.tag": "تطبيق جسر للهواتف الذكية",
+    "app.tag": "تطبيق جسور للتأهيل للهواتف الذكية",
     "app.title": "رحلة التأهيل الكاملة بين يديك في أي وقت",
     "app.subtitle": "حمّل تطبيق المستفيد والأسرة لمتابعة التمارين اليومية، والتواصل مع المختصين، وتتبع مؤشرات التحسن لحظة بلحظة.",
     "app.feature1": "مكتبة تمارين فيديو عالية الجودة مع إرشادات حركية صوتية",
@@ -305,7 +308,7 @@ const translations = {
     // Contact Section
     "contact.tag": "تواصل معنا",
     "contact.title": "يسعدنا الاستماع إليكم والإجابة عن استفساراتكم",
-    "contact.subtitle": "فريق جسر مستعد للإجابة عن أسئلة الأسر، واستقبال طلبات الشراكة من المستشفيات والجمعيات، وتقديم الدعم الفني.",
+    "contact.subtitle": "فريق منصة جسور للتأهيل مستعد للإجابة عن أسئلة الأسر، واستقبال طلبات الشراكة من المستشفيات والجمعيات، وتقديم الدعم الفني.",
     "contact.formTitle": "أرسل رسالتك لإدارة المنصة",
     "contact.nameLabel": "الاسم الكامل *",
     "contact.namePlaceholder": "أدخل اسمك الكريم",
@@ -323,7 +326,7 @@ const translations = {
     "contact.submitBtn": "إرسال الرسالة",
     "contact.sending": "جاري الإرسال...",
     "contact.successTitle": "تم إرسال رسالتكم بنجاح!",
-    "contact.successDesc": "شكراً لتواصلكم مع منصة جسر. سيقوم الفريق المختص بمراجعة رسالتكم والرد عليكم في أقرب وقت ممكن.",
+    "contact.successDesc": "شكراً لتواصلكم مع منصة جسور للتأهيل. سيقوم الفريق المختص بمراجعة رسالتكم والرد عليكم في أقرب وقت ممكن.",
     "contact.errorEmpty": "يرجى تعبئة جميع الحقول المطلوبة بشكل صحيح.",
     
     // Official Channels
@@ -338,7 +341,7 @@ const translations = {
     "contact.supportDeskVal": "متاحة على مدار الساعة عبر المنصة",
 
     // Partnership Modal
-    "partnerModal.title": "طلب شراكة وتعاون مؤسسي مع جسر",
+    "partnerModal.title": "طلب شراكة وتعاون مؤسسي مع جسور للتأهيل",
     "partnerModal.desc": "نرحب بالتعاون مع المنشآت الصحية ومراكز التأهيل والجمعيات وموردي الأجهزة لتقديم خدمات متكاملة للمستفيدين.",
     "partnerModal.orgName": "اسم المنشأة أو المؤسسة *",
     "partnerModal.orgType": "تصنيف المنشأة *",
@@ -362,7 +365,7 @@ const translations = {
     "a11y.reset": "استعادة الإعدادات الأصلية",
 
     // Footer
-    "footer.desc": "جسر هي المنصة المتخصصة في التأهيل والرعاية عن بُعد، تهدف إلى مساعدة الأشخاص ذوي الإعاقة والاحتياجات التأهيلية وأسرهم للوصول إلى رعاية منزلية موثوقة بإشراف سريري متكامل.",
+    "footer.desc": "جسور للتأهيل هي المنصة المتخصصة في التأهيل والرعاية عن بُعد، تهدف إلى مساعدة الأشخاص ذوي الإعاقة والاحتياجات التأهيلية وأسرهم للوصول إلى رعاية منزلية موثوقة بإشراف سريري متكامل.",
     "footer.quickLinks": "روابط سريعة",
     "footer.userPortals": "بوابات المنصة",
     "footer.legal": "السياسات والحوكمة",
@@ -370,7 +373,7 @@ const translations = {
     "footer.terms": "الشروط والأحكام",
     "footer.accessibility": "بيان إمكانية الوصول الرقمي",
     "footer.clinicalEthics": "ميثاق الأخلاقيات السريرية",
-    "footer.rights": "جميع الحقوق محفوظة لمنصة جسر للتأهيل والرعاية عن بُعد © 2026",
+    "footer.rights": "جميع الحقوق محفوظة لمنصة جسور للتأهيل والرعاية عن بُعد © 2026",
     "footer.badge": "مشروع رقمي إنساني للتأهيل والرعاية عن بُعد"
   },
 
@@ -379,6 +382,7 @@ const translations = {
     "nav.home": "Home",
     "nav.about": "About Us",
     "nav.services": "Services",
+    "nav.matcher": "Care Matcher",
     "nav.howItWorks": "How It Works",
     "nav.forWhom": "Who It's For",
     "nav.partners": "Our Partners",
@@ -387,6 +391,7 @@ const translations = {
     "nav.contact": "Contact",
     "nav.downloadApp": "Download App",
     "nav.enterPlatform": "Enter Platform",
+    "nav.login": "Sign In",
     "nav.userPortals": "User Portals",
     "nav.langSwitch": "العربية",
     "skipLink": "Skip to main content",
@@ -395,6 +400,7 @@ const translations = {
     "hero.badge": "Dedicated Platform for Tele-Rehabilitation & Home Care",
     "hero.title": "A Bridge Connecting You to a Smoother Rehabilitation Journey",
     "hero.subtitle": "A specialized digital platform empowering individuals with rehabilitation needs and their families to receive comprehensive care and consistent home follow-up under the supervision of certified specialists, motor supervisors, and healthcare entities.",
+    "hero.ctaStart": "Start Your Journey Now",
     "hero.ctaServices": "Explore Services",
     "hero.ctaDownload": "Download App",
     "hero.ctaAssessment": "Start Initial Assessment",
@@ -404,7 +410,7 @@ const translations = {
     "hero.statSupervisionSub": "Direct specialist connection",
     "hero.statFamily": "Comprehensive Family Care",
     "hero.statFamilySub": "Lowering commute stress and costs",
-    "hero.diagramTitle": "Jisr Collaborative Care Ecosystem",
+    "hero.diagramTitle": "Jusoor Collaborative Care Ecosystem",
     "hero.nodeBeneficiary": "Beneficiary & Family",
     "hero.nodeSpecialist": "Treating Specialist",
     "hero.nodeSupervisor": "Motor Supervisor",
@@ -413,9 +419,9 @@ const translations = {
     // About Section
     "about.tag": "About Us",
     "about.title": "Empowerment and Connected Care with a Human Heart",
-    "about.intro": "Jisr Tele-Rehabilitation & Care Platform is a dedicated technological initiative designed to transform medical rehabilitation and home healthcare by breaking down geographical and financial barriers facing families and individuals with physical disabilities.",
+    "about.intro": "Jusoor Tele-Rehabilitation & Care Platform is a dedicated technological initiative designed to transform medical rehabilitation and home healthcare by breaking down geographical and financial barriers facing families and individuals with physical disabilities.",
     "about.foundingIdea": "Our Founding Idea",
-    "about.foundingIdeaDesc": "Jisr was conceived from a pressing human reality: the hardship families face in traveling repeatedly to rehabilitation centers, and the gap in consistent daily exercise between clinical sessions.",
+    "about.foundingIdeaDesc": "Jusoor Rehab was conceived from a pressing human reality: the hardship families face in traveling repeatedly to rehabilitation centers, and the gap in consistent daily exercise between clinical sessions.",
     "about.problem": "The Challenge We Address",
     "about.problemDesc": "Scarcity of specialized centers in certain regions, heavy commute burdens, long waiting lists, overcrowded hospitals, and low compliance with home exercise routines.",
     "about.importance": "The Importance of Home Rehabilitation",
@@ -441,7 +447,7 @@ const translations = {
     "about.valIntegrationDesc": "Connecting all care stakeholders into a cohesive, synchronized loop.",
 
     // Services Section
-    "services.tag": "Jisr Services",
+    "services.tag": "Jusoor Rehab Services",
     "services.title": "A Complete Rehabilitation Suite Built for Your Comfort",
     "services.subtitle": "Carefully engineered services covering every phase of your journey from initial assessment to functional independence.",
     "services.btnExplore": "Service Details",
@@ -491,7 +497,7 @@ const translations = {
 
     // How It Works
     "how.tag": "Beneficiary Journey",
-    "how.title": "How Jisr Platform Works",
+    "how.title": "How Jusoor Rehab Platform Works",
     "how.subtitle": "Seven systematic steps guiding your recovery journey from intake to independence",
     "step1.num": "01",
     "step1.title": "Account Creation & Profile Setup",
@@ -517,7 +523,7 @@ const translations = {
 
     // Who it is for Section
     "forWhom.tag": "Target Audiences",
-    "forWhom.title": "Who Is Jisr Designed For?",
+    "forWhom.title": "Who Is Jusoor Rehab Designed For?",
     "forWhom.subtitle": "Tailored solutions for every vital stakeholder in the rehabilitation ecosystem",
 
     "target.1.title": "Beneficiaries & Families",
@@ -546,7 +552,7 @@ const translations = {
     "target.5.btn": "Associations Portal",
 
     // User Portals Drawer
-    "drawer.title": "Choose Your Gateway to Jisr",
+    "drawer.title": "Choose Your Gateway to Jusoor Rehab",
     "drawer.subtitle": "Dedicated portals tailored for every role in the care continuum",
     "drawer.close": "Close Menu",
     "drawer.assessmentPill": "Need an initial evaluation first? Click here to start your functional assessment",
@@ -582,17 +588,17 @@ const translations = {
     "partners.catSpecialists": "Licensed Specialists & Clinicians",
     "partners.catPharmacies": "Pharmacies & Medical Suppliers",
     "partners.catDevices": "Assistive Devices & Mobility Stores",
-    "partners.cta": "Become a Jisr Partner",
+    "partners.cta": "Become a Jusoor Rehab Partner",
     "partners.note": "All institutional collaborations operate under rigorous governance and compliance standards.",
 
     // Stories Section
     "stories.tag": "Impact & Care",
     "stories.title": "Stories from the Rehabilitation Journey",
-    "stories.subtitle": "Real reflections illustrating Jisr's commitment to empowering families with dignity and hope.",
+    "stories.subtitle": "Real reflections illustrating Jusoor Rehab's commitment to empowering families with dignity and hope.",
     "stories.privacyNote": "Experiences shared with explicit informed consent, adhering to medical confidentiality ethics.",
     "story.1.title": "Restoring Independence at Home",
     "story.1.user": "Family of a Beneficiary - Post-Surgery Mobility Rehab",
-    "story.1.text": "\"Traveling to the clinic twice weekly was exhausting for our family. Jisr enabled us to execute daily routines with continuous clinician oversight, dramatically boosting mobility and confidence.\"",
+    "story.1.text": "\"Traveling to the clinic twice weekly was exhausting for our family. Jusoor Rehab enabled us to execute daily routines with continuous clinician oversight, dramatically boosting mobility and confidence.\"",
     "story.1.service": "Service: Individualized Plan & Clinical Follow-up",
 
     "story.2.title": "Relieving Anxiety with Consistent Guidance",
@@ -607,7 +613,7 @@ const translations = {
 
     // FAQ Section
     "faq.tag": "Frequently Asked Questions",
-    "faq.title": "Clear Answers to Everything About Jisr",
+    "faq.title": "Clear Answers to Everything About Jusoor Rehab",
     "faq.subtitle": "Key information regarding procedures, medical oversight, and platform access",
     "faq.searchPlaceholder": "Search questions...",
     "faq.tabAll": "All",
@@ -617,10 +623,10 @@ const translations = {
     "faq.tabPartners": "Partnerships & Privacy",
 
     // 13 Questions & Answers
-    "faq.q1": "What is Jisr Platform for Rehabilitation and Tele-Care?",
-    "faq.a1": "Jisr is a dedicated platform designed to help individuals with rehabilitation needs and their families access home rehabilitation and tele-care services, connecting them with certified specialists, kinesiology supervisors, hospitals, and charities.",
+    "faq.q1": "What is Jusoor Platform for Tele-Rehabilitation?",
+    "faq.a1": "Jusoor Rehab is a dedicated platform designed to help individuals with rehabilitation needs and their families access home rehabilitation and tele-care services, connecting them with certified specialists, kinesiology supervisors, hospitals, and charities.",
 
-    "faq.q2": "Who can use the Jisr platform?",
+    "faq.q2": "Who can use the Jusoor Rehab platform?",
     "faq.a2": "The platform serves five core groups: beneficiaries and guardians, clinical specialists, motor supervisors, hospitals and rehabilitation centers, and charitable non-profits.",
 
     "faq.q3": "How do I register a new beneficiary?",
@@ -647,17 +653,17 @@ const translations = {
     "faq.q10": "Can exercises be accessed offline?",
     "faq.a10": "Yes, the beneficiary mobile application supports downloading exercises for offline access, ensuring routine continuity even without stable internet.",
 
-    "faq.q11": "How do hospitals and rehabilitation centers join Jisr?",
+    "faq.q11": "How do hospitals and rehabilitation centers join Jusoor Rehab?",
     "faq.a11": "Healthcare organizations can submit an onboarding request via the 'Hospitals & Centers' gateway or partnership form. Our governance team verifies credentials and activates the organization account.",
 
-    "faq.q12": "How do charitable associations collaborate with Jisr?",
+    "faq.q12": "How do charitable associations collaborate with Jusoor Rehab?",
     "faq.a12": "Associations collaborate by sponsoring rehabilitation programs for eligible families, stocking the Assistive Devices Bank, and reviewing humanitarian requests.",
 
     "faq.q13": "How is beneficiary data and medical privacy protected?",
-    "faq.a13": "Jisr employs end-to-end data encryption and adheres to health data security regulations. Medical records are accessible strictly to authorized clinicians and verified guardians.",
+    "faq.a13": "Jusoor Rehab employs end-to-end data encryption and adheres to health data security regulations. Medical records are accessible strictly to authorized clinicians and verified guardians.",
 
     // App Section
-    "app.tag": "Jisr Mobile Application",
+    "app.tag": "Jusoor Rehab Mobile Application",
     "app.title": "Your Entire Rehabilitation Journey in Your Hands",
     "app.subtitle": "Download the mobile app to carry out daily exercises, stay in touch with specialists, and track milestones effortlessly.",
     "app.feature1": "High-definition video exercise tutorials with audio cues",
@@ -693,7 +699,7 @@ const translations = {
     "contact.submitBtn": "Send Message",
     "contact.sending": "Sending...",
     "contact.successTitle": "Message Sent Successfully!",
-    "contact.successDesc": "Thank you for reaching out to Jisr. Our team will review your inquiry and respond promptly.",
+    "contact.successDesc": "Thank you for reaching out to Jusoor Rehab. Our team will review your inquiry and respond promptly.",
     "contact.errorEmpty": "Please fill in all required fields properly.",
 
     // Official Channels
@@ -732,7 +738,7 @@ const translations = {
     "a11y.reset": "Reset to Default",
 
     // Footer
-    "footer.desc": "Jisr is a dedicated tele-rehabilitation platform empowering individuals with rehabilitation needs and their families with trusted home care under comprehensive clinical oversight.",
+    "footer.desc": "Jusoor Rehab is a dedicated tele-rehabilitation platform empowering individuals with rehabilitation needs and their families with trusted home care under comprehensive clinical oversight.",
     "footer.quickLinks": "Quick Links",
     "footer.userPortals": "User Portals",
     "footer.legal": "Policies & Governance",
@@ -740,7 +746,7 @@ const translations = {
     "footer.terms": "Terms & Conditions",
     "footer.accessibility": "Accessibility Statement",
     "footer.clinicalEthics": "Clinical Ethics Charter",
-    "footer.rights": "All rights reserved to Jisr Platform for Tele-Rehabilitation © 2026",
+    "footer.rights": "All rights reserved to Jusoor Platform for Tele-Rehabilitation © 2026",
     "footer.badge": "A Humanitarian & Digital Health Initiative"
   }
 };
@@ -802,8 +808,8 @@ class I18nManager {
     // Update document title if key exists
     if (translations[lang]['hero.title']) {
       const baseTitle = lang === 'ar' 
-        ? 'جسر للتأهيل والرعاية عن بُعد — المنصة الرسمية' 
-        : 'Jisr Tele-Rehabilitation & Care — Official Platform';
+        ? 'جسور للتأهيل والرعاية عن بُعد — المنصة الرسمية' 
+        : 'Jusoor Tele-Rehabilitation & Care — Official Platform';
       document.title = baseTitle;
     }
 

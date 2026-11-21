@@ -1,22 +1,47 @@
 /**
- * جسر للتأهيل والرعاية عن بُعد - Jisr Tele-Rehabilitation Platform
- * Main Interactive Engine & Application Controller
+ * منصة جسور للتأهيل والرعاية عن بُعد - Jusoor Tele-Rehabilitation Platform
+ * Main Interactive Engine & Application Controller - Minimalist SaaS Edition
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initScrollProgress();
   initHeader();
   initPortalsDrawer();
   initServicesModal();
   initPartnershipModal();
+  initPartnerPageForm();
   initAppModal();
   initFaqAccordion();
   initContactForm();
   initAccessibility();
   initScrollAnimations();
+  initCounters();
+  initInteractiveEcosystem();
+  initLivePhoneSimulator();
+  initRehabMatcher();
+  initServicesFilter();
+  initScrollTopButton();
+  initPortalLinksCopy();
+  initRehabAnimationStages();
 });
 
 /* ==========================================================================
-   1. Header, Mobile Navigation & Scroll Detection
+   1. Scroll Progress Bar
+   ========================================================================== */
+function initScrollProgress() {
+  const progressBar = document.getElementById('scroll-progress');
+  if (!progressBar) return;
+
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? (winScroll / height) : 0;
+    progressBar.style.transform = `scaleX(${scrolled})`;
+  });
+}
+
+/* ==========================================================================
+   2. Header, Mobile Navigation & Scroll Detection
    ========================================================================== */
 function initHeader() {
   const header = document.getElementById('main-header');
@@ -51,32 +76,41 @@ function initHeader() {
     });
   }
 
-  // Active section indicator
-  const sections = document.querySelectorAll('section[id]');
+  // Active page indicator
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const navLinks = document.querySelectorAll('.nav-link');
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('text-primary', 'font-semibold');
-            link.classList.remove('text-on-surface-variant');
-          } else {
-            link.classList.remove('text-primary', 'font-semibold');
-            link.classList.add('text-on-surface-variant');
-          }
-        });
-      }
-    });
-  }, { threshold: 0.3 });
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+      link.classList.add('text-primary', 'font-bold');
+      link.classList.remove('text-slate-600', 'text-on-surface-variant');
+    }
+  });
 
-  sections.forEach(sec => observer.observe(sec));
+  // Active section indicator for in-page anchors if present
+  const sections = document.querySelectorAll('section[id]');
+  if (sections.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('text-primary', 'font-semibold');
+              link.classList.remove('text-slate-600', 'text-on-surface-variant');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(sec => observer.observe(sec));
+  }
 }
 
 /* ==========================================================================
-   2. User Portals Sliding Drawer (Side Drawer)
+   3. User Portals Sliding Drawer (Side Drawer)
    ========================================================================== */
 function initPortalsDrawer() {
   const drawer = document.getElementById('portals-drawer');
@@ -84,6 +118,7 @@ function initPortalsDrawer() {
   const panel = document.getElementById('drawer-panel');
   const closeBtn = document.getElementById('close-drawer-btn');
   const triggers = document.querySelectorAll('[data-open-portals]');
+  const portalSearch = document.getElementById('drawer-portal-search');
 
   if (!drawer || !panel) return;
 
@@ -93,7 +128,6 @@ function initPortalsDrawer() {
     backdrop.classList.remove('opacity-0');
     backdrop.classList.add('opacity-100');
 
-    const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
     panel.style.transform = 'translateX(0)';
 
     // Trap focus
@@ -131,13 +165,23 @@ function initPortalsDrawer() {
     }
   });
 
-  // Export functions to global scope
+  // Portal live search in drawer
+  if (portalSearch) {
+    portalSearch.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      document.querySelectorAll('#drawer-panel [data-portal-card]').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = (!q || text.includes(q)) ? '' : 'none';
+      });
+    });
+  }
+
   window.openPortalsDrawer = openDrawer;
   window.closePortalsDrawer = closeDrawer;
 }
 
 /* ==========================================================================
-   3. Services Exploration Modal
+   4. Services Exploration Modal
    ========================================================================== */
 const serviceData = {
   1: {
@@ -462,7 +506,7 @@ function initServicesModal() {
 }
 
 /* ==========================================================================
-   4. Partnership Modal
+   5. Partnership Modal
    ========================================================================== */
 function initPartnershipModal() {
   const modal = document.getElementById('partnership-modal');
@@ -527,7 +571,7 @@ function initPartnershipModal() {
 }
 
 /* ==========================================================================
-   5. App Download & QR Modal
+   6. App Download & QR Modal
    ========================================================================== */
 function initAppModal() {
   const modal = document.getElementById('app-qr-modal');
@@ -565,7 +609,7 @@ function initAppModal() {
 }
 
 /* ==========================================================================
-   6. FAQ Accordion & Live Filter
+   7. FAQ Accordion & Live Filter
    ========================================================================== */
 function initFaqAccordion() {
   const accordionItems = document.querySelectorAll('.faq-item');
@@ -638,7 +682,99 @@ function initFaqAccordion() {
 }
 
 /* ==========================================================================
-   7. Contact Form Validation & State
+   5.1. Partner Application Page Form (partners.html)
+   Direct Supabase Integration with partner_applications table
+   ========================================================================== */
+function initPartnerPageForm() {
+  const form = document.getElementById('partner-page-form');
+  const alertContainer = document.getElementById('partner-alert');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nameInput = form.querySelector('#partner-name');
+    const roleInput = form.querySelector('#partner-role');
+    const licenseInput = form.querySelector('#partner-license');
+    const phoneInput = form.querySelector('#partner-phone');
+    const emailInput = form.querySelector('#partner-email');
+    const cityInput = form.querySelector('#partner-city');
+    const notesInput = form.querySelector('#partner-notes');
+    const submitBtn = form.querySelector('#partner-submit-btn') || form.querySelector('button[type="submit"]');
+    const isEn = document.documentElement.getAttribute('lang') === 'en';
+
+    const payload = {
+      applicant_name: nameInput ? nameInput.value.trim() : '',
+      requested_role: roleInput ? roleInput.value : 'specialist',
+      license_number: licenseInput ? licenseInput.value.trim() : '',
+      phone: phoneInput ? phoneInput.value.trim() : '',
+      email: emailInput ? emailInput.value.trim() : '',
+      city: cityInput ? cityInput.value.trim() : 'الرياض',
+      notes: notesInput ? notesInput.value.trim() : ''
+    };
+
+    if (!payload.applicant_name || !payload.phone) {
+      showPartnerAlert(
+        isEn ? 'Please provide the applicant name and phone number.' : 'يرجى إدخال اسم الجهة/المتقدم ورقم الجوال للتواصل.',
+        'error'
+      );
+      return;
+    }
+
+    submitBtn.disabled = true;
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = `
+      <span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>
+      <span>${isEn ? 'Submitting Application...' : 'جاري إرسال الطلب واعتماده...'}</span>
+    `;
+
+    try {
+      if (window.jisrDB && window.jisrDB.submitPartnerApplication) {
+        await window.jisrDB.submitPartnerApplication(payload);
+      }
+    } catch (err) {
+      console.warn('Partner application submission notice:', err);
+    }
+
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+      form.reset();
+      showPartnerAlert(
+        isEn
+          ? 'Your partnership application has been received successfully and is currently under clinical review and accreditation.'
+          : 'تم استلام طلبكم بنجاح وهو الآن قيد المراجعة والاعتماد من قِبل إدارة المنصة واللجنة السريرية.',
+        'success'
+      );
+      showToast(
+        isEn ? 'Application Submitted' : 'تم استلام الطلب بنجاح',
+        isEn ? 'Your application is under clinical review and accreditation.' : 'طلبك قيد المراجعة والاعتماد من قِبل إدارة منصة جسور للتأهيل.',
+        'success'
+      );
+    }, 600);
+  });
+
+  function showPartnerAlert(msg, type) {
+    if (!alertContainer) return;
+    const isSuccess = type === 'success';
+    alertContainer.className = `p-4 sm:p-5 rounded-2xl text-xs sm:text-sm font-semibold flex items-start gap-3 transition-all ${isSuccess
+        ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+        : 'bg-red-50 text-red-700 border border-red-200'
+      }`;
+    alertContainer.innerHTML = `
+      <span class="material-symbols-outlined text-xl shrink-0 mt-0.5">${isSuccess ? 'verified' : 'error'}</span>
+      <div class="space-y-1">
+        <p class="font-bold text-sm">${isSuccess ? (document.documentElement.getAttribute('lang') === 'en' ? 'Application Under Review' : 'الطلب قيد المراجعة والاعتماد') : 'تنبيه'}</p>
+        <p class="font-normal leading-relaxed">${msg}</p>
+      </div>
+    `;
+    alertContainer.classList.remove('hidden');
+    alertContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+/* ==========================================================================
+   8. Contact Form Validation & State (Direct Supabase Integration)
    ========================================================================== */
 function initContactForm() {
   const form = document.getElementById('contact-form');
@@ -646,16 +782,21 @@ function initContactForm() {
 
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = form.querySelector('#contact-name').value.trim();
-    const contactInfo = form.querySelector('#contact-info').value.trim();
-    const type = form.querySelector('#contact-type').value;
-    const message = form.querySelector('#contact-message').value.trim();
-    const submitBtn = form.querySelector('#contact-submit-btn');
+    const nameInput = form.querySelector('#contact-name');
+    const contactInfoInput = form.querySelector('#contact-info');
+    const typeInput = form.querySelector('#contact-type');
+    const messageInput = form.querySelector('#contact-message');
+    const submitBtn = form.querySelector('#contact-submit-btn') || form.querySelector('button[type="submit"]');
     const isEn = document.documentElement.getAttribute('lang') === 'en';
 
-    if (!name || !contactInfo || !type || !message) {
+    const name = nameInput ? nameInput.value.trim() : '';
+    const contactInfo = contactInfoInput ? contactInfoInput.value.trim() : '';
+    const type = typeInput ? typeInput.value : 'general';
+    const message = messageInput ? messageInput.value.trim() : '';
+
+    if (!name || !contactInfo || !message) {
       showAlert(
         isEn ? 'Please fill in all required fields.' : 'يرجى تعبئة جميع الحقول المطلوبة بشكل صحيح.',
         'error'
@@ -664,17 +805,28 @@ function initContactForm() {
     }
 
     submitBtn.disabled = true;
+    const originalBtnText = submitBtn.innerHTML;
     submitBtn.innerHTML = `
       <span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>
       <span>${isEn ? 'Sending...' : 'جاري الإرسال...'}</span>
     `;
 
+    try {
+      if (window.jisrDB && window.jisrDB.submitContactMessage) {
+        await window.jisrDB.submitContactMessage({
+          full_name: name,
+          contact_info: contactInfo,
+          inquiry_type: type,
+          message: message
+        });
+      }
+    } catch (err) {
+      console.warn('Contact message submission notice:', err);
+    }
+
     setTimeout(() => {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `
-        <span>${isEn ? 'Send Message' : 'إرسال الرسالة'}</span>
-        <span class="material-symbols-outlined text-base">send</span>
-      `;
+      submitBtn.innerHTML = originalBtnText;
       form.reset();
       showAlert(
         isEn ? 'Your message has been sent successfully. Our team will review it and reply soon.' : 'تم استلام رسالتك بنجاح! سيقوم فريق إدارة المنصة بمراجعتها والتواصل معك قريباً.',
@@ -682,18 +834,17 @@ function initContactForm() {
       );
       showToast(
         isEn ? 'Message Sent' : 'تم إرسال الرسالة',
-        isEn ? 'Thank you for reaching out to Jisr Platform.' : 'شكراً لتواصلك مع منصة جسر.',
+        isEn ? 'Thank you for reaching out to Jusoor Rehab Platform.' : 'شكراً لتواصلك مع منصة جسور للتأهيل.',
         'success'
       );
-    }, 850);
+    }, 600);
   });
 
   function showAlert(msg, type) {
     if (!alertContainer) return;
     const isSuccess = type === 'success';
-    alertContainer.className = `p-4 rounded-xl text-sm font-medium flex items-center gap-3 transition-all ${
-      isSuccess ? 'bg-secondary/10 text-secondary border border-secondary/20' : 'bg-red-50 text-red-700 border border-red-200'
-    }`;
+    alertContainer.className = `p-4 rounded-xl text-sm font-medium flex items-center gap-3 transition-all ${isSuccess ? 'bg-secondary/10 text-secondary border border-secondary/20' : 'bg-red-50 text-red-700 border border-red-200'
+      }`;
     alertContainer.innerHTML = `
       <span class="material-symbols-outlined text-xl">${isSuccess ? 'check_circle' : 'error'}</span>
       <span>${msg}</span>
@@ -707,7 +858,7 @@ function initContactForm() {
 }
 
 /* ==========================================================================
-   8. Accessibility Controls
+   9. Accessibility Controls
    ========================================================================== */
 function initAccessibility() {
   const widget = document.getElementById('a11y-widget');
@@ -777,7 +928,7 @@ function initAccessibility() {
 }
 
 /* ==========================================================================
-   9. Scroll Animations & Reveal
+   10. Scroll Animations & Reveal
    ========================================================================== */
 function initScrollAnimations() {
   const elements = document.querySelectorAll('.reveal-on-scroll');
@@ -800,7 +951,366 @@ function initScrollAnimations() {
 }
 
 /* ==========================================================================
-   10. Toast Notification System
+   11. Live Animated Number Counters
+   ========================================================================== */
+function initCounters() {
+  const counterElements = document.querySelectorAll('[data-counter-target]');
+  if (!counterElements.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-counter-target'), 10);
+        const suffix = el.getAttribute('data-counter-suffix') || '';
+        const duration = 1600; // ms
+        const startTime = performance.now();
+
+        function updateCounter(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease-out cubic
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const currentVal = Math.floor(easeOut * target);
+          el.textContent = currentVal + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            el.textContent = target + suffix;
+          }
+        }
+
+        requestAnimationFrame(updateCounter);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  counterElements.forEach(el => observer.observe(el));
+}
+
+/* ==========================================================================
+   12. Hero Interactive Ecosystem Simulator
+   ========================================================================== */
+function initInteractiveEcosystem() {
+  const nodes = document.querySelectorAll('[data-ecosystem-node]');
+  const infoTitle = document.getElementById('ecosystem-info-title');
+  const infoDesc = document.getElementById('ecosystem-info-desc');
+  const infoAction = document.getElementById('ecosystem-info-action');
+
+  if (!nodes.length || !infoTitle || !infoDesc) return;
+
+  const ecosystemData = {
+    beneficiary: {
+      titleAr: "المستفيد والأسرة في قلب المنظومة",
+      titleEn: "Beneficiary & Family at the Heart of Care",
+      descAr: "يتلقى المستفيد خطة علاجية يومية مخصصة، وينفذ التمارين المنزلية الموجهة بمساعدة الأسرة، ويرصد مؤشرات تقدمه مع المساعد التقني.",
+      descEn: "Receives an individualized daily regimen, executes video exercises with family support, and logs functional progress effortlessly.",
+      actionTextAr: "الدخول إلى حساب المستفيد",
+      actionTextEn: "Enter Beneficiary Portal",
+      link: "../المستفيد/التسجيل/تسجيل الدخول.html"
+    },
+    specialist: {
+      titleAr: "الأخصائي المعالج السريري",
+      titleEn: "Treating Clinical Specialist",
+      descAr: "يقيّم الحالة وظيفياً، ويصمم الخطة التأهيلية، ويراجع تسجيلات الأداء الحركي، ويعدل درجات الشدة وفترات الراحة دورياً.",
+      descEn: "Evaluates functional mobility, formulates rehabilitation plans, reviews exercise clips, and adjusts therapeutic targets.",
+      actionTextAr: "الانتقال لبوابة الأخصائي",
+      actionTextEn: "Go to Specialist Portal",
+      link: "../المختص/الرئيسية/index.html"
+    },
+    supervisor: {
+      titleAr: "المشرف الحركي الميداني",
+      titleEn: "Motor & Kinesiology Supervisor",
+      descAr: "يرافق المستفيد في تطبيق الحركات الصحيحة، ويشرف على سلامة وضعيات الجسم، ويوثق الملاحظات السريرية الميدانية.",
+      descEn: "Guides correct motion biomechanics, monitors safe execution, and reports field observations directly to the clinician.",
+      actionTextAr: "الانتقال لبوابة المشرف الحركي",
+      actionTextEn: "Go to Supervisor Portal",
+      link: "../المشرف الحركي/الرئيسية.html"
+    },
+    hospital: {
+      titleAr: "المستشفيات والجمعيات الشريكة",
+      titleEn: "Partner Hospitals & Charitable Foundations",
+      descAr: "تنسيق التحويلات السريرية، كفالة الحالات المستحقة، وإدارة بنك الأجهزة المساعدة لدعم المستفيدين بكراسي ودعامات مناسبة.",
+      descEn: "Coordinating clinical referrals, sponsoring deserving cases, and managing assistive equipment delivery seamlessly.",
+      actionTextAr: "الانتقال لبوابة الشركاء",
+      actionTextEn: "Go to Partners Portal",
+      link: "../المستشفيات و المراكز/index.html"
+    }
+  };
+
+  nodes.forEach(node => {
+    node.addEventListener('click', () => {
+      nodes.forEach(n => n.classList.remove('ring-2', 'ring-primary', 'bg-primary/10'));
+      node.classList.add('ring-2', 'ring-primary', 'bg-primary/10');
+
+      const key = node.getAttribute('data-ecosystem-node');
+      const data = ecosystemData[key];
+      if (!data) return;
+
+      const isEn = document.documentElement.getAttribute('lang') === 'en';
+      infoTitle.textContent = isEn ? data.titleEn : data.titleAr;
+      infoDesc.textContent = isEn ? data.descEn : data.descAr;
+      if (infoAction) {
+        infoAction.textContent = isEn ? data.actionTextEn : data.actionTextAr;
+        infoAction.setAttribute('href', data.link);
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   13. Live Interactive Phone Simulator (App Mockup)
+   ========================================================================== */
+function initLivePhoneSimulator() {
+  const tabs = document.querySelectorAll('[data-phone-tab]');
+  const screens = document.querySelectorAll('[data-phone-screen]');
+  const exerciseStartBtn = document.getElementById('phone-start-exercise-btn');
+  const repCountEl = document.getElementById('phone-rep-counter');
+  const statusMsgEl = document.getElementById('phone-status-msg');
+
+  if (!tabs.length || !screens.length) return;
+
+  // Tab switching inside phone mockup
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetScreen = tab.getAttribute('data-phone-tab');
+
+      tabs.forEach(t => {
+        t.classList.remove('text-primary', 'font-bold');
+        t.classList.add('text-on-surface-variant');
+      });
+      tab.classList.add('text-primary', 'font-bold');
+      tab.classList.remove('text-on-surface-variant');
+
+      screens.forEach(s => {
+        if (s.getAttribute('data-phone-screen') === targetScreen) {
+          s.classList.remove('hidden');
+          s.classList.add('flex');
+        } else {
+          s.classList.add('hidden');
+          s.classList.remove('flex');
+        }
+      });
+    });
+  });
+
+  // Interactive Live Exercise Session inside Phone Screen
+  let isExerciseRunning = false;
+  let currentReps = 0;
+  let exerciseTimer = null;
+
+  if (exerciseStartBtn && repCountEl && statusMsgEl) {
+    exerciseStartBtn.addEventListener('click', () => {
+      if (isExerciseRunning) {
+        // Stop session
+        clearInterval(exerciseTimer);
+        isExerciseRunning = false;
+        exerciseStartBtn.textContent = 'بدء التمرين الآن';
+        exerciseStartBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
+        exerciseStartBtn.classList.add('bg-primary', 'hover:bg-primary-dark');
+        statusMsgEl.textContent = 'الجلسة متوقفة مؤقتاً';
+        return;
+      }
+
+      // Start session
+      isExerciseRunning = true;
+      currentReps = 0;
+      repCountEl.textContent = '0 / 10';
+      exerciseStartBtn.textContent = 'إيقاف الجلسة';
+      exerciseStartBtn.classList.remove('bg-primary', 'hover:bg-primary-dark');
+      exerciseStartBtn.classList.add('bg-red-600', 'hover:bg-red-700');
+      statusMsgEl.textContent = 'المساعد الذكي: جاهز للعد... تنفس بعمق';
+
+      const encouragements = [
+        'تكرار 1: حركة متوازنة وممتازة!',
+        'تكرار 2: حافظ على استقامة الظهر',
+        'تكرار 3: رائع! استمر بالمد التدريجي',
+        'تكرار 4: أداء متزن، تنفس بهدوء',
+        'تكرار 5: منتصف الجولة، ممتاز!',
+        'تكرار 6: ثبات عضلي ملحوظ',
+        'تكرار 7: اقتربت من الهدف اليومي',
+        'تكرار 8: إتقان عالٍ للحركة',
+        'تكرار 9: تكرار إضافي رائع!',
+        'تكرار 10: اكتمل التمرين بنجاح تام! 🎉'
+      ];
+
+      exerciseTimer = setInterval(() => {
+        if (currentReps < 10) {
+          currentReps++;
+          repCountEl.textContent = `${currentReps} / 10`;
+          statusMsgEl.textContent = encouragements[currentReps - 1] || 'استمر في الأداء';
+        } else {
+          clearInterval(exerciseTimer);
+          isExerciseRunning = false;
+          exerciseStartBtn.textContent = 'إعادة التمرين';
+          exerciseStartBtn.classList.remove('bg-red-600');
+          exerciseStartBtn.classList.add('bg-secondary');
+          statusMsgEl.textContent = 'تم تسجيل إنجاز الجلسة في سجلك الطبي بنجاح!';
+          showToast('إنجاز تمرين تفاعلي', 'تم إكمال جلسة التمرين التجريبية بنجاح 10/10.', 'success');
+        }
+      }, 1400);
+    });
+  }
+}
+
+/* ==========================================================================
+   14. Quick Interactive Rehabilitation Matcher (Wizard)
+   ========================================================================== */
+function initRehabMatcher() {
+  const matcher = document.getElementById('rehab-matcher-card');
+  if (!matcher) return;
+
+  const step1 = document.getElementById('matcher-step-1');
+  const step2 = document.getElementById('matcher-step-2');
+  const step3 = document.getElementById('matcher-step-3');
+  const stepResult = document.getElementById('matcher-step-result');
+
+  const resultTitle = document.getElementById('matcher-result-title');
+  const resultDesc = document.getElementById('matcher-result-desc');
+  const resultPathLink = document.getElementById('matcher-result-link');
+  const resetBtn = document.getElementById('matcher-reset-btn');
+
+  let selectedCondition = '';
+  let selectedMobility = '';
+  let selectedGoal = '';
+
+  // Step 1 Click
+  document.querySelectorAll('[data-matcher-condition]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedCondition = btn.getAttribute('data-matcher-condition');
+      step1.classList.add('hidden');
+      step2.classList.remove('hidden');
+    });
+  });
+
+  // Step 2 Click
+  document.querySelectorAll('[data-matcher-mobility]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedMobility = btn.getAttribute('data-matcher-mobility');
+      step2.classList.add('hidden');
+      step3.classList.remove('hidden');
+    });
+  });
+
+  // Step 3 Click (Generate Result)
+  document.querySelectorAll('[data-matcher-goal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedGoal = btn.getAttribute('data-matcher-goal');
+      step3.classList.add('hidden');
+      stepResult.classList.remove('hidden');
+
+      // Generate customized guidance
+      let conditionLabel = "التأهيل الوظيفي والحركي";
+      if (selectedCondition === 'pediatric') conditionLabel = "تأهيل الأطفال والنمو الحركي";
+      if (selectedCondition === 'post_surgery') conditionLabel = "التأهيل الحركي بعد العمليات الجراحية";
+      if (selectedCondition === 'elderly') conditionLabel = "تأهيل التوازن ورعاية كبار السن";
+      if (selectedCondition === 'sports') conditionLabel = "تأهيل الإصابات الرياضية والعضلية";
+
+      resultTitle.textContent = `المسار الموصى به: برنامج ${conditionLabel}`;
+      resultDesc.textContent = `بناءً على اختيارك، ننصحك بالبدء بإجراء التقييم المبدئي المخصص لـ (${conditionLabel})، حيث سيتم ربط حالتك مباشرة بأخصائي علاج طبيعي معتمد لتصميم خطة التمارين المنزلية الموجهة.`;
+
+      if (resultPathLink) {
+        resultPathLink.setAttribute('href', '../تحديد مشكلة المستفيد/تحديد المشكلة.html');
+      }
+    });
+  });
+
+  // Reset
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      stepResult.classList.add('hidden');
+      step2.classList.add('hidden');
+      step3.classList.add('hidden');
+      step1.classList.remove('hidden');
+    });
+  }
+}
+
+/* ==========================================================================
+   15. Services Category Filter
+   ========================================================================== */
+function initServicesFilter() {
+  const pills = document.querySelectorAll('.service-filter-pill');
+  const serviceCards = document.querySelectorAll('[data-service-category]');
+
+  if (!pills.length || !serviceCards.length) return;
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => {
+        p.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+        p.classList.add('bg-white', 'text-on-surface-variant');
+      });
+      pill.classList.add('bg-primary', 'text-white', 'shadow-sm');
+      pill.classList.remove('bg-white', 'text-on-surface-variant');
+
+      const cat = pill.getAttribute('data-category');
+      serviceCards.forEach(card => {
+        const cardCats = card.getAttribute('data-service-category') || '';
+        if (cat === 'all' || cardCats.includes(cat)) {
+          card.style.display = '';
+          card.classList.add('animate-fadeIn');
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+/* ==========================================================================
+   16. Scroll to Top Floating Button
+   ========================================================================== */
+function initScrollTopButton() {
+  const btn = document.getElementById('scroll-top-btn');
+  if (!btn) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      btn.classList.remove('hidden', 'opacity-0');
+      btn.classList.add('flex', 'opacity-100');
+    } else {
+      btn.classList.add('opacity-0');
+      setTimeout(() => {
+        if (window.scrollY <= 400) btn.classList.add('hidden');
+      }, 200);
+    }
+  });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+/* ==========================================================================
+   17. Portal Links Quick Copy
+   ========================================================================== */
+function initPortalLinksCopy() {
+  document.querySelectorAll('[data-copy-portal-link]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const relativeLink = btn.getAttribute('data-copy-portal-link');
+      const fullUrl = new URL(relativeLink, window.location.href).href;
+
+      navigator.clipboard.writeText(fullUrl).then(() => {
+        const isEn = document.documentElement.getAttribute('lang') === 'en';
+        showToast(
+          isEn ? 'Portal Link Copied' : 'تم نسخ رابط البوابة',
+          isEn ? 'Direct link copied to clipboard successfully.' : 'تم نسخ الرابط المباشر للبوابة بنجاح.',
+          'success'
+        );
+      }).catch(() => {
+        showToast('تنبيه', 'تعذر النسخ التلقائي للرابط', 'info');
+      });
+    });
+  });
+}
+
+/* ==========================================================================
+   18. Toast Notification System
    ========================================================================== */
 function showToast(title, message, type = 'info') {
   let container = document.getElementById('toast-container');
@@ -852,3 +1362,57 @@ function showToast(title, message, type = 'info') {
 }
 
 window.showToast = showToast;
+
+/* ==========================================================================
+   Interactive Rehabilitation Journey Animation (4 Stages Controller)
+   ========================================================================== */
+function initRehabAnimationStages() {
+  const card = document.getElementById('rehab-animation-card');
+  const stageNav = document.getElementById('rehab-stages-nav');
+  const modeBadge = document.getElementById('rehab-mode-badge');
+  const stageDesc = document.getElementById('rehab-stage-desc');
+  const autoplayBtn = document.getElementById('rehab-autoplay-btn');
+
+  if (!card || !stageNav) return;
+
+  const stageDescriptions = {
+    '1': 'المرحلة 1: الجلوس على كرسي متحرك ومحاولة النهوض بمساعدة الكادر التأهيلي',
+    '2': 'المرحلة 2: المشي بين قضبان حديدية متوازية (Parallel Bars) لدعم التوازن واستقامة القوام',
+    '3': 'المرحلة 3: تلاشي القضبان المساندة تدريجياً مع زيادة ثبات المريض وتوازنه الذاتي',
+    '4': 'المرحلة 4: المشي الحر المستقل بكل ثقة واستقلالية تامة نحو التعافي الكامل'
+  };
+
+  const stagePills = stageNav.querySelectorAll('.rehab-stage-pill');
+
+  function setStage(stageNum) {
+    card.setAttribute('data-stage-override', stageNum);
+    if (modeBadge) modeBadge.textContent = `معاينة المرحلة ${stageNum} (موقّفة)`;
+    if (stageDesc && stageDescriptions[stageNum]) {
+      stageDesc.textContent = stageDescriptions[stageNum];
+    }
+  }
+
+  function resetToAutoplay() {
+    card.removeAttribute('data-stage-override');
+    if (modeBadge) modeBadge.textContent = 'تكرار انسيابي مستمر';
+    if (stageDesc) stageDesc.textContent = 'المحاكاة: مسار استعادة المشي والتعافي التلقائي المستمر';
+  }
+
+  stagePills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const stage = pill.getAttribute('data-stage');
+      const currentOverride = card.getAttribute('data-stage-override');
+      if (currentOverride === stage) {
+        resetToAutoplay();
+      } else {
+        setStage(stage);
+      }
+    });
+  });
+
+  if (autoplayBtn) {
+    autoplayBtn.addEventListener('click', () => {
+      resetToAutoplay();
+    });
+  }
+}

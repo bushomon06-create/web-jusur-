@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>جسر للتأهيل والرعاية عن بُعد — المنصة الرسمية</title>
-  <meta name="description" content="منصة جسر هي المنصة المتخصصة في التأهيل والرعاية عن بُعد للأشخاص ذوي الاحتياجات التأهيلية وأسرهم، وربطهم بالأخصائيين والمشرفين الحركيين والمؤسسات الصحية.">
-  <meta name="keywords" content="تأهيل عن بعد, رعاية منزلية, علاج طبيعي منزلي, تأهيل حركي, جسر, ذوي الإعاقة">
+  <title>جسور للتأهيل والرعاية عن بُعد — المنصة الرسمية</title>
+  <meta name="description" content="منصة جسور للتأهيل هي المنظومة الوطنية المتخصصة في التأهيل والرعاية الطبية المنزلية وعن بُعد، نربط ذوي الاحتياجات التأهيلية بنخبة من الأخصائيين المعتمدين.">
+  <meta name="keywords" content="تأهيل عن بعد, علاج طبيعي منزلي, تأهيل حركي, جسور للتأهيل, رعاية منزلية">
   <meta name="theme-color" content="#00507d">
   
-  <!-- Open Graph / Meta -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="جسر للتأهيل والرعاية عن بُعد">
-  <meta property="og:description" content="جسر يربطك برحلة تأهيل أكثر سهولة وأمانًا من منزلك بإشراف نخبة من المختصين.">
+  <meta property="og:title" content="منصة جسور للتأهيل والرعاية عن بُعد">
+  <meta property="og:description" content="منظومة رقمية متكاملة لربط ذوي الاحتياجات التأهيلية بنخبة من الأخصائيين والمراكز الطبية.">
   <meta property="og:image" content="assets/images/logo.png">
 
   <!-- Fonts & Icons -->
@@ -31,1903 +31,323 @@
             "primary": "#00507d",
             "primary-dark": "#003756",
             "primary-light": "#0284c7",
-            "primary-container": "#0369a1",
             "primary-fixed": "#cde5ff",
-            "primary-fixed-dim": "#94ccff",
             "secondary": "#006a61",
             "secondary-dark": "#004d46",
             "secondary-container": "#86f2e4",
-            "secondary-fixed": "#89f5e7",
             "surface": "#ffffff",
-            "surface-dim": "#f1f5f9",
             "surface-container-low": "#f8fafd",
             "surface-container": "#eef3f8",
-            "surface-container-high": "#e2e9f2",
             "on-surface": "#0d1c2e",
             "on-surface-variant": "#475569",
-            "outline": "#7d8b9e",
-            "outline-variant": "#e2e8f0",
-            "accent": "#f59e0b"
+            "outline-variant": "#e2e8f0"
           },
           fontFamily: {
             sans: ["'IBM Plex Sans Arabic'", "'IBM Plex Sans'", "sans-serif"]
           },
           boxShadow: {
-            "subtle": "0 2px 8px -2px rgba(13, 28, 46, 0.05), 0 1px 4px -1px rgba(13, 28, 46, 0.03)",
-            "card": "0 10px 25px -5px rgba(13, 28, 46, 0.06), 0 8px 10px -6px rgba(13, 28, 46, 0.03)",
-            "floating": "0 20px 35px -10px rgba(0, 80, 125, 0.15), 0 10px 15px -5px rgba(0, 80, 125, 0.08)"
+            "subtle": "0 2px 8px -2px rgba(13, 28, 46, 0.04), 0 1px 4px -1px rgba(13, 28, 46, 0.02)",
+            "card": "0 10px 30px -5px rgba(13, 28, 46, 0.05), 0 4px 10px -3px rgba(13, 28, 46, 0.02)",
+            "floating": "0 20px 35px -10px rgba(0, 80, 125, 0.12)"
           }
         }
       }
     };
   </script>
 
-  <!-- Custom Styles -->
+  <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Centralized Supabase Configuration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
 </head>
-<body class="bg-[#f8fafd] text-on-surface antialiased selection:bg-primary-fixed selection:text-primary min-h-screen relative flex flex-col">
+<body class="bg-[#f8fafd] text-on-surface antialiased selection:bg-primary-fixed selection:text-primary min-h-screen relative flex flex-col justify-between">
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
 
   <!-- Accessibility Skip Link -->
   <a href="#main-content" class="skip-link" data-i18n="skipLink">التخطي إلى المحتوى الرئيسي</a>
 
   <!-- ========================================================================
-       TOP HEADER / NAVBAR
+       TOP HEADER / NAVBAR (MINIMALIST & UNIFIED)
        ======================================================================== -->
-  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 glass-header">
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-white/85 backdrop-blur-md border-b border-slate-200/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         
-        <!-- Logo & Brand Identity -->
-        <a href="#home" class="flex items-center gap-3.5 group focus:outline-none">
-          <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-2 shadow-sm border border-outline-variant/80 group-hover:border-primary/40 transition">
-            <img 
-              src="assets/images/logo.png" 
-              onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuBHx-PE602QcSB2UGjlMAH__Mm_uiMUUbiEGE_1nnHe8_HZ_a_2GT7_t3va-DEOr5C98Z-W7opR3Xfsdxbyh0nncoKz-cv_27dqMkc9eycXZsKBGbhgF9f2I_hBq5RX6DGpIBZIqUgeDUgiGksBEAw3H-0BqTTzxCPj2m1Q7aQIrdeYywuyEG8e0l_KN3YoKkdzOcpR1yxRsdkcyorvE_DPFP1kcdtYuq9d_gfpVmwo2U52Ajw77vgVaTgs9yB136vG'" 
-              alt="شعار منصة جسر للتأهيل والرعاية عن بُعد" 
-              class="w-full h-full object-contain"
-            >
+        <!-- Right (RTL): Logo & Brand Identity -->
+        <a href="index.html" class="flex items-center gap-3.5 group focus:outline-none">
+          <div class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center p-2 shadow-2xs border border-slate-200/80 group-hover:border-primary/40 transition">
+            <img src="assets/images/logo.png" alt="شعار منصة جسور للتأهيل" class="w-full h-full object-contain">
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-bold text-primary tracking-tight leading-none">جسر</span>
-            <span class="text-[11px] font-medium text-on-surface-variant mt-1 leading-tight tracking-wide">للتأهيل والرعاية عن بُعد</span>
+            <span class="text-xl font-bold text-primary tracking-tight leading-none">جسور للتأهيل</span>
+            <span class="text-[11px] font-medium text-slate-500 mt-1 leading-tight tracking-wide">للرعاية والتأهيل عن بُعد</span>
           </div>
         </a>
 
-        <!-- Desktop Navigation Links -->
-        <nav class="hidden xl:flex items-center gap-1.5" aria-label="شريط التنقل الرئيسي">
-          <a href="#home" class="nav-link px-3 py-2 text-sm font-medium text-primary hover:text-primary transition rounded-lg" data-i18n="nav.home">الرئيسية</a>
-          <a href="#about" class="nav-link px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition rounded-lg" data-i18n="nav.about">من نحن</a>
-          <a href="#services" class="nav-link px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition rounded-lg" data-i18n="nav.services">خدماتنا</a>
-          <a href="#how-it-works" class="nav-link px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition rounded-lg" data-i18n="nav.howItWorks">كيف تعمل المنصة؟</a>
-          <a href="#for-whom" class="nav-link px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition rounded-lg" data-i18n="nav.forWhom">لمن صُممت جسر؟</a>
-          <a href="#partners" class="nav-link px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition rounded-lg" data-i18n="nav.partners">شركاؤنا</a>
-          <a href="#stories" class="nav-link px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition rounded-lg" data-i18n="nav.stories">قصص وتجارب</a>
-          <a href="#faq" class="nav-link px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition rounded-lg" data-i18n="nav.faq">الأسئلة الشائعة</a>
-          <a href="#contact" class="nav-link px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition rounded-lg" data-i18n="nav.contact">تواصل معنا</a>
+        <!-- Center: Exactly 4 Dedicated Independent Page Links -->
+        <nav class="hidden md:flex items-center gap-8" aria-label="شريط التنقل الرئيسي">
+          <a href="about.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.about">عن المنصة</a>
+          <a href="services.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.services">الخدمات</a>
+          <a href="partners.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.partners">الشركاء</a>
+          <a href="faq.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.faq">الأسئلة الشائعة</a>
         </nav>
 
-        <!-- Header Actions: Language, Download, and Enter Platform -->
-        <div class="hidden lg:flex items-center gap-3">
-          <!-- Language Switcher Button -->
+        <!-- Left (RTL): Language Switcher & Primary Login Button -->
+        <div class="hidden md:flex items-center gap-3">
           <button 
             type="button" 
             data-lang-toggle 
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container transition border border-outline-variant/60"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-primary hover:bg-slate-100/70 transition border border-slate-200"
             aria-label="تبديل لغة الموقع"
           >
             <span class="material-symbols-outlined text-base">language</span>
             <span data-i18n="nav.langSwitch">English</span>
           </button>
 
-          <!-- Download App Button -->
-          <button 
-            type="button" 
-            data-open-app-modal 
-            class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-primary bg-primary-soft hover:bg-primary/10 transition border border-primary/20"
-          >
-            <span class="material-symbols-outlined text-base">install_mobile</span>
-            <span data-i18n="nav.downloadApp">تحميل التطبيق</span>
-          </button>
-
-          <!-- Enter Platform Button (Opens Slide Drawer) -->
-          <button 
-            type="button" 
-            data-open-portals 
-            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm hover:shadow-md"
+          <a 
+            href="login.html" 
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-2xs hover:shadow-subtle"
           >
             <span class="material-symbols-outlined text-base">login</span>
-            <span data-i18n="nav.enterPlatform">دخول المنصة</span>
-          </button>
+            <span data-i18n="nav.login">تسجيل الدخول</span>
+          </a>
         </div>
 
         <!-- Mobile Menu Toggle Button -->
-        <div class="flex items-center gap-2 lg:hidden">
-          <button 
-            type="button" 
-            data-open-portals 
-            class="px-3 py-2 rounded-xl text-xs font-semibold text-white bg-primary hover:bg-primary-dark transition"
-          >
-            <span data-i18n="nav.enterPlatform">دخول المنصة</span>
-          </button>
-          <button 
-            type="button" 
-            id="mobile-menu-toggle" 
-            class="p-2 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container transition"
-            aria-label="فتح القائمة الرئيسية"
-            aria-expanded="false"
-          >
-            <span class="material-symbols-outlined text-2xl">menu</span>
-          </button>
-        </div>
+        <button 
+          type="button" 
+          id="mobile-menu-toggle" 
+          class="md:hidden p-2 rounded-xl text-slate-600 hover:text-primary hover:bg-slate-100 transition"
+          aria-label="القائمة الرئيسية"
+          aria-expanded="false"
+        >
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
 
       </div>
     </div>
 
-    <!-- Mobile Drawer Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-outline-variant/80 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2">
-      <nav class="flex flex-col space-y-1">
-        <a href="#home" class="px-3 py-2.5 rounded-xl text-sm font-medium text-on-surface hover:bg-surface-container" data-i18n="nav.home">الرئيسية</a>
-        <a href="#about" class="px-3 py-2.5 rounded-xl text-sm font-medium text-on-surface hover:bg-surface-container" data-i18n="nav.about">من نحن</a>
-        <a href="#services" class="px-3 py-2.5 rounded-xl text-sm font-medium text-on-surface hover:bg-surface-container" data-i18n="nav.services">خدماتنا</a>
-        <a href="#how-it-works" class="px-3 py-2.5 rounded-xl text-sm font-medium text-on-surface hover:bg-surface-container" data-i18n="nav.howItWorks">كيف تعمل المنصة؟</a>
-        <a href="#for-whom" class="px-3 py-2.5 rounded-xl text-sm font-medium text-on-surface hover:bg-surface-container" data-i18n="nav.forWhom">لمن صُممت جسر؟</a>
-        <a href="#partners" class="px-3 py-2.5 rounded-xl text-sm font-medium text-on-surface hover:bg-surface-container" data-i18n="nav.partners">شركاؤنا</a>
-        <a href="#stories" class="px-3 py-2.5 rounded-xl text-sm font-medium text-on-surface hover:bg-surface-container" data-i18n="nav.stories">قصص وتجارب</a>
-        <a href="#faq" class="px-3 py-2.5 rounded-xl text-sm font-medium text-on-surface hover:bg-surface-container" data-i18n="nav.faq">الأسئلة الشائعة</a>
-        <a href="#contact" class="px-3 py-2.5 rounded-xl text-sm font-medium text-on-surface hover:bg-surface-container" data-i18n="nav.contact">تواصل معنا</a>
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-6 space-y-4 shadow-xl">
+      <nav class="flex flex-col space-y-2">
+        <a href="about.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">عن المنصة</a>
+        <a href="services.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الخدمات</a>
+        <a href="partners.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الشركاء</a>
+        <a href="faq.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الأسئلة الشائعة</a>
       </nav>
-
-      <div class="pt-4 border-t border-outline-variant flex flex-col gap-2.5">
-        <button 
-          type="button" 
-          data-lang-toggle 
-          class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-on-surface-variant bg-surface-container border border-outline-variant"
-        >
+      <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+        <button type="button" data-lang-toggle class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold text-slate-600 border border-slate-200">
           <span class="material-symbols-outlined text-base">language</span>
           <span data-i18n="nav.langSwitch">English</span>
         </button>
-        <button 
-          type="button" 
-          data-open-app-modal 
-          class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-primary bg-primary-soft"
-        >
-          <span class="material-symbols-outlined text-base">install_mobile</span>
-          <span data-i18n="nav.downloadApp">تحميل التطبيق</span>
-        </button>
+        <a href="login.html" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition text-center shadow-2xs">
+          <span class="material-symbols-outlined text-base">login</span>
+          <span>تسجيل الدخول</span>
+        </a>
       </div>
     </div>
   </header>
 
   <!-- ========================================================================
-       FLOATING USER PORTALS TRIGGER BUTTON (SIDE TRIGGER)
+       MAIN PAGE CONTENT (3 SECTIONS ONLY)
        ======================================================================== -->
-  <button 
-    type="button" 
-    data-open-portals 
-    class="portal-floating-btn inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-primary text-white text-xs sm:text-sm font-semibold tracking-wide border-2 border-white focus:outline-none"
-    aria-label="فتح قائمة بوابات المستخدمين"
-  >
-    <span class="w-2.5 h-2.5 rounded-full bg-secondary-fixed animate-ping"></span>
-    <span class="material-symbols-outlined text-lg">meeting_room</span>
-    <span data-i18n="nav.userPortals">بوابات المستخدمين</span>
-  </button>
-
-  <!-- FLOATING ACCESSIBILITY BUTTON -->
-  <button 
-    type="button" 
-    id="a11y-toggle-btn" 
-    class="a11y-floating-btn w-11 h-11 rounded-full bg-white text-on-surface-variant hover:text-primary shadow-lg border border-outline-variant flex items-center justify-center focus:outline-none"
-    aria-label="أدوات سهولة الاستخدام وتيسير الوصول"
-  >
-    <span class="material-symbols-outlined text-xl">accessibility_new</span>
-  </button>
-
-  <!-- Accessibility Floating Controls Widget -->
-  <div id="a11y-widget" class="hidden fixed bottom-32 start-6 z-40 bg-white p-4 rounded-2xl shadow-xl border border-outline-variant w-64 space-y-3">
-    <div class="flex items-center justify-between pb-2 border-b border-outline-variant">
-      <span class="text-xs font-bold text-on-surface" data-i18n="a11y.title">أدوات تيسير الوصول</span>
-      <button type="button" onclick="document.getElementById('a11y-widget').classList.add('hidden')" class="text-on-surface-variant hover:text-on-surface">
-        <span class="material-symbols-outlined text-base">close</span>
-      </button>
-    </div>
-    <div class="flex flex-col gap-2">
-      <div class="flex gap-2">
-        <button type="button" id="a11y-font-bigger" class="flex-1 py-1.5 px-2 bg-surface-container rounded-lg text-xs font-semibold hover:bg-primary-soft hover:text-primary transition" data-i18n="a11y.fontBigger">تكبير الخط</button>
-        <button type="button" id="a11y-font-normal" class="flex-1 py-1.5 px-2 bg-surface-container rounded-lg text-xs font-semibold hover:bg-primary-soft hover:text-primary transition" data-i18n="a11y.fontNormal">الافتراضي</button>
+  <main id="main-content" class="flex-grow pb-16">
+    
+    <!-- ========================================================================
+         SECTION 1: FULL-SCREEN HERO WITH FADED TEXT OVERLAY
+         ======================================================================== -->
+    <section class="relative w-full min-h-[85vh] lg:min-h-[92vh] flex items-center overflow-hidden pt-28 pb-16 lg:py-24">
+      
+      <!-- Full-screen Background Image Layer -->
+      <div class="absolute inset-0 w-full h-full pointer-events-none">
+        <img 
+          src="assets/images/hero-rehab.jpg" 
+          alt="مركز التأهيل الطبي الحديث والرعاية عن بُعد - جسور للتأهيل" 
+          class="w-full h-full object-cover object-center select-none"
+        >
       </div>
-      <button type="button" id="a11y-contrast" class="w-full py-1.5 px-2 bg-surface-container rounded-lg text-xs font-semibold hover:bg-primary-soft hover:text-primary transition" data-i18n="a11y.contrastToggle">وضع التباين العالي</button>
-      <button type="button" id="a11y-motion" class="w-full py-1.5 px-2 bg-surface-container rounded-lg text-xs font-semibold hover:bg-primary-soft hover:text-primary transition" data-i18n="a11y.motionToggle">إيقاف الحركة</button>
-      <button type="button" id="a11y-reset" class="w-full py-1.5 px-2 text-center text-xs text-red-600 hover:underline" data-i18n="a11y.reset">استعادة الافتراضي</button>
-    </div>
-  </div>
 
-  <!-- ========================================================================
-       USER PORTALS SLIDING DRAWER (SIDE DRAWER)
-       ======================================================================== -->
-  <div id="portals-drawer" class="fixed inset-0 z-50 pointer-events-none" aria-hidden="true" role="dialog" aria-modal="true">
-    <!-- Backdrop overlay -->
-    <div id="drawer-backdrop" class="drawer-backdrop fixed inset-0 bg-slate-900/60 backdrop-blur-sm opacity-0"></div>
+      <!-- Directional Faded Gradient Overlay (smooth transition from text side across image) -->
+      <div class="absolute inset-0 hero-faded-overlay-dir pointer-events-none"></div>
 
-    <!-- Sliding Panel -->
-    <div 
-      id="drawer-panel" 
-      class="drawer-panel fixed top-0 bottom-0 start-0 w-full max-w-md bg-white shadow-2xl z-10 flex flex-col justify-between overflow-y-auto"
-      style="transform: translateX(100%);"
-    >
-      <!-- Drawer Header -->
-      <div class="p-6 border-b border-outline-variant bg-surface-container-low flex items-center justify-between sticky top-0 z-10">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-            <span class="material-symbols-outlined text-2xl">meeting_room</span>
+      <!-- Atmospheric Top & Bottom Blend -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#f8fafd]/80 via-transparent to-[#f8fafd] pointer-events-none"></div>
+
+      <!-- Content Container with Frosted Faded Text Card -->
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="max-w-2xl bg-white/85 backdrop-blur-md p-8 sm:p-10 lg:p-12 rounded-3xl border border-white/90 shadow-card space-y-6 text-center lg:text-start">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            <span data-i18n="hero.badge">المنصة المتخصصة في التأهيل والرعاية عن بُعد</span>
           </div>
-          <div>
-            <h3 class="text-base font-bold text-on-surface" data-i18n="drawer.title">اختر بوابتك للوصول إلى جسر</h3>
-            <p class="text-xs text-on-surface-variant" data-i18n="drawer.subtitle">بوابات رقمية مستقلة مخصصة لكل شريك</p>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-on-surface tracking-tight leading-[1.25]" data-i18n="hero.title">
+            رحلة تأهيل متكاملة تبدأ من منزلك نحو الاستقلالية
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0" data-i18n="hero.subtitle">
+            نربط ذوي الاحتياجات التأهيلية وأسرهم بنخبة من الأخصائيين المعتمدين والمشرفين الحركيين لتنفيذ خطط علاجية موجهة ومتابعة دورية بكل أمان وسهولة.
+          </p>
+
+          <!-- Exactly Two Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <button 
+              type="button" 
+              data-open-app-modal 
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl text-sm font-bold text-white bg-primary hover:bg-primary-dark transition-all duration-200 shadow-sm hover:shadow-subtle hover:-translate-y-0.5 cursor-pointer"
+            >
+              <span data-i18n="hero.ctaStart">ابدأ رحلتك الآن</span>
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </button>
+
+            <a 
+              href="services.html" 
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-bold text-slate-700 bg-white hover:bg-slate-50 transition-all duration-200 border border-slate-200 shadow-2xs hover:border-slate-300"
+            >
+              <span data-i18n="hero.ctaServices">استكشف خدماتنا</span>
+            </a>
+          </div>
+
+          <!-- Subtle Trust Metrics -->
+          <div class="pt-6 border-t border-slate-200/70 flex items-center justify-center lg:justify-start gap-8 text-xs text-slate-500">
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-secondary text-base">verified</span>
+              <span class="font-medium text-slate-700" data-i18n="hero.statSupervision">كوادر سريرية معتمدة</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-primary text-base">home_health</span>
+              <span class="font-medium text-slate-700" data-i18n="hero.statRehab">إشراف حركي منزلي</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION 2: CORE VALUE PROPOSITION (3 SPACIOUS WHITE CARDS)
+         ---------------------------------------------------------------------- -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-secondary/10 text-secondary">
+          رعاية مبنية على الأدلة والنتائج
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">
+          ركائز المنظومة التأهيلية في جسور للتأهيل
+        </h2>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          صُممت المنصة وفق معايير الحوكمة السريرية لتمنح المستفيد وعائلته تجربة تعافٍ منزلية متكاملة ومستمرة.
+        </p>
+      </div>
+
+      <!-- Exactly Three Spacious White Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        
+        <!-- Card 1: Individual Plans -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-primary/40 transition-all duration-200 space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center border border-primary/20">
+              <span class="material-symbols-outlined text-3xl">assignment_turned_in</span>
+            </div>
+            <h3 class="text-lg font-bold text-on-surface">تقييم وخطط فردية</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              فحص سريري ووظيفي أولي دقيق يحدد مستوى الحركة ومكامن الضعف، لتصميم خطة علاجية مفصلة تناسب قدرات المستفيد واحتياجاته الفعلية.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-primary">
+            <span class="material-symbols-outlined text-base">check_circle</span>
+            <span>مسارات علاجية مخصصة</span>
           </div>
         </div>
-        <button 
-          type="button" 
-          id="close-drawer-btn" 
-          class="w-9 h-9 rounded-full bg-white hover:bg-surface-container border border-outline-variant text-on-surface-variant hover:text-on-surface flex items-center justify-center transition"
-          aria-label="إغلاق قائمة البوابات"
-        >
-          <span class="material-symbols-outlined text-xl">close</span>
-        </button>
+
+        <!-- Card 2: Guided Home Workouts -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-secondary/40 transition-all duration-200 space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center border border-secondary/20">
+              <span class="material-symbols-outlined text-3xl">fitness_center</span>
+            </div>
+            <h3 class="text-lg font-bold text-on-surface">تمارين منزلية موجهة</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              مكتبة تمارين حركية عالية الدقة مصورة بالفيديو مع تعليمات واضحة للمريض ومقدم الرعاية، مع جدول أسبوعي يضمن الالتزام التام.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-secondary">
+            <span class="material-symbols-outlined text-base">check_circle</span>
+            <span>تتبع الالتزام والتكرارات</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Direct Supervision -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-primary-light/40 transition-all duration-200 space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-sky-50 text-sky-700 flex items-center justify-center border border-sky-200">
+              <span class="material-symbols-outlined text-3xl">health_and_safety</span>
+            </div>
+            <h3 class="text-lg font-bold text-on-surface">متابعة وإشراف مباشر</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              استشارات سريرية افتراضية مع الأخصائي المعالج، ومساندة دورية من المشرف الحركي الميداني للتحقق من سلامة الأداء وتحديث البرنامج.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-sky-700">
+            <span class="material-symbols-outlined text-base">check_circle</span>
+            <span>تقارير تقدم معتمدة</span>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Drawer Body: Five Dedicated Portals -->
-      <div class="p-6 space-y-4 flex-1">
-        
-        <!-- Quick Initial Assessment Bridge Callout -->
+      <!-- Learn More Link -->
+      <div class="text-center mt-10">
         <a 
-          href="../تحديد مشكلة المستفيد/تحديد المشكلة.html" 
-          class="block p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium hover:bg-amber-100 transition flex items-center gap-2.5 shadow-sm"
+          href="about.html" 
+          class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-dark transition group"
         >
-          <span class="material-symbols-outlined text-amber-700 text-lg">psychology_alt</span>
-          <span data-i18n="drawer.assessmentPill">هل تحتاج لتقييم حالتك أولاً؟ اضغط هنا لبدء الفحص الوظيفي المبدئي</span>
+          <span>تعرّف على المزيد عن نموذج عمل المنصة</span>
+          <span class="material-symbols-outlined text-base group-hover:-translate-x-1 transition-transform">arrow_back</span>
         </a>
+      </div>
 
-        <!-- 1. Beneficiary Portal -->
-        <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-primary/40 transition group">
-          <div class="flex items-start gap-3.5 mb-2">
-            <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-xl">accessible_forward</span>
-            </div>
-            <div>
-              <h4 class="text-sm font-bold text-on-surface group-hover:text-primary transition" data-i18n="portal.1.title">المستفيد أو ولي الأمر</h4>
-              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed" data-i18n="portal.1.desc">تابع خطة التأهيل والتمارين والمواعيد، وتواصل مع المختصين واحصل على الدعم المنزلي.</p>
-            </div>
-          </div>
-          <div class="mt-3 pt-3 border-t border-outline-variant/60 flex flex-col sm:flex-row gap-2">
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION 3: MINIMALIST CTA BANNER
+         ---------------------------------------------------------------------- -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+      <div class="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-12 shadow-card relative overflow-hidden">
+        
+        <div class="max-w-2xl space-y-4 text-center sm:text-start">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary">
+            انطلاقة جديدة للرعاية الرقمية
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">
+            جاهز لبدء رحلة التعافي أو التعاون المؤسسي؟
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            سواء كنت مستفيداً يبحث عن خطة منزلية آمنة، أو أخصائياً، أو ممثلاً لمنشأة صحية أو جمعية ترغب بالانضمام، جسور للتأهيل يوفر لك البنية السحابية المعتمدة.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center gap-3 pt-3">
             <a 
-              href="../المستفيد/التسجيل/تسجيل الدخول.html" 
-              class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition text-center"
+              href="services.html" 
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-xs sm:text-sm font-bold hover:bg-primary-dark transition shadow-2xs"
             >
-              <span class="material-symbols-outlined text-sm">login</span>
-              <span data-i18n="portal.1.action">الدخول إلى حساب المستفيد</span>
+              <span>استعراض الخدمات السريرية</span>
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
             </a>
             <a 
-              href="../المستفيد/التسجيل/انشاء حساب جديد.html" 
-              class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-white border border-outline-variant text-on-surface-variant hover:text-primary text-xs font-semibold transition text-center"
+              href="partners.html" 
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200/70 text-slate-700 text-xs sm:text-sm font-semibold transition"
             >
-              <span data-i18n="portal.1.subaction">حساب جديد</span>
+              <span>طلب اعتماد شريك</span>
             </a>
           </div>
-        </div>
-
-        <!-- 2. Clinical Specialist Portal -->
-        <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-primary/40 transition group">
-          <div class="flex items-start gap-3.5 mb-2">
-            <div class="w-10 h-10 rounded-xl bg-secondary text-white flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-xl">medical_services</span>
-            </div>
-            <div>
-              <h4 class="text-sm font-bold text-on-surface group-hover:text-secondary transition" data-i18n="portal.2.title">الأخصائي المعالج</h4>
-              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed" data-i18n="portal.2.desc">إدارة المستفيدين والتقييمات السريرية، واعتماد خطط التأهيل، ومتابعة الحالات دورياً.</p>
-            </div>
-          </div>
-          <div class="mt-3 pt-3 border-t border-outline-variant/60">
-            <a 
-              href="../المختص/الرئيسية/index.html" 
-              class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-secondary text-white text-xs font-semibold hover:bg-secondary-dark transition text-center"
-            >
-              <span class="material-symbols-outlined text-sm">dashboard</span>
-              <span data-i18n="portal.2.action">الدخول إلى بوابة الأخصائي</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- 3. Motor Supervisor Portal -->
-        <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-primary/40 transition group">
-          <div class="flex items-start gap-3.5 mb-2">
-            <div class="w-10 h-10 rounded-xl bg-primary-container text-white flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-xl">sports_gymnastics</span>
-            </div>
-            <div>
-              <h4 class="text-sm font-bold text-on-surface group-hover:text-primary transition" data-i18n="portal.3.title">المشرف الحركي</h4>
-              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed" data-i18n="portal.3.desc">متابعة تنفيذ التمارين والجلسات الحركية، وإدارة المحتوى، وتسجيل الملاحظات الميدانية.</p>
-            </div>
-          </div>
-          <div class="mt-3 pt-3 border-t border-outline-variant/60">
-            <a 
-              href="../المشرف الحركي/الرئيسية.html" 
-              class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-primary-container text-white text-xs font-semibold hover:bg-primary transition text-center"
-            >
-              <span class="material-symbols-outlined text-sm">tune</span>
-              <span data-i18n="portal.3.action">الدخول إلى بوابة المشرف الحركي</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- 4. Hospitals & Rehabilitation Centers Portal -->
-        <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-primary/40 transition group">
-          <div class="flex items-start gap-3.5 mb-2">
-            <div class="w-10 h-10 rounded-xl bg-blue-700 text-white flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-xl">domain</span>
-            </div>
-            <div>
-              <h4 class="text-sm font-bold text-on-surface group-hover:text-blue-700 transition" data-i18n="portal.4.title">المستشفى أو المركز</h4>
-              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed" data-i18n="portal.4.desc">إدارة خدمات المؤسسة والعيادات، وتنسيق الأخصائيين والمستفيدين، وإدارة المواعيد.</p>
-            </div>
-          </div>
-          <div class="mt-3 pt-3 border-t border-outline-variant/60">
-            <a 
-              href="../المستشفيات و المراكز/index.html" 
-              class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-blue-700 text-white text-xs font-semibold hover:bg-blue-800 transition text-center"
-            >
-              <span class="material-symbols-outlined text-sm">apartment</span>
-              <span data-i18n="portal.4.action">الدخول إلى بوابة المؤسسات الصحية</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- 5. Charitable Associations & Non-Profits Portal -->
-        <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-primary/40 transition group">
-          <div class="flex items-start gap-3.5 mb-2">
-            <div class="w-10 h-10 rounded-xl bg-teal-700 text-white flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-xl">volunteer_activism</span>
-            </div>
-            <div>
-              <h4 class="text-sm font-bold text-on-surface group-hover:text-teal-700 transition" data-i18n="portal.5.title">الجمعيات والمؤسسات غير الربحية</h4>
-              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed" data-i18n="portal.5.desc">التعاون في دعم وتغطية المستفيدين، وتنسيق بنك الأجهزة المساعدة والمبادرات المجتمعية.</p>
-            </div>
-          </div>
-          <div class="mt-3 pt-3 border-t border-outline-variant/60">
-            <a 
-              href="../الجمعيات/index.html" 
-              class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-teal-700 text-white text-xs font-semibold hover:bg-teal-800 transition text-center"
-            >
-              <span class="material-symbols-outlined text-sm">handshake</span>
-              <span data-i18n="portal.5.action">الدخول إلى بوابة الجمعيات</span>
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Drawer Footer -->
-      <div class="p-4 border-t border-outline-variant bg-surface-container-low text-center">
-        <p class="text-[11px] text-on-surface-variant">
-          جميع البوابات تعمل بنظام التحقق الثنائي ومعايير الأمان الصحية المعتمدة.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================
-       MAIN PAGE CONTENT
-       ======================================================================== -->
-  <main id="main-content" class="flex-grow pt-20">
-
-    <!-- ----------------------------------------------------------------------
-         HERO SECTION
-         ---------------------------------------------------------------------- -->
-    <section id="home" class="relative pt-12 pb-20 md:py-24 bg-mesh-glow overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <!-- Hero Text Content -->
-          <div class="lg:col-span-7 space-y-6 text-center lg:text-start">
-            
-            <!-- Trust Badge -->
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-primary/20 shadow-sm text-primary text-xs font-semibold">
-              <span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>
-              <span data-i18n="hero.badge">منصة وطنية متخصصة في الرعاية التأهيلية عن بُعد</span>
-            </div>
-
-            <!-- Main Headline -->
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-on-surface tracking-tight leading-[1.25]" data-i18n="hero.title">
-              جسر يربطك برحلة تأهيل أكثر سهولة وأمانًا من منزلك
-            </h1>
-
-            <!-- Subtitle Description -->
-            <p class="text-base sm:text-lg text-on-surface-variant max-w-2xl mx-auto lg:mx-0 leading-relaxed" data-i18n="hero.subtitle">
-              منصة رقمية متخصصة تُمكّن الأشخاص ذوي الاحتياجات التأهيلية وأسرهم من الحصول على خطط تأهيلية متكاملة ومتابعة مستمرة بإشراف نخبة من الأخصائيين المعتمدين والمشرفين الحركيين والمؤسسات الصحية.
-            </p>
-
-            <!-- Call to Actions -->
-            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2">
-              <a 
-                href="#services" 
-                class="px-7 py-3.5 rounded-xl bg-primary text-white text-sm sm:text-base font-semibold hover:bg-primary-dark transition shadow-md hover:shadow-lg inline-flex items-center gap-2"
-              >
-                <span data-i18n="hero.ctaServices">اكتشف خدماتنا</span>
-                <span class="material-symbols-outlined text-lg">arrow_downward</span>
-              </a>
-
-              <button 
-                type="button" 
-                data-open-app-modal 
-                class="px-6 py-3.5 rounded-xl bg-white border border-outline-variant hover:border-primary/40 text-on-surface text-sm sm:text-base font-semibold hover:bg-surface-container transition shadow-sm inline-flex items-center gap-2"
-              >
-                <span class="material-symbols-outlined text-primary text-xl">install_mobile</span>
-                <span data-i18n="hero.ctaDownload">تحميل التطبيق</span>
-              </button>
-
-              <a 
-                href="../تحديد مشكلة المستفيد/تحديد المشكلة.html" 
-                class="px-5 py-3.5 rounded-xl bg-secondary/10 hover:bg-secondary/20 text-secondary border border-secondary/20 text-sm sm:text-base font-semibold transition inline-flex items-center gap-1.5"
-              >
-                <span class="material-symbols-outlined text-lg">clinical_notes</span>
-                <span data-i18n="hero.ctaAssessment">بدء التقييم المبدئي</span>
-              </a>
-            </div>
-
-            <!-- Key Indicators / Trust Pillars -->
-            <div class="pt-6 border-t border-outline-variant/60 grid grid-cols-3 gap-3 text-start">
-              <div class="bg-white/80 p-3 rounded-2xl border border-outline-variant/50">
-                <div class="text-primary font-bold text-sm sm:text-base flex items-center gap-1">
-                  <span class="material-symbols-outlined text-lg text-primary">fitness_center</span>
-                  <span data-i18n="hero.statRehab">تأهيل منزلي</span>
-                </div>
-                <div class="text-[11px] text-on-surface-variant mt-0.5" data-i18n="hero.statRehabSub">تمارين وخطط علاجية يومية</div>
-              </div>
-              
-              <div class="bg-white/80 p-3 rounded-2xl border border-outline-variant/50">
-                <div class="text-secondary font-bold text-sm sm:text-base flex items-center gap-1">
-                  <span class="material-symbols-outlined text-lg text-secondary">verified</span>
-                  <span data-i18n="hero.statSupervision">إشراف سريري</span>
-                </div>
-                <div class="text-[11px] text-on-surface-variant mt-0.5" data-i18n="hero.statSupervisionSub">ربط مباشر بالأخصائيين</div>
-              </div>
-
-              <div class="bg-white/80 p-3 rounded-2xl border border-outline-variant/50">
-                <div class="text-amber-700 font-bold text-sm sm:text-base flex items-center gap-1">
-                  <span class="material-symbols-outlined text-lg text-amber-600">family_restroom</span>
-                  <span data-i18n="hero.statFamily">رعاية الأسرة</span>
-                </div>
-                <div class="text-[11px] text-on-surface-variant mt-0.5" data-i18n="hero.statFamilySub">تقليل أعباء التنقل</div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Hero Visual Composition: Care Ecosystem Illustration -->
-          <div class="lg:col-span-5 relative flex items-center justify-center">
-            
-            <!-- Circular Ecosystem Card -->
-            <div class="relative w-full max-w-md aspect-square rounded-3xl bg-white p-6 shadow-floating border border-outline-variant/80 flex flex-col justify-between overflow-hidden">
-              
-              <!-- Subtle decorative bg glow -->
-              <div class="absolute -top-16 -end-16 w-48 h-48 rounded-full bg-primary/10 blur-2xl pointer-events-none"></div>
-              <div class="absolute -bottom-16 -start-16 w-48 h-48 rounded-full bg-secondary/10 blur-2xl pointer-events-none"></div>
-
-              <!-- Top Indicator Header -->
-              <div class="flex items-center justify-between z-10 border-b border-outline-variant/60 pb-3">
-                <div class="flex items-center gap-2">
-                  <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                    <span class="material-symbols-outlined text-lg">hub</span>
-                  </div>
-                  <span class="text-xs font-bold text-on-surface" data-i18n="hero.diagramTitle">منظومة جسر للرعاية التشاركية</span>
-                </div>
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-secondary/10 text-secondary">نشط ومتصل</span>
-              </div>
-
-              <!-- Central Node: Beneficiary & Family -->
-              <div class="my-auto py-4 relative z-10 flex flex-col items-center">
-                
-                <div class="relative mb-6">
-                  <!-- Orbit circle -->
-                  <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-primary to-primary-light text-white p-1 flex items-center justify-center shadow-lg relative z-10 animate-pulse-slow">
-                    <div class="w-full h-full rounded-full bg-white text-primary flex flex-col items-center justify-center text-center p-2">
-                      <span class="material-symbols-outlined text-3xl text-primary">accessible</span>
-                      <span class="text-[11px] font-bold text-on-surface leading-tight mt-1" data-i18n="hero.nodeBeneficiary">المستفيد والأسرة</span>
-                    </div>
-                  </div>
-                  <!-- Connecting lines ring -->
-                  <div class="absolute inset-0 -m-5 rounded-full border border-dashed border-primary/30 pointer-events-none"></div>
-                </div>
-
-                <!-- 3 Surrounding Stakeholder Nodes -->
-                <div class="w-full grid grid-cols-3 gap-2 text-center">
-                  <!-- Node 1: Specialist -->
-                  <div class="bg-surface-container-low p-2.5 rounded-2xl border border-outline-variant/70 hover:border-secondary transition">
-                    <span class="material-symbols-outlined text-secondary text-xl">medical_services</span>
-                    <div class="text-[10px] font-bold text-on-surface mt-1" data-i18n="hero.nodeSpecialist">الأخصائي المعالج</div>
-                    <span class="text-[9px] text-on-surface-variant">إشراف سريري</span>
-                  </div>
-
-                  <!-- Node 2: Supervisor -->
-                  <div class="bg-surface-container-low p-2.5 rounded-2xl border border-outline-variant/70 hover:border-primary transition">
-                    <span class="material-symbols-outlined text-primary text-xl">sports_gymnastics</span>
-                    <div class="text-[10px] font-bold text-on-surface mt-1" data-i18n="hero.nodeSupervisor">المشرف الحركي</div>
-                    <span class="text-[9px] text-on-surface-variant">توجيه ميداني</span>
-                  </div>
-
-                  <!-- Node 3: Hospitals & Charities -->
-                  <div class="bg-surface-container-low p-2.5 rounded-2xl border border-outline-variant/70 hover:border-amber-600 transition">
-                    <span class="material-symbols-outlined text-amber-600 text-xl">corporate_fare</span>
-                    <div class="text-[10px] font-bold text-on-surface mt-1" data-i18n="hero.nodeHospital">المستشفيات والجمعيات</div>
-                    <span class="text-[9px] text-on-surface-variant">رعاية ودعم</span>
-                  </div>
-                </div>
-
-              </div>
-
-              <!-- Bottom Action Callout -->
-              <div class="pt-3 border-t border-outline-variant/60 z-10 flex items-center justify-between text-xs">
-                <span class="text-on-surface-variant text-[11px]">متابعة وتحديث سريري مستمر</span>
-                <button type="button" data-open-portals class="text-primary font-bold hover:underline inline-flex items-center gap-1">
-                  <span>بوابات الدخول</span>
-                  <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SECTION: ABOUT US (من نحن)
-         ---------------------------------------------------------------------- -->
-    <section id="about" class="py-20 bg-white border-y border-outline-variant/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Section Header -->
-        <div class="max-w-3xl mx-auto text-center space-y-3 mb-16">
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary tracking-wide" data-i18n="about.tag">من نحن</span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight" data-i18n="about.title">
-            تمكين ورعاية متصلة بروح إنسانية وتقنية متطورة
-          </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed" data-i18n="about.intro">
-            منصة «جسر للتأهيل والرعاية عن بُعد» هي مبادرة تقنية متخصصة تهدف إلى إعادة صياغة تجربة التأهيل الطبي والرعاية الصحية المنزلية، من خلال تذليل العقبات الجغرافية والمالية التي تواجه الأسر والأشخاص ذوي الإعاقة.
-          </p>
-        </div>
-
-        <!-- 4 Grid Pillars: Founding Idea, Problem, Importance, Values -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          
-          <!-- Card 1: Founding Idea -->
-          <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant hover-lift">
-            <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-              <span class="material-symbols-outlined text-2xl">lightbulb</span>
-            </div>
-            <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="about.foundingIdea">فكرة التأسيس</h3>
-            <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="about.foundingIdeaDesc">
-              انطلقت فكرة جسر استجابةً لحاجة إنسانية ملحة: معاناة الأسر في الوصول المستمر إلى مراكز التأهيل، وصعوبة التنقل المتكرر، وتفاوت المتابعة المنزلية بين الجلسات السريرية، ما دفعنا لابتكار بيئة رقمية آمنة تربط جميع أطراف الرعاية.
-            </p>
-          </div>
-
-          <!-- Card 2: The Problem Solved -->
-          <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant hover-lift">
-            <div class="w-12 h-12 rounded-2xl bg-red-100 text-red-700 flex items-center justify-center mb-4">
-              <span class="material-symbols-outlined text-2xl">troubleshoot</span>
-            </div>
-            <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="about.problem">المشكلة التي نعالجها</h3>
-            <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="about.problemDesc">
-              قلة توفر مراكز التأهيل المتخصصة في بعض المناطق، وارتفاع تكاليف التنقل، وطول فترات الانتظار، والضغط المتزايد على المستشفيات، وضعف استمرارية التمارين التأهيلية في بيئة المنزل.
-            </p>
-          </div>
-
-          <!-- Card 3: Importance of Home Rehab -->
-          <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant hover-lift">
-            <div class="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-4">
-              <span class="material-symbols-outlined text-2xl">vital_signs</span>
-            </div>
-            <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="about.importance">أهمية التأهيل المنزلي</h3>
-            <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="about.importanceDesc">
-              تشير الممارسات السريرية الحديثة إلى أن استمرارية التأهيل المنزلي اليومي تضاعف من معدلات تحسن الوظائف الحركية، وتمنح المستفيد استقلالية أكبر وتقلل من الانتكاسات الوظيفية.
-            </p>
-          </div>
-
-        </div>
-
-        <!-- Vision and Mission Split -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div class="p-8 rounded-3xl bg-primary text-white space-y-3 relative overflow-hidden shadow-lg">
-            <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center">
-              <span class="material-symbols-outlined text-2xl">visibility</span>
-            </div>
-            <h3 class="text-xl font-bold" data-i18n="about.visionTitle">رؤية المشروع</h3>
-            <p class="text-sm sm:text-base text-primary-fixed leading-relaxed" data-i18n="about.visionDesc">
-              أن نكون المنظومة الرقمية الرائدة في التأهيل والرعاية الصحية المنزلية عن بُعد على مستوى المنطقة، موفرين رعاية شاملة لكل بيت بجودة سريرية موثوقة.
-            </p>
-          </div>
-
-          <div class="p-8 rounded-3xl bg-secondary text-white space-y-3 relative overflow-hidden shadow-lg">
-            <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center">
-              <span class="material-symbols-outlined text-2xl">flag</span>
-            </div>
-            <h3 class="text-xl font-bold" data-i18n="about.missionTitle">رسالة المشروع</h3>
-            <p class="text-sm sm:text-base text-secondary-fixed leading-relaxed" data-i18n="about.missionDesc">
-              تمكين الأشخاص ذوي الاحتياجات التأهيلية وأسرهم عبر تقنيات سهلة الوصول تربطهم بالكوادر الطبية والمشرفين الحركيين والمؤسسات الداعمة، لتقديم رعاية منزلية مستمرة تحفظ الكرامة وتيسر الحياة.
-            </p>
-          </div>
-        </div>
-
-        <!-- Strategic Objectives & Values -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
-          <!-- Objectives (Left 7 cols) -->
-          <div class="lg:col-span-7 bg-surface-container-low p-8 rounded-3xl border border-outline-variant">
-            <h3 class="text-xl font-bold text-on-surface mb-6 flex items-center gap-2" data-i18n="about.objectivesTitle">
-              <span class="material-symbols-outlined text-primary">target</span>
-              الأهداف الرئيسية
-            </h3>
-            <div class="space-y-4 text-sm text-on-surface-variant">
-              <div class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
-                <span data-i18n="about.obj1">تسهيل وصول المستفيدين لخدمات التأهيل السريري في أي وقت ومن أي مكان.</span>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
-                <span data-i18n="about.obj2">تخفيف الأعباء المادية والجسدية الناتجة عن التنقلات المتكررة على عاتق الأسر.</span>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
-                <span data-i18n="about.obj3">المساهمة في تخفيف الضغط والازدحام على المستشفيات ومراكز التأهيل المتخصصة.</span>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
-                <span data-i18n="about.obj4">رفع نسبة الالتزام بالتمارين اليومية بفضل التوجيه المرئي والمتابعة اللحظية.</span>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">5</span>
-                <span data-i18n="about.obj5">بناء شراكات مستدامة مع القطاعين الصحي وغير الربحي لتوفير الأجهزة والدعم الشامل.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Core Values (Right 5 cols) -->
-          <div class="lg:col-span-5 bg-white p-8 rounded-3xl border border-outline-variant shadow-sm space-y-4">
-            <h3 class="text-xl font-bold text-on-surface mb-4 flex items-center gap-2" data-i18n="about.valuesTitle">
-              <span class="material-symbols-outlined text-secondary">favorite</span>
-              قيمنا الأساسية
-            </h3>
-
-            <div class="space-y-4">
-              <div>
-                <h4 class="text-sm font-bold text-on-surface" data-i18n="about.valHumanity">الإنسانية والكرامة</h4>
-                <p class="text-xs text-on-surface-variant mt-0.5" data-i18n="about.valHumanityDesc">نضع كرامة وراحة المستفيد وأسرته في قلب كل قرار وكل ميزة برمجية نطورها.</p>
-              </div>
-              <div>
-                <h4 class="text-sm font-bold text-on-surface" data-i18n="about.valEmpowerment">التمكين والاستقلالية</h4>
-                <p class="text-xs text-on-surface-variant mt-0.5" data-i18n="about.valEmpowermentDesc">تمكين المستفيد وأسرته بالمعرفة والمهارات لتنفيذ التمارين المنزلية بثقة.</p>
-              </div>
-              <div>
-                <h4 class="text-sm font-bold text-on-surface" data-i18n="about.valPrivacy">الأمان والخصوصية الصحية</h4>
-                <p class="text-xs text-on-surface-variant mt-0.5" data-i18n="about.valPrivacyDesc">التزام بأعلى معايير تشفير وحماية السجلات الطبية والبيانات الشخصية.</p>
-              </div>
-              <div>
-                <h4 class="text-sm font-bold text-on-surface" data-i18n="about.valIntegration">التكامل السريري التشاركي</h4>
-                <p class="text-xs text-on-surface-variant mt-0.5" data-i18n="about.valIntegrationDesc">ربط منظومة الرعاية بالكامل في حلقة تواصل مهنية واحدة بين جميع المعنيين.</p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SECTION: JISR SERVICES (خدمات جسر)
-         ---------------------------------------------------------------------- -->
-    <section id="services" class="py-20 bg-[#f8fafd]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Section Header -->
-        <div class="max-w-3xl mx-auto text-center space-y-3 mb-16">
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary tracking-wide" data-i18n="services.tag">خدمات جسر</span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight" data-i18n="services.title">
-            منظومة خدمات تأهيلية متكاملة صُممت لراحتكم
-          </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed" data-i18n="services.subtitle">
-            حلول مدروسة تغطي جميع مراحل رحلة التأهيل من التقييم الأولي وحتى التعافي والاستقلالية التامة.
-          </p>
-        </div>
-
-        <!-- 10 Services Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-          <!-- 1. Initial Assessment -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">assignment</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-primary-soft text-primary mb-2">تقييم موجه</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="svc.1.title">التقييم المبدئي للمستفيد</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="svc.1.desc">
-                استبيان رقمي منهجي لتحديد الصعوبات الوظيفية والاحتياجات الحركية لتوجيه الحالة نحو الأخصائي المناسب.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60 flex items-center justify-between">
-              <button type="button" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1" data-service-id="1">
-                <span data-i18n="services.btnExplore">تفاصيل الخدمة</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </button>
-              <a href="../تحديد مشكلة المستفيد/تحديد المشكلة.html" class="text-xs font-semibold text-secondary hover:underline">بدء الفحص</a>
-            </div>
-          </div>
-
-          <!-- 2. Individual Plans -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">health_and_safety</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-secondary-soft text-secondary mb-2">إشراف سريري</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="svc.2.title">خطط التأهيل الفردية</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="svc.2.desc">
-                خطط علاجية مخصصة وموجهة يصممها الأخصائي المعالج بدقة وفق احتياجات وقدرات كل مستفيد.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60 flex items-center justify-between">
-              <button type="button" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1" data-service-id="2">
-                <span data-i18n="services.btnExplore">تفاصيل الخدمة</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </button>
-              <span class="text-[11px] text-on-surface-variant">معتمدة سريرياً</span>
-            </div>
-          </div>
-
-          <!-- 3. Home Exercises -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">fitness_center</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 mb-2">مكتبة فيديو</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="svc.3.title">التمارين المنزلية الموجهة</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="svc.3.desc">
-                مكتبة وسائط تعليمية عالية الدقة توضح الطريقة السليمة لأداء التمارين وتفادي الحركات الخاطئة.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60 flex items-center justify-between">
-              <button type="button" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1" data-service-id="3">
-                <span data-i18n="services.btnExplore">تفاصيل الخدمة</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </button>
-              <span class="text-[11px] text-on-surface-variant">تعمل بدون إنترنت</span>
-            </div>
-          </div>
-
-          <!-- 4. Specialist Follow-up -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">support_agent</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-50 text-blue-800 mb-2">تواصل مباشر</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="svc.4.title">المتابعة مع المختصين</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="svc.4.desc">
-                قنوات اتصال منتظمة وموثوقة تربط الأسر بالأخصائي المعالج لمتابعة الاستجابة ومناقشة التطورات.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60 flex items-center justify-between">
-              <button type="button" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1" data-service-id="4">
-                <span data-i18n="services.btnExplore">تفاصيل الخدمة</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </button>
-              <span class="text-[11px] text-on-surface-variant">رسائل واستشارات</span>
-            </div>
-          </div>
-
-          <!-- 5. Smart Exercise Assistant -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">smart_toy</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-indigo-50 text-indigo-800 mb-2">مساند تقني</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="svc.5.title">المساعد الذكي للتمارين</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="svc.5.desc">
-                مساعد تقني يدعم متابعة أداء التمرين وإرشاد المستفيد، ولا يحل محل المختص المعالج.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60 flex items-center justify-between">
-              <button type="button" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1" data-service-id="5">
-                <span data-i18n="services.btnExplore">تفاصيل الخدمة</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </button>
-              <span class="text-[11px] text-on-surface-variant">توجيه وحساب تكرار</span>
-            </div>
-          </div>
-
-          <!-- 6. Progress Tracking -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">trending_up</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-teal-50 text-teal-800 mb-2">مؤشرات الأداء</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="svc.6.title">متابعة التقدم والالتزام</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="svc.6.desc">
-                تسجيل الإنجازات ومتابعة الالتزام بخطة التأهيل عبر مؤشرات ورسوم بيانية سهلة القراءة.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60 flex items-center justify-between">
-              <button type="button" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1" data-service-id="6">
-                <span data-i18n="services.btnExplore">تفاصيل الخدمة</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </button>
-              <span class="text-[11px] text-on-surface-variant">رسوم بيانية دورية</span>
-            </div>
-          </div>
-
-          <!-- 7. Consultations & Appointments -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">calendar_month</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-sky-50 text-sky-800 mb-2">جدولة مرنة</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="svc.7.title">الاستشارات والمواعيد</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="svc.7.desc">
-                الوصول إلى الاستشارات عن بُعد والمواعيد الحضورية وفق الخدمات المتاحة وتوصيات الأخصائي.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60 flex items-center justify-between">
-              <button type="button" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1" data-service-id="7">
-                <span data-i18n="services.btnExplore">تفاصيل الخدمة</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </button>
-              <span class="text-[11px] text-on-surface-variant">عن بعد وحضوري</span>
-            </div>
-          </div>
-
-          <!-- 8. Support Communities -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">groups</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-800 mb-2">دعم تشاركي</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="svc.8.title">مجتمعات الدعم الأسري</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="svc.8.desc">
-                مجموعات تتيح للأسر والمستفيدين تبادل الخبرات والدعم النفسي والتأهيلي التشاركي.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60 flex items-center justify-between">
-              <button type="button" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1" data-service-id="8">
-                <span data-i18n="services.btnExplore">تفاصيل الخدمة</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </button>
-              <span class="text-[11px] text-on-surface-variant">بيئة موجهة وآمنة</span>
-            </div>
-          </div>
-
-          <!-- 9. Assistive Devices Bank -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">accessible</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800 mb-2">تكافل مجتمعي</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="svc.9.title">بنك الأجهزة المساعدة</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="svc.9.desc">
-                مساحة للتعرف على الأجهزة المساعدة المتاحة والتبرع بها أو طلبها عبر الجمعيات الشريكة.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60 flex items-center justify-between">
-              <button type="button" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1" data-service-id="9">
-                <span data-i18n="services.btnExplore">تفاصيل الخدمة</span>
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-              </button>
-              <span class="text-[11px] text-on-surface-variant">طلب وتبرع بالأجهزة</span>
-            </div>
-          </div>
-
-          <!-- 10. Clinical Reports & Sharing -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between md:col-span-2 lg:col-span-3">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-800 flex items-center justify-center shrink-0">
-                  <span class="material-symbols-outlined text-2xl">description</span>
-                </div>
-                <div>
-                  <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-cyan-50 text-cyan-800 mb-1">توثيق رسمي</span>
-                  <h3 class="text-lg font-bold text-on-surface" data-i18n="svc.10.title">التقارير والمتابعة السريرية</h3>
-                  <p class="text-sm text-on-surface-variant max-w-2xl mt-1 leading-relaxed" data-i18n="svc.10.desc">
-                    تنظيم تقارير التأهيل والتقدم ومشاركتها مع الجهات الطبية والداعمة وفق الصلاحيات والموافقات.
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-3 shrink-0">
-                <button type="button" class="px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition" data-service-id="10">
-                  <span data-i18n="services.btnExplore">تفاصيل الخدمة</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SECTION: HOW IT WORKS (كيف تعمل منصة جسر؟)
-         ---------------------------------------------------------------------- -->
-    <section id="how-it-works" class="py-20 bg-white border-y border-outline-variant/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Section Header -->
-        <div class="max-w-3xl mx-auto text-center space-y-3 mb-16">
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-secondary/10 text-secondary tracking-wide" data-i18n="how.tag">رحلة المستفيد</span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight" data-i18n="how.title">
-            كيف تعمل منصة جسر؟
-          </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed" data-i18n="how.subtitle">
-            خطوات بسيطة وواضحة ترتب رحلتك من التقييم الأولي وحتى تحقيق الاستقلالية الحركية
-          </p>
-        </div>
-
-        <!-- 7 Sequential Stepper Cards -->
-        <div class="relative">
-          
-          <!-- Stepper timeline horizontal connector for desktop -->
-          <div class="hidden lg:block absolute top-1/2 start-8 end-8 h-0.5 bg-outline-variant -translate-y-1/2 z-0"></div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-
-            <!-- Step 1 -->
-            <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant hover-lift">
-              <div class="flex items-center justify-between mb-4">
-                <span class="w-10 h-10 rounded-2xl bg-primary text-white font-bold text-sm flex items-center justify-center shadow-sm" data-i18n="step1.num">01</span>
-                <span class="material-symbols-outlined text-primary text-2xl">person_add</span>
-              </div>
-              <h3 class="text-base font-bold text-on-surface mb-2" data-i18n="step1.title">إنشاء الحساب وإضافة البيانات</h3>
-              <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="step1.desc">
-                تسجيل سريع لولي الأمر أو المستفيد، وتوثيق البيانات الأساسية والحالة الصحية الأولية بسهولة وأمان.
-              </p>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant hover-lift">
-              <div class="flex items-center justify-between mb-4">
-                <span class="w-10 h-10 rounded-2xl bg-secondary text-white font-bold text-sm flex items-center justify-center shadow-sm" data-i18n="step2.num">02</span>
-                <span class="material-symbols-outlined text-secondary text-2xl">assignment_turned_in</span>
-              </div>
-              <h3 class="text-base font-bold text-on-surface mb-2" data-i18n="step2.title">إجراء التقييم المبدئي</h3>
-              <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="step2.desc">
-                الإجابة عن أسئلة التقييم الوظيفي الميسر لتحديد نوع الصعوبات الحركية والمستوى الوظيفي الحالي.
-              </p>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant hover-lift">
-              <div class="flex items-center justify-between mb-4">
-                <span class="w-10 h-10 rounded-2xl bg-primary-container text-white font-bold text-sm flex items-center justify-center shadow-sm" data-i18n="step3.num">03</span>
-                <span class="material-symbols-outlined text-primary-container text-2xl">stethoscope</span>
-              </div>
-              <h3 class="text-base font-bold text-on-surface mb-2" data-i18n="step3.title">مراجعة الحالة من الأخصائي</h3>
-              <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="step3.desc">
-                يتولى أخصائي سريري معتمد دراسة نتائج التقييم والتاريخ المرضي، وتحديد الاحتياجات التأهيلية الدقيقة.
-              </p>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant hover-lift">
-              <div class="flex items-center justify-between mb-4">
-                <span class="w-10 h-10 rounded-2xl bg-amber-600 text-white font-bold text-sm flex items-center justify-center shadow-sm" data-i18n="step4.num">04</span>
-                <span class="material-symbols-outlined text-amber-600 text-2xl">rule_settings</span>
-              </div>
-              <h3 class="text-base font-bold text-on-surface mb-2" data-i18n="step4.title">إعداد خطة التأهيل واعتمادها</h3>
-              <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="step4.desc">
-                صياغة خطة تمارين منزلية فردية مخصصة ومجدولة زمنياً، وإرسالها للمستفيد بعد اعتمادها من الأخصائي.
-              </p>
-            </div>
-
-            <!-- Step 5 -->
-            <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant hover-lift">
-              <div class="flex items-center justify-between mb-4">
-                <span class="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold text-sm flex items-center justify-center shadow-sm" data-i18n="step5.num">05</span>
-                <span class="material-symbols-outlined text-indigo-600 text-2xl">sports_gymnastics</span>
-              </div>
-              <h3 class="text-base font-bold text-on-surface mb-2" data-i18n="step5.title">تنفيذ التمارين بإرشاد المشرف</h3>
-              <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="step5.desc">
-                متابعة الفيديوهات الإرشادية والتوجيهات الحركية بدقة في المنزل مع المساعد التقني المساند.
-              </p>
-            </div>
-
-            <!-- Step 6 -->
-            <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant hover-lift">
-              <div class="flex items-center justify-between mb-4">
-                <span class="w-10 h-10 rounded-2xl bg-teal-600 text-white font-bold text-sm flex items-center justify-center shadow-sm" data-i18n="step6.num">06</span>
-                <span class="material-symbols-outlined text-teal-600 text-2xl">trending_up</span>
-              </div>
-              <h3 class="text-base font-bold text-on-surface mb-2" data-i18n="step6.title">متابعة الإنجاز والتقدم</h3>
-              <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="step6.desc">
-                تسجيل استكمال التمارين اليومية، ورصد مؤشرات التطور وتوثيق الملاحظات في سجل التقدم.
-              </p>
-            </div>
-
-            <!-- Step 7 (Spans 2 columns on lg) -->
-            <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant hover-lift md:col-span-2 lg:col-span-2">
-              <div class="flex items-center justify-between mb-4">
-                <span class="w-10 h-10 rounded-2xl bg-primary-dark text-white font-bold text-sm flex items-center justify-center shadow-sm" data-i18n="step7.num">07</span>
-                <span class="material-symbols-outlined text-primary-dark text-2xl">fact_check</span>
-              </div>
-              <h3 class="text-base font-bold text-on-surface mb-2" data-i18n="step7.title">التواصل الدوري ومراجعة التقارير</h3>
-              <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="step7.desc">
-                عقد استشارات مراجعة مع الأخصائي، ومشاركة التقارير الدورية مع المؤسسات الصحية المتابعة لتحقيق أفضل استجابة وظيفية.
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SECTION: FOR WHOM IS JISR DESIGNED? (لمن صُممت جسر؟)
-         ---------------------------------------------------------------------- -->
-    <section id="for-whom" class="py-20 bg-[#f8fafd]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Section Header -->
-        <div class="max-w-3xl mx-auto text-center space-y-3 mb-16">
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary tracking-wide" data-i18n="forWhom.tag">الفئات المستفيدة</span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight" data-i18n="forWhom.title">
-            لمن صُممت منصة جسر؟
-          </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed" data-i18n="forWhom.subtitle">
-            حلول متخصصة ومصممة خصيصاً لكل فاعل في منظومة الرعاية والتأهيل
-          </p>
-        </div>
-
-        <!-- 5 Target Audience Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-          <!-- 1. Beneficiaries & Families -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">accessible_forward</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-primary-soft text-primary mb-2" data-i18n="target.1.role">رعاية منزلية آمنة</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="target.1.title">المستفيدون وأولياء الأمور</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="target.1.desc">
-                تأهيل منزلي مريح يغني عن مشاق السفر والتنقل المتكرر، مع إرشادات مبسطة ومتابعة مباشرة تمنح الأسرة راحة البال والثقة في مسار التعافي.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60">
-              <a 
-                href="../المستفيد/التسجيل/تسجيل الدخول.html" 
-                class="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition"
-              >
-                <span data-i18n="target.1.btn">بوابة المستفيد</span>
-                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 2. Clinical Specialists -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">medical_services</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-secondary-soft text-secondary mb-2" data-i18n="target.2.role">إشراف سريري متقدم</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="target.2.title">الأخصائيون المعالجون</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="target.2.desc">
-                إدارة مرنة للمرضى، تصميم خطط علاجية فردية، مراجعة مقاطع أداء التمارين، وتوثيق التقارير الطبية دون أعباء إدارية مرهقة.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60">
-              <a 
-                href="../المختص/الرئيسية/index.html" 
-                class="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-secondary text-white text-xs font-semibold hover:bg-secondary-dark transition"
-              >
-                <span data-i18n="target.2.btn">بوابة الأخصائي</span>
-                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 3. Motor Supervisors -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-primary-container/10 text-primary-container flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">sports_gymnastics</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-primary-container/10 text-primary-container mb-2" data-i18n="target.3.role">إرشاد وتدريب ميداني</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="target.3.title">المشرفون الحركيون</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="target.3.desc">
-                متابعة دقيقة لأداء التمارين والجلسات، تقديم الدعم الحركي للمستفيدين، تدوين الملاحظات الحركية ورفعها السريع للأخصائي السريري.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60">
-              <a 
-                href="../المشرف الحركي/الرئيسية.html" 
-                class="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary-container text-white text-xs font-semibold hover:bg-primary transition"
-              >
-                <span data-i18n="target.3.btn">بوابة المشرف الحركي</span>
-                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 4. Hospitals & Rehabilitation Centers -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">domain</span>
-              </div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-50 text-blue-700 mb-2" data-i18n="target.4.role">تكامل مؤسسي صحي</span>
-              <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="target.4.title">المستشفيات ومراكز التأهيل</h3>
-              <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="target.4.desc">
-                تنظيم المواعيد، متابعة المرضى بعد الخروج من المستشفى، تقليل فترات الانتظار، وربط الكوادر الطبية والمستفيدين في شبكة موحدة.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60">
-              <a 
-                href="../المستشفيات و المراكز/index.html" 
-                class="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-700 text-white text-xs font-semibold hover:bg-blue-800 transition"
-              >
-                <span data-i18n="target.4.btn">بوابة المؤسسات الصحية</span>
-                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 5. Charities & Non-Profits -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between md:col-span-2 lg:col-span-2">
-            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
-              <div>
-                <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center mb-4">
-                  <span class="material-symbols-outlined text-2xl">volunteer_activism</span>
-                </div>
-                <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-teal-50 text-teal-700 mb-2" data-i18n="target.5.role">تمكين مجتمعي وتكافل</span>
-                <h3 class="text-lg font-bold text-on-surface mb-2" data-i18n="target.5.title">الجمعيات والمؤسسات غير الربحية</h3>
-                <p class="text-sm text-on-surface-variant max-w-xl leading-relaxed" data-i18n="target.5.desc">
-                  التعاون الفعال في كفالة برامج التأهيل، والمساهمة في توفير الأجهزة المساعدة، ومتابعة الأثر المجتمعي للمستفيدين المدعومين.
-                </p>
-              </div>
-
-              <div class="shrink-0 flex items-center gap-3 mt-4 md:mt-0">
-                <a 
-                  href="../الجمعيات/index.html" 
-                  class="inline-flex items-center justify-center gap-1.5 px-6 py-3 rounded-xl bg-teal-700 text-white text-xs font-semibold hover:bg-teal-800 transition"
-                >
-                  <span data-i18n="target.5.btn">بوابة الجمعيات</span>
-                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SECTION: OUR PARTNERS (شركاؤنا)
-         ---------------------------------------------------------------------- -->
-    <section id="partners" class="py-20 bg-white border-y border-outline-variant/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Section Header -->
-        <div class="max-w-3xl mx-auto text-center space-y-3 mb-16">
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary tracking-wide" data-i18n="partners.tag">شركاؤنا في الرعاية</span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight" data-i18n="partners.title">
-            منظومة تعاون متكاملة لخدمة المجتمع
-          </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed" data-i18n="partners.subtitle">
-            نتعاون مع أرقى الصروح الطبية والجمعيات الخيرية ومزودي الأجهزة المساعدة لتقديم تجربة تأهيلية شاملة.
-          </p>
-        </div>
-
-        <!-- 6 Partner Categories -->
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
-          
-          <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant text-center hover-lift">
-            <span class="material-symbols-outlined text-primary text-3xl mb-2">local_hospital</span>
-            <h4 class="text-xs font-bold text-on-surface" data-i18n="partners.catHospitals">المستشفيات</h4>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant text-center hover-lift">
-            <span class="material-symbols-outlined text-secondary text-3xl mb-2">physical_therapy</span>
-            <h4 class="text-xs font-bold text-on-surface" data-i18n="partners.catRehab">مراكز التأهيل</h4>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant text-center hover-lift">
-            <span class="material-symbols-outlined text-teal-700 text-3xl mb-2">volunteer_activism</span>
-            <h4 class="text-xs font-bold text-on-surface" data-i18n="partners.catCharity">الجمعيات الخيرية</h4>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant text-center hover-lift">
-            <span class="material-symbols-outlined text-blue-700 text-3xl mb-2">badge</span>
-            <h4 class="text-xs font-bold text-on-surface" data-i18n="partners.catSpecialists">الأخصائيون</h4>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant text-center hover-lift">
-            <span class="material-symbols-outlined text-indigo-700 text-3xl mb-2">medication</span>
-            <h4 class="text-xs font-bold text-on-surface" data-i18n="partners.catPharmacies">الصيدليات</h4>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant text-center hover-lift">
-            <span class="material-symbols-outlined text-amber-700 text-3xl mb-2">accessible</span>
-            <h4 class="text-xs font-bold text-on-surface" data-i18n="partners.catDevices">الأجهزة الطبية</h4>
-          </div>
-
-        </div>
-
-        <!-- Partnership CTA Card -->
-        <div class="p-8 rounded-3xl bg-gradient-to-r from-primary to-primary-container text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-card">
-          <div class="space-y-1 text-center md:text-start">
-            <h3 class="text-xl font-bold">هل تمثل منشأة صحية أو جمعية خيرية؟</h3>
-            <p class="text-sm text-primary-fixed" data-i18n="partners.note">
-              جميع الشراكات تخضع لاتفاقيات حوكمة طبية معتمدة ومعايير امتثال موحدة.
-            </p>
-          </div>
-          <button 
-            type="button" 
-            data-open-partnership 
-            class="px-6 py-3 rounded-xl bg-white text-primary text-sm font-bold hover:bg-primary-soft transition shrink-0 shadow-sm inline-flex items-center gap-2"
-          >
-            <span class="material-symbols-outlined text-base">handshake</span>
-            <span data-i18n="partners.cta">كن شريكًا مع جسر</span>
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SECTION: STORIES & EXPERIENCES (قصص وتجارب)
-         ---------------------------------------------------------------------- -->
-    <section id="stories" class="py-20 bg-[#f8fafd]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Section Header -->
-        <div class="max-w-3xl mx-auto text-center space-y-3 mb-16">
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-secondary/10 text-secondary tracking-wide" data-i18n="stories.tag">أثر ورعاية</span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight" data-i18n="stories.title">
-            قصص وتجارب من رحلة التأهيل
-          </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed" data-i18n="stories.subtitle">
-            نماذج واقعية تعكس التزام جسر بمساعدة الأسر على تخطي التحديات بروح من الأمل والعزيمة
-          </p>
-        </div>
-
-        <!-- Stories Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-
-          <!-- Story 1 -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div class="space-y-3">
-              <div class="flex items-center gap-1 text-amber-500">
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-              </div>
-              <h3 class="text-base font-bold text-on-surface" data-i18n="story.1.title">استعادة الاستقلالية في بيئة المنزل</h3>
-              <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed italic" data-i18n="story.1.text">
-                «كانت صعوبة الانتقال بالسيارة إلى المركز مرتين أسبوعياً تشكل هاجساً حقيقياً. منصة جسر مكّنتنا من متابعة الخطة اليومية بدقة وبتوجيه مستمر من الأخصائي، مما زاد من ثقتنا وتطور الحركة بشكل ملحوظ.»
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60">
-              <div class="text-xs font-bold text-primary" data-i18n="story.1.user">أسرة مستفيد - تأهيل حركي بعد جراحة</div>
-              <div class="text-[11px] text-on-surface-variant mt-0.5" data-i18n="story.1.service">الخدمة: خطة التأهيل الفردية والمتابعة السريرية</div>
-            </div>
-          </div>
-
-          <!-- Story 2 -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div class="space-y-3">
-              <div class="flex items-center gap-1 text-amber-500">
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-              </div>
-              <h3 class="text-base font-bold text-on-surface" data-i18n="story.2.title">تخفيف القلق ومتابعة منتظمة</h3>
-              <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed italic" data-i18n="story.2.text">
-                «التمارين المصورة والواضحة باللغة العربية جعلتني أفهم تماماً كيف أساعد طفلي دون خوف من ارتكاب حركات خاطئة. والمشرف الحركي يراجع مقاطعنا بانتظام ويبدي ملاحظاته التعديلية بكل مودة.»
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60">
-              <div class="text-xs font-bold text-secondary" data-i18n="story.2.user">والدة طفل من ذوي الإعاقة الحركية</div>
-              <div class="text-[11px] text-on-surface-variant mt-0.5" data-i18n="story.2.service">الخدمة: التمارين المنزلية الموجهة والمشرف الحركي</div>
-            </div>
-          </div>
-
-          <!-- Story 3 -->
-          <div class="p-6 rounded-3xl bg-white border border-outline-variant hover-lift flex flex-col justify-between">
-            <div class="space-y-3">
-              <div class="flex items-center gap-1 text-amber-500">
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-                <span class="material-symbols-outlined text-lg">star</span>
-              </div>
-              <h3 class="text-base font-bold text-on-surface" data-i18n="story.3.title">الحصول على جهاز مساعد بتنسيق جمعية شريكة</h3>
-              <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed italic" data-i18n="story.3.text">
-                «عبر بنك الأجهزة المساعدة في المنصة وبالتنسيق مع إحدى الجمعيات الشريكة، تم تأمين دعامة المشي المناسبة في وقت قياسي ومتابعة قياساتها المناسبة مع الأخصائي.»
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-outline-variant/60">
-              <div class="text-xs font-bold text-teal-700" data-i18n="story.3.user">مستفيد بالغ - إصابة رياضية وتأهيل وظيفي</div>
-              <div class="text-[11px] text-on-surface-variant mt-0.5" data-i18n="story.3.service">الخدمة: بنك الأجهزة المساعدة ومجتمعات الدعم</div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Privacy & Ethics Note -->
-        <p class="text-center text-xs text-on-surface-variant" data-i18n="stories.privacyNote">
-          تُعرض التجارب وفق موافقات صريحة، مع احترام تام للخصوصية والمعايير الأخلاقية والطبية.
-        </p>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SECTION: FAQ (الأسئلة الشائعة)
-         ---------------------------------------------------------------------- -->
-    <section id="faq" class="py-20 bg-white border-y border-outline-variant/60">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Section Header -->
-        <div class="text-center space-y-3 mb-12">
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary tracking-wide" data-i18n="faq.tag">الأسئلة الشائعة</span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight" data-i18n="faq.title">
-            إجابات واضحة لكل ما تود معرفته عن جسر
-          </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed" data-i18n="faq.subtitle">
-            جمعنا لك أهم التساؤلات المتعلقة بآلية العمل والخصوصية والاستفادة من الخدمات
-          </p>
-        </div>
-
-        <!-- Search & Filter Controls -->
-        <div class="space-y-4 mb-8">
-          <!-- Search Bar -->
-          <div class="relative">
-            <span class="material-symbols-outlined absolute start-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-            <input 
-              type="text" 
-              id="faq-search-input" 
-              class="w-full ps-11 pe-4 py-3 rounded-2xl border border-outline-variant bg-surface-container-low focus:bg-white focus:border-primary focus:ring-0 text-sm placeholder-on-surface-variant" 
-              placeholder="ابحث في الأسئلة الشائعة..."
-              data-i18n-placeholder="faq.searchPlaceholder"
-            >
-          </div>
-
-          <!-- Category Filter Tabs -->
-          <div class="flex flex-wrap items-center justify-center gap-2">
-            <button type="button" class="faq-tab px-4 py-2 rounded-xl text-xs font-bold bg-primary text-white transition" data-category="all" data-i18n="faq.tabAll">الكل</button>
-            <button type="button" class="faq-tab px-4 py-2 rounded-xl text-xs font-bold bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition" data-category="general" data-i18n="faq.tabGeneral">عن المنصة</button>
-            <button type="button" class="faq-tab px-4 py-2 rounded-xl text-xs font-bold bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition" data-category="rehab" data-i18n="faq.tabRehab">التأهيل والتمارين</button>
-            <button type="button" class="faq-tab px-4 py-2 rounded-xl text-xs font-bold bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition" data-category="accounts" data-i18n="faq.tabAccounts">الحساب والمواعيد</button>
-            <button type="button" class="faq-tab px-4 py-2 rounded-xl text-xs font-bold bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition" data-category="partners" data-i18n="faq.tabPartners">الشراكات والخصوصية</button>
-          </div>
-        </div>
-
-        <!-- 13 Accordion Items -->
-        <div class="space-y-3" id="faq-accordion-container">
-          
-          <!-- Q1 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="general">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q1">ما هي منصة جسر للتأهيل والرعاية عن بُعد؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a1">جسر هي منصة وطنية متخصصة تهدف إلى تسهيل وصول الأشخاص ذوي الاحتياجات التأهيلية وأسرهم إلى برامج التأهيل والمتابعة السريرية المنزلية، عبر ربطهم بأخصائيين معتمدين ومشرفين حركيين ومؤسسات صحية وجمعيات داعمة.</span>
-            </div>
-          </div>
-
-          <!-- Q2 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="general">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q2">من يستطيع استخدام منصة جسر؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a2">تخدم المنصة خمس فئات رئيسية: المستفيدون وأولياء أمورهم، الأخصائيون السريريون المعالجون، المشرفون الحركيون، المستشفيات ومراكز التأهيل، والجمعيات والمؤسسات غير الربحية.</span>
-            </div>
-          </div>
-
-          <!-- Q3 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="accounts">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q3">كيف أقوم بتسجيل مستفيد جديد في المنصة؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a3">يمكن التسجيل بسهولة عبر بوابة المستفيد باختيار 'إنشاء حساب جديد'، وإدخال البيانات الأساسية للمستفيد وولي أمره وتأكيد رقم الهاتف، ثم الانتقال المباشر لاستكمال التقييم الوظيفي المبدئي.</span>
-            </div>
-          </div>
-
-          <!-- Q4 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="rehab">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q4">كيف يتم تقييم حالة المستفيد؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a4">يبدأ التقييم بنموذج رقمي استرشادي للإجابة على استبيان حركي ميسر (فحص التوازن، المشي، المفاصل)، يلي ذلك مراجعة سريرية متخصصة من قِبل الأخصائي المعالج عبر المنصة، أو التنسيق لموعد حضوري إذا تطلبت الحالة.</span>
-            </div>
-          </div>
-
-          <!-- Q5 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="rehab">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q5">من الذي يضع خطة التأهيل للمستفيد؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a5">يضع خطة التأهيل حصرياً الأخصائي السريري المعالج المرخص، بناءً على التقييم السريري الدقيق وقدرات المستفيد الفردية. لا تعتمد الخطط على نماذج عشوائية أو ذكاء اصطناعي دون اعتماد الأخصائي.</span>
-            </div>
-          </div>
-
-          <!-- Q6 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="rehab">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q6">كيف تُنفذ التمارين التأهيلية من المنزل؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a6">يصل المستفيد إلى جدول تمارينه عبر التطبيق، حيث يعرض كل تمرين بمقطع فيديو عالي الجودة مشروح باللغة العربية مع عدد التكرارات والتعليمات الوقائية، وبإشراف المشرف الحركي والمساعد التقني المساند.</span>
-            </div>
-          </div>
-
-          <!-- Q7 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="rehab">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q7">كيف أتواصل مع الأخصائي المعالج المتابع للحالة؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a7">توفر المنصة رسائل نصية وصوتية سريرية آمنة، بالإضافة إلى إمكانية رفع مقاطع فيديو توثق أداء التمرين لتلقي التغذية الراجعة، وحجز استشارات مراجعة مرئية دورية.</span>
-            </div>
-          </div>
-
-          <!-- Q8 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="accounts">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q8">كيف أحجز استشارة تأهيلية عن بُعد؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a8">من خلال قائمة 'المواعيد والاستشارات' في حساب المستفيد، يمكنك اختيار الأخصائي المعالج والاطلاع على المواعيد المتاحة وحجز الجلسة المرئية مباشرة والتذكير بها قبل موعدها.</span>
-            </div>
-          </div>
-
-          <!-- Q9 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="accounts">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q9">كيف أحصل على موعد حضوري في مركز أو مستشفى؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a9">إذا أوصى الأخصائي بضرورة التدخل السريري الحضوري، يمكن تنسيق موعد مباشر من خلال المنصة لدى أحد المستشفيات أو المراكز التأهيلية الشريكة المسجلة في شبكة جسر.</span>
-            </div>
-          </div>
-
-          <!-- Q10 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="rehab">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q10">هل يمكن الوصول إلى التمارين واستخدامها دون اتصال بالإنترنت؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a10">نعم، يتيح تطبيق المستفيد ميزة 'تحميل التمارين للمشاهدة بدون إنترنت'، مما يضمن استمرارية أداء الخطة اليومية حتى في ظروف انقطاع أو ضعف التغطية الشبكية.</span>
-            </div>
-          </div>
-
-          <!-- Q11 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="partners">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q11">كيف تنضم المستشفيات ومراكز التأهيل إلى منظومة جسر؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a11">يمكن للمؤسسات الصحية تقديم طلب انضمام عبر بوابة 'المستشفيات والمراكز' أو زر 'طلب شراكة'، حيث يقوم فريق الحوكمة بمراجعة التراخيص الطبية واعتماد حساب المنشأة وتدريب كوادرها.</span>
-            </div>
-          </div>
-
-          <!-- Q12 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="partners">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q12">كيف تتعاون الجمعيات والمؤسسات غير الربحية مع المنصة؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a12">تتعاون الجمعيات من خلال دعم كفالة برامج التأهيل للأسر الأشد حاجة، وتغذية بنك الأجهزة المساعدة، واستقبال طلبات الدعم المحولة عبر المنصة بما يحقق التكافل الاجتماعي والتوزيع العادل للخدمات.</span>
-            </div>
-          </div>
-
-          <!-- Q13 -->
-          <div class="faq-item border border-outline-variant rounded-2xl bg-surface-container-low transition overflow-hidden" data-category="partners">
-            <button type="button" class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface" aria-expanded="false">
-              <span class="faq-question" data-i18n="faq.q13">كيف تضمن منصة جسر حماية بيانات المستفيدين وسجلاتهم الطبية؟</span>
-              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
-            </button>
-            <div class="faq-content max-h-0 accordion-content px-5 pb-5 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/40 pt-3">
-              <span class="faq-answer" data-i18n="faq.a13">تطبق المنصة أعلى معايير التشفير (End-to-End Encryption)، وتخضع لسياسات خصوصية البيانات الصحية الصارمة، بحيث لا يُسمح بالاطلاع على السجلات إلا للأخصائي المصرح له ولأولياء الأمور المعتمدين.</span>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SECTION: DOWNLOAD APP (تحميل التطبيق)
-         ---------------------------------------------------------------------- -->
-    <section id="download" class="py-20 bg-[#f8fafd] overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="p-8 sm:p-12 lg:p-16 rounded-[2.5rem] bg-gradient-to-br from-primary via-[#00466e] to-[#002f4a] text-white shadow-card relative overflow-hidden">
-          
-          <!-- Background ambient glow -->
-          <div class="absolute top-0 end-0 w-96 h-96 rounded-full bg-secondary/20 blur-3xl pointer-events-none"></div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-            
-            <!-- Left Info & Download Controls -->
-            <div class="lg:col-span-7 space-y-6 text-center lg:text-start">
-              
-              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-white tracking-wide" data-i18n="app.tag">تطبيق جسر للهواتف الذكية</span>
-              
-              <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight" data-i18n="app.title">
-                رحلة التأهيل الكاملة بين يديك في أي وقت
-              </h2>
-
-              <p class="text-sm sm:text-base text-primary-fixed leading-relaxed max-w-xl mx-auto lg:mx-0" data-i18n="app.subtitle">
-                حمّل تطبيق المستفيد والأسرة لمتابعة التمارين اليومية، والتواصل مع المختصين، وتتبع مؤشرات التحسن لحظة بلحظة.
-              </p>
-
-              <!-- App Features Bullet List -->
-              <div class="space-y-3 text-xs sm:text-sm text-white/90 text-start max-w-lg mx-auto lg:mx-0">
-                <div class="flex items-center gap-2.5">
-                  <span class="material-symbols-outlined text-secondary-fixed text-lg shrink-0">check_circle</span>
-                  <span data-i18n="app.feature1">مكتبة تمارين فيديو عالية الجودة مع إرشادات حركية صوتية</span>
-                </div>
-                <div class="flex items-center gap-2.5">
-                  <span class="material-symbols-outlined text-secondary-fixed text-lg shrink-0">check_circle</span>
-                  <span data-i18n="app.feature2">مساعد تقني ذكي لتنظيم الجلسات واحتساب التكرارات وفترات الراحة</span>
-                </div>
-                <div class="flex items-center gap-2.5">
-                  <span class="material-symbols-outlined text-secondary-fixed text-lg shrink-0">check_circle</span>
-                  <span data-i18n="app.feature3">إشعارات يومية مجدولة وتذكير بالمواعيد والاستشارات</span>
-                </div>
-                <div class="flex items-center gap-2.5">
-                  <span class="material-symbols-outlined text-secondary-fixed text-lg shrink-0">check_circle</span>
-                  <span data-i18n="app.feature4">إمكانية العمل دون اتصال بالإنترنت وحفظ البيانات بأمان</span>
-                </div>
-              </div>
-
-              <!-- Store Buttons & QR Action -->
-              <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
-                <button 
-                  type="button" 
-                  data-open-app-modal 
-                  class="px-5 py-3 rounded-xl bg-white text-on-surface hover:bg-slate-100 font-bold text-xs sm:text-sm transition shadow-sm inline-flex items-center gap-2"
-                >
-                  <span class="material-symbols-outlined text-lg text-primary">play_arrow</span>
-                  <span data-i18n="app.btnGooglePlay">تحميل من Google Play</span>
-                </button>
-
-                <button 
-                  type="button" 
-                  data-open-app-modal 
-                  class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 transition shadow-sm inline-flex items-center gap-2"
-                >
-                  <span class="material-symbols-outlined text-lg">phone_iphone</span>
-                  <span data-i18n="app.btnAppStore">تحميل من App Store</span>
-                </button>
-
-                <button 
-                  type="button" 
-                  data-open-app-modal 
-                  class="p-3 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 transition"
-                  title="مسح رمز QR"
-                >
-                  <span class="material-symbols-outlined text-xl">qr_code_2</span>
-                </button>
-              </div>
-
-              <!-- Web App Link Option -->
-              <div class="pt-2 text-xs text-primary-fixed">
-                <span data-i18n="app.webAppPill">أو يمكنك استخدام نسخة الويب للمتصفح مباشرة:</span>
-                <a href="../المستفيد/الصفحة الرئيسية/الرئيسية/code.html" class="font-bold underline text-white ms-1" data-i18n="app.webAppLink">فتح نسخة الويب للمستفيد</a>
-              </div>
-
-            </div>
-
-            <!-- Right: Interactive Device Mockup -->
-            <div class="lg:col-span-5 flex justify-center">
-              
-              <div class="device-mockup">
-                <div class="device-notch"></div>
-                <div class="device-screen p-4 flex flex-col justify-between text-on-surface">
-                  
-                  <!-- Screen Header -->
-                  <div class="pt-4 flex items-center justify-between border-b border-outline-variant/60 pb-3">
-                    <div class="flex items-center gap-2">
-                      <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center p-1">
-                        <img src="assets/images/logo.png" alt="جسر" class="w-full h-full object-contain">
-                      </div>
-                      <span class="text-xs font-bold text-primary">تطبيق جسر</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-secondary"></span>
-                  </div>
-
-                  <!-- Screen Content Mockup -->
-                  <div class="my-auto py-3 space-y-3">
-                    <div class="bg-primary/5 p-3 rounded-2xl border border-primary/10">
-                      <span class="text-[10px] text-primary font-bold">الخطة اليومية للتأهيل</span>
-                      <h5 class="text-xs font-bold text-on-surface mt-0.5">تمارين المرونة وتقوية الركبة</h5>
-                      <div class="w-full bg-slate-200 h-1.5 rounded-full mt-2 overflow-hidden">
-                        <div class="bg-primary h-full rounded-full w-3/4"></div>
-                      </div>
-                      <div class="flex justify-between text-[9px] text-on-surface-variant mt-1">
-                        <span>إنجاز 3 من 4 تمارين</span>
-                        <span>75%</span>
-                      </div>
-                    </div>
-
-                    <div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant flex items-center gap-2">
-                      <span class="material-symbols-outlined text-secondary text-lg">videocam</span>
-                      <div class="flex-1">
-                        <div class="text-[10px] font-bold text-on-surface">استشارة متابعة مرئية</div>
-                        <div class="text-[9px] text-on-surface-variant">اليوم — 4:00 مساءً مع الأخصائي</div>
-                      </div>
-                    </div>
-
-                    <div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant flex items-center gap-2">
-                      <span class="material-symbols-outlined text-amber-600 text-lg">smart_toy</span>
-                      <div class="flex-1">
-                        <div class="text-[10px] font-bold text-on-surface">المساعد الذكي جاهز</div>
-                        <div class="text-[9px] text-on-surface-variant">جاهز لحساب التكرارات وفترات الراحة</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Screen Bottom Nav -->
-                  <div class="pt-2 border-t border-outline-variant flex justify-around text-center text-on-surface-variant">
-                    <div class="text-primary flex flex-col items-center">
-                      <span class="material-symbols-outlined text-base">home</span>
-                      <span class="text-[8px] font-bold">الرئيسية</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                      <span class="material-symbols-outlined text-base">fitness_center</span>
-                      <span class="text-[8px]">تماريني</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                      <span class="material-symbols-outlined text-base">chat</span>
-                      <span class="text-[8px]">المحادثات</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                      <span class="material-symbols-outlined text-base">person</span>
-                      <span class="text-[8px]">حسابي</span>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SECTION: CONTACT US (تواصل معنا)
-         ---------------------------------------------------------------------- -->
-    <section id="contact" class="py-20 bg-white border-y border-outline-variant/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Section Header -->
-        <div class="max-w-3xl mx-auto text-center space-y-3 mb-16">
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary tracking-wide" data-i18n="contact.tag">تواصل معنا</span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight" data-i18n="contact.title">
-            يسعدنا الاستماع إليكم والإجابة عن استفساراتكم
-          </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed" data-i18n="contact.subtitle">
-            فريق جسر مستعد للإجابة عن أسئلة الأسر، واستقبال طلبات الشراكة من المستشفيات والجمعيات، وتقديم الدعم الفني.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
-          <!-- Contact Form (Left 7 Cols) -->
-          <div class="lg:col-span-7 bg-surface-container-low p-8 rounded-3xl border border-outline-variant shadow-sm">
-            
-            <h3 class="text-lg font-bold text-on-surface mb-6 flex items-center gap-2" data-i18n="contact.formTitle">
-              <span class="material-symbols-outlined text-primary">mail</span>
-              أرسل رسالتك لإدارة المنصة
-            </h3>
-
-            <!-- Dynamic Alert Box -->
-            <div id="contact-alert" class="hidden mb-6"></div>
-
-            <form id="contact-form" class="space-y-4">
-              
-              <!-- Full Name -->
-              <div>
-                <label for="contact-name" class="block text-xs font-bold text-on-surface mb-1.5" data-i18n="contact.nameLabel">الاسم الكامل *</label>
-                <input 
-                  type="text" 
-                  id="contact-name" 
-                  required 
-                  class="w-full px-4 py-3 rounded-xl border border-outline-variant bg-white focus:bg-white focus:border-primary focus:ring-0 text-sm placeholder-on-surface-variant" 
-                  placeholder="أدخل اسمك الكريم"
-                  data-i18n-placeholder="contact.namePlaceholder"
-                >
-              </div>
-
-              <!-- Contact Info -->
-              <div>
-                <label for="contact-info" class="block text-xs font-bold text-on-surface mb-1.5" data-i18n="contact.contactLabel">البريد الإلكتروني أو رقم الجوال *</label>
-                <input 
-                  type="text" 
-                  id="contact-info" 
-                  required 
-                  class="w-full px-4 py-3 rounded-xl border border-outline-variant bg-white focus:bg-white focus:border-primary focus:ring-0 text-sm placeholder-on-surface-variant" 
-                  placeholder="example@domain.com أو 05xxxxxxxx"
-                  data-i18n-placeholder="contact.contactPlaceholder"
-                >
-              </div>
-
-              <!-- Inquiry Type Selection -->
-              <div>
-                <label for="contact-type" class="block text-xs font-bold text-on-surface mb-1.5" data-i18n="contact.typeLabel">نوع الطلب أو الاستفسار *</label>
-                <select 
-                  id="contact-type" 
-                  required 
-                  class="w-full px-4 py-3 rounded-xl border border-outline-variant bg-white focus:bg-white focus:border-primary focus:ring-0 text-sm"
-                >
-                  <option value="general" data-i18n="contact.typeGeneral">استفسار عام عن المنصة والخدمات</option>
-                  <option value="hospital" data-i18n="contact.typeHospital">طلب شراكة واعتماد (مستشفى أو مركز تأهيلي)</option>
-                  <option value="charity" data-i18n="contact.typeCharity">طلب تعاون ودعم (جمعية أو مؤسسة خيرية)</option>
-                  <option value="specialist" data-i18n="contact.typeSpecialist">انضمام ككوادر سريرية أو إشراف حركي</option>
-                  <option value="tech" data-i18n="contact.typeTech">الدعم الفني والاستفسارات التقنية</option>
-                </select>
-              </div>
-
-              <!-- Message -->
-              <div>
-                <label for="contact-message" class="block text-xs font-bold text-on-surface mb-1.5" data-i18n="contact.messageLabel">الرسالة أو تفاصيل الطلب *</label>
-                <textarea 
-                  id="contact-message" 
-                  rows="4" 
-                  required 
-                  class="w-full px-4 py-3 rounded-xl border border-outline-variant bg-white focus:bg-white focus:border-primary focus:ring-0 text-sm placeholder-on-surface-variant" 
-                  placeholder="اكتب رسالتك هنا بوضوح..."
-                  data-i18n-placeholder="contact.messagePlaceholder"
-                ></textarea>
-              </div>
-
-              <!-- Medical Disclaimer Note -->
-              <p class="text-[11px] text-on-surface-variant leading-relaxed" data-i18n="contact.disclaimer">
-                ملاحظة هامة: هذا النموذج مخصص للاستفسارات العامة والشراكات المؤسسية، ولا يُستخدم لإرسال تقارير طبية طارئة أو بيانات صحية حساسة.
-              </p>
-
-              <!-- Submit Button -->
-              <button 
-                type="submit" 
-                id="contact-submit-btn" 
-                class="w-full py-3.5 px-6 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary-dark transition shadow-sm inline-flex items-center justify-center gap-2"
-              >
-                <span data-i18n="contact.submitBtn">إرسال الرسالة</span>
-                <span class="material-symbols-outlined text-base">send</span>
-              </button>
-
-            </form>
-
-          </div>
-
-          <!-- Official Channels & Addresses (Right 5 Cols) -->
-          <div class="lg:col-span-5 space-y-6">
-            
-            <div class="bg-surface-container-low p-6 rounded-3xl border border-outline-variant">
-              <h3 class="text-base font-bold text-on-surface mb-4 flex items-center gap-2" data-i18n="contact.channelsTitle">
-                <span class="material-symbols-outlined text-primary">contacts</span>
-                قنوات التواصل المعتمدة
-              </h3>
-
-              <div class="space-y-4">
-                
-                <div class="flex items-start gap-3.5">
-                  <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-xl">alternate_email</span>
-                  </div>
-                  <div>
-                    <h4 class="text-xs font-bold text-on-surface" data-i18n="contact.emailTitle">البريد الإلكتروني الرسمي</h4>
-                    <p class="text-xs text-primary font-semibold mt-0.5" data-i18n="contact.emailVal">info@jisr-care.org</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-3.5">
-                  <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-xl">call</span>
-                  </div>
-                  <div>
-                    <h4 class="text-xs font-bold text-on-surface" data-i18n="contact.phoneTitle">مركز العناية بالمستفيدين</h4>
-                    <p class="text-xs text-on-surface-variant mt-0.5" data-i18n="contact.phoneVal">920000000 (الأحد - الخميس: 8ص - 5م)</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-3.5">
-                  <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-xl">location_on</span>
-                  </div>
-                  <div>
-                    <h4 class="text-xs font-bold text-on-surface" data-i18n="contact.locationTitle">المقر الرئيسي للمنظومة</h4>
-                    <p class="text-xs text-on-surface-variant mt-0.5" data-i18n="contact.locationVal">المملكة العربية السعودية — الرياض</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-3.5">
-                  <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-xl">headset_mic</span>
-                  </div>
-                  <div>
-                    <h4 class="text-xs font-bold text-on-surface" data-i18n="contact.supportDeskTitle">بوابة الدعم الفني المباشر</h4>
-                    <p class="text-xs text-on-surface-variant mt-0.5" data-i18n="contact.supportDeskVal">متاحة على مدار الساعة عبر المنصة</p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-            <!-- Direct User Portals Card -->
-            <div class="p-6 rounded-3xl bg-primary text-white shadow-sm space-y-3">
-              <h4 class="text-sm font-bold flex items-center gap-2">
-                <span class="material-symbols-outlined text-lg">key</span>
-                هل تبحث عن بوابة تسجيل الدخول الخاصة بك؟
-              </h4>
-              <p class="text-xs text-primary-fixed leading-relaxed">
-                يمكنك الانتقال فوراً إلى بوابتك السريرية أو حساب المستفيد عبر القائمة الجانبية المستقلة.
-              </p>
-              <button 
-                type="button" 
-                data-open-portals 
-                class="w-full py-2.5 px-4 rounded-xl bg-white text-primary text-xs font-bold hover:bg-primary-soft transition text-center"
-              >
-                فتح قائمة بوابات المستخدمين
-              </button>
-            </div>
-
-          </div>
-
         </div>
 
       </div>
@@ -1936,90 +356,71 @@
   </main>
 
   <!-- ========================================================================
-       FOOTER
+       CLEAN FOOTER (NO INTERNAL PORTALS LINKS)
        ======================================================================== -->
-  <footer class="bg-surface-container-lowest border-t border-outline-variant pt-16 pb-12 text-on-surface">
+  <footer class="bg-white border-t border-slate-200/80 pt-12 pb-8 text-on-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
         
-        <!-- Col 1: Platform Brand (2 Cols wide on lg) -->
-        <div class="lg:col-span-2 space-y-4">
+        <!-- Platform Brand & Concise Bio (6 cols) -->
+        <div class="md:col-span-6 space-y-4">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center p-1.5 border border-primary/20">
-              <img src="assets/images/logo.png" alt="جسر" class="w-full h-full object-contain">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center p-2 border border-primary/20">
+              <img src="assets/images/logo.png" alt="شعار جسور للتأهيل" class="w-full h-full object-contain">
             </div>
             <div>
-              <span class="text-lg font-bold text-primary block leading-none">جسر للتأهيل</span>
-              <span class="text-[11px] text-on-surface-variant" data-i18n="footer.badge">مشروع رقمي إنساني للتأهيل والرعاية عن بُعد</span>
+              <span class="text-lg font-bold text-primary block leading-none">جسور للتأهيل</span>
+              <span class="text-[11px] text-slate-500 mt-1 block">منظومة الرعاية والتأهيل الطبي المنزلي وعن بُعد</span>
             </div>
           </div>
-          <p class="text-xs text-on-surface-variant leading-relaxed max-w-sm" data-i18n="footer.desc">
-            جسر هي المنصة المتخصصة في التأهيل والرعاية عن بُعد، تهدف إلى مساعدة الأشخاص ذوي الإعاقة والاحتياجات التأهيلية وأسرهم للوصول إلى رعاية منزلية موثوقة بإشراف سريري متكامل.
+          <p class="text-xs text-slate-500 leading-relaxed max-w-md">
+            مشروع رقمي صحي متخصص يربط أصحاب الاحتياجات التأهيلية بنخبة من المختصين والمشرفين الحركيين والجهات المانحة لتقديم رعاية منزلية موثوقة ومستمرة.
           </p>
-          <div class="flex items-center gap-2 pt-2 text-on-surface-variant">
-            <a href="#" class="w-8 h-8 rounded-lg bg-surface-container hover:bg-primary hover:text-white flex items-center justify-center transition" aria-label="X">
-              <span class="text-xs font-bold">X</span>
-            </a>
-            <a href="#" class="w-8 h-8 rounded-lg bg-surface-container hover:bg-primary hover:text-white flex items-center justify-center transition" aria-label="LinkedIn">
-              <span class="text-xs font-bold">in</span>
-            </a>
-            <a href="#" class="w-8 h-8 rounded-lg bg-surface-container hover:bg-primary hover:text-white flex items-center justify-center transition" aria-label="YouTube">
-              <span class="material-symbols-outlined text-sm">smart_display</span>
-            </a>
-          </div>
         </div>
 
-        <!-- Col 2: Quick Links -->
-        <div class="space-y-3">
-          <h4 class="text-xs font-bold text-on-surface tracking-wider uppercase" data-i18n="footer.quickLinks">روابط سريعة</h4>
-          <ul class="space-y-2 text-xs text-on-surface-variant">
-            <li><a href="#about" class="hover:text-primary transition" data-i18n="nav.about">من نحن</a></li>
-            <li><a href="#services" class="hover:text-primary transition" data-i18n="nav.services">خدماتنا</a></li>
-            <li><a href="#how-it-works" class="hover:text-primary transition" data-i18n="nav.howItWorks">كيف تعمل المنصة؟</a></li>
-            <li><a href="#for-whom" class="hover:text-primary transition" data-i18n="nav.forWhom">لمن صُممت جسر؟</a></li>
-            <li><a href="#partners" class="hover:text-primary transition" data-i18n="nav.partners">شركاؤنا</a></li>
-            <li><a href="#stories" class="hover:text-primary transition" data-i18n="nav.stories">قصص وتجارب</a></li>
-            <li><a href="#faq" class="hover:text-primary transition" data-i18n="nav.faq">الأسئلة الشائعة</a></li>
-            <li><a href="#contact" class="hover:text-primary transition" data-i18n="nav.contact">تواصل معنا</a></li>
+        <!-- Quick Subpage Links (3 cols) -->
+        <div class="md:col-span-3 space-y-3">
+          <h3 class="text-xs font-bold text-slate-800 tracking-wider uppercase">استكشف المنصة</h3>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li><a href="about.html" class="hover:text-primary transition">عن المنصة ورسالتها</a></li>
+            <li><a href="services.html" class="hover:text-primary transition">الخدمات التأهيلية</a></li>
+            <li><a href="partners.html" class="hover:text-primary transition">شبكة الشركاء والاعتماد</a></li>
+            <li><a href="faq.html" class="hover:text-primary transition">الأسئلة الشائعة</a></li>
+            <li><a href="contact.html" class="hover:text-primary transition">تواصل مع الإدارة</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Dedicated User Portals -->
-        <div class="space-y-3">
-          <h4 class="text-xs font-bold text-on-surface tracking-wider uppercase" data-i18n="footer.userPortals">بوابات المنصة</h4>
-          <ul class="space-y-2 text-xs text-on-surface-variant">
-            <li><a href="../المستفيد/التسجيل/تسجيل الدخول.html" class="hover:text-primary transition">بوابة المستفيد أو ولي الأمر</a></li>
-            <li><a href="../المختص/الرئيسية/index.html" class="hover:text-primary transition">بوابة الأخصائي المعالج</a></li>
-            <li><a href="../المشرف الحركي/الرئيسية.html" class="hover:text-primary transition">بوابة المشرف الحركي</a></li>
-            <li><a href="../المستشفيات و المراكز/index.html" class="hover:text-primary transition">بوابة المستشفيات والمراكز</a></li>
-            <li><a href="../الجمعيات/index.html" class="hover:text-primary transition">بوابة الجمعيات والمؤسسات</a></li>
-            <li><a href="../تحديد مشكلة المستفيد/تحديد المشكلة.html" class="hover:text-primary transition">الفحص الوظيفي المبدئي</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Legal & Governance -->
-        <div class="space-y-3">
-          <h4 class="text-xs font-bold text-on-surface tracking-wider uppercase" data-i18n="footer.legal">السياسات والحوكمة</h4>
-          <ul class="space-y-2 text-xs text-on-surface-variant">
-            <li><a href="privacy.html" class="hover:text-primary transition" data-i18n="footer.privacyPolicy">سياسة الخصوصية وحماية البيانات</a></li>
-            <li><a href="terms.html" class="hover:text-primary transition" data-i18n="footer.terms">الشروط والأحكام</a></li>
-            <li><a href="about.html" class="hover:text-primary transition" data-i18n="footer.clinicalEthics">ميثاق الأخلاقيات السريرية</a></li>
-            <li><button type="button" onclick="document.getElementById('a11y-widget').classList.remove('hidden')" class="hover:text-primary transition text-start" data-i18n="footer.accessibility">بيان إمكانية الوصول الرقمي</button></li>
+        <!-- Legal & Accessibility (3 cols) -->
+        <div class="md:col-span-3 space-y-3">
+          <h3 class="text-xs font-bold text-slate-800 tracking-wider uppercase">السياسات والحوكمة</h3>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li><a href="privacy.html" class="hover:text-primary transition">سياسة الخصوصية وحماية البيانات</a></li>
+            <li><a href="terms.html" class="hover:text-primary transition">الشروط والأحكام</a></li>
+            <li>
+              <button 
+                type="button" 
+                id="footer-a11y-btn" 
+                class="hover:text-primary transition text-start inline-flex items-center gap-1.5"
+              >
+                <span class="material-symbols-outlined text-sm">accessibility_new</span>
+                <span>أدوات تيسير الوصول الرقمي</span>
+              </button>
+            </li>
           </ul>
         </div>
 
       </div>
 
-      <!-- Footer Bottom Bar -->
-      <div class="pt-8 border-t border-outline-variant/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant text-center sm:text-start">
-        <p data-i18n="footer.rights">جميع الحقوق محفوظة لمنصة جسر للتأهيل والرعاية عن بُعد © 2026</p>
-        <div class="flex items-center gap-4">
-          <a href="privacy.html" class="hover:text-primary transition" data-i18n="footer.privacyPolicy">الخصوصية</a>
+      <!-- Copyright Bar -->
+      <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 text-center sm:text-start">
+        <p>جميع الحقوق محفوظة لمنصة جسور للتأهيل والرعاية عن بُعد © 2026</p>
+        <div class="flex items-center gap-3">
+          <a href="privacy.html" class="hover:text-primary transition">الخصوصية</a>
           <span>•</span>
-          <a href="terms.html" class="hover:text-primary transition" data-i18n="footer.terms">الشروط</a>
+          <a href="terms.html" class="hover:text-primary transition">الشروط</a>
           <span>•</span>
-          <button type="button" data-open-portals class="text-primary font-bold hover:underline" data-i18n="nav.enterPlatform">دخول المنصة</button>
+          <a href="login.html" class="text-primary font-bold hover:underline">بوابة تسجيل الدخول</a>
         </div>
       </div>
 
@@ -2027,126 +428,66 @@
   </footer>
 
   <!-- ========================================================================
-       MODAL: SERVICE DETAILS MODAL
+       ACCESSIBILITY SETTINGS MODAL (CLEAN & MINIMALIST)
        ======================================================================== -->
-  <div id="service-modal" class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center p-4" aria-modal="true" role="dialog">
-    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl relative">
-      <button 
-        type="button" 
-        id="close-service-modal" 
-        class="absolute top-5 end-5 w-9 h-9 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center transition"
-        aria-label="إغلاق النافذة"
-      >
-        <span class="material-symbols-outlined text-xl">close</span>
-      </button>
+  <div id="a11y-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs" aria-modal="true" role="dialog">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-xl">accessibility_new</span>
+          <h3 class="text-sm font-bold text-on-surface">أدوات تيسير الوصول</h3>
+        </div>
+        <button type="button" id="close-a11y-modal" class="text-slate-400 hover:text-slate-600">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
 
-      <div id="service-modal-content">
-        <!-- Injected via JavaScript -->
+      <div class="space-y-2.5 text-xs">
+        <div class="flex gap-2">
+          <button type="button" id="a11y-font-bigger" class="flex-1 py-2 px-3 bg-slate-100 rounded-xl font-semibold hover:bg-primary/10 hover:text-primary transition">تكبير الخط</button>
+          <button type="button" id="a11y-font-normal" class="flex-1 py-2 px-3 bg-slate-100 rounded-xl font-semibold hover:bg-primary/10 hover:text-primary transition">الخط الافتراضي</button>
+        </div>
+        <button type="button" id="a11y-contrast" class="w-full py-2.5 px-3 bg-slate-100 rounded-xl font-semibold hover:bg-primary/10 hover:text-primary transition text-center">تبديل التباين العالي</button>
+        <button type="button" id="a11y-motion" class="w-full py-2.5 px-3 bg-slate-100 rounded-xl font-semibold hover:bg-primary/10 hover:text-primary transition text-center">تقليل الحركة والانتقالات</button>
+        <button type="button" id="a11y-reset" class="w-full py-2 text-center text-xs text-red-600 hover:underline pt-2">إعادة ضبط الإعدادات</button>
       </div>
     </div>
   </div>
 
-  <!-- ========================================================================
-       MODAL: PARTNERSHIP REQUEST MODAL
-       ======================================================================== -->
-  <div id="partnership-modal" class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center p-4" aria-modal="true" role="dialog">
-    <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl relative">
-      <button 
-        type="button" 
-        id="close-partnership-modal" 
-        class="absolute top-5 end-5 w-9 h-9 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center transition"
-        aria-label="إغلاق النافذة"
-      >
-        <span class="material-symbols-outlined text-xl">close</span>
-      </button>
-
-      <div class="mb-6">
-        <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3">
-          <span class="material-symbols-outlined text-2xl">handshake</span>
-        </div>
-        <h3 class="text-xl font-bold text-on-surface" data-i18n="partnerModal.title">طلب شراكة وتعاون مؤسسي مع جسر</h3>
-        <p class="text-xs text-on-surface-variant mt-1 leading-relaxed" data-i18n="partnerModal.desc">
-          نرحب بالتعاون مع المنشآت الصحية ومراكز التأهيل والجمعيات وموردي الأجهزة لتقديم خدمات متكاملة للمستفيدين.
-        </p>
-      </div>
-
-      <form id="partnership-form" class="space-y-3.5">
-        <div>
-          <label class="block text-xs font-bold text-on-surface mb-1" data-i18n="partnerModal.orgName">اسم المنشأة أو المؤسسة *</label>
-          <input type="text" required class="w-full px-3.5 py-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-0">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-on-surface mb-1" data-i18n="partnerModal.orgType">تصنيف المنشأة *</label>
-          <select required class="w-full px-3.5 py-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-0">
-            <option value="hospital" data-i18n="partnerModal.orgTypeHospital">مستشفى أو مجمع طبي متخصص</option>
-            <option value="rehab" data-i18n="partnerModal.orgTypeRehab">مركز تأهيل أو علاج طبيعي</option>
-            <option value="charity" data-i18n="partnerModal.orgTypeCharity">جمعية خيرية أو مؤسسة مانحة</option>
-            <option value="devices" data-i18n="partnerModal.orgTypeDevices">شركة أو متجر أجهزة طبية ومساعدة</option>
-          </select>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-on-surface mb-1" data-i18n="partnerModal.repName">اسم ممثل المنشأة والصفة *</label>
-            <input type="text" required class="w-full px-3.5 py-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-0">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-on-surface mb-1" data-i18n="partnerModal.city">المدينة / المنطقة *</label>
-            <input type="text" required class="w-full px-3.5 py-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-0">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-on-surface mb-1" data-i18n="partnerModal.repPhone">رقم هاتف التواصل *</label>
-            <input type="tel" required class="w-full px-3.5 py-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-0">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-on-surface mb-1" data-i18n="partnerModal.repEmail">البريد الإلكتروني الرسمي *</label>
-            <input type="email" required class="w-full px-3.5 py-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-0">
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-on-surface mb-1" data-i18n="partnerModal.notes">نبذة عن سبل التعاون المقترحة *</label>
-          <textarea rows="3" required class="w-full px-3.5 py-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-0"></textarea>
-        </div>
-
-        <div class="pt-2">
-          <button type="submit" class="w-full py-3 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-dark transition shadow-sm">
-            <span data-i18n="partnerModal.submit">تقديم طلب الشراكة</span>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <!-- FLOATING SCROLL TO TOP BUTTON ONLY (NO PORTALS, NO FLOATING A11Y) -->
+  <button 
+    type="button" 
+    id="scroll-top-btn" 
+    class="scroll-top-floating-btn hidden fixed bottom-6 end-6 z-30 w-11 h-11 rounded-full bg-primary text-white shadow-lg border border-white items-center justify-center focus:outline-none opacity-0 hover:bg-primary-dark transition-all duration-200"
+    aria-label="العودة لأعلى الصفحة"
+  >
+    <span class="material-symbols-outlined text-xl">arrow_upward</span>
+  </button>
 
   <!-- ========================================================================
        MODAL: APP QR CODE & DOWNLOAD MODAL
        ======================================================================== -->
-  <div id="app-qr-modal" class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center p-4" aria-modal="true" role="dialog">
-    <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl relative">
+  <div id="app-qr-modal" class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs" aria-modal="true" role="dialog">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl relative border border-slate-200">
       <button 
         type="button" 
         id="close-app-modal" 
-        class="absolute top-4 end-4 w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition"
+        class="absolute top-4 end-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition"
         aria-label="إغلاق النافذة"
       >
         <span class="material-symbols-outlined text-lg">close</span>
       </button>
 
       <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-3">
-        <span class="material-symbols-outlined text-2xl">qr_code_scanner</span>
+        <span class="material-symbols-outlined text-2xl">install_mobile</span>
       </div>
 
-      <h3 class="text-lg font-bold text-on-surface" data-i18n="app.qrTitle">امسح الرمز بكاميرا هاتفك</h3>
-      <p class="text-xs text-on-surface-variant mt-1 leading-relaxed mb-4" data-i18n="app.qrDesc">
-        يوجهك الرمز مباشرة إلى صفحة التنزيل وتثبيت التطبيق على جهازك الذكي.
+      <h3 class="text-base font-bold text-on-surface">ابدأ عبر تطبيق المستفيد</h3>
+      <p class="text-xs text-slate-500 mt-1 leading-relaxed mb-4">
+        امسح الرمز لتثبيت التطبيق على جهازك أو الانتقال المباشر لنسخة الويب.
       </p>
 
-      <!-- Clean SVG QR Code Representation -->
-      <div class="w-48 h-48 mx-auto p-3 bg-white rounded-2xl border-2 border-dashed border-primary/30 flex items-center justify-center shadow-inner mb-4">
+      <div class="w-44 h-44 mx-auto p-3 bg-white rounded-2xl border-2 border-dashed border-primary/30 flex items-center justify-center shadow-inner mb-4">
         <svg viewBox="0 0 100 100" class="w-full h-full text-primary" fill="currentColor">
           <path d="M10,10 h30 v30 h-30 z M15,15 v20 h20 v-20 z M20,20 h10 v10 h-10 z" />
           <path d="M60,10 h30 v30 h-30 z M65,15 v20 h20 v-20 z M70,20 h10 v10 h-10 z" />
@@ -2161,15 +502,12 @@
         </svg>
       </div>
 
-      <div class="space-y-2">
-        <a 
-          href="../المستفيد/الصفحة الرئيسية/الرئيسية/code.html" 
-          class="w-full inline-block py-2.5 px-4 rounded-xl bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition"
-        >
-          الدخول إلى نسخة الويب مباشرة
-        </a>
-      </div>
-
+      <a 
+        href="../المستفيد/التسجيل/تسجيل الدخول.html" 
+        class="w-full inline-block py-2.5 px-4 rounded-xl bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition shadow-2xs"
+      >
+        الدخول إلى بوابة المستفيد مباشرة
+      </a>
     </div>
   </div>
 
@@ -2179,5 +517,36 @@
   <!-- Scripts -->
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+    // Accessibility Modal Controller
+    document.addEventListener('DOMContentLoaded', () => {
+      const a11yModal = document.getElementById('a11y-modal');
+      const openBtn = document.getElementById('footer-a11y-btn');
+      const closeBtn = document.getElementById('close-a11y-modal');
+
+      if (openBtn && a11yModal) {
+        openBtn.addEventListener('click', () => {
+          a11yModal.classList.remove('hidden');
+          a11yModal.classList.add('flex');
+        });
+      }
+
+      if (closeBtn && a11yModal) {
+        closeBtn.addEventListener('click', () => {
+          a11yModal.classList.add('hidden');
+          a11yModal.classList.remove('flex');
+        });
+      }
+
+      if (a11yModal) {
+        a11yModal.addEventListener('click', (e) => {
+          if (e.target === a11yModal) {
+            a11yModal.classList.add('hidden');
+            a11yModal.classList.remove('flex');
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

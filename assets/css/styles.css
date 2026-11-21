@@ -1,6 +1,6 @@
 /* ==========================================================================
    جسر للتأهيل والرعاية عن بُعد - Jisr Tele-Rehabilitation Platform
-   Official Stylesheet & Design System
+   Official Stylesheet & Design System - Ultra-Interactive Edition
    ========================================================================== */
 
 :root {
@@ -24,6 +24,7 @@
   --shadow-subtle: 0 2px 8px -2px rgba(13, 28, 46, 0.05), 0 1px 4px -1px rgba(13, 28, 46, 0.03);
   --shadow-card: 0 10px 25px -5px rgba(13, 28, 46, 0.06), 0 8px 10px -6px rgba(13, 28, 46, 0.03);
   --shadow-floating: 0 20px 35px -10px rgba(0, 80, 125, 0.15), 0 10px 15px -5px rgba(0, 80, 125, 0.08);
+  --shadow-glow: 0 0 25px rgba(0, 80, 125, 0.18);
 }
 
 /* Base Smooth Scrolling & Box Model */
@@ -50,10 +51,24 @@ body[dir="ltr"] {
   font-family: var(--font-latin);
 }
 
+/* Top Scroll Progress Bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, #00507d, #0284c7, #14b8a6, #006a61);
+  transform-origin: 0%;
+  transform: scaleX(0);
+  z-index: 100;
+  transition: transform 0.1s ease-out;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -97,15 +112,16 @@ body[dir="ltr"] {
 /* Glassmorphism & Surface Utilities */
 .glass-header {
   background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 /* Hover Lift Effect */
@@ -114,20 +130,31 @@ body[dir="ltr"] {
 }
 
 .hover-lift:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-floating);
+}
+
+/* Interactive Card Tilt & Glow */
+.card-interactive {
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.card-interactive:hover {
+  border-color: rgba(0, 80, 125, 0.35);
+  box-shadow: 0 15px 35px -5px rgba(0, 80, 125, 0.1);
 }
 
 /* Soft Gradient Glow Backgrounds */
 .bg-mesh-glow {
-  background: radial-gradient(circle at 10% 20%, rgba(224, 242, 254, 0.5) 0%, transparent 40%),
-              radial-gradient(circle at 90% 80%, rgba(204, 251, 241, 0.45) 0%, transparent 40%),
-              radial-gradient(circle at 50% 50%, rgba(248, 250, 253, 1) 0%, rgba(241, 245, 249, 0.5) 100%);
+  background: radial-gradient(circle at 10% 20%, rgba(224, 242, 254, 0.6) 0%, transparent 45%),
+              radial-gradient(circle at 90% 80%, rgba(204, 251, 241, 0.5) 0%, transparent 45%),
+              radial-gradient(circle at 50% 50%, rgba(248, 250, 253, 1) 0%, rgba(241, 245, 249, 0.6) 100%);
 }
 
 .bg-hero-pattern {
-  background-image: radial-gradient(rgba(0, 80, 125, 0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(0, 80, 125, 0.05) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
 }
 
 /* Side Drawer Transitions */
@@ -149,16 +176,25 @@ body[dir="ltr"] {
 @keyframes softPulse {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.8;
+    opacity: 0.85;
   }
   50% {
-    transform: scale(1.08);
-    opacity: 0.4;
+    transform: scale(1.06);
+    opacity: 0.45;
   }
 }
 
 .animate-pulse-slow {
-  animation: softPulse 3s infinite ease-in-out;
+  animation: softPulse 3.5s infinite ease-in-out;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
 }
 
 /* High Contrast Mode for Accessibility */
@@ -231,7 +267,7 @@ html[dir="ltr"] .portal-floating-btn {
   box-shadow: 0 15px 35px rgba(0, 80, 125, 0.35);
 }
 
-/* A11y quick tool pill */
+/* Floating A11y & Scroll-to-Top Buttons */
 .a11y-floating-btn {
   position: fixed;
   bottom: 84px;
@@ -239,24 +275,34 @@ html[dir="ltr"] .portal-floating-btn {
   transition: transform 0.25s ease;
 }
 
-html[dir="rtl"] .a11y-floating-btn {
+.scroll-top-floating-btn {
+  position: fixed;
+  bottom: 138px;
+  z-index: 45;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+html[dir="rtl"] .a11y-floating-btn,
+html[dir="rtl"] .scroll-top-floating-btn {
   left: 24px;
 }
 
-html[dir="ltr"] .a11y-floating-btn {
+html[dir="ltr"] .a11y-floating-btn,
+html[dir="ltr"] .scroll-top-floating-btn {
   right: 24px;
 }
 
 /* Phone Mockup Frame */
 .device-mockup {
   position: relative;
-  width: 310px;
-  height: 610px;
+  width: 316px;
+  height: 620px;
   background: #0f172a;
-  border-radius: 46px;
+  border-radius: 48px;
   padding: 12px;
-  box-shadow: 0 25px 60px -15px rgba(0, 80, 125, 0.35), 0 0 0 2px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 60px -15px rgba(0, 80, 125, 0.35), 0 0 0 2px rgba(255, 255, 255, 0.18);
   margin: 0 auto;
+  user-select: none;
 }
 
 .device-screen {
@@ -264,7 +310,7 @@ html[dir="ltr"] .a11y-floating-btn {
   width: 100%;
   height: 100%;
   background: #f8fafd;
-  border-radius: 36px;
+  border-radius: 38px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -285,9 +331,9 @@ html[dir="ltr"] .a11y-floating-btn {
 
 /* Modal styles */
 .modal-overlay {
-  background: rgba(13, 28, 46, 0.6);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(13, 28, 46, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 /* Toast styling */
@@ -322,10 +368,43 @@ html[dir="ltr"] .a11y-floating-btn {
   }
 }
 
+/* Interactive Tabs & Badges */
+.filter-pill {
+  transition: all 0.2s ease-in-out;
+}
+
+.filter-pill.active {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 80, 125, 0.2);
+}
+
+/* Interactive Node in Hero Diagram */
+.diagram-node {
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.diagram-node:hover,
+.diagram-node.active {
+  transform: scale(1.05);
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 20px rgba(0, 80, 125, 0.15);
+}
+
+/* Repetition Progress Ring */
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.35s ease;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
 /* Print Styles */
 @media print {
   .portal-floating-btn,
   .a11y-floating-btn,
+  .scroll-top-floating-btn,
+  #scroll-progress,
   header,
   footer,
   .no-print {
@@ -336,3 +415,422 @@ html[dir="ltr"] .a11y-floating-btn {
     color: #000000;
   }
 }
+
+/* ==========================================================================
+   Full-screen Hero Background & Faded Overlays
+   ========================================================================== */
+.hero-faded-overlay-dir {
+  background: linear-gradient(to left, rgba(248, 250, 253, 0.96) 0%, rgba(248, 250, 253, 0.90) 40%, rgba(248, 250, 253, 0.45) 75%, rgba(248, 250, 253, 0.15) 100%);
+}
+
+html[dir="ltr"] .hero-faded-overlay-dir {
+  background: linear-gradient(to right, rgba(248, 250, 253, 0.96) 0%, rgba(248, 250, 253, 0.90) 40%, rgba(248, 250, 253, 0.45) 75%, rgba(248, 250, 253, 0.15) 100%);
+}
+
+/* ==========================================================================
+   Hero Animated Rehabilitation Journey (Male Patient Progression)
+   Cycle: Wheelchair -> Parallel Bars -> Bars Fade -> Free Walking
+   ========================================================================== */
+.rehab-scene-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  background: radial-gradient(circle at 50% 40%, rgba(205, 229, 255, 0.4) 0%, rgba(248, 250, 253, 0.8) 70%);
+  border-radius: 2rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Base Cycle Duration: 16s across 4 distinct rehabilitation stages */
+:root {
+  --rehab-cycle: 16s;
+}
+
+/* Assistant Guidance Arm/Helper in Stage 1 */
+.anim-assistant {
+  animation: animAssistantHelp var(--rehab-cycle) infinite ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes animAssistantHelp {
+  0%, 14% {
+    opacity: 0.9;
+    transform: translateX(0);
+  }
+  18%, 23% {
+    opacity: 0.5;
+    transform: translateX(10px);
+  }
+  26%, 96% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  98%, 100% {
+    opacity: 0.9;
+    transform: translateX(0);
+  }
+}
+
+/* Phase 1: Wheelchair Setup (Visible in Stage 1, then fades away) */
+.anim-wheelchair {
+  animation: animWheelchair var(--rehab-cycle) infinite ease-in-out;
+  transform-origin: bottom center;
+}
+
+@keyframes animWheelchair {
+  0%, 22% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  25%, 28% {
+    opacity: 0.3;
+    transform: translateX(-15px);
+  }
+  30%, 96% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  98%, 100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Phase 2 & 3: Parallel Training Bars (Solid in Stage 2, Fades in Stage 3, Gone in Stage 4) */
+.anim-parallel-bars {
+  animation: animParallelBars var(--rehab-cycle) infinite ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes animParallelBars {
+  0%, 23% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  26%, 48% {
+    /* Stage 2: Solid and supportive */
+    opacity: 1;
+    transform: scale(1);
+  }
+  50%, 72% {
+    /* Stage 3: Gradual fade out as balance and stability increase */
+    opacity: 0.28;
+    transform: scale(1);
+  }
+  75%, 100% {
+    /* Stage 4: Completely disappeared */
+    opacity: 0;
+    transform: scale(1.03);
+  }
+}
+
+/* Patient Male Character Movements across 4 Stages (MALE ONLY - ذكر فقط) */
+.anim-patient-char {
+  animation: animPatientFlow var(--rehab-cycle) infinite cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: bottom center;
+}
+
+@keyframes animPatientFlow {
+  /* Stage 1: Seated in wheelchair, then rising with helper (0% - 24%) */
+  0%, 10% {
+    transform: translate(0, 0);
+  }
+  14%, 22% {
+    transform: translate(40px, -18px);
+  }
+  /* Stage 2: Walking between parallel bars (25% - 49%) */
+  26%, 36% {
+    transform: translate(125px, -20px);
+  }
+  38%, 48% {
+    transform: translate(195px, -20px);
+  }
+  /* Stage 3: Bars fading out, walking with growing stability (50% - 74%) */
+  51%, 61% {
+    transform: translate(270px, -20px);
+  }
+  63%, 73% {
+    transform: translate(340px, -20px);
+  }
+  /* Stage 4: Walks freely and independently toward finish goal (75% - 96%) */
+  76%, 86% {
+    transform: translate(415px, -20px);
+  }
+  88%, 94% {
+    transform: translate(480px, -20px);
+  }
+  /* Reset loop */
+  98%, 100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Male character limbs animations */
+.anim-leg-left {
+  animation: animLegLeft var(--rehab-cycle) infinite ease-in-out;
+  transform-origin: 50% 10%;
+}
+.anim-leg-right {
+  animation: animLegRight var(--rehab-cycle) infinite ease-in-out;
+  transform-origin: 50% 10%;
+}
+.anim-arm-left {
+  animation: animArmLeft var(--rehab-cycle) infinite ease-in-out;
+  transform-origin: 50% 10%;
+}
+.anim-arm-right {
+  animation: animArmRight var(--rehab-cycle) infinite ease-in-out;
+  transform-origin: 50% 10%;
+}
+
+@keyframes animLegLeft {
+  0%, 22% { transform: rotate(0deg); }
+  26%, 36% { transform: rotate(12deg); }
+  38%, 48% { transform: rotate(-10deg); }
+  51%, 61% { transform: rotate(14deg); }
+  63%, 73% { transform: rotate(-12deg); }
+  76%, 86% { transform: rotate(18deg); }
+  88%, 94% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes animLegRight {
+  0%, 22% { transform: rotate(0deg); }
+  26%, 36% { transform: rotate(-10deg); }
+  38%, 48% { transform: rotate(12deg); }
+  51%, 61% { transform: rotate(-12deg); }
+  63%, 73% { transform: rotate(14deg); }
+  76%, 86% { transform: rotate(-16deg); }
+  88%, 94% { transform: rotate(18deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes animArmLeft {
+  0%, 22% { transform: rotate(0deg); }
+  26%, 48% { transform: rotate(-15deg); } /* Holding parallel rail */
+  51%, 73% { transform: rotate(5deg); }   /* Balancing */
+  76%, 94% { transform: rotate(20deg); }  /* Natural independent arm swing */
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes animArmRight {
+  0%, 22% { transform: rotate(0deg); }
+  26%, 48% { transform: rotate(15deg); }  /* Holding parallel rail */
+  51%, 73% { transform: rotate(-5deg); }  /* Balancing */
+  76%, 94% { transform: rotate(-20deg); } /* Natural independent arm swing */
+  100% { transform: rotate(0deg); }
+}
+
+/* Synchronized 4 Indicator Pills (Automatic Cycle Mode) */
+.pill-stage-1 {
+  animation: pillActive1 var(--rehab-cycle) infinite;
+}
+.pill-stage-2 {
+  animation: pillActive2 var(--rehab-cycle) infinite;
+}
+.pill-stage-3 {
+  animation: pillActive3 var(--rehab-cycle) infinite;
+}
+.pill-stage-4 {
+  animation: pillActive4 var(--rehab-cycle) infinite;
+}
+
+@keyframes pillActive1 {
+  0%, 23% {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(0, 80, 125, 0.25);
+  }
+  25%, 97% {
+    background-color: #ffffff;
+    color: var(--color-text-muted);
+    border-color: #e2e8f0;
+    box-shadow: none;
+  }
+  98%, 100% {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+  }
+}
+
+@keyframes pillActive2 {
+  0%, 24% {
+    background-color: #ffffff;
+    color: var(--color-text-muted);
+    border-color: #e2e8f0;
+    box-shadow: none;
+  }
+  26%, 48% {
+    background-color: var(--color-secondary);
+    color: #ffffff;
+    border-color: var(--color-secondary);
+    box-shadow: 0 4px 12px rgba(0, 106, 97, 0.25);
+  }
+  50%, 100% {
+    background-color: #ffffff;
+    color: var(--color-text-muted);
+    border-color: #e2e8f0;
+    box-shadow: none;
+  }
+}
+
+@keyframes pillActive3 {
+  0%, 49% {
+    background-color: #ffffff;
+    color: var(--color-text-muted);
+    border-color: #e2e8f0;
+    box-shadow: none;
+  }
+  51%, 73% {
+    background-color: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  }
+  75%, 100% {
+    background-color: #ffffff;
+    color: var(--color-text-muted);
+    border-color: #e2e8f0;
+    box-shadow: none;
+  }
+}
+
+@keyframes pillActive4 {
+  0%, 74% {
+    background-color: #ffffff;
+    color: var(--color-text-muted);
+    border-color: #e2e8f0;
+    box-shadow: none;
+  }
+  76%, 95% {
+    background-color: #059669;
+    color: #ffffff;
+    border-color: #059669;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+  }
+  98%, 100% {
+    background-color: #ffffff;
+    color: var(--color-text-muted);
+    border-color: #e2e8f0;
+    box-shadow: none;
+  }
+}
+
+/* ==========================================================================
+   Manual Interactive Inspection State (Clickable Stages 1, 2, 3, 4)
+   ========================================================================== */
+#rehab-animation-card[data-stage-override] .anim-patient-char,
+#rehab-animation-card[data-stage-override] .anim-wheelchair,
+#rehab-animation-card[data-stage-override] .anim-parallel-bars,
+#rehab-animation-card[data-stage-override] .anim-assistant,
+#rehab-animation-card[data-stage-override] .anim-leg-left,
+#rehab-animation-card[data-stage-override] .anim-leg-right,
+#rehab-animation-card[data-stage-override] .anim-arm-left,
+#rehab-animation-card[data-stage-override] .anim-arm-right,
+#rehab-animation-card[data-stage-override] .rehab-stage-pill {
+  animation: none !important;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Manual Stage 1: Seated & rising with helper */
+#rehab-animation-card[data-stage-override="1"] .anim-wheelchair {
+  opacity: 1;
+  transform: translateX(0);
+}
+#rehab-animation-card[data-stage-override="1"] .anim-assistant {
+  opacity: 0.9;
+  transform: translateX(0);
+}
+#rehab-animation-card[data-stage-override="1"] .anim-parallel-bars {
+  opacity: 0;
+}
+#rehab-animation-card[data-stage-override="1"] .anim-patient-char {
+  transform: translate(35px, -18px);
+}
+#rehab-animation-card[data-stage-override="1"] .pill-stage-1 {
+  background-color: var(--color-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 4px 12px rgba(0, 80, 125, 0.25) !important;
+}
+
+/* Manual Stage 2: Walking between parallel bars */
+#rehab-animation-card[data-stage-override="2"] .anim-wheelchair {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+#rehab-animation-card[data-stage-override="2"] .anim-assistant {
+  opacity: 0;
+}
+#rehab-animation-card[data-stage-override="2"] .anim-parallel-bars {
+  opacity: 1;
+  transform: scale(1);
+}
+#rehab-animation-card[data-stage-override="2"] .anim-patient-char {
+  transform: translate(160px, -20px);
+}
+#rehab-animation-card[data-stage-override="2"] .anim-arm-left {
+  transform: rotate(-15deg);
+}
+#rehab-animation-card[data-stage-override="2"] .anim-arm-right {
+  transform: rotate(15deg);
+}
+#rehab-animation-card[data-stage-override="2"] .pill-stage-2 {
+  background-color: var(--color-secondary) !important;
+  color: #ffffff !important;
+  border-color: var(--color-secondary) !important;
+  box-shadow: 0 4px 12px rgba(0, 106, 97, 0.25) !important;
+}
+
+/* Manual Stage 3: Bars fading out as stability increases */
+#rehab-animation-card[data-stage-override="3"] .anim-wheelchair {
+  opacity: 0;
+}
+#rehab-animation-card[data-stage-override="3"] .anim-assistant {
+  opacity: 0;
+}
+#rehab-animation-card[data-stage-override="3"] .anim-parallel-bars {
+  opacity: 0.28;
+  transform: scale(1);
+}
+#rehab-animation-card[data-stage-override="3"] .anim-patient-char {
+  transform: translate(300px, -20px);
+}
+#rehab-animation-card[data-stage-override="3"] .pill-stage-3 {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25) !important;
+}
+
+/* Manual Stage 4: Walks freely and independently */
+#rehab-animation-card[data-stage-override="4"] .anim-wheelchair {
+  opacity: 0;
+}
+#rehab-animation-card[data-stage-override="4"] .anim-assistant {
+  opacity: 0;
+}
+#rehab-animation-card[data-stage-override="4"] .anim-parallel-bars {
+  opacity: 0;
+}
+#rehab-animation-card[data-stage-override="4"] .anim-patient-char {
+  transform: translate(450px, -20px);
+}
+#rehab-animation-card[data-stage-override="4"] .anim-arm-left {
+  transform: rotate(20deg);
+}
+#rehab-animation-card[data-stage-override="4"] .anim-arm-right {
+  transform: rotate(-20deg);
+}
+#rehab-animation-card[data-stage-override="4"] .pill-stage-4 {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+  border-color: #059669 !important;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25) !important;
+}
+
