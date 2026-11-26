@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="bikeFrame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#006a61"/>
+      <stop offset="100%" stop-color="#004d46"/>
+    </linearGradient>
+    <linearGradient id="crankGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#cbd5e1"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bgR)"/>
+  <ellipse cx="200" cy="265" rx="130" ry="14" fill="#cbd5e1" opacity="0.6"/>
+
+  <g transform="translate(30, 20)">
+    <!-- Base Stabilizer Feet with Rubber End Caps -->
+    <!-- Front Foot -->
+    <line x1="85" y1="240" x2="155" y2="240" stroke="#1e293b" stroke-width="12" stroke-linecap="round"/>
+    <rect x="80" y="233" width="12" height="14" rx="4" fill="#475569"/>
+    <rect x="148" y="233" width="12" height="14" rx="4" fill="#475569"/>
+
+    <!-- Rear Foot -->
+    <line x1="210" y1="240" x2="280" y2="240" stroke="#1e293b" stroke-width="12" stroke-linecap="round"/>
+    <rect x="205" y="233" width="12" height="14" rx="4" fill="#475569"/>
+    <rect x="273" y="233" width="12" height="14" rx="4" fill="#475569"/>
+
+    <!-- Triangular Main Heavy Chassis -->
+    <path d="M 120 240 L 190 135 L 245 240 Z" fill="#006a61" stroke="#004d46" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M 140 230 L 190 150 L 230 230 Z" fill="#f8fafc"/>
+
+    <!-- Center Flywheel Housing -->
+    <circle cx="190" cy="180" r="38" fill="#1e293b" stroke="#334155" stroke-width="4"/>
+    <circle cx="190" cy="180" r="28" fill="#00507d"/>
+    <circle cx="190" cy="180" r="14" fill="url(#crankGrad)"/>
+
+    <!-- Tension Adjustment Knob -->
+    <rect x="183" y="115" width="14" height="22" rx="4" fill="#0f172a"/>
+    <circle cx="190" cy="115" r="12" fill="#eab308" stroke="#ca8a04" stroke-width="2"/>
+    <text x="190" y="119" fill="#0f172a" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">+</text>
+
+    <!-- Digital Multi-function LCD Monitor -->
+    <rect x="125" y="145" width="40" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.1))"/>
+    <rect x="130" y="149" width="30" height="16" rx="3" fill="#0284c7"/>
+    <text x="145" y="161" fill="#ffffff" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">12:45</text>
+    <circle cx="145" cy="170" r="2.5" fill="#ef4444"/>
+
+    <!-- Dual Pedal Cranks & Foot Straps -->
+    <!-- Crank 1 (pointing up-right) -->
+    <line x1="190" y1="180" x2="225" y2="135" stroke="url(#crankGrad)" stroke-width="7" stroke-linecap="round"/>
+    <g transform="translate(225, 125)">
+      <!-- Pedal with Strap -->
+      <rect width="28" height="14" rx="4" fill="#0f172a"/>
+      <path d="M 2 7 C 2 -5, 26 -5, 26 7" fill="none" stroke="#64748b" stroke-width="3"/>
+    </g>
+
+    <!-- Crank 2 (pointing down-left) -->
+    <line x1="190" y1="180" x2="155" y2="220" stroke="url(#crankGrad)" stroke-width="7" stroke-linecap="round"/>
+    <g transform="translate(132, 215)">
+      <!-- Pedal with Strap -->
+      <rect width="28" height="14" rx="4" fill="#0f172a"/>
+      <path d="M 2 7 C 2 18, 26 18, 26 7" fill="none" stroke="#64748b" stroke-width="3"/>
+    </g>
+  </g>
+
+  <!-- Badge -->
+  <g transform="translate(290, 25)">
+    <rect width="80" height="24" rx="12" fill="#006a61" opacity="0.9"/>
+    <text x="40" y="16" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">REHAB BIKE</text>
+  </g>
+</svg>

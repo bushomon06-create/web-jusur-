@@ -4,8 +4,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الشروط والأحكام وميثاق الاستخدام — منصة جسور للتأهيل</title>
-  <meta name="description" content="الشروط والأحكام وميثاق الاستخدام لمنصة جسور للتأهيل والرعاية عن بُعد.">
+  <script>
+    (function(){
+      var lang = localStorage.getItem('jusoor_lang') || localStorage.getItem('jisr_lang') || 'ar';
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    })();
+  </script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <title>الشروط والأحكام وميثاق الاستخدام — جسور للتأهيل</title>
+  <meta name="description" content="الشروط والأحكام وميثاق الاستخدام لجسور للتأهيل والرعاية عن بُعد.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -66,11 +76,16 @@
         </a>
 
         <!-- Center: Exactly 4 Text Navigation Links -->
-        <nav class="hidden md:flex items-center gap-1 sm:gap-2">
-          <a href="about.html" class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition" data-i18n="nav.about">عن المنصة</a>
-          <a href="services.html" class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition" data-i18n="nav.services">الخدمات</a>
-          <a href="partners.html" class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition" data-i18n="nav.partners">الشركاء</a>
-          <a href="faq.html" class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition" data-i18n="nav.faq">الأسئلة الشائعة</a>
+        <nav class="hidden md:flex items-center gap-7" aria-label="شريط التنقل الرئيسي">
+          <a href="about.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.about">عن جسور للتأهيل</a>
+          <a href="services.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.services">الخدمات</a>
+          <a href="booking.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.booking">حجز موعد</a>
+                    <a href="devices.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1 flex items-center gap-1.5" data-i18n="nav.devices">
+            <span class="material-symbols-outlined text-[17px] text-purple-600">storefront</span>
+            <span>بنك الأجهزة</span>
+          </a>
+<a href="partners.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.partners">الشركاء</a>
+          <a href="faq.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.faq">الأسئلة الشائعة</a>
         </nav>
 
         <!-- Left: Language Switcher + Single Login Button -->
@@ -80,11 +95,15 @@
             <span class="material-symbols-outlined text-base">language</span>
             <span data-i18n="nav.langSwitch">English</span>
           </button>
+          <a href="login.html?tab=register" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-secondary bg-secondary/10 hover:bg-secondary hover:text-white transition shadow-2xs">
+            <span class="material-symbols-outlined text-base">person_add</span>
+            <span data-i18n="nav.register">إنشاء حساب جديد</span>
+          </a>
           <a href="login.html"
             class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm"
             data-i18n="nav.login">
             <span class="material-symbols-outlined text-base">login</span>
-            <span>تسجيل الدخول</span>
+            <span data-i18n="nav.login">تسجيل الدخول</span>
           </a>
         </div>
       </div>
@@ -190,7 +209,7 @@
       </div>
 
       <div class="mt-8 pt-6 border-t border-outline-variant/60 text-center text-xs text-on-surface-variant flex flex-col sm:flex-row items-center justify-between gap-3">
-        <span>© 2026 منصة جسور للتأهيل والرعاية عن بُعد. جميع الحقوق محفوظة.</span>
+        <span>© 2026 جسور للتأهيل والرعاية عن بُعد. جميع الحقوق محفوظة.</span>
         <span class="text-slate-400">صُمم بمعايير طبية وتقنية آمنة</span>
       </div>
     </div>

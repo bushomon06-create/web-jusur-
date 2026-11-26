@@ -3,14 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>جسور للتأهيل والرعاية عن بُعد — المنصة الرسمية</title>
+  <script>
+    (function(){
+      var lang = localStorage.getItem('jusoor_lang') || localStorage.getItem('jisr_lang') || 'ar';
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    })();
+  </script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <title>جسور للتأهيل — الرعاية والتأهيل عن بُعد</title>
   <meta name="description" content="منصة جسور للتأهيل هي المنظومة الوطنية المتخصصة في التأهيل والرعاية الطبية المنزلية وعن بُعد، نربط ذوي الاحتياجات التأهيلية بنخبة من الأخصائيين المعتمدين.">
   <meta name="keywords" content="تأهيل عن بعد, علاج طبيعي منزلي, تأهيل حركي, جسور للتأهيل, رعاية منزلية">
   <meta name="theme-color" content="#00507d">
   
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="منصة جسور للتأهيل والرعاية عن بُعد">
+  <meta property="og:title" content="جسور للتأهيل والرعاية عن بُعد">
   <meta property="og:description" content="منظومة رقمية متكاملة لربط ذوي الاحتياجات التأهيلية بنخبة من الأخصائيين والمراكز الطبية.">
   <meta property="og:image" content="assets/images/logo.png">
 
@@ -73,47 +83,71 @@
   <!-- ========================================================================
        TOP HEADER / NAVBAR (MINIMALIST & UNIFIED)
        ======================================================================== -->
-  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-white/85 backdrop-blur-md border-b border-slate-200/70">
+  <!-- ========================================================================
+       TOP HEADER / NAVBAR (MINIMALIST & BALANCED SAAS NAVBAR)
+       ======================================================================== -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
+      <div class="flex items-center justify-between h-16 sm:h-[68px]">
         
-        <!-- Right (RTL): Logo & Brand Identity -->
-        <a href="index.html" class="flex items-center gap-3.5 group focus:outline-none">
-          <div class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center p-2 shadow-2xs border border-slate-200/80 group-hover:border-primary/40 transition">
+        <!-- Right (RTL): Brand Logo & Title -->
+        <a href="index.html" class="flex items-center gap-3 group focus:outline-none shrink-0" aria-label="الصفحة الرئيسية لمنصة جسور للتأهيل">
+          <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center p-1.5 shadow-2xs border border-slate-200/80 group-hover:border-primary/50 transition">
             <img src="assets/images/logo.png" alt="شعار منصة جسور للتأهيل" class="w-full h-full object-contain">
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-bold text-primary tracking-tight leading-none">جسور للتأهيل</span>
-            <span class="text-[11px] font-medium text-slate-500 mt-1 leading-tight tracking-wide">للرعاية والتأهيل عن بُعد</span>
+            <span class="text-lg font-bold text-primary tracking-tight leading-none">جسور للتأهيل</span>
+            <span class="text-[10px] font-medium text-slate-500 mt-1 leading-tight tracking-wide">للرعاية والتأهيل عن بُعد</span>
           </div>
         </a>
 
-        <!-- Center: Exactly 4 Dedicated Independent Page Links -->
-        <nav class="hidden md:flex items-center gap-8" aria-label="شريط التنقل الرئيسي">
-          <a href="about.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.about">عن المنصة</a>
-          <a href="services.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.services">الخدمات</a>
-          <a href="partners.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.partners">الشركاء</a>
-          <a href="faq.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.faq">الأسئلة الشائعة</a>
+        <!-- Center: 6 Concise Nav Links (14px, whitespace-nowrap, gap-5) -->
+        <nav class="hidden lg:flex items-center gap-5 xl:gap-6" aria-label="شريط التنقل الرئيسي">
+          <a href="about.html" class="nav-link nav-link-saas text-[14px] font-medium text-slate-600 hover:text-primary whitespace-nowrap transition-colors py-1" data-i18n="nav.about">عنا</a>
+          <a href="services.html" class="nav-link nav-link-saas text-[14px] font-medium text-slate-600 hover:text-primary whitespace-nowrap transition-colors py-1" data-i18n="nav.services">الخدمات</a>
+          <a href="booking.html" class="nav-link nav-link-saas text-[14px] font-medium text-slate-600 hover:text-primary whitespace-nowrap transition-colors py-1" data-i18n="nav.booking">حجز موعد</a>
+          <a href="devices.html" class="nav-link nav-link-saas text-[14px] font-medium text-slate-600 hover:text-primary whitespace-nowrap transition-colors py-1 flex items-center gap-1.5" data-i18n="nav.devices">
+            <span class="material-symbols-outlined text-[16px] text-purple-600">storefront</span>
+            <span>بنك الأجهزة</span>
+          </a>
+          <a href="partners.html" class="nav-link nav-link-saas text-[14px] font-medium text-slate-600 hover:text-primary whitespace-nowrap transition-colors py-1" data-i18n="nav.partners">شركاؤنا</a>
+          <a href="faq.html" class="nav-link nav-link-saas text-[14px] font-medium text-slate-600 hover:text-primary whitespace-nowrap transition-colors py-1" data-i18n="nav.faq">الأسئلة الشائعة</a>
         </nav>
 
-        <!-- Left (RTL): Language Switcher & Primary Login Button -->
-        <div class="hidden md:flex items-center gap-3">
+        <!-- Left (RTL): Globe Icon Lang Switcher & Compact Auth Buttons -->
+        <div class="hidden lg:flex items-center gap-2.5">
+          <!-- Compact Globe SVG Language Toggle -->
           <button 
             type="button" 
             data-lang-toggle 
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-primary hover:bg-slate-100/70 transition border border-slate-200"
+            class="btn-ripple inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-primary hover:bg-slate-100/80 transition border border-slate-200/90"
             aria-label="تبديل لغة الموقع"
+            title="English / العربية"
           >
-            <span class="material-symbols-outlined text-base">language</span>
-            <span data-i18n="nav.langSwitch">English</span>
+            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+            <span class="text-[11px] font-bold" data-i18n="nav.langSwitch">EN</span>
           </button>
 
+          <!-- Compact "حساب جديد" Button -->
+          <a 
+            href="login.html?tab=register" 
+            class="btn-ripple inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold text-secondary bg-secondary/10 hover:bg-secondary hover:text-white transition shadow-2xs whitespace-nowrap"
+          >
+            <span class="material-symbols-outlined text-[17px]">person_add</span>
+            <span data-i18n="nav.register">إنشاء حساب جديد</span>
+          </a>
+
+          <!-- Compact "دخول" Button -->
           <a 
             href="login.html" 
-            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-2xs hover:shadow-subtle"
+            class="btn-ripple inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-primary hover:bg-primary-dark transition shadow-2xs whitespace-nowrap"
           >
-            <span class="material-symbols-outlined text-base">login</span>
-            <span data-i18n="nav.login">تسجيل الدخول</span>
+            <span class="material-symbols-outlined text-[17px]">login</span>
+            <span data-i18n="nav.login">دخول</span>
           </a>
         </div>
 
@@ -121,7 +155,7 @@
         <button 
           type="button" 
           id="mobile-menu-toggle" 
-          class="md:hidden p-2 rounded-xl text-slate-600 hover:text-primary hover:bg-slate-100 transition"
+          class="lg:hidden p-2 rounded-xl text-slate-600 hover:text-primary hover:bg-slate-100 transition"
           aria-label="القائمة الرئيسية"
           aria-expanded="false"
         >
@@ -132,21 +166,34 @@
     </div>
 
     <!-- Mobile Dropdown Navigation -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-6 space-y-4 shadow-xl">
-      <nav class="flex flex-col space-y-2">
-        <a href="about.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">عن المنصة</a>
-        <a href="services.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الخدمات</a>
-        <a href="partners.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الشركاء</a>
-        <a href="faq.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الأسئلة الشائعة</a>
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white px-4 py-5 space-y-4 shadow-xl">
+      <nav class="flex flex-col space-y-1.5">
+        <a href="about.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.about">عنا</a>
+        <a href="services.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.services">الخدمات</a>
+        <a href="booking.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.booking">حجز موعد</a>
+        <a href="devices.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition flex items-center gap-2" data-i18n="nav.devices">
+          <span class="material-symbols-outlined text-base text-purple-600">storefront</span>
+          <span>بنك الأجهزة</span>
+        </a>
+        <a href="partners.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.partners">شركاؤنا</a>
+        <a href="faq.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.faq">الأسئلة الشائعة</a>
       </nav>
-      <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
-        <button type="button" data-lang-toggle class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold text-slate-600 border border-slate-200">
-          <span class="material-symbols-outlined text-base">language</span>
+      <div class="pt-3 border-t border-slate-100 flex items-center gap-2">
+        <button type="button" data-lang-toggle class="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold text-slate-600 border border-slate-200">
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            <path d="M2 12h20"></path>
+          </svg>
           <span data-i18n="nav.langSwitch">English</span>
         </button>
-        <a href="login.html" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition text-center shadow-2xs">
+        <a href="login.html?tab=register" class="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-bold text-secondary bg-secondary/10 hover:bg-secondary hover:text-white transition text-center">
+          <span class="material-symbols-outlined text-base">person_add</span>
+          <span data-i18n="nav.register">إنشاء حساب جديد</span>
+        </a>
+        <a href="login.html" class="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-bold text-white bg-primary hover:bg-primary-dark transition text-center shadow-2xs">
           <span class="material-symbols-outlined text-base">login</span>
-          <span>تسجيل الدخول</span>
+          <span>دخول</span>
         </a>
       </div>
     </div>
@@ -158,92 +205,145 @@
   <main id="main-content" class="flex-grow pb-16">
     
     <!-- ========================================================================
-         SECTION 1: FULL-SCREEN HERO WITH FADED TEXT OVERLAY
+         SECTION 1: FULL-SCREEN HERO WITH VIDEO BACKGROUND & KEN BURNS FALLBACK
          ======================================================================== -->
-    <section class="relative w-full min-h-[85vh] lg:min-h-[92vh] flex items-center overflow-hidden pt-28 pb-16 lg:py-24">
+    <section id="hero-section" class="relative w-full min-h-[88vh] flex items-center justify-center overflow-hidden pt-24 pb-20">
       
-      <!-- Full-screen Background Image Layer -->
-      <div class="absolute inset-0 w-full h-full pointer-events-none">
+      <!-- Video & Fallback Image Layer -->
+      <div class="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+        <!-- Ken Burns Fallback Medical Rehabilitation Image -->
         <img 
           src="assets/images/hero-rehab.jpg" 
           alt="مركز التأهيل الطبي الحديث والرعاية عن بُعد - جسور للتأهيل" 
-          class="w-full h-full object-cover object-center select-none"
+          class="ken-burns-bg absolute inset-0 w-full h-full object-cover object-center select-none"
         >
+        <!-- HTML5 Video Background (plays seamlessly if video file exists) -->
+        <video 
+          autoplay 
+          muted 
+          loop 
+          playsinline 
+          poster="assets/images/hero-rehab.jpg" 
+          class="absolute inset-0 w-full h-full object-cover object-center"
+          style="min-width: 100%; min-height: 100%;"
+        >
+          <source src="assets/videos/hero-rehab.mp4" type="video/mp4">
+        </video>
       </div>
 
-      <!-- Directional Faded Gradient Overlay (smooth transition from text side across image) -->
-      <div class="absolute inset-0 hero-faded-overlay-dir pointer-events-none"></div>
+      <!-- Directional Faded Gradient Overlay (for backward compatibility) -->
+      <div class="absolute inset-0 hero-faded-overlay-dir pointer-events-none opacity-20"></div>
 
-      <!-- Atmospheric Top & Bottom Blend -->
-      <div class="absolute inset-0 bg-gradient-to-b from-[#f8fafd]/80 via-transparent to-[#f8fafd] pointer-events-none"></div>
+      <!-- Soft Dark Overlay for 100% Crisp White Text Readability -->
+      <div class="absolute inset-0 bg-slate-900/55 backdrop-blur-[0.5px] pointer-events-none"></div>
 
-      <!-- Content Container with Frosted Faded Text Card -->
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div class="max-w-2xl bg-white/85 backdrop-blur-md p-8 sm:p-10 lg:p-12 rounded-3xl border border-white/90 shadow-card space-y-6 text-center lg:text-start">
-          
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
-            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-            <span data-i18n="hero.badge">المنصة المتخصصة في التأهيل والرعاية عن بُعد</span>
-          </div>
+      <!-- Subtle Vignette / Atmospheric Gradient -->
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none"></div>
 
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-on-surface tracking-tight leading-[1.25]" data-i18n="hero.title">
-            رحلة تأهيل متكاملة تبدأ من منزلك نحو الاستقلالية
-          </h1>
-
-          <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0" data-i18n="hero.subtitle">
-            نربط ذوي الاحتياجات التأهيلية وأسرهم بنخبة من الأخصائيين المعتمدين والمشرفين الحركيين لتنفيذ خطط علاجية موجهة ومتابعة دورية بكل أمان وسهولة.
-          </p>
-
-          <!-- Exactly Two Action Buttons -->
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-            <button 
-              type="button" 
-              data-open-app-modal 
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl text-sm font-bold text-white bg-primary hover:bg-primary-dark transition-all duration-200 shadow-sm hover:shadow-subtle hover:-translate-y-0.5 cursor-pointer"
-            >
-              <span data-i18n="hero.ctaStart">ابدأ رحلتك الآن</span>
-              <span class="material-symbols-outlined text-lg">arrow_forward</span>
-            </button>
-
-            <a 
-              href="services.html" 
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-bold text-slate-700 bg-white hover:bg-slate-50 transition-all duration-200 border border-slate-200 shadow-2xs hover:border-slate-300"
-            >
-              <span data-i18n="hero.ctaServices">استكشف خدماتنا</span>
-            </a>
-          </div>
-
-          <!-- Subtle Trust Metrics -->
-          <div class="pt-6 border-t border-slate-200/70 flex items-center justify-center lg:justify-start gap-8 text-xs text-slate-500">
-            <div class="flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-secondary text-base">verified</span>
-              <span class="font-medium text-slate-700" data-i18n="hero.statSupervision">كوادر سريرية معتمدة</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-primary text-base">home_health</span>
-              <span class="font-medium text-slate-700" data-i18n="hero.statRehab">إشراف حركي منزلي</span>
-            </div>
-          </div>
-
+      <!-- Centered Content Container (No Solid White Box) -->
+      <div class="hero-content-container relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center flex flex-col items-center">
+        
+        <!-- Live Medical Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-white/15 text-white backdrop-blur-md border border-white/25 shadow-sm mb-6 animate-in fade-in zoom-in-95 duration-500">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span data-i18n="hero.badge">المنصة المتخصصة في التأهيل والرعاية عن بُعد</span>
         </div>
+
+        <!-- Centered Main Headline in Medium-Large White with Comfortable Leading -->
+         <br>
+          <br>
+        <h1 
+          class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-[1.45] max-w-2xl" 
+          style="line-height: 1.45; line-height: 1.5;" 
+          data-i18n="hero.title"
+        >
+          جسور للتأهيل يربطك برحلة تأهيل أكثر سهولة وأمانًا من منزلك
+        </h1>
+
+        <!-- Centered Short Description in Soft White (slightly smaller than title) -->
+       
+        <br>
+        <br>
+       
+        
+
+        <!-- Two Centered Action Buttons -->
+        <div id="hero-cta-group" class="hero-cta-group mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto relative z-30 pointer-events-auto" style="position: relative; z-index: 30; pointer-events: auto;">
+          <!-- Primary Medical Blue Button: Start Your Journey (Opens QR Modal) -->
+          <button 
+            type="button" 
+            id="hero-cta-start"
+            data-action="start-journey"
+            data-open-app-modal
+            onclick="window.openAppDownloadModal ? window.openAppDownloadModal() : (window.showAppQrModal ? window.showAppQrModal() : null)" 
+            class="hero-cta-start-btn btn-ripple w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl text-sm sm:text-base font-bold text-white bg-primary hover:bg-primary-dark transition shadow-lg hover:shadow-primary/30 cursor-pointer relative z-30 pointer-events-auto"
+            style="position: relative; z-index: 30; pointer-events: auto; cursor: pointer;"
+            aria-label="ابدأ رحلتك الآن"
+          >
+            <span data-i18n="hero.ctaStart">ابدأ رحلتك الآن</span>
+            <span class="material-symbols-outlined text-xl rtl:rotate-180">arrow_forward</span>
+          </button>
+
+          <!-- Translucent Button: Explore Services (Direct Navigation) -->
+          <a 
+            id="hero-cta-services"
+            href="services.html" 
+            data-action="explore-services"
+            onclick="if(document.getElementById('services')){document.getElementById('services').scrollIntoView({behavior:'smooth'});return false;}"
+            class="hero-cta-services-btn btn-ripple w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-sm sm:text-base font-bold text-white bg-white/10 hover:bg-white/20 transition border border-white/30 backdrop-blur-md shadow-sm relative z-30 pointer-events-auto"
+            style="position: relative; z-index: 30; pointer-events: auto; cursor: pointer;"
+          >
+            <span data-i18n="hero.ctaServices">استكشف خدماتنا</span>
+          </a>
+        </div>
+
+        <!-- Subtle Trust Indicators -->
+        <div class="mt-10 pt-6 border-t border-white/15 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm text-slate-200">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-emerald-400 text-lg">verified</span>
+            <span class="font-medium" data-i18n="hero.statSupervision">كوادر سريرية معتمدة</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-sky-400 text-lg">home_health</span>
+            <span class="font-medium" data-i18n="hero.statRehab">إشراف حركي منزلي</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-amber-400 text-lg">security</span>
+            <span class="font-medium" data-i18n="hero.statGovernance">حوكمة طبية متكاملة</span>
+          </div>
+        </div>
+
       </div>
+
+      <!-- Animated Scroll Mouse Indicator at Bottom Center -->
+      <a 
+        href="#section-features" 
+        id="hero-scroll-indicator" 
+        class="mouse-scroll-indicator absolute bottom-5 left-1/2 -translate-x-1/2 z-10 text-white/80 hover:text-white flex flex-col items-center gap-1.5 focus:outline-none pointer-events-auto"
+        aria-label="التمرير للقسم التالي"
+      >
+        <span class="text-[11px] font-medium tracking-wider text-slate-300" data-i18n="hero.scrollText">تمرير</span>
+        <div class="w-6 h-10 rounded-full border-2 border-white/60 flex items-start justify-center p-1.5 shadow-xs">
+          <div class="w-1.5 h-2.5 rounded-full bg-white mouse-wheel-dot"></div>
+        </div>
+      </a>
 
     </section>
 
     <!-- ----------------------------------------------------------------------
          SECTION 2: CORE VALUE PROPOSITION (3 SPACIOUS WHITE CARDS)
          ---------------------------------------------------------------------- -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <section id="section-features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
       
       <!-- Section Header -->
-      <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
-        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-secondary/10 text-secondary">
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-12 scroll-reveal" data-anim="fade-up">
+        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-secondary/10 text-secondary" data-i18n="features.badge">
           رعاية مبنية على الأدلة والنتائج
         </span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">
+        <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight" data-i18n="features.title">
           ركائز المنظومة التأهيلية في جسور للتأهيل
         </h2>
-        <p class="text-sm text-slate-600 leading-relaxed">
+        <p class="text-sm text-slate-600 leading-relaxed" data-i18n="features.subtitle">
           صُممت المنصة وفق معايير الحوكمة السريرية لتمنح المستفيد وعائلته تجربة تعافٍ منزلية متكاملة ومستمرة.
         </p>
       </div>
@@ -252,36 +352,36 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
         
         <!-- Card 1: Individual Plans -->
-        <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-primary/40 transition-all duration-200 space-y-4 flex flex-col justify-between">
+        <div class="scroll-reveal delay-100 interactive-card expandable-card bg-white p-8 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-primary/40 space-y-4 flex flex-col justify-between" data-anim="fade-right">
           <div class="space-y-4">
             <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center border border-primary/20">
-              <span class="material-symbols-outlined text-3xl">assignment_turned_in</span>
+              <span class="material-symbols-outlined text-3xl card-icon-bounce">assignment_turned_in</span>
             </div>
-            <h3 class="text-lg font-bold text-on-surface">تقييم وخطط فردية</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <h3 class="text-lg font-bold text-on-surface" data-i18n="svc.evalTitle">تقييم وخطط فردية</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed" data-i18n="features.card1Desc">
               فحص سريري ووظيفي أولي دقيق يحدد مستوى الحركة ومكامن الضعف، لتصميم خطة علاجية مفصلة تناسب قدرات المستفيد واحتياجاته الفعلية.
             </p>
           </div>
           <div class="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-primary">
             <span class="material-symbols-outlined text-base">check_circle</span>
-            <span>مسارات علاجية مخصصة</span>
+            <span data-i18n="features.card1Badge">مسارات علاجية مخصصة</span>
           </div>
         </div>
 
         <!-- Card 2: Guided Home Workouts -->
-        <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-secondary/40 transition-all duration-200 space-y-4 flex flex-col justify-between">
+        <div class="scroll-reveal delay-200 interactive-card expandable-card bg-white p-8 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-secondary/40 space-y-4 flex flex-col justify-between" data-anim="fade-up">
           <div class="space-y-4">
             <div class="w-14 h-14 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center border border-secondary/20">
               <span class="material-symbols-outlined text-3xl">fitness_center</span>
             </div>
-            <h3 class="text-lg font-bold text-on-surface">تمارين منزلية موجهة</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <h3 class="text-lg font-bold text-on-surface" data-i18n="svc.videoTitle">تمارين منزلية موجهة</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed" data-i18n="features.card2Desc">
               مكتبة تمارين حركية عالية الدقة مصورة بالفيديو مع تعليمات واضحة للمريض ومقدم الرعاية، مع جدول أسبوعي يضمن الالتزام التام.
             </p>
           </div>
           <div class="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-secondary">
             <span class="material-symbols-outlined text-base">check_circle</span>
-            <span>تتبع الالتزام والتكرارات</span>
+            <span data-i18n="features.card2Badge">تتبع الالتزام والتكرارات</span>
           </div>
         </div>
 
@@ -291,14 +391,14 @@
             <div class="w-14 h-14 rounded-2xl bg-sky-50 text-sky-700 flex items-center justify-center border border-sky-200">
               <span class="material-symbols-outlined text-3xl">health_and_safety</span>
             </div>
-            <h3 class="text-lg font-bold text-on-surface">متابعة وإشراف مباشر</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <h3 class="text-lg font-bold text-on-surface" data-i18n="svc.supervisionTitle">متابعة وإشراف مباشر</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed" data-i18n="features.card3Desc">
               استشارات سريرية افتراضية مع الأخصائي المعالج، ومساندة دورية من المشرف الحركي الميداني للتحقق من سلامة الأداء وتحديث البرنامج.
             </p>
           </div>
           <div class="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-sky-700">
             <span class="material-symbols-outlined text-base">check_circle</span>
-            <span>تقارير تقدم معتمدة</span>
+            <span data-i18n="features.card3Badge">تقارير تقدم معتمدة</span>
           </div>
         </div>
 
@@ -310,27 +410,376 @@
           href="about.html" 
           class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-dark transition group"
         >
-          <span>تعرّف على المزيد عن نموذج عمل المنصة</span>
+          <span data-i18n="how.title">تعرّف على المزيد عن نموذج عمل المنصة</span>
           <span class="material-symbols-outlined text-base group-hover:-translate-x-1 transition-transform">arrow_back</span>
         </a>
       </div>
 
     </section>
 
+    
     <!-- ----------------------------------------------------------------------
+         SECTION 2: ASSISTIVE DEVICES STOREFRONT SHOWCASE
+         ---------------------------------------------------------------------- -->
+    <section id="devices-store" class="py-20 bg-slate-50/70 border-b border-slate-200/80 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200 text-xs font-bold">
+            <span class="material-symbols-outlined text-sm text-purple-600">storefront</span>
+            <span data-i18n="store.badge">متجر وتدوير الأجهزة الطبية في اليمن</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight" data-i18n="store.title">
+            بنك الأجهزة المساعدة — متجر جسور للتأهيل
+          </h2>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <span data-i18n="store.subtitle">متجر ومجتمع متكامل لتوفير وإعادة تدوير الأجهزة الطبية والتأهيلية المعتمدة بأسعار ميسرة وتبرعات موثقة للمحتاجين.</span>
+          </p>
+
+          <!-- Quick Category Filter Pills -->
+          <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+            <a href="devices.html" class="px-4 py-2 rounded-xl text-xs font-bold bg-primary text-white shadow-2xs hover:bg-primary-dark transition flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">grid_view</span>
+              <span data-i18n="store.catAll">الكل</span>
+            </a>
+            <a href="devices.html?category=mobility" class="px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 border border-slate-200/80 hover:border-primary/40 hover:text-primary transition flex items-center gap-1.5 shadow-2xs">
+              <span class="material-symbols-outlined text-sm text-primary">accessible</span>
+              <span data-i18n="store.catWheelchairs">كراسي متحركة</span>
+            </a>
+            <a href="devices.html?category=walking_aids" class="px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 border border-slate-200/80 hover:border-primary/40 hover:text-primary transition flex items-center gap-1.5 shadow-2xs">
+              <span class="material-symbols-outlined text-sm text-primary">nordic_walking</span>
+              <span data-i18n="store.catWalkers">أدوات دعم المشي</span>
+            </a>
+            <a href="devices.html?category=rehabilitation" class="px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 border border-slate-200/80 hover:border-primary/40 hover:text-primary transition flex items-center gap-1.5 shadow-2xs">
+              <span class="material-symbols-outlined text-sm text-primary">fitness_center</span>
+              <span data-i18n="store.catStimulators">أجهزة علاج طبيعي وتأهيل</span>
+            </a>
+            <a href="devices.html?category=accessories" class="px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 border border-slate-200/80 hover:border-primary/40 hover:text-primary transition flex items-center gap-1.5 shadow-2xs">
+              <span class="material-symbols-outlined text-sm text-primary">bed</span>
+              <span data-i18n="store.catCushions">أسرّة ومستلزمات وجبائر</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Dynamic Live Devices Grid (Pre-populated Seed with Live DB Refresh) -->
+        <div id="home-devices-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Card 1 -->
+          <div class="bg-white rounded-3xl border border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all flex flex-col justify-between overflow-hidden group">
+            <div class="relative h-48 bg-slate-50 flex items-center justify-center p-2 overflow-hidden">
+              <img src="assets/images/devices/wheelchair-electric.svg" alt="كرسي متحرك كهربائي ذكي خفيف الوزن" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                <span class="px-2.5 py-1 rounded-xl text-[11px] font-bold bg-blue-50 text-blue-800 border border-blue-200 backdrop-blur-md">جديد</span>
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-white/90 text-slate-700 shadow-2xs">جديد بالكرتون</span>
+              </div>
+            </div>
+            <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                  <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                  <span>صنعاء</span>
+                  <span>•</span>
+                  <span>مؤسسة الأمل للأطراف</span>
+                </div>
+                <h3 class="text-base font-bold text-on-surface group-hover:text-primary transition">كرسي متحرك كهربائي ذكي خفيف الوزن</h3>
+                <p class="text-xs text-slate-600 line-clamp-2">بطارية ليثيوم طويلة الأمد مع وحدة تحكم ذكية قابلة للطي ومناسبة للاستخدام الداخلي والخارجي.</p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 font-semibold block">السعر:</span>
+                  <div class="text-base font-bold text-primary font-sans">450 <span class="text-xs font-medium text-slate-500">$ USD</span></div>
+                </div>
+                <a href="devices.html?product=dev-101" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-dark transition shadow-2xs">
+                  <span>عرض التفاصيل والشراء</span>
+                  <span class="material-symbols-outlined text-sm">arrow_left</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white rounded-3xl border border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all flex flex-col justify-between overflow-hidden group">
+            <div class="relative h-48 bg-slate-50 flex items-center justify-center p-2 overflow-hidden">
+              <img src="assets/images/devices/walker-rollator.svg" alt="مشاية طبية ألمنيوم رباعية العجلات (Rollator)" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                <span class="px-2.5 py-1 rounded-xl text-[11px] font-bold bg-purple-50 text-purple-800 border border-purple-200 backdrop-blur-md">مجدد معتمد</span>
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-white/90 text-slate-700 shadow-2xs">فحص سريري معتمد</span>
+              </div>
+            </div>
+            <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                  <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                  <span>عدن</span>
+                  <span>•</span>
+                  <span>مركز التعافي عدن</span>
+                </div>
+                <h3 class="text-base font-bold text-on-surface group-hover:text-primary transition">مشاية طبية ألمنيوم رباعية العجلات (Rollator)</h3>
+                <p class="text-xs text-slate-600 line-clamp-2">مزودة بمقعد مريح ومكابح يدوية وسلة تخزين للمستلزمات الشخصية، تم فحصها سريرياً وتعقيمها.</p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 font-semibold block">السعر:</span>
+                  <div class="text-base font-bold text-primary font-sans">65 <span class="text-xs font-medium text-slate-500">$ USD</span></div>
+                </div>
+                <a href="devices.html?product=dev-102" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-dark transition shadow-2xs">
+                  <span>عرض التفاصيل والشراء</span>
+                  <span class="material-symbols-outlined text-sm">arrow_left</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white rounded-3xl border border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all flex flex-col justify-between overflow-hidden group">
+            <div class="relative h-48 bg-slate-50 flex items-center justify-center p-2 overflow-hidden">
+              <img src="assets/images/devices/wheelchair-manual.svg" alt="كرسي متحرك يدوي خفيف الوزن قابل للطي" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                <span class="px-2.5 py-1 rounded-xl text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 backdrop-blur-md">تبرع مجاني</span>
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-white/90 text-slate-700 shadow-2xs">مجاناً للأسر المستحقة</span>
+              </div>
+            </div>
+            <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                  <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                  <span>المكلا</span>
+                  <span>•</span>
+                  <span>فاعل خير — حضرموت</span>
+                </div>
+                <h3 class="text-base font-bold text-on-surface group-hover:text-primary transition">كرسي متحرك يدوي خفيف الوزن قابل للطي</h3>
+                <p class="text-xs text-slate-600 line-clamp-2">كرسي يدوي بحالة ممتازة تبرع به أحد المحسنين، متاح مجاناً للمرضى والأسر المحتاجة بعد التحقق.</p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 font-semibold block">القيمة:</span>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">مجاناً (تبرع)</span>
+                </div>
+                <a href="devices.html?product=dev-103" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition shadow-2xs">
+                  <span>طلب التبرع المجاني</span>
+                  <span class="material-symbols-outlined text-sm">arrow_left</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="bg-white rounded-3xl border border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all flex flex-col justify-between overflow-hidden group">
+            <div class="relative h-48 bg-slate-50 flex items-center justify-center p-2 overflow-hidden">
+              <img src="assets/images/devices/tens-stimulator.svg" alt="جهاز تحفيز كهربائي للعضلات والأعصاب TENS/EMS" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                <span class="px-2.5 py-1 rounded-xl text-[11px] font-bold bg-blue-50 text-blue-800 border border-blue-200 backdrop-blur-md">جديد</span>
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-white/90 text-slate-700 shadow-2xs">جديد بالكرتون</span>
+              </div>
+            </div>
+            <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                  <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                  <span>تعز</span>
+                  <span>•</span>
+                  <span>تجهيزات الشفاء الطبية</span>
+                </div>
+                <h3 class="text-base font-bold text-on-surface group-hover:text-primary transition">جهاز تحفيز كهربائي للعضلات والأعصاب TENS/EMS</h3>
+                <p class="text-xs text-slate-600 line-clamp-2">جهاز محمول ثنائي القناة لتسكين الألم وإعادة تأهيل العضلات بعد الإصابات والجلطات الدماغية.</p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 font-semibold block">السعر:</span>
+                  <div class="text-base font-bold text-primary font-sans">85 <span class="text-xs font-medium text-slate-500">$ USD</span></div>
+                </div>
+                <a href="devices.html?product=dev-104" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-dark transition shadow-2xs">
+                  <span>عرض التفاصيل والشراء</span>
+                  <span class="material-symbols-outlined text-sm">arrow_left</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="bg-white rounded-3xl border border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all flex flex-col justify-between overflow-hidden group">
+            <div class="relative h-48 bg-slate-50 flex items-center justify-center p-2 overflow-hidden">
+              <img src="assets/images/devices/rehab-bike.svg" alt="دراجة تمارين تأهيلية للأطراف العلوية والسفلية" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                <span class="px-2.5 py-1 rounded-xl text-[11px] font-bold bg-purple-50 text-purple-800 border border-purple-200 backdrop-blur-md">مجدد معتمد</span>
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-white/90 text-slate-700 shadow-2xs">فحص سريري معتمد</span>
+              </div>
+            </div>
+            <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                  <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                  <span>إب</span>
+                  <span>•</span>
+                  <span>مركز الحياة للتأهيل الحركي</span>
+                </div>
+                <h3 class="text-base font-bold text-on-surface group-hover:text-primary transition">دراجة تمارين تأهيلية للأطراف العلوية والسفلية</h3>
+                <p class="text-xs text-slate-600 line-clamp-2">دراجة ثابتة صغيرة الحجم مع شاشة رقمية لحساب الوقت والسعرات لتنشيط الدورة الدموية لكبار السن.</p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 font-semibold block">السعر:</span>
+                  <div class="text-base font-bold text-primary font-sans">120 <span class="text-xs font-medium text-slate-500">$ USD</span></div>
+                </div>
+                <a href="devices.html?product=dev-105" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-dark transition shadow-2xs">
+                  <span>عرض التفاصيل والشراء</span>
+                  <span class="material-symbols-outlined text-sm">arrow_left</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="bg-white rounded-3xl border border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all flex flex-col justify-between overflow-hidden group">
+            <div class="relative h-48 bg-slate-50 flex items-center justify-center p-2 overflow-hidden">
+              <img src="assets/images/devices/hospital-bed.svg" alt="سرير طبي كهربائي ثلاثي الحركات مع مرتبة هوائية" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                <span class="px-2.5 py-1 rounded-xl text-[11px] font-bold bg-blue-50 text-blue-800 border border-blue-200 backdrop-blur-md">جديد</span>
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-white/90 text-slate-700 shadow-2xs">جديد بالكرتون</span>
+              </div>
+            </div>
+            <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                  <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                  <span>صنعاء</span>
+                  <span>•</span>
+                  <span>الشركة اليمنية للمستلزمات الطبية</span>
+                </div>
+                <h3 class="text-base font-bold text-on-surface group-hover:text-primary transition">سرير طبي كهربائي ثلاثي الحركات مع مرتبة هوائية</h3>
+                <p class="text-xs text-slate-600 line-clamp-2">تحكم كامل بالريموت للظهر والأرجل مع مرتبة هوائية طبية ضد التقرحات مخصصة لرعاية طريحي الفراش.</p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 font-semibold block">السعر:</span>
+                  <div class="text-base font-bold text-primary font-sans">850 <span class="text-xs font-medium text-slate-500">$ USD</span></div>
+                </div>
+                <a href="devices.html?product=dev-106" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-dark transition shadow-2xs">
+                  <span>عرض التفاصيل والشراء</span>
+                  <span class="material-symbols-outlined text-sm">arrow_left</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section Bottom CTA Area -->
+        <div class="mt-14 text-center space-y-4">
+          <div>
+            <a href="devices.html" class="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-primary text-white text-sm font-bold hover:bg-primary-dark transition-all duration-200 shadow-md hover:shadow-lg group">
+              <span class="material-symbols-outlined text-xl">shopping_bag</span>
+              <span data-i18n="store.viewAll">تصفح المتجر الكامل وجميع التصنيفات</span>
+              <span class="material-symbols-outlined text-base group-hover:-translate-x-1 transition-transform">arrow_back</span>
+            </a>
+          </div>
+
+          <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-amber-50 text-amber-900 border border-amber-200/80 text-xs sm:text-sm font-medium">
+            <span class="material-symbols-outlined text-base text-amber-600">monetization_on</span>
+            <span data-i18n="store.sellerHint">هل أنت مشترك معنا؟ يمكنك رفع أجهزتك الطبية للبيع والربح مباشرة عبر المتجر.</span>
+            <a href="devices.html" class="font-bold underline text-primary hover:text-primary-dark mr-1" data-i18n="store.sellerLink">تصفح شروط الرفع والبيع</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <script>
+      // Live reload of home devices from Supabase / centralized store
+      document.addEventListener('DOMContentLoaded', async () => {
+        try {
+          if (window.jisrDB && typeof window.jisrDB.fetchAssistiveDevices === 'function') {
+            const list = await window.jisrDB.fetchAssistiveDevices();
+            const available = Array.isArray(list) ? list.filter(d => d.status === 'available').slice(0, 6) : [];
+            const container = document.getElementById('home-devices-grid');
+            if (container && available.length > 0) {
+              container.innerHTML = available.map(d => {
+                const isDonation = d.listing_type === 'donation' || d.price_usd === 0;
+                const priceBadge = isDonation 
+                  ? '<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">مجاناً (تبرع)</span>'
+                  : `<div class="text-base font-bold text-primary font-sans">${d.price_usd} <span class="text-xs font-medium text-slate-500">$ USD</span></div>`;
+
+                const typeBadgeColor = d.listing_type === 'donation'
+                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                  : d.listing_type === 'refurbished'
+                  ? 'bg-purple-50 text-purple-800 border-purple-200'
+                  : 'bg-blue-50 text-blue-800 border-blue-200';
+
+                return `
+                  <div class="bg-white rounded-3xl border border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all flex flex-col justify-between overflow-hidden group">
+                    <div class="relative h-48 bg-slate-50 flex items-center justify-center p-2 overflow-hidden">
+                      <img src="${d.image_url || 'assets/images/devices/wheelchair-electric.svg'}" alt="${d.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='assets/images/devices/wheelchair-electric.svg';">
+                      <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                        <span class="px-2.5 py-1 rounded-xl text-[11px] font-bold border backdrop-blur-md ${typeBadgeColor}">
+                          ${d.listing_label || (isDonation ? 'تبرع مجاني' : 'معروض للبيع')}
+                        </span>
+                      </div>
+                      <div class="absolute bottom-3 right-3">
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-white/90 text-slate-700 shadow-2xs">
+                          ${d.condition_label || 'فحص معتمد'}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                      <div class="space-y-2">
+                        <div class="flex items-center gap-2 text-xs text-slate-500">
+                          <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                          <span>${d.city || 'اليمن'}</span>
+                          <span>•</span>
+                          <span>${d.seller_name || 'مركز شريك'}</span>
+                        </div>
+                        <h3 class="text-base font-bold text-on-surface group-hover:text-primary transition leading-snug">${d.title}</h3>
+                        <p class="text-xs text-slate-600 line-clamp-2">${d.description || 'جهاز طبي ومساعد معتمد خضع للفحص الفني والتعقيم السريري وجاهز للاستخدام الفوري.'}</p>
+                      </div>
+                      <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                          <span class="text-[10px] text-slate-400 font-semibold block">السعر:</span>
+                          ${priceBadge}
+                        </div>
+                        <a href="devices.html?product=${d.id}" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl ${isDonation ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-primary hover:bg-primary-dark'} text-white text-xs font-bold transition shadow-2xs">
+                          <span>${isDonation ? 'طلب التبرع' : 'عرض التفاصيل والشراء'}</span>
+                          <span class="material-symbols-outlined text-sm">arrow_left</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }).join('');
+            }
+          }
+        } catch (err) {
+          console.error('Home devices fetch failed:', err);
+        }
+      });
+    </script>
+
+<!-- ----------------------------------------------------------------------
          SECTION 3: MINIMALIST CTA BANNER
          ---------------------------------------------------------------------- -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
       <div class="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-12 shadow-card relative overflow-hidden">
         
         <div class="max-w-2xl space-y-4 text-center sm:text-start">
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary" data-i18n="cta.badge">
             انطلاقة جديدة للرعاية الرقمية
           </span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">
+          <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight" data-i18n="cta.title">
             جاهز لبدء رحلة التعافي أو التعاون المؤسسي؟
           </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed" data-i18n="cta.subtitle">
             سواء كنت مستفيداً يبحث عن خطة منزلية آمنة، أو أخصائياً، أو ممثلاً لمنشأة صحية أو جمعية ترغب بالانضمام، جسور للتأهيل يوفر لك البنية السحابية المعتمدة.
           </p>
           <div class="flex flex-col sm:flex-row items-center gap-3 pt-3">
@@ -338,18 +787,102 @@
               href="services.html" 
               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-xs sm:text-sm font-bold hover:bg-primary-dark transition shadow-2xs"
             >
-              <span>استعراض الخدمات السريرية</span>
+              <span data-i18n="cta.btnServices">استعراض الخدمات السريرية</span>
               <span class="material-symbols-outlined text-base">arrow_forward</span>
             </a>
             <a 
               href="partners.html" 
               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200/70 text-slate-700 text-xs sm:text-sm font-semibold transition"
             >
-              <span>طلب اعتماد شريك</span>
+              <span data-i18n="cta.btnPartner">طلب اعتماد شريك</span>
             </a>
           </div>
         </div>
 
+      </div>
+    </section>
+
+  
+    <!-- ========================================================================
+         INFINITE MARQUEE STRIP (FEATURES, SERVICES & PARTNERS)
+         ======================================================================== -->
+    <section id="infinite-marquee-section" class="py-6 bg-white border-y border-slate-200/70 overflow-hidden relative" aria-label="أبرز مزايا وخدمات المنصة">
+      <div class="marquee-container">
+        <div class="marquee-track flex items-center">
+          
+          <!-- Marquee Item 1 -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-primary text-lg">medical_services</span>
+            <span data-i18n="marquee.item1">استشارات تأهيلية عن بُعد</span>
+          </div>
+
+          <!-- Marquee Item 2 -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-secondary text-lg">local_hospital</span>
+            <span data-i18n="marquee.item2">مستشفيات ومراكز شريكة معتمدة</span>
+          </div>
+
+          <!-- Marquee Item 3 -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-purple-600 text-lg">storefront</span>
+            <span data-i18n="marquee.item3">متجر بنك الأجهزة والمستلزمات الطبية</span>
+          </div>
+
+          <!-- Marquee Item 4 -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-amber-500 text-lg">event_available</span>
+            <span data-i18n="marquee.item4">حجز مواعيد حضورية فورية</span>
+          </div>
+
+          <!-- Marquee Item 5 -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-emerald-600 text-lg">volunteer_activism</span>
+            <span data-i18n="marquee.item5">شراكات فاعلة مع جمعيات رعاية المعاقين</span>
+          </div>
+
+          <!-- Marquee Item 6 -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-primary text-lg">monitor_heart</span>
+            <span data-i18n="marquee.item6">خطط علاج حركي وفيزيائي موجهة</span>
+          </div>
+
+          <!-- Marquee Item 7 -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-secondary text-lg">verified_user</span>
+            <span data-i18n="hero.statGovernance">حوكمة سريرية وإشراف طبي شامل</span>
+          </div>
+
+          <!-- Repeating Items for Seamless Continuous Loop -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-primary text-lg">medical_services</span>
+            <span data-i18n="marquee.item1">استشارات تأهيلية عن بُعد</span>
+          </div>
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-secondary text-lg">local_hospital</span>
+            <span data-i18n="marquee.item2">مستشفيات ومراكز شريكة معتمدة</span>
+          </div>
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-purple-600 text-lg">storefront</span>
+            <span data-i18n="marquee.item3">متجر بنك الأجهزة والمستلزمات الطبية</span>
+          </div>
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-amber-500 text-lg">event_available</span>
+            <span data-i18n="marquee.item4">حجز مواعيد حضورية فورية</span>
+          </div>
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-emerald-600 text-lg">volunteer_activism</span>
+            <span data-i18n="marquee.item5">شراكات فاعلة مع جمعيات رعاية المعاقين</span>
+          </div>
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-primary text-lg">monitor_heart</span>
+            <span data-i18n="marquee.item6">خطط علاج حركي وفيزيائي موجهة</span>
+          </div>
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 shrink-0 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs">
+            <span class="material-symbols-outlined text-secondary text-lg">verified_user</span>
+            <span data-i18n="hero.statGovernance">حوكمة سريرية وإشراف طبي شامل</span>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -371,20 +904,22 @@
             </div>
             <div>
               <span class="text-lg font-bold text-primary block leading-none">جسور للتأهيل</span>
-              <span class="text-[11px] text-slate-500 mt-1 block">منظومة الرعاية والتأهيل الطبي المنزلي وعن بُعد</span>
+              <span class="text-[11px] text-slate-500 mt-1 block" data-i18n="nav.tagline">منظومة الرعاية والتأهيل الطبي المنزلي وعن بُعد</span>
             </div>
           </div>
-          <p class="text-xs text-slate-500 leading-relaxed max-w-md">
+          <p class="text-xs text-slate-500 leading-relaxed max-w-md" data-i18n="footer.desc">
             مشروع رقمي صحي متخصص يربط أصحاب الاحتياجات التأهيلية بنخبة من المختصين والمشرفين الحركيين والجهات المانحة لتقديم رعاية منزلية موثوقة ومستمرة.
           </p>
         </div>
 
         <!-- Quick Subpage Links (3 cols) -->
         <div class="md:col-span-3 space-y-3">
-          <h3 class="text-xs font-bold text-slate-800 tracking-wider uppercase">استكشف المنصة</h3>
+          <h3 class="text-xs font-bold text-slate-800 tracking-wider uppercase" data-i18n="footer.quickLinks">استكشف المنصة</h3>
           <ul class="space-y-2 text-xs text-slate-600">
             <li><a href="about.html" class="hover:text-primary transition">عن المنصة ورسالتها</a></li>
             <li><a href="services.html" class="hover:text-primary transition">الخدمات التأهيلية</a></li>
+            <li><a href="booking.html" class="hover:text-primary transition">حجز موعد حضوري</a></li>
+            <li><a href="devices.html" class="hover:text-primary transition">سوق وبنك الأجهزة</a></li>
             <li><a href="partners.html" class="hover:text-primary transition">شبكة الشركاء والاعتماد</a></li>
             <li><a href="faq.html" class="hover:text-primary transition">الأسئلة الشائعة</a></li>
             <li><a href="contact.html" class="hover:text-primary transition">تواصل مع الإدارة</a></li>
@@ -393,10 +928,10 @@
 
         <!-- Legal & Accessibility (3 cols) -->
         <div class="md:col-span-3 space-y-3">
-          <h3 class="text-xs font-bold text-slate-800 tracking-wider uppercase">السياسات والحوكمة</h3>
+          <h3 class="text-xs font-bold text-slate-800 tracking-wider uppercase" data-i18n="footer.legal">السياسات والحوكمة</h3>
           <ul class="space-y-2 text-xs text-slate-600">
-            <li><a href="privacy.html" class="hover:text-primary transition">سياسة الخصوصية وحماية البيانات</a></li>
-            <li><a href="terms.html" class="hover:text-primary transition">الشروط والأحكام</a></li>
+            <li><a href="privacy.html" class="hover:text-primary transition" data-i18n="footer.privacyPolicy">سياسة الخصوصية وحماية البيانات</a></li>
+            <li><a href="terms.html" class="hover:text-primary transition" data-i18n="footer.terms">الشروط والأحكام</a></li>
             <li>
               <button 
                 type="button" 
@@ -404,7 +939,7 @@
                 class="hover:text-primary transition text-start inline-flex items-center gap-1.5"
               >
                 <span class="material-symbols-outlined text-sm">accessibility_new</span>
-                <span>أدوات تيسير الوصول الرقمي</span>
+                <span data-i18n="a11y.title">أدوات تيسير الوصول الرقمي</span>
               </button>
             </li>
           </ul>
@@ -414,7 +949,7 @@
 
       <!-- Copyright Bar -->
       <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 text-center sm:text-start">
-        <p>جميع الحقوق محفوظة لمنصة جسور للتأهيل والرعاية عن بُعد © 2026</p>
+        <p data-i18n="footer.rights">جميع الحقوق محفوظة لجسور للتأهيل والرعاية عن بُعد © 2026</p>
         <div class="flex items-center gap-3">
           <a href="privacy.html" class="hover:text-primary transition">الخصوصية</a>
           <span>•</span>
@@ -548,5 +1083,78 @@
       }
     });
   </script>
+
+  <!-- ======================================================================
+       APP DOWNLOAD & BENEFICIARY ONBOARDING MODAL
+       ====================================================================== -->
+  <div id="app-download-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs transition-opacity" role="dialog" aria-modal="true" aria-labelledby="app-modal-title" onclick="if(event.target===this)closeAppDownloadModal()">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 shadow-2xl space-y-6 text-center relative animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Close button -->
+      <button type="button" id="app-modal-close-btn" data-close-app-modal onclick="closeAppDownloadModal()" class="absolute top-5 end-5 text-slate-400 hover:text-slate-600 transition" aria-label="إغلاق النافذة">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+
+      <!-- Icon & Headline -->
+      <div class="space-y-3">
+        <div class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto shadow-2xs">
+          <span class="material-symbols-outlined text-3xl">phone_iphone</span>
+        </div>
+        <div class="space-y-1.5">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[11px] font-bold">
+            <span class="material-symbols-outlined text-xs">verified</span>
+            <span data-i18n="appModal.badge">تطبيق الهواتف الذكية (Android & iOS)</span>
+          </div>
+          <h2 id="app-modal-title" data-i18n="appModal.title" class="text-xl font-bold text-on-surface">تطبيق جسور للتأهيل المنزلي</h2>
+          <p id="app-modal-desc" data-i18n="appModal.desc" class="text-xs text-slate-600 leading-relaxed px-2">
+            تطبيق «جسور للتأهيل» متاح الآن للأجهزة الذكية لتقديم خدمات الرعاية والحجز والتأهيل المتكاملة ومتابعة الخطط العلاجية المنزلية مع نخبة الأخصائيين المعتمدين.
+          </p>
+        </div>
+      </div>
+
+      <!-- Dynamic QR Code Card -->
+      <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 inline-block mx-auto">
+        <img 
+          id="app-modal-qr" 
+          src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https%3A%2F%2Fjusoor-rehab.vercel.app%2Fdownload-app" 
+          alt="QR Code لتحميل تطبيق جسور للتأهيل" 
+          class="w-40 h-40 rounded-xl border border-slate-200 p-2 bg-white mx-auto shadow-2xs"
+          style="image-rendering: pixelated;"
+        >
+        <p class="text-[11px] text-slate-500 font-medium flex items-center justify-center gap-1">
+          <span class="material-symbols-outlined text-sm text-primary">qr_code_scanner</span>
+          <span data-i18n="appModal.scanHint">امسح الرمز بكاميرا هاتفك للتحميل المباشر</span>
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-2.5 pt-1">
+        <!-- Primary Download Button -->
+        <a 
+          id="app-modal-primary-btn" 
+          href="https://jusoor-rehab.vercel.app/download-app" 
+          target="_blank" 
+          rel="noopener" 
+          class="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-xs sm:text-sm font-bold shadow-sm transition flex items-center justify-center gap-2"
+        >
+          <span class="material-symbols-outlined text-lg">download</span>
+          <span data-i18n="appModal.downloadBtn">تحميل تطبيق جسور للتأهيل</span>
+        </a>
+
+        <!-- Secondary Beneficiary Portal Demo Button -->
+        <a 
+          id="app-modal-portal-btn"
+          href="../المستفيد/الصفحة الرئيسية/الرئيسية/code.html" 
+          class="w-full py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition flex items-center justify-center gap-2"
+        >
+          <span class="material-symbols-outlined text-base">visibility</span>
+          <span data-i18n="appModal.portalBtn">الانتقال إلى بوابة المستفيدين (نسخة العرض)</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
 </body>
+
 </html>

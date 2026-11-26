@@ -4,9 +4,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الأسئلة الشائعة — منصة جسور للتأهيل</title>
+  <script>
+    (function(){
+      var lang = localStorage.getItem('jusoor_lang') || localStorage.getItem('jisr_lang') || 'ar';
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    })();
+  </script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <title>الأسئلة الشائعة — جسور للتأهيل</title>
   <meta name="description"
-    content="إجابات وافية وشاملة عن كل ما يتعلق بمنصة جسور للتأهيل والرعاية عن بُعد: التقييم، التمارين، الأخصائيين، الحسابات، الخصوصية.">
+    content="إجابات وافية وشاملة عن كل ما يتعلق بجسور للتأهيل والرعاية عن بُعد: التقييم، التمارين، الأخصائيين، الحسابات، الخصوصية.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -48,6 +58,223 @@
 </head>
 
 <body class="bg-[#f8fafd] text-on-surface antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- Medical Decorative Background (Waves, Heart ECG, Wheelchair Rehab Caregiver, Dumbbell & Dots) -->
+  <div class="medical-decor-bg pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <svg class="medical-decor-svg" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="faq-wave-grad-tl" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18" />
+        <stop offset="60%" stop-color="#14b8a6" stop-opacity="0.10" />
+        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
+      </linearGradient>
+
+      <linearGradient id="faq-wave-grad-br" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0" />
+        <stop offset="40%" stop-color="#2dd4bf" stop-opacity="0.22" />
+        <stop offset="80%" stop-color="#0ea5e9" stop-opacity="0.30" />
+        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.35" />
+      </linearGradient>
+
+      <linearGradient id="faq-wave-grad-bl" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.12" />
+        <stop offset="100%" stop-color="#14b8a6" stop-opacity="0" />
+      </linearGradient>
+
+      <pattern id="faq-dots-sky" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.7" fill="#38bdf8" />
+      </pattern>
+      <pattern id="faq-dots-teal" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.7" fill="#14b8a6" />
+      </pattern>
+    </defs>
+
+    <!-- ======================================================================
+         TOP-LEFT FLUID WAVE RIBBONS
+         ====================================================================== -->
+    <!-- Top-Left Soft Wash -->
+    <path d="M -40,-40 L 480,-40 C 420,120 280,220 120,240 C 40,250 -20,240 -40,220 Z" 
+          fill="url(#faq-wave-grad-tl)" />
+
+    <!-- Top-Left Curving Wave Layer 1 (Sky Blue) -->
+    <path d="M -20,60 C 180,110 320,180 440,80 C 520,10 620,-20 720,-40" 
+          stroke="#38bdf8" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.45" />
+
+    <!-- Top-Left Curving Wave Layer 2 (Teal) -->
+    <path d="M -20,180 C 140,240 280,160 380,80 C 460,20 540,-20 620,-30" 
+          stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.40" />
+
+    <!-- Top-Left Thin Bezier Accent -->
+    <path d="M -20,130 C 160,180 300,120 420,40" 
+          stroke="#2dd4bf" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.35" />
+
+    <!-- ======================================================================
+         BOTTOM-RIGHT FLUID WAVE RIBBONS
+         ====================================================================== -->
+    <!-- Bottom-Right Wave Wash -->
+    <path d="M 800,920 C 950,860 1100,720 1280,740 C 1360,750 1420,780 1460,820 L 1460,920 Z" 
+          fill="url(#faq-wave-grad-br)" />
+
+    <!-- Bottom-Right Wave Band 1 (Teal) -->
+    <path d="M 720,920 C 880,840 1060,700 1260,710 C 1360,715 1420,740 1460,760" 
+          stroke="#14b8a6" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.50" />
+
+    <!-- Bottom-Right Wave Band 2 (Sky Blue) -->
+    <path d="M 820,920 C 960,880 1140,740 1320,760 C 1390,770 1430,790 1460,810" 
+          stroke="#38bdf8" stroke-width="2.8" stroke-linecap="round" fill="none" opacity="0.45" />
+
+    <!-- Bottom-Right Fine Wave Trace -->
+    <path d="M 640,920 C 800,820 1020,680 1220,700 C 1340,710 1420,680 1460,670" 
+          stroke="#0ea5e9" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.40" />
+
+    <!-- Bottom-Left Soft Organic Curve -->
+    <path d="M -30,680 C 80,700 180,760 220,860 C 240,900 240,920 230,940 L -30,940 Z" 
+          fill="url(#faq-wave-grad-bl)" />
+
+    <!-- ======================================================================
+         REHABILITATION & MEDICAL GRAPHICS (MATCHING REFERENCE IMAGE)
+         ====================================================================== -->
+    <!-- 1. Heart with ECG Heartbeat Pulse Cutout (Top-Right) -->
+    
+    <g class="heart-pulse-icon" transform="translate(1120, 105) scale(0.95)" opacity="0.32">
+      <!-- Heart Vector -->
+      <path d="M 0,28 C 0,10 -15,-6 -34,-6 C -54,-6 -68,10 -68,28 C -68,58 -28,88 0,118 C 28,88 68,58 68,28 C 68,10 54,-6 34,-6 C 15,-6 0,10 0,28 Z" 
+            fill="#38bdf8" />
+      <!-- ECG Heartbeat Pulse Cutout Line -->
+      <path d="M -54,34 L -26,34 L -18,18 L -9,52 L 0,8 L 9,42 L 18,24 L 26,34 L 54,34" 
+            fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  
+
+    <!-- 2. Medical Cross beside Heart (Top-Right) -->
+    
+    <g transform="translate(1230, 155)" opacity="0.35">
+      <rect x="11.559999999999999" y="0" width="10.88" height="34" rx="4" fill="#38bdf8" />
+      <rect x="0" y="11.559999999999999" width="34" height="10.88" rx="4" fill="#38bdf8" />
+    </g>
+  
+
+    <!-- 3. Caregiver Assisting Wheelchair Patient (Mid-to-Lower Right) -->
+    
+    <g class="rehab-illustration" transform="translate(1080, 360) scale(1.15, 1.15)" opacity="0.28">
+      <!-- === THERAPIST / CAREGIVER FIGURE === -->
+      <!-- Head -->
+      <circle cx="95" cy="40" r="18" fill="#38bdf8" />
+      
+      <!-- Torso & Arms reaching to assist -->
+      <path d="M 90,65 C 80,68 65,85 58,110 L 45,160 C 42,172 52,180 62,178 C 72,175 75,165 80,150 L 88,125 L 125,145 C 138,152 150,148 165,148 C 180,148 190,142 195,135 C 190,132 178,135 160,135 L 120,110 L 105,70 C 102,65 98,63 90,65 Z" 
+            fill="#38bdf8" />
+
+      <!-- Legs (Standing / Stride) -->
+      <!-- Back leg -->
+      <path d="M 58,165 L 18,255 C 14,264 20,274 30,274 C 38,274 44,268 48,258 L 78,190 L 82,260 C 83,272 95,278 105,275 C 115,272 118,260 116,248 L 105,175 Z" 
+            fill="#38bdf8" />
+
+      <!-- === PATIENT IN WHEELCHAIR === -->
+      <!-- Patient Head -->
+      <circle cx="180" cy="115" r="16" fill="#38bdf8" />
+      
+      <!-- Patient Torso & Reaching Arm -->
+      <path d="M 172,138 C 160,142 152,155 152,175 L 152,210 L 195,210 C 205,210 210,202 210,192 L 208,160 C 208,145 195,135 172,138 Z" 
+            fill="#38bdf8" />
+      <!-- Arm holding/reaching to therapist -->
+      <path d="M 160,165 L 135,152 C 128,148 120,152 120,160 C 120,168 126,172 135,176 L 158,185 Z" 
+            fill="#38bdf8" />
+
+      <!-- Patient Legs seated -->
+      <path d="M 155,210 L 195,210 L 190,260 L 165,260 C 158,260 155,255 155,250 L 155,210 Z" 
+            fill="#38bdf8" />
+
+      <!-- WHEELCHAIR -->
+      <!-- Main Wheel Rim -->
+      <circle cx="178" cy="235" r="42" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" />
+      <!-- Wheel Hub -->
+      <circle cx="178" cy="235" r="7" fill="#38bdf8" />
+      <!-- Spokes / Frame elements -->
+      <path d="M 178,235 L 155,210 M 178,235 L 200,265 M 178,235 L 145,248 M 178,235 L 210,215" 
+            stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" />
+      <!-- Wheelchair Frame (Seat, backrest, footrest) -->
+      <path d="M 215,165 L 208,235 L 140,235 L 132,280 L 155,280" 
+            fill="none" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+      <!-- Front Caster Wheel -->
+      <circle cx="132" cy="280" r="8" fill="none" stroke="#38bdf8" stroke-width="3.5" />
+    </g>
+  
+
+    <!-- 4. Physical Therapy Dumbbell (Lower-Left) -->
+    
+    <g class="rehab-dumbbell" transform="translate(110, 680) rotate(-35) scale(1.1)" opacity="0.30">
+      <!-- Main Center Handle -->
+      <rect x="25" y="18" width="50" height="12" rx="4" fill="#38bdf8" />
+      <!-- Inner Left Collar -->
+      <rect x="20" y="10" width="8" height="28" rx="3" fill="#0ea5e9" />
+      <!-- Outer Left Main Weight Plate -->
+      <rect x="5" y="2" width="16" height="44" rx="6" fill="#38bdf8" />
+      <!-- Far Left End Cap -->
+      <rect x="0" y="7" width="6" height="34" rx="3" fill="#0ea5e9" />
+      
+      <!-- Inner Right Collar -->
+      <rect x="72" y="10" width="8" height="28" rx="3" fill="#0ea5e9" />
+      <!-- Outer Right Main Weight Plate -->
+      <rect x="79" y="2" width="16" height="44" rx="6" fill="#38bdf8" />
+      <!-- Far Right End Cap -->
+      <rect x="94" y="7" width="6" height="34" rx="3" fill="#0ea5e9" />
+    </g>
+  
+
+    <!-- 5. Small Medical Cross (Bottom-Right near wave) -->
+    
+    <g transform="translate(1020, 790)" opacity="0.32">
+      <rect x="8.84" y="0" width="8.32" height="26" rx="4" fill="#14b8a6" />
+      <rect x="0" y="8.84" width="26" height="8.32" rx="4" fill="#14b8a6" />
+    </g>
+  
+
+    <!-- ======================================================================
+         GEOMETRIC DOTS & CONCENTRIC CIRCLES
+         ====================================================================== -->
+    <!-- Top-Left Dot Grid (6x4) -->
+    
+    <rect x="50" y="40" width="110" height="75" fill="url(#faq-dots-sky)" opacity="0.32" />
+  
+
+    <!-- Top-Right Dot Grid (6x4) -->
+    
+    <rect x="1280" y="45" width="110" height="75" fill="url(#faq-dots-sky)" opacity="0.32" />
+  
+
+    <!-- Bottom-Left Dot Grid (7x4) -->
+    
+    <rect x="60" y="775" width="125" height="75" fill="url(#faq-dots-teal)" opacity="0.3" />
+  
+
+    <!-- Concentric Rings: Top-Left (below wave) -->
+    
+    <g transform="translate(200, 260)" opacity="0.28">
+      <circle cx="0" cy="0" r="26" fill="none" stroke="#38bdf8" stroke-width="2" />
+      <circle cx="0" cy="0" r="13" fill="none" stroke="#38bdf8" stroke-width="1.2" opacity="0.6" />
+    </g>
+  
+    <!-- Accent small solid dot -->
+    <circle cx="270" cy="220" r="11" fill="#38bdf8" opacity="0.25" />
+
+    <!-- Concentric Rings: Bottom-Left -->
+    
+    <g transform="translate(65, 870)" opacity="0.25">
+      <circle cx="0" cy="0" r="32" fill="none" stroke="#2dd4bf" stroke-width="2" />
+      <circle cx="0" cy="0" r="16" fill="none" stroke="#2dd4bf" stroke-width="1.2" opacity="0.6" />
+    </g>
+  
+
+    <!-- Concentric Rings: Bottom-Right -->
+    
+    <g transform="translate(1120, 845)" opacity="0.3">
+      <circle cx="0" cy="0" r="26" fill="none" stroke="#2dd4bf" stroke-width="2" />
+      <circle cx="0" cy="0" r="13" fill="none" stroke="#2dd4bf" stroke-width="1.2" opacity="0.6" />
+    </g>
+  
+  </svg>
+  </div>
   <!-- Scroll Progress Bar -->
   <div id="scroll-progress" style="transform: scaleX(0);"></div>
 
@@ -69,18 +296,16 @@
         </a>
 
         <!-- Center: Exactly 4 Text Navigation Links -->
-        <nav class="hidden md:flex items-center gap-1 sm:gap-2">
-          <a href="about.html"
-            class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition"
-            data-i18n="nav.about">عن المنصة</a>
-          <a href="services.html"
-            class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition"
-            data-i18n="nav.services">الخدمات</a>
-          <a href="partners.html"
-            class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary rounded-xl transition"
-            data-i18n="nav.partners">الشركاء</a>
-          <a href="faq.html" class="px-4 py-2 text-sm font-bold text-primary bg-primary/5 rounded-xl transition"
-            data-i18n="nav.faq">الأسئلة الشائعة</a>
+        <nav class="hidden md:flex items-center gap-7" aria-label="شريط التنقل الرئيسي">
+          <a href="about.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.about">عن جسور للتأهيل</a>
+          <a href="services.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.services">الخدمات</a>
+          <a href="booking.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.booking">حجز موعد</a>
+                    <a href="devices.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1 flex items-center gap-1.5" data-i18n="nav.devices">
+            <span class="material-symbols-outlined text-[17px] text-purple-600">storefront</span>
+            <span>بنك الأجهزة</span>
+          </a>
+<a href="partners.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.partners">الشركاء</a>
+          <a href="faq.html" class="nav-link text-sm font-bold text-primary transition-colors py-1" data-i18n="nav.faq">الأسئلة الشائعة</a>
         </nav>
 
         <!-- Left: Language Switcher + Single Login Button -->
@@ -90,11 +315,15 @@
             <span class="material-symbols-outlined text-base">language</span>
             <span data-i18n="nav.langSwitch">English</span>
           </button>
+          <a href="login.html?tab=register" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-secondary bg-secondary/10 hover:bg-secondary hover:text-white transition shadow-2xs">
+            <span class="material-symbols-outlined text-base">person_add</span>
+            <span data-i18n="nav.register">إنشاء حساب جديد</span>
+          </a>
           <a href="login.html"
             class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-sm"
             data-i18n="nav.login">
             <span class="material-symbols-outlined text-base">login</span>
-            <span>تسجيل الدخول</span>
+            <span data-i18n="nav.login">تسجيل الدخول</span>
           </a>
         </div>
       </div>
@@ -102,7 +331,7 @@
   </header>
 
   <!-- Main Content -->
-  <main class="flex-grow pt-28 pb-20">
+  <main class="flex-grow pt-28 pb-20 relative z-10">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
       <!-- Page Header -->
@@ -166,7 +395,7 @@
           <button type="button"
             class="faq-trigger w-full p-5 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition"
             aria-expanded="false">
-            <span class="faq-question">ما هي منصة جسور للتأهيل والرعاية عن بُعد؟</span>
+            <span class="faq-question">ما هي جسور للتأهيل والرعاية عن بُعد؟</span>
             <span
               class="material-symbols-outlined faq-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
           </button>
@@ -416,7 +645,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-white border-t border-outline-variant py-12 mt-auto">
+  <footer class="bg-white border-t border-outline-variant py-12 mt-auto relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-3">
@@ -442,7 +671,7 @@
 
       <div
         class="mt-8 pt-6 border-t border-outline-variant/60 text-center text-xs text-on-surface-variant flex flex-col sm:flex-row items-center justify-between gap-3">
-        <span>© 2026 منصة جسور للتأهيل والرعاية عن بُعد. جميع الحقوق محفوظة.</span>
+        <span>© 2026 جسور للتأهيل والرعاية عن بُعد. جميع الحقوق محفوظة.</span>
         <span class="text-slate-400">صُمم بمعايير طبية وتقنية آمنة</span>
       </div>
     </div>

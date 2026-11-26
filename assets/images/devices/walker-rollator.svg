@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgW" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="blueMetal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#006a61"/>
+      <stop offset="100%" stop-color="#004d46"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#cbd5e1"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bgW)"/>
+  <ellipse cx="200" cy="268" rx="130" ry="14" fill="#cbd5e1" opacity="0.6"/>
+
+  <g transform="translate(15, 0)">
+    <!-- Rear Legs -->
+    <line x1="145" y1="130" x2="120" y2="245" stroke="url(#blueMetal)" stroke-width="8" stroke-linecap="round"/>
+    <!-- Front Legs -->
+    <line x1="180" y1="130" x2="235" y2="245" stroke="url(#blueMetal)" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Cross Bracing -->
+    <line x1="132" y1="190" x2="210" y2="190" stroke="url(#chrome)" stroke-width="5" stroke-linecap="round"/>
+    <line x1="138" y1="165" x2="198" y2="165" stroke="url(#chrome)" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Padded Seat -->
+    <rect x="135" y="152" width="80" height="15" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <!-- Storage Basket / Bag under seat -->
+    <path d="M 142 167 L 148 205 L 202 205 L 208 167 Z" fill="#334155" stroke="#475569" stroke-width="2"/>
+    <line x1="155" y1="185" x2="195" y2="185" stroke="#64748b" stroke-width="2" stroke-dasharray="3 3"/>
+
+    <!-- Padded Curved Backrest Bar -->
+    <path d="M 145 110 C 175 95, 205 95, 230 110" fill="none" stroke="#1e293b" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 145 110 C 175 95, 205 95, 230 110" fill="none" stroke="#475569" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Adjustable Handle Tubes -->
+    <line x1="180" y1="130" x2="195" y2="60" stroke="url(#chrome)" stroke-width="7" stroke-linecap="round"/>
+    <line x1="150" y1="130" x2="162" y2="65" stroke="url(#chrome)" stroke-width="7" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- Ergonomic Hand Grips & Brake Levers -->
+    <rect x="185" y="48" width="28" height="14" rx="6" fill="#0f172a"/>
+    <path d="M 190 62 C 185 75, 178 78, 175 75" fill="none" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round"/> <!-- Brake lever -->
+    <!-- Brake cable -->
+    <path d="M 175 75 C 160 110, 140 180, 120 240" fill="none" stroke="#0f172a" stroke-width="2"/>
+
+    <!-- Wheels (4 Total) -->
+    <!-- Rear Left Wheel -->
+    <circle cx="118" cy="248" r="18" fill="#1e293b"/>
+    <circle cx="118" cy="248" r="10" fill="url(#chrome)"/>
+    <circle cx="118" cy="248" r="4" fill="#006a61"/>
+    <!-- Rear Right Wheel (Far) -->
+    <circle cx="145" cy="244" r="16" fill="#334155" opacity="0.6"/>
+
+    <!-- Front Left Wheel (Swivel) -->
+    <circle cx="238" cy="248" r="18" fill="#1e293b"/>
+    <circle cx="238" cy="248" r="10" fill="url(#chrome)"/>
+    <circle cx="238" cy="248" r="4" fill="#006a61"/>
+    <!-- Front Right Wheel (Far) -->
+    <circle cx="265" cy="244" r="16" fill="#334155" opacity="0.6"/>
+
+    <!-- Badge -->
+    <g transform="translate(290, 30)">
+      <rect width="70" height="24" rx="12" fill="#006a61" opacity="0.9"/>
+      <text x="35" y="16" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">ROLLATOR</text>
+    </g>
+  </g>
+</svg>

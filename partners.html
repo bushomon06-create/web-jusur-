@@ -3,7 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>شبكة الشركاء والاعتماد — منصة جسور للتأهيل</title>
+  <script>
+    (function(){
+      var lang = localStorage.getItem('jusoor_lang') || localStorage.getItem('jisr_lang') || 'ar';
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    })();
+  </script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <title>شبكة الشركاء والاعتماد — جسور للتأهيل</title>
   <meta name="description" content="انضم إلى شبكة شركاء منصة جسور للتأهيل: المستشفيات والمراكز، الأخصائيون المعالجون، المشرفون الحركيون، والجمعيات الخيرية. قدم طلب الاعتماد الآن.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,6 +60,166 @@
   <!-- Top Scroll Progress Bar -->
   <div id="scroll-progress"></div>
 
+  <!-- Medical Decorative Background (Fluid Waves, Dot Patterns, ECG, Crosses & Ambient Gradients) -->
+  <div class="medical-decor-bg pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <svg class="medical-decor-svg" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <!-- Gradient Aura along the waves -->
+      <linearGradient id="p-wave-grad-1" x1="0%" y1="40%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.08" />
+        <stop offset="50%" stop-color="#14b8a6" stop-opacity="0.06" />
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.08" />
+      </linearGradient>
+
+      <!-- Linear gradient for primary fluid wave -->
+      <linearGradient id="p-wave-stroke-teal" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.55" />
+        <stop offset="45%" stop-color="#14b8a6" stop-opacity="0.50" />
+        <stop offset="75%" stop-color="#2dd4bf" stop-opacity="0.45" />
+        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.55" />
+      </linearGradient>
+
+      <!-- Linear gradient for counter fluid wave -->
+      <linearGradient id="p-wave-stroke-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.45" />
+        <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.55" />
+        <stop offset="100%" stop-color="#14b8a6" stop-opacity="0.40" />
+      </linearGradient>
+
+      <!-- Dot Pattern: Sky Blue -->
+      <pattern id="p-dots-sky" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.5" fill="#0ea5e9" opacity="0.32" />
+      </pattern>
+
+      <!-- Dot Pattern: Teal -->
+      <pattern id="p-dots-teal" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.5" fill="#14b8a6" opacity="0.30" />
+      </pattern>
+    </defs>
+
+    <!-- Translucent Wave Ribbon Glow -->
+    <path d="M 0,340 C 340,370 480,570 720,580 S 1080,440 1440,390 L 1440,510 C 1170,530 1000,410 720,410 C 440,410 260,540 0,550 Z" 
+          fill="url(#p-wave-grad-1)" />
+
+    <!-- ======================================================================
+         PRIMARY FLUID WAVE GROUP (Sky Blue & Teal Multi-Ribbon Lines)
+         ====================================================================== -->
+    <!-- Line 1: Main guide wave -->
+    <path d="M -20,380 C 360,420 520,620 720,620 C 920,620 1120,480 1460,430" 
+          stroke="url(#p-wave-stroke-teal)" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.5" />
+    
+    <!-- Line 2: Offset wave (+16px) -->
+    <path d="M -20,396 C 360,436 520,636 720,636 C 920,636 1120,496 1460,446" 
+          stroke="#14b8a6" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.4" />
+
+    <!-- Line 3: Offset wave (-18px) -->
+    <path d="M -20,362 C 340,398 500,598 720,600 C 900,600 1100,460 1460,414" 
+          stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.35" />
+
+    <!-- Line 4: Offset wave (-35px) -->
+    <path d="M -20,345 C 330,375 480,575 720,580 C 900,580 1080,440 1460,395" 
+          stroke="#0ea5e9" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.3" />
+
+    <!-- Line 5: Offset wave (+32px) -->
+    <path d="M -20,412 C 380,455 540,655 720,655 C 920,655 1140,515 1460,465" 
+          stroke="#2dd4bf" stroke-width="1.7" stroke-linecap="round" fill="none" opacity="0.35" />
+
+    <!-- Line 6: Subtle fine wave (+48px) -->
+    <path d="M -20,428 C 390,470 550,670 720,670 C 930,670 1150,530 1460,480" 
+          stroke="#0284c7" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.25" />
+
+    <!-- ======================================================================
+         COUNTER INTERTWINING WAVE GROUP (Crossing across the primary ribbon)
+         ====================================================================== -->
+    <!-- Counter Line 1 -->
+    <path d="M -20,520 C 350,490 520,360 780,370 C 1000,380 1150,490 1460,470" 
+          stroke="url(#p-wave-stroke-cyan)" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.45" />
+
+    <!-- Counter Line 2 (+16px) -->
+    <path d="M -20,536 C 360,506 530,376 780,386 C 1010,396 1160,506 1460,486" 
+          stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.38" />
+
+    <!-- Counter Line 3 (-18px) -->
+    <path d="M -20,502 C 340,472 510,342 780,352 C 990,362 1140,472 1460,452" 
+          stroke="#14b8a6" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.35" />
+
+    <!-- Counter Line 4 (+32px) -->
+    <path d="M -20,552 C 370,522 540,392 780,402 C 1020,412 1170,522 1460,502" 
+          stroke="#2dd4bf" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.3" />
+
+    <!-- ======================================================================
+         DOT PATTERNS (CORNERS & EDGES)
+         ====================================================================== -->
+    <!-- Top-Left Dot Grid (approx 6 cols x 8 rows) -->
+    <rect x="50" y="110" width="115" height="150" fill="url(#p-dots-sky)" />
+
+    <!-- Bottom-Left Dot Grid -->
+    <rect x="55" y="660" width="130" height="135" fill="url(#p-dots-teal)" />
+
+    <!-- Top-Right Dot Grid -->
+    <rect x="1275" y="120" width="115" height="135" fill="url(#p-dots-sky)" opacity="0.8" />
+
+    <!-- ======================================================================
+         MEDICAL ICONS: CROSSES (+)
+         ====================================================================== -->
+    <!-- Cross 1: Upper Left -->
+    <g transform="translate(105, 235)" opacity="0.32">
+      <rect x="11" y="0" width="10" height="32" rx="4" fill="#38bdf8" />
+      <rect x="0" y="11" width="32" height="10" rx="4" fill="#38bdf8" />
+    </g>
+
+    <!-- Cross 2: Lower Left -->
+    <g transform="translate(120, 540)" opacity="0.28">
+      <rect x="10" y="0" width="8" height="28" rx="3.5" fill="#14b8a6" />
+      <rect x="0" y="10" width="28" height="8" rx="3.5" fill="#14b8a6" />
+    </g>
+
+    <!-- Cross 3: Lower Right -->
+    <g transform="translate(1120, 780)" opacity="0.30">
+      <rect x="11" y="0" width="10" height="32" rx="4" fill="#0ea5e9" />
+      <rect x="0" y="11" width="32" height="10" rx="4" fill="#0ea5e9" />
+    </g>
+
+    <!-- Cross 4: Far Right -->
+    <g transform="translate(1330, 480)" opacity="0.25">
+      <rect x="8" y="0" width="7" height="23" rx="3" fill="#2dd4bf" />
+      <rect x="0" y="8" width="23" height="7" rx="3" fill="#2dd4bf" />
+    </g>
+
+    <!-- ======================================================================
+         ECG / HEARTBEAT PULSE LINES
+         ====================================================================== -->
+    <!-- ECG Pulse: Bottom-Left (near lower cards) -->
+    <g transform="translate(60, 710)" opacity="0.42">
+      <path d="M 0,25 L 35,25 Q 40,25 43,20 Q 46,25 50,25 L 62,25 L 70,38 L 80,4 L 90,52 L 98,25 L 112,25 Q 120,16 128,25 L 180,25" 
+            fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- ECG Pulse: Middle-Right (negative space edge) -->
+    <g transform="translate(1220, 530)" opacity="0.38">
+      <path d="M 0,25 L 32,25 Q 36,25 39,21 Q 42,25 46,25 L 56,25 L 64,36 L 73,6 L 82,48 L 89,25 L 102,25 Q 109,17 116,25 L 160,25" 
+            fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- ======================================================================
+         CONCENTRIC GEOMETRIC CIRCLES
+         ====================================================================== -->
+    <!-- Circles 1: Bottom Right -->
+    <g transform="translate(1280, 720)">
+      <circle cx="0" cy="0" r="42" fill="none" stroke="#2dd4bf" stroke-width="1.5" opacity="0.25" />
+      <circle cx="0" cy="0" r="24" fill="none" stroke="#0ea5e9" stroke-width="1.2" opacity="0.32" />
+      <circle cx="0" cy="0" r="3.5" fill="#14b8a6" opacity="0.38" />
+    </g>
+
+    <!-- Circles 2: Bottom Left -->
+    <g transform="translate(190, 810)">
+      <circle cx="0" cy="0" r="34" fill="none" stroke="#38bdf8" stroke-width="1.4" opacity="0.22" />
+      <circle cx="0" cy="0" r="18" fill="none" stroke="#14b8a6" stroke-width="1" opacity="0.28" />
+      <circle cx="0" cy="0" r="2.5" fill="#0ea5e9" opacity="0.35" />
+    </g>
+  </svg>
+  </div>
+
   <!-- Accessibility Skip Link -->
   <a href="#main-content" class="skip-link" data-i18n="skipLink">التخطي إلى المحتوى الرئيسي</a>
 
@@ -72,10 +242,15 @@
         </a>
 
         <!-- Center: Exactly 4 Dedicated Independent Page Links (Partners Active) -->
-        <nav class="hidden md:flex items-center gap-8" aria-label="شريط التنقل الرئيسي">
-          <a href="about.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.about">عن المنصة</a>
+        <nav class="hidden md:flex items-center gap-7" aria-label="شريط التنقل الرئيسي">
+          <a href="about.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.about">عن جسور للتأهيل</a>
           <a href="services.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.services">الخدمات</a>
-          <a href="partners.html" class="nav-link text-sm font-bold text-primary transition-colors py-1" data-i18n="nav.partners">الشركاء</a>
+          <a href="booking.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.booking">حجز موعد</a>
+                    <a href="devices.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1 flex items-center gap-1.5" data-i18n="nav.devices">
+            <span class="material-symbols-outlined text-[17px] text-purple-600">storefront</span>
+            <span>بنك الأجهزة</span>
+          </a>
+<a href="partners.html" class="nav-link text-sm font-bold text-primary transition-colors py-1" data-i18n="nav.partners">الشركاء</a>
           <a href="faq.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.faq">الأسئلة الشائعة</a>
         </nav>
 
@@ -91,6 +266,10 @@
             <span data-i18n="nav.langSwitch">English</span>
           </button>
 
+          <a href="login.html?tab=register" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-secondary bg-secondary/10 hover:bg-secondary hover:text-white transition shadow-2xs">
+            <span class="material-symbols-outlined text-base">person_add</span>
+            <span data-i18n="nav.register">إنشاء حساب جديد</span>
+          </a>
           <a 
             href="login.html" 
             class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition shadow-2xs hover:shadow-subtle"
@@ -117,10 +296,15 @@
     <!-- Mobile Dropdown Navigation -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-6 space-y-4 shadow-xl">
       <nav class="flex flex-col space-y-2">
-        <a href="about.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">عن المنصة</a>
-        <a href="services.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الخدمات</a>
-        <a href="partners.html" class="px-3 py-2.5 rounded-xl text-sm font-bold text-primary bg-primary/5 transition">الشركاء</a>
-        <a href="faq.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition">الأسئلة الشائعة</a>
+        <a href="about.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.about">عن جسور للتأهيل</a>
+        <a href="services.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.services">الخدمات</a>
+        <a href="booking.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.booking">حجز موعد</a>
+                <a href="devices.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition flex items-center gap-2" data-i18n="nav.devices">
+          <span class="material-symbols-outlined text-base text-purple-600">storefront</span>
+          <span>بنك الأجهزة</span>
+        </a>
+<a href="partners.html" class="px-3 py-2.5 rounded-xl text-sm font-bold text-primary bg-primary/5 transition" data-i18n="nav.partners">الشركاء</a>
+        <a href="faq.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.faq">الأسئلة الشائعة</a>
       </nav>
       <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
         <button type="button" data-lang-toggle class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold text-slate-600 border border-slate-200">
@@ -129,7 +313,11 @@
         </button>
         <a href="login.html" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition text-center shadow-2xs">
           <span class="material-symbols-outlined text-base">login</span>
-          <span>تسجيل الدخول</span>
+            <span data-i18n="nav.login">تسجيل الدخول</span>
+        </a>
+        <a href="login.html?tab=register" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold text-secondary bg-secondary/10 hover:bg-secondary hover:text-white transition text-center shadow-2xs">
+          <span class="material-symbols-outlined text-base">person_add</span>
+            <span data-i18n="nav.register">إنشاء حساب جديد</span>
         </a>
       </div>
     </div>
@@ -138,7 +326,7 @@
   <!-- ========================================================================
        MAIN CONTENT: PARTNERS OVERVIEW & ACCREDITATION APPLICATION
        ======================================================================== -->
-  <main id="main-content" class="flex-grow pt-28 pb-20">
+  <main id="main-content" class="flex-grow pt-28 pb-20 relative z-10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       
       <!-- Page Header -->
@@ -154,88 +342,205 @@
         </p>
       </div>
 
-      <!-- 4 Core Partner Categories Cards (Clean Informational Cards - No Exposed Portal Links) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Prominent Action CTA: Join as Partner Button -->
+      <div class="flex items-center justify-center pt-2">
+        <button 
+          type="button" 
+          id="open-partner-modal-btn"
+          class="btn-ripple inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl text-sm sm:text-base font-bold text-white bg-primary hover:bg-primary-dark transition shadow-lg hover:shadow-primary/30 cursor-pointer"
+        >
+          <span class="material-symbols-outlined text-xl">handshake</span>
+          <span>انضم كشريك في منظومة جسور للتأهيل</span>
+        </button>
+      </div>
+
+      <!-- Partners View Stage: FLIP PowerPoint Slides & Directory Panel -->
+      <div id="partners-view-stage" class="transition-all duration-500">
+        <!-- 6 Core Partner Categories Cards (Interactive & Clickable) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="partners-categories-grid">
         
         <!-- Category 1: Hospitals & Medical Centers -->
-        <div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-blue-500/40 transition-all flex flex-col justify-between space-y-4">
+        <div data-category="hospitals" class="partner-cat-card cursor-pointer bg-white p-6 sm:p-7 rounded-3xl border-2 border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-blue-500/50 transition-all flex flex-col justify-between space-y-4 group">
           <div class="space-y-3">
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center border border-blue-100">
-              <span class="material-symbols-outlined text-2xl">local_hospital</span>
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center border border-blue-100 group-hover:bg-blue-600 group-hover:text-white transition">
+                <span class="material-symbols-outlined text-2xl">local_hospital</span>
+              </div>
+              <span id="badge-count-hospitals" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">
+                جاري التحميل...
+              </span>
             </div>
-            <h2 class="text-base font-bold text-slate-800">المستشفيات والمراكز</h2>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              ربط مرضى التأهيل ببرامج الرعاية المنزلية بعد الخروج، وتخفيض فترات التنويم، ومتابعة الالتزام الحركي لتقليل الانتكاسات.
+            <h2 class="text-base font-bold text-slate-800 group-hover:text-primary transition">المستشفيات والمراكز الطبية</h2>
+            <p class="card-full-desc text-xs text-slate-600 leading-relaxed">
+              شبكة المستشفيات والمراكز المشتركة والمعتمدة لإجراء الفحوصات والكشوفات السريرية والحجز الحضوري المباشر.
             </p>
           </div>
-          <div class="pt-3 border-t border-slate-100">
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-500">
-              <span class="material-symbols-outlined text-sm text-blue-700">verified</span>
-              <span>الاعتماد المؤسسي عبر النموذج أدناه</span>
-            </span>
+          <div class="card-footer-action pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-primary">
+            <span>استعراض المراكز المشتركة</span>
+            <span class="material-symbols-outlined text-sm">arrow_downward</span>
           </div>
         </div>
 
-        <!-- Category 2: Specialists -->
-        <div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-secondary/40 transition-all flex flex-col justify-between space-y-4">
+        <!-- Category 2: Treating Specialists -->
+        <div data-category="specialists" class="partner-cat-card cursor-pointer bg-white p-6 sm:p-7 rounded-3xl border-2 border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-secondary/50 transition-all flex flex-col justify-between space-y-4 group">
           <div class="space-y-3">
-            <div class="w-12 h-12 rounded-2xl bg-teal-50 text-secondary flex items-center justify-center border border-teal-100">
-              <span class="material-symbols-outlined text-2xl">stethoscope</span>
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-secondary flex items-center justify-center border border-teal-100 group-hover:bg-secondary group-hover:text-white transition">
+                <span class="material-symbols-outlined text-2xl">stethoscope</span>
+              </div>
+              <span id="badge-count-specialists" class="px-3 py-1 rounded-full text-xs font-bold bg-teal-50 text-teal-800 border border-teal-200">
+                جاري التحميل...
+              </span>
             </div>
-            <h2 class="text-base font-bold text-slate-800">الأخصائيون المعالجون</h2>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              أخصائيو العلاج الطبيعي والوظيفي المرخصون: إعداد الخطط التأهيلية، الاستشارات المرئية، وإصدار التقارير السريرية الدورية.
+            <h2 class="text-base font-bold text-slate-800 group-hover:text-secondary transition">الأخصائيون المعالجون</h2>
+            <p class="card-full-desc text-xs text-slate-600 leading-relaxed">
+              استشاريو وأخصائيو العلاج الطبيعي والوظيفي المرخصون: إعداد الخطط التأهيلية، الاستشارات المرئية، والمتابعة الدورية.
             </p>
           </div>
-          <div class="pt-3 border-t border-slate-100">
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-500">
-              <span class="material-symbols-outlined text-sm text-secondary">verified</span>
-              <span>يتطلب ترخيصاً مهنياً نشطاً عبر النموذج أدناه</span>
-            </span>
+          <div class="card-footer-action pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-secondary">
+            <span>استعراض الكوادر السريرية</span>
+            <span class="material-symbols-outlined text-sm">arrow_downward</span>
           </div>
         </div>
 
         <!-- Category 3: Motor Supervisors -->
-        <div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-primary-light/40 transition-all flex flex-col justify-between space-y-4">
+        <div data-category="supervisors" class="partner-cat-card cursor-pointer bg-white p-6 sm:p-7 rounded-3xl border-2 border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-sky-500/50 transition-all flex flex-col justify-between space-y-4 group">
           <div class="space-y-3">
-            <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-700 flex items-center justify-center border border-sky-100">
-              <span class="material-symbols-outlined text-2xl">directions_walk</span>
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-700 flex items-center justify-center border border-sky-100 group-hover:bg-sky-600 group-hover:text-white transition">
+                <span class="material-symbols-outlined text-2xl">directions_walk</span>
+              </div>
+              <span id="badge-count-supervisors" class="px-3 py-1 rounded-full text-xs font-bold bg-sky-50 text-sky-800 border border-sky-200">
+                جاري التحميل...
+              </span>
             </div>
-            <h2 class="text-base font-bold text-slate-800">المشرفون الحركيون</h2>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              الإشراف الميداني والزيارات المنزلية لمساندة المستفيد ومقدم الرعاية، والتحقق من صحة تطبيق التمارين وسلامة الحركة.
+            <h2 class="text-base font-bold text-slate-800 group-hover:text-sky-700 transition">المشرفون الحركيون الميدانيون</h2>
+            <p class="card-full-desc text-xs text-slate-600 leading-relaxed">
+              الإشراف الميداني والزيارات المنزلية لمساندة المستفيد ومقدم الرعاية في مختلف المدن اليمنية، وتصحيح التمارين.
             </p>
           </div>
-          <div class="pt-3 border-t border-slate-100">
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-500">
-              <span class="material-symbols-outlined text-sm text-sky-700">verified</span>
-              <span>تقديم المؤهلات الميدانية عبر النموذج أدناه</span>
-            </span>
+          <div class="card-footer-action pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
+            <span>استعراض المشرفين الميدانيين</span>
+            <span class="material-symbols-outlined text-sm">arrow_downward</span>
           </div>
         </div>
 
-        <!-- Category 4: Charities -->
-        <div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200/80 shadow-card hover:shadow-subtle hover:border-emerald-600/40 transition-all flex flex-col justify-between space-y-4">
+        <!-- Category 4: Charities & Donors -->
+        <div data-category="charities" class="partner-cat-card cursor-pointer bg-white p-6 sm:p-7 rounded-3xl border-2 border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-emerald-500/50 transition-all flex flex-col justify-between space-y-4 group">
           <div class="space-y-3">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-100">
-              <span class="material-symbols-outlined text-2xl">volunteer_activism</span>
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white transition">
+                <span class="material-symbols-outlined text-2xl">volunteer_activism</span>
+              </div>
+              <span id="badge-count-charities" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                جاري التحميل...
+              </span>
             </div>
-            <h2 class="text-base font-bold text-slate-800">الجمعيات والمؤسسات المانحة</h2>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              كفالة باقات التأهيل للأسر المستحقة، إصدار أكواد التفعيل، وتتبع أثر المنح وقياس التحسن الوظيفي للمستفيدين ببيانات دقيقة.
+            <h2 class="text-base font-bold text-slate-800 group-hover:text-emerald-700 transition">الجمعيات والمؤسسات المانحة</h2>
+            <p class="card-full-desc text-xs text-slate-600 leading-relaxed">
+              كفالة باقات التأهيل للأسر المستحقة وذوي الدخل المحدود بالدولار ($)، وإصدار أكواد التفعيل وتتبع الأثر الإنساني.
             </p>
           </div>
-          <div class="pt-3 border-t border-slate-100">
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-500">
-              <span class="material-symbols-outlined text-sm text-emerald-700">verified</span>
-              <span>شراكة الكفالة المؤسسية عبر النموذج أدناه</span>
-            </span>
+          <div class="card-footer-action pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
+            <span>استعراض الجمعيات الشريكة</span>
+            <span class="material-symbols-outlined text-sm">arrow_downward</span>
+          </div>
+        </div>
+
+        <!-- Category 5: Partner Pharmacies (Separated Section) -->
+        <div data-category="pharmacies" class="partner-cat-card cursor-pointer bg-white p-6 sm:p-7 rounded-3xl border-2 border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-amber-500/50 transition-all flex flex-col justify-between space-y-4 group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center border border-amber-100 group-hover:bg-amber-600 group-hover:text-white transition">
+                <span class="material-symbols-outlined text-2xl">medication</span>
+              </div>
+              <span id="badge-count-pharmacies" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                جاري التحميل...
+              </span>
+            </div>
+            <h2 class="text-base font-bold text-slate-800 group-hover:text-amber-700 transition">الصيدليات الشريكة</h2>
+            <p class="card-full-desc text-xs text-slate-600 leading-relaxed">
+              قسم مستقل: صيدليات معتمدة توفر المستلزمات الطبية والجبائر والأربطة الضاغطة مع خصومات حصرية للمشتركين.
+            </p>
+          </div>
+          <div class="card-footer-action pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-700">
+            <span>استعراض الصيدليات والخصومات</span>
+            <span class="material-symbols-outlined text-sm">arrow_downward</span>
+          </div>
+        </div>
+
+        <!-- Category 6: Device Centers (Separated Section) -->
+        <div data-category="device_centers" class="partner-cat-card cursor-pointer bg-white p-6 sm:p-7 rounded-3xl border-2 border-slate-200/80 shadow-card hover:shadow-card-hover hover:border-purple-500/50 transition-all flex flex-col justify-between space-y-4 group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-700 flex items-center justify-center border border-purple-100 group-hover:bg-purple-600 group-hover:text-white transition">
+                <span class="material-symbols-outlined text-2xl">precision_manufacturing</span>
+              </div>
+              <span id="badge-count-device_centers" class="px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-800 border border-purple-200">
+                جاري التحميل...
+              </span>
+            </div>
+            <h2 class="text-base font-bold text-slate-800 group-hover:text-purple-700 transition">مراكز بيع وصيانة الأجهزة</h2>
+            <p class="card-full-desc text-xs text-slate-600 leading-relaxed">
+              قسم مستقل: شركات ومراكز بيع وتأجير وصيانة الأجهزة الطبية والمساعدة مع خصومات للمشتركين وعرض مباشر بسوق الأجهزة.
+            </p>
+          </div>
+          <div class="card-footer-action pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-700">
+            <span>استعراض مراكز الأجهزة</span>
+            <span class="material-symbols-outlined text-sm">arrow_downward</span>
           </div>
         </div>
 
       </div>
 
-      <!-- Partner Accreditation Form Section -->
+      <!-- Interactive Directory Display Section (Click-to-Expand) -->
+      <section id="partners-directory-section" class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-card space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-5">
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">
+              <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+              <span id="dir-active-cat-badge">المستشفيات والمراكز الطبية المعتمدة</span>
+            </div>
+            <h3 id="dir-active-title" class="text-xl font-bold text-on-surface">دليل الشركاء المعتمدين والمشتركين</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="dir-active-count-text" class="text-xs text-slate-500 font-medium">عرض الشركاء المسجلين</span>
+            <button 
+              type="button" 
+              id="close-directory-panel-btn" 
+              class="directory-close-btn" 
+              aria-label="إغلاق والعودة لشبكة التصنيفات"
+              title="إغلاق والعودة للشبكة الرئيسية (Esc)"
+            >
+              <span class="material-symbols-outlined text-lg">close</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Directory Dynamic Grid Container -->
+        <div id="directory-items-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Populated by JavaScript via Supabase RPC get_public_partners_directory -->
+        </div>
+      </section>
+      </div>
+
+      <!-- ======================================================================
+       PARTNER ACCREDITATION REGISTRATION MODAL
+       ====================================================================== -->
+  <div id="partner-apply-modal" class="partner-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="partner-modal-box relative">
+      
+      <!-- Modal Close Button -->
+      <button 
+        type="button" 
+        id="close-partner-modal-btn" 
+        class="partner-modal-close-btn" 
+        aria-label="إغلاق نافذة التسجيل"
+      >
+        <span class="material-symbols-outlined text-xl">close</span>
+      </button>
+
+      
       <div id="apply-form" class="max-w-3xl mx-auto bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-10 shadow-card space-y-6">
         
         <div class="space-y-1.5 border-b border-slate-100 pb-5 text-center sm:text-start">
@@ -249,20 +554,38 @@
         <div id="partner-alert" class="hidden"></div>
 
         <!-- Submission Form (Direct Supabase Integration) -->
-        <form id="partner-page-form" class="space-y-4">
+        <form id="partner-page-form" class="space-y-4" onsubmit="handlePartnerApplicationSubmit(event)">
           
+          <!-- 1. Names Grid: Person Name & Entity Name -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="partner-name" class="block text-xs font-bold text-slate-700 mb-1.5">الاسم الكامل أو اسم الجهة *</label>
+              <label for="partner-person-name" class="block text-xs font-bold text-slate-700 mb-1.5">
+                الاسم الكامل (اسم الشخص مقدم الطلب / المسؤول) <span class="text-rose-500">*</span>
+              </label>
               <input 
                 type="text" 
-                id="partner-name" 
+                id="partner-person-name" 
                 required 
-                placeholder="مثال: د. فيصل السعيد أو مركز التأهيل المتقدم" 
+                placeholder="مثال: د. فيصل السعيد أو أ. طارق الأحمد" 
                 class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"
               >
             </div>
 
+            <div>
+              <label for="partner-entity-name" class="block text-xs font-bold text-slate-700 mb-1.5">
+                اسم الجهة / المنشأة أو العيادة <span class="text-slate-400 font-normal">(اختياري للأفراد، إلزامي للمراكز)</span>
+              </label>
+              <input 
+                type="text" 
+                id="partner-entity-name" 
+                placeholder="مثال: مركز الأمل للتأهيل أو جمعية رعاية وتأهيل" 
+                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"
+              >
+            </div>
+          </div>
+
+          <!-- 2. Role & License Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label for="partner-role" class="block text-xs font-bold text-slate-700 mb-1.5">الفئة / الدور المطلوب *</label>
               <select 
@@ -274,56 +597,109 @@
                 <option value="motor_supervisor">مشرف حركي ميداني</option>
                 <option value="hospital_admin">مستشفى أو مركز تأهيلي</option>
                 <option value="charity_admin">جمعية خيرية أو مؤسسة مانحة</option>
+                <option value="pharmacy_partner">صيدلية شريكة (مستلزمات وجبائر طبية)</option>
+                <option value="device_center_partner">مركز بيع وصيانة أجهزة طبية ومساعدة</option>
               </select>
             </div>
-          </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label for="partner-license" class="block text-xs font-bold text-slate-700 mb-1.5">رقم الترخيص الطبي / المهني</label>
               <input 
                 type="text" 
                 id="partner-license" 
-                placeholder="رقم هيئة التخصصات أو ترخيص المنشأة" 
-                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"
-              >
-            </div>
-
-            <div>
-              <label for="partner-city" class="block text-xs font-bold text-slate-700 mb-1.5">المدينة / المنطقة</label>
-              <input 
-                type="text" 
-                id="partner-city" 
-                placeholder="الرياض، جدة، الدمام..." 
+                placeholder="رقم ترخيص وزارة الصحة أو ترخيص المنشأة" 
                 class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"
               >
             </div>
           </div>
 
+          <!-- 3. City & Phone Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="partner-city" class="block text-xs font-bold text-slate-700 mb-1.5">المدينة / المحافظة *</label>
+              <select 
+                id="partner-city" 
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"
+              >
+                <option value="صنعاء">صنعاء</option>
+                <option value="عدن">عدن</option>
+                <option value="تعز">تعز</option>
+                <option value="المكلا">المكلا / حضرموت</option>
+                <option value="إب">إب</option>
+                <option value="الحديدة">الحديدة</option>
+                <option value="مأرب">مأرب</option>
+                <option value="سيئون">سيئون</option>
+                <option value="مدينة أخرى">مدينة أخرى</option>
+              </select>
+            </div>
+
             <div>
               <label for="partner-phone" class="block text-xs font-bold text-slate-700 mb-1.5">رقم الجوال الرسمي للتواصل *</label>
               <input 
                 type="tel" 
                 id="partner-phone" 
                 required 
-                placeholder="05XXXXXXXX" 
-                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"
-              >
-            </div>
-
-            <div>
-              <label for="partner-email" class="block text-xs font-bold text-slate-700 mb-1.5">البريد الإلكتروني الرسمي *</label>
-              <input 
-                type="email" 
-                id="partner-email" 
-                required 
-                placeholder="partner@example.com" 
-                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"
+                placeholder="77XXXXXXX" 
+                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition text-right"
               >
             </div>
           </div>
 
+          <!-- 4. Email Field -->
+          <div>
+            <label for="partner-email" class="block text-xs font-bold text-slate-700 mb-1.5">البريد الإلكتروني الرسمي (يُستخدم لتسجيل الدخول) *</label>
+            <input 
+              type="email" 
+              id="partner-email" 
+              required 
+              placeholder="partner@example.com" 
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"
+            >
+          </div>
+
+          <!-- 5. Password & Confirm Password Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="partner-password" class="block text-xs font-bold text-slate-700 mb-1.5">
+                كلمة المرور (6 خانات على الأقل) <span class="text-rose-500">*</span>
+              </label>
+              <div class="relative">
+                <input 
+                  type="password" 
+                  id="partner-password" 
+                  minlength="6" 
+                  required 
+                  placeholder="••••••••" 
+                  class="w-full ps-4 pe-10 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"
+                >
+                <button type="button" onclick="togglePartnerPwd('partner-password', 'pwd-icon-1')" class="absolute end-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none" aria-label="إظهار أو إخفاء كلمة المرور">
+                  <span id="pwd-icon-1" class="material-symbols-outlined text-lg">visibility</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label for="partner-password-confirm" class="block text-xs font-bold text-slate-700 mb-1.5">
+                تأكيد كلمة المرور <span class="text-rose-500">*</span>
+              </label>
+              <div class="relative">
+                <input 
+                  type="password" 
+                  id="partner-password-confirm" 
+                  minlength="6" 
+                  required 
+                  placeholder="••••••••" 
+                  class="w-full ps-4 pe-10 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-0 transition"
+                >
+                <button type="button" onclick="togglePartnerPwd('partner-password-confirm', 'pwd-icon-2')" class="absolute end-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none" aria-label="إظهار أو إخفاء تأكيد كلمة المرور">
+                  <span id="pwd-icon-2" class="material-symbols-outlined text-lg">visibility</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Notes -->
           <div>
             <label for="partner-notes" class="block text-xs font-bold text-slate-700 mb-1.5">نبذة مختصرة عن الخبرات أو سبل التعاون المقترحة</label>
             <textarea 
@@ -334,13 +710,15 @@
             ></textarea>
           </div>
 
+          <!-- Submit Button -->
           <div class="pt-2">
             <button 
               type="submit" 
               id="partner-submit-btn" 
               class="w-full py-3.5 px-6 rounded-xl bg-primary text-white text-xs sm:text-sm font-bold hover:bg-primary-dark transition shadow-2xs inline-flex items-center justify-center gap-2"
             >
-              <span>تقديم طلب الانضمام والاعتماد</span>
+              <span id="partner-submit-spinner" class="material-symbols-outlined text-lg animate-spin hidden">progress_activity</span>
+              <span id="partner-submit-label">تقديم طلب الانضمام والاعتماد</span>
               <span class="material-symbols-outlined text-base">send</span>
             </button>
           </div>
@@ -350,12 +728,15 @@
       </div>
 
     </div>
+  </div>
+
+    </div>
   </main>
 
   <!-- ========================================================================
        CLEAN FOOTER (NO INTERNAL PORTALS LINKS)
        ======================================================================== -->
-  <footer class="bg-white border-t border-slate-200/80 pt-12 pb-8 text-on-surface">
+  <footer class="bg-white border-t border-slate-200/80 pt-12 pb-8 text-on-surface relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
@@ -407,7 +788,7 @@
       </div>
 
       <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 text-center sm:text-start">
-        <p>جميع الحقوق محفوظة لمنصة جسور للتأهيل والرعاية عن بُعد © 2026</p>
+        <p>جميع الحقوق محفوظة لجسور للتأهيل والرعاية عن بُعد © 2026</p>
         <div class="flex items-center gap-3">
           <a href="privacy.html" class="hover:text-primary transition">الخصوصية</a>
           <span>•</span>
@@ -487,5 +868,646 @@
       }
     });
   </script>
+
+  <!-- Partners Directory & FLIP PowerPoint Slides Controller -->
+  <script>
+    (function () {
+      'use strict';
+
+      let directoryData = {
+        hospitals: [],
+        specialists: [],
+        supervisors: [],
+        charities: [],
+        pharmacies: [],
+        device_centers: []
+      };
+
+      let activeCategory = null;
+      let isAnimatingFLIP = false;
+
+      const catMeta = {
+        hospitals: {
+          title: 'المستشفيات والمراكز المشتركة',
+          badge: 'المستشفيات والمراكز الطبية المعتمدة',
+          color: 'blue'
+        },
+        specialists: {
+          title: 'الأخصائيون المعالجون المعتمدون',
+          badge: 'الكوادر السريرية وأخصائيو التأهيل',
+          color: 'teal'
+        },
+        supervisors: {
+          title: 'المشرفون الحركيون الميدانيون',
+          badge: 'الإشراف الحركي المنزلي باليمن',
+          color: 'sky'
+        },
+        charities: {
+          title: 'الجمعيات والمؤسسات المانحة الشريكة',
+          badge: 'كفالة البرامج التأهيلية للمحتاجين',
+          color: 'emerald'
+        },
+        pharmacies: {
+          title: 'الصيدليات الشريكة (مستلزمات وجبائر طبية)',
+          badge: 'خصومات حصرية لمشتركي جسور للتأهيل',
+          color: 'amber'
+        },
+        device_centers: {
+          title: 'مراكز بيع وصيانة الأجهزة الطبية والمساعدة',
+          badge: 'سوق وتجهيزات الأجهزة التأهيلية باليمن',
+          color: 'purple'
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initPartnersPage();
+        initPartnerRegistrationModal();
+      });
+
+      async function initPartnersPage() {
+        if (window.jisrDB && typeof window.jisrDB.getPublicPartnersDirectory === 'function') {
+          try {
+            const res = await window.jisrDB.getPublicPartnersDirectory();
+            if (res) {
+              directoryData = res;
+              updateCountBadges();
+            }
+          } catch (e) {
+            console.error('Error fetching partners directory:', e);
+          }
+        }
+
+        // Attach FLIP click listener to the 6 category cards
+        const cards = document.querySelectorAll('.partner-cat-card');
+        cards.forEach(card => {
+          card.addEventListener('click', () => {
+            const cat = card.getAttribute('data-category');
+            if (cat) {
+              onCategoryCardClick(cat, card);
+            }
+          });
+        });
+
+        // Close directory panel button
+        const closeDirBtn = document.getElementById('close-directory-panel-btn');
+        if (closeDirBtn) {
+          closeDirBtn.addEventListener('click', closeDirectoryDeck);
+        }
+
+        // Global Esc key to close deck or modal
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            const modal = document.getElementById('partner-apply-modal');
+            if (modal && modal.classList.contains('is-open')) {
+              closePartnerModal();
+              return;
+            }
+            const stage = document.getElementById('partners-view-stage');
+            if (stage && stage.classList.contains('is-deck-mode')) {
+              closeDirectoryDeck();
+            }
+          }
+        });
+      }
+
+      function updateCountBadges() {
+        const hCount = (directoryData.hospitals || []).length;
+        const sCount = (directoryData.specialists || []).length;
+        const supCount = (directoryData.supervisors || []).length;
+        const cCount = (directoryData.charities || []).length;
+        const pCount = (directoryData.pharmacies || []).length;
+        const dCount = (directoryData.device_centers || []).length;
+
+        const bH = document.getElementById('badge-count-hospitals');
+        const bS = document.getElementById('badge-count-specialists');
+        const bSup = document.getElementById('badge-count-supervisors');
+        const bC = document.getElementById('badge-count-charities');
+        const bP = document.getElementById('badge-count-pharmacies');
+        const bD = document.getElementById('badge-count-device_centers');
+
+        if (bH) bH.textContent = `${hCount} مستشفيات ومراكز`;
+        if (bS) bS.textContent = `${sCount} أخصائيين معتمدين`;
+        if (bSup) bSup.textContent = `${supCount} مشرفين حركيين`;
+        if (bC) bC.textContent = `${cCount} جمعيات مانحة`;
+        if (bP) bP.textContent = `${pCount} صيدليات شريكة`;
+        if (bD) bD.textContent = `${dCount} مراكز أجهزة طبية`;
+      }
+
+      /**
+       * Real FLIP Animation: Grid to Vertical PowerPoint Slides
+       */
+      function onCategoryCardClick(cat, clickedCard) {
+        if (isAnimatingFLIP) return;
+        const stage = document.getElementById('partners-view-stage');
+        if (!stage) return;
+
+        const cards = Array.from(document.querySelectorAll('.partner-cat-card'));
+
+        // If already in deck mode, just switch category with smooth cross-fade
+        if (stage.classList.contains('is-deck-mode')) {
+          cards.forEach(c => c.classList.remove('is-active-slide'));
+          clickedCard.classList.add('is-active-slide');
+          activeCategory = cat;
+          renderCategoryDirectory(cat, true);
+          return;
+        }
+
+        // --- FIRST: Record initial bounding rects ---
+        const firstRects = cards.map(c => c.getBoundingClientRect());
+
+        // --- LAST: Apply deck mode class ---
+        isAnimatingFLIP = true;
+        stage.classList.add('is-deck-mode');
+        cards.forEach(c => c.classList.remove('is-active-slide'));
+        clickedCard.classList.add('is-active-slide');
+        activeCategory = cat;
+        renderCategoryDirectory(cat, false);
+
+        // Measure new bounding rects in slides mode
+        const lastRects = cards.map(c => c.getBoundingClientRect());
+
+        // --- INVERT & PLAY ---
+        cards.forEach((card, i) => {
+          const first = firstRects[i];
+          const last = lastRects[i];
+
+          const dx = first.left - last.left;
+          const dy = first.top - last.top;
+          const sw = first.width / (last.width || 1);
+          const sh = first.height / (last.height || 1);
+
+          card.style.transformOrigin = 'top right';
+          card.style.transition = 'none';
+          card.style.transform = `translate(${dx}px, ${dy}px) scale(${sw}, ${sh})`;
+        });
+
+        // Force browser layout reflow
+        void stage.offsetHeight;
+
+        // Play smooth FLIP transition
+        cards.forEach((card) => {
+          card.style.transition = 'transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease';
+          card.style.transform = 'none';
+        });
+
+        setTimeout(() => {
+          cards.forEach(c => {
+            c.style.transform = '';
+            c.style.transition = '';
+            c.style.transformOrigin = '';
+          });
+          isAnimatingFLIP = false;
+        }, 580);
+      }
+
+      /**
+       * Reverse FLIP Animation: Slides back to Original Grid
+       */
+      function closeDirectoryDeck() {
+        if (isAnimatingFLIP) return;
+        const stage = document.getElementById('partners-view-stage');
+        if (!stage || !stage.classList.contains('is-deck-mode')) return;
+
+        const cards = Array.from(document.querySelectorAll('.partner-cat-card'));
+
+        // --- FIRST: Record slide rects ---
+        const firstRects = cards.map(c => c.getBoundingClientRect());
+
+        // --- LAST: Remove deck mode ---
+        isAnimatingFLIP = true;
+        stage.classList.remove('is-deck-mode');
+        cards.forEach(c => c.classList.remove('is-active-slide'));
+        activeCategory = null;
+
+        // Measure grid rects
+        const lastRects = cards.map(c => c.getBoundingClientRect());
+
+        // --- INVERT & PLAY ---
+        cards.forEach((card, i) => {
+          const first = firstRects[i];
+          const last = lastRects[i];
+
+          const dx = first.left - last.left;
+          const dy = first.top - last.top;
+          const sw = first.width / (last.width || 1);
+          const sh = first.height / (last.height || 1);
+
+          card.style.transformOrigin = 'top right';
+          card.style.transition = 'none';
+          card.style.transform = `translate(${dx}px, ${dy}px) scale(${sw}, ${sh})`;
+        });
+
+        void stage.offsetHeight;
+
+        cards.forEach((card) => {
+          card.style.transition = 'transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease';
+          card.style.transform = 'none';
+        });
+
+        setTimeout(() => {
+          cards.forEach(c => {
+            c.style.transform = '';
+            c.style.transition = '';
+            c.style.transformOrigin = '';
+          });
+          isAnimatingFLIP = false;
+        }, 580);
+      }
+
+      function renderCategoryDirectory(cat, animate = false) {
+        const meta = catMeta[cat] || catMeta.hospitals;
+        const badgeEl = document.getElementById('dir-active-cat-badge');
+        const titleEl = document.getElementById('dir-active-title');
+        const countEl = document.getElementById('dir-active-count-text');
+        const container = document.getElementById('directory-items-grid');
+
+        if (badgeEl) badgeEl.textContent = meta.badge;
+        if (titleEl) titleEl.textContent = meta.title;
+
+        const items = directoryData[cat] || [];
+        if (countEl) countEl.textContent = `عرض ${items.length} شريك مسجل في هذا القسم`;
+
+        if (!container) return;
+
+        if (animate) {
+          container.style.opacity = '0';
+          container.style.transform = 'translateY(8px)';
+          container.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+        }
+
+        setTimeout(() => {
+          if (items.length === 0) {
+            container.innerHTML = `
+              <div class="col-span-full p-8 text-center text-slate-400 bg-slate-50 rounded-2xl border border-slate-200 text-xs font-semibold">
+                لا توجد جهات معتمدة مسجلة حالياً في هذا القسم. يمكنك تقديم طلب انضمام عبر الزر العلوي.
+              </div>
+            `;
+          } else if (cat === 'hospitals') {
+            container.innerHTML = items.map(h => `
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs hover:shadow-card transition flex flex-col justify-between space-y-4">
+                <div class="space-y-3">
+                  <div class="flex items-start justify-between">
+                    <h4 class="font-bold text-base text-primary leading-tight">${h.name}</h4>
+                    <span class="px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-800 text-[11px] font-bold">شريك معتمد</span>
+                  </div>
+                  <div class="text-xs text-slate-500 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-slate-400">location_on</span>
+                    <span>${h.address || h.city}</span>
+                  </div>
+                  <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                    ${h.description || 'مركز طبي متكامل لتقديم الرعاية والتأهيل السريري الشامل.'}
+                  </p>
+                  ${Array.isArray(h.features) ? `
+                    <div class="flex flex-wrap gap-1 pt-1">
+                      ${h.features.slice(0, 2).map(f => `<span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">${f}</span>`).join('')}
+                    </div>
+                  ` : ''}
+                </div>
+                <div class="pt-3 border-t border-slate-100">
+                  <a href="booking.html" class="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-dark transition shadow-2xs">
+                    <span>حجز موعد حضوري في المركز</span>
+                    <span class="material-symbols-outlined text-sm">arrow_back</span>
+                  </a>
+                </div>
+              </div>
+            `).join('');
+          } else if (cat === 'specialists') {
+            container.innerHTML = items.map(s => `
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs hover:shadow-card transition flex flex-col justify-between space-y-4">
+                <div class="space-y-3">
+                  <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-teal-50 text-secondary flex items-center justify-center font-bold text-base">
+                      <span class="material-symbols-outlined text-xl">account_circle</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-sm text-on-surface leading-tight">${s.name}</h4>
+                      <span class="text-xs text-secondary font-semibold block">${s.specialty || 'علاج طبيعي وتأهيل'}</span>
+                    </div>
+                  </div>
+                  <div class="text-xs text-slate-500 flex justify-between">
+                    <span>المدينة: <strong>${s.city || 'صنعاء'}</strong></span>
+                    <span>الخبرة: <strong>${s.experience_years || 5} سنوات</strong></span>
+                  </div>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    ${s.bio || 'مختص معتمد حاصل على ترخيص مزاولة المهنة السريرية من وزارة الصحة العامة والسكان.'}
+                  </p>
+                </div>
+              </div>
+            `).join('');
+          } else if (cat === 'supervisors') {
+            container.innerHTML = items.map(sup => `
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs hover:shadow-card transition flex flex-col justify-between space-y-4">
+                <div class="space-y-3">
+                  <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center font-bold text-base">
+                      <span class="material-symbols-outlined text-xl">directions_walk</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-sm text-on-surface leading-tight">${sup.name}</h4>
+                      <span class="text-xs text-sky-700 font-semibold block">${sup.role || 'مشرف حركي ميداني'}</span>
+                    </div>
+                  </div>
+                  <div class="text-xs text-slate-500">
+                    <span>المنطقة الميدانية: <strong>${sup.city || 'اليمن'}</strong></span>
+                  </div>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    ${sup.bio || 'إشراف ميداني منزلي متخصص لمتابعة التطبيق العملي للتمارين الحركية ومساندة الأسر.'}
+                  </p>
+                </div>
+              </div>
+            `).join('');
+          } else if (cat === 'charities') {
+            container.innerHTML = items.map(c => `
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs hover:shadow-card transition flex flex-col justify-between space-y-4">
+                <div class="space-y-3">
+                  <div class="flex items-start justify-between">
+                    <h4 class="font-bold text-base text-emerald-800 leading-tight">${c.name}</h4>
+                    <span class="px-2 py-0.5 rounded-lg bg-emerald-100 text-emerald-900 text-[11px] font-bold">جهة مانحة</span>
+                  </div>
+                  <div class="text-xs text-slate-500">
+                    <span>النطاق الجغرافي: <strong>${c.city || 'كافة المحافظات'}</strong></span>
+                  </div>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    ${c.description || 'دعم وكفالة الحالات المستحقة وتغطية تكاليف باقات التأهيل المنزلي بالدولار ($).'}
+                  </p>
+                  <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 text-[11px] font-semibold flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-xs">verified</span>
+                    <span>كفالة باقات علاجية وتوفير أكواد دعم</span>
+                  </div>
+                </div>
+              </div>
+            `).join('');
+          } else if (cat === 'pharmacies') {
+            container.innerHTML = items.map(p => `
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs hover:shadow-card transition flex flex-col justify-between space-y-4">
+                <div class="space-y-3">
+                  <div class="flex items-start justify-between">
+                    <h4 class="font-bold text-base text-amber-800 leading-tight">${p.name}</h4>
+                    <span class="px-2 py-0.5 rounded-lg bg-amber-50 text-amber-800 text-[11px] font-bold">صيدلية شريكة</span>
+                  </div>
+                  <div class="text-xs text-slate-500 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-slate-400">location_on</span>
+                    <span>${p.city} — ${p.address || ''}</span>
+                  </div>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    ${p.description || 'توفير المستلزمات الطبية والجبائر والأربطة التأهيلية المعتمدة.'}
+                  </p>
+                  <div class="p-2.5 rounded-xl bg-amber-50 text-amber-900 text-[11px] font-bold flex items-center justify-between">
+                    <span>خصم المشتركين:</span>
+                    <span class="text-xs text-amber-700 font-extrabold">${p.discount_rate || '15%'} خصم مباشر</span>
+                  </div>
+                </div>
+              </div>
+            `).join('');
+          } else if (cat === 'device_centers') {
+            container.innerHTML = items.map(d => `
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs hover:shadow-card transition flex flex-col justify-between space-y-4">
+                <div class="space-y-3">
+                  <div class="flex items-start justify-between">
+                    <h4 class="font-bold text-base text-purple-800 leading-tight">${d.name}</h4>
+                    <span class="px-2 py-0.5 rounded-lg bg-purple-50 text-purple-800 text-[11px] font-bold">مركز أجهزة</span>
+                  </div>
+                  <div class="text-xs text-slate-500 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-slate-400">location_on</span>
+                    <span>${d.city} — ${d.address || ''}</span>
+                  </div>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    ${d.description || 'بيع وتأجير وصيانة الأجهزة الطبية والمساعدة مع عروض خاصة.'}
+                  </p>
+                  <div class="p-2.5 rounded-xl bg-purple-50 text-purple-900 text-[11px] font-bold flex items-center justify-between">
+                    <span>خصم المشتركين:</span>
+                    <span class="text-xs text-purple-700 font-extrabold">${d.discount_rate || '10%'}</span>
+                  </div>
+                </div>
+                <div class="pt-3 border-t border-slate-100">
+                  <a href="devices.html" class="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-purple-700 text-white text-xs font-bold hover:bg-purple-800 transition shadow-2xs">
+                    <span>استعراض الأجهزة في المتجر</span>
+                    <span class="material-symbols-outlined text-sm">storefront</span>
+                  </a>
+                </div>
+              </div>
+            `).join('');
+          }
+
+          if (animate) {
+            container.style.opacity = '1';
+            container.style.transform = 'translateY(0)';
+          }
+        }, animate ? 200 : 0);
+      }
+
+      /**
+       * Partner Accreditation Registration Modal Controller
+       */
+      function initPartnerRegistrationModal() {
+        const modal = document.getElementById('partner-apply-modal');
+        const openBtn = document.getElementById('open-partner-modal-btn');
+        const closeBtn = document.getElementById('close-partner-modal-btn');
+
+        if (!modal) return;
+
+        if (openBtn) {
+          openBtn.addEventListener('click', () => {
+            modal.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+          });
+        }
+
+        if (closeBtn) {
+          closeBtn.addEventListener('click', closePartnerModal);
+        }
+
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closePartnerModal();
+          }
+        });
+      }
+
+      function closePartnerModal() {
+        const modal = document.getElementById('partner-apply-modal');
+        if (modal) {
+          modal.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
+      }
+
+      window.openPartnerRegistrationModal = function() {
+        const modal = document.getElementById('partner-apply-modal');
+        if (modal) {
+          modal.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      window.closePartnerRegistrationModal = closePartnerModal;
+
+    })();
+  </script>
+
+  <!-- Partner Form Password Visibility & Submission Script -->
+  <script>
+    function togglePartnerPasswordVisibility(fieldId, iconId) {
+      const field = document.getElementById(fieldId);
+      const icon = document.getElementById(iconId);
+      if (!field || !icon) return;
+      if (field.type === 'password') {
+        field.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        field.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+  </script>
+
+  <script>
+    async function handlePartnerApplicationSubmit(e)function handlePartnerApplicationSubmit(e) {
+      e.preventDefault();
+      const personName = document.getElementById('partner-person-name').value.trim();
+      const entityName = document.getElementById('partner-entity-name').value.trim();
+      const selectedRole = document.getElementById('partner-role').value;
+      const license = document.getElementById('partner-license').value.trim();
+      const city = document.getElementById('partner-city').value;
+      const phone = document.getElementById('partner-phone').value.trim();
+      const email = document.getElementById('partner-email').value.trim();
+      const password = document.getElementById('partner-password').value;
+      const passwordConfirm = document.getElementById('partner-password-confirm').value;
+      const notes = document.getElementById('partner-notes').value.trim();
+
+      const alertContainer = document.getElementById('partner-alert');
+
+      if (password !== passwordConfirm) {
+        alertContainer.className = "p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold leading-relaxed mb-4 block";
+        alertContainer.textContent = "كلمتا المرور غير متطابقتين. يرجى التأكد وإعادة المحاولة.";
+        return;
+      }
+      if (password.length < 6) {
+        alertContainer.className = "p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold leading-relaxed mb-4 block";
+        alertContainer.textContent = "يجب أن تتكون كلمة المرور من 6 خانات على الأقل.";
+        return;
+      }
+
+      const submitBtn = document.getElementById('partner-submit-btn');
+      const spinner = document.getElementById('partner-submit-spinner');
+      const label = document.getElementById('partner-submit-label');
+
+      submitBtn.disabled = true;
+      if (spinner) spinner.classList.remove('hidden');
+      if (label) label.textContent = 'جارٍ تسجيل الحساب وإرسال الطلب...';
+
+      try {
+        let supabase = null;
+        if (window.jisrDB && typeof window.jisrDB.getClient === 'function') {
+          supabase = window.jisrDB.getClient();
+        }
+
+        let userId = 'partner_' + Date.now();
+
+        // 1. Supabase Auth Sign Up
+        if (supabase && supabase.auth && typeof supabase.auth.signUp === 'function') {
+          const { data: authData, error: authErr } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+              data: {
+                full_name: personName,
+                entity_name: entityName,
+                role: selectedRole
+              }
+            }
+          });
+
+          if (authErr) {
+            console.error('Partner Auth SignUp error:', authErr);
+            alertContainer.className = "p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold leading-relaxed mb-4 block";
+            alertContainer.textContent = "تعذر إنشاء حساب المصادقة: " + (authErr.message || 'قد يكون هذا البريد مستخدماً مسبقاً.');
+            submitBtn.disabled = false;
+            if (spinner) spinner.classList.add('hidden');
+            if (label) label.textContent = 'تقديم طلب الانضمام والاعتماد';
+            return;
+          }
+
+          if (authData?.user?.id) {
+            userId = authData.user.id;
+          }
+
+          // 2. Upsert in profiles table: pending and is_active: false
+          await supabase.from('profiles').upsert([{
+            id: userId,
+            auth_user_id: userId,
+            email: email,
+            full_name: personName,
+            entity_name: entityName,
+            phone: phone,
+            city: city,
+            role: selectedRole,
+            approval_status: 'pending',
+            is_active: false
+          }]);
+
+          // 3. Insert into partner_applications table
+          await supabase.from('partner_applications').insert([{
+            user_id: userId,
+            applicant_name: entityName ? (personName + ' (' + entityName + ')') : personName,
+            full_name: personName,
+            entity_name: entityName,
+            email: email,
+            phone: phone,
+            requested_role: selectedRole,
+            license_number: license,
+            city: city,
+            notes: notes,
+            status: 'pending'
+          }]);
+
+          // Also sign out locally so partner is not automatically logged in as unapproved
+          await supabase.auth.signOut().catch(() => {});
+        } else {
+          // Local fallback in jisrDB
+          if (window.jisrDB && typeof window.jisrDB.submitPartnerApplication === 'function') {
+            await window.jisrDB.submitPartnerApplication({
+              applicant_name: entityName ? (personName + ' (' + entityName + ')') : personName,
+              full_name: personName,
+              entity_name: entityName,
+              requested_role: selectedRole,
+              license_number: license,
+              phone: phone,
+              email: email,
+              city: city,
+              notes: notes,
+              status: 'pending'
+            });
+          }
+        }
+
+        // Show permanent success message
+        alertContainer.className = "p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs leading-relaxed mb-6 block shadow-2xs space-y-2";
+        alertContainer.innerHTML = `
+          <div class="flex items-center gap-2 font-bold text-sm text-emerald-800">
+            <span class="material-symbols-outlined text-lg">check_circle</span>
+            <span>تم تقديم طلب الانضمام وإنشاء حسابك بنجاح!</span>
+          </div>
+          <p>
+            حسابك حالياً <strong>قيد المراجعة والتدقيق السريري</strong> من قِبل إدارة منصة جسور للتأهيل. 
+            سيتم تفعيل حسابك وإشعارك فور الاعتماد لتتمكن من تسجيل الدخول إلى بوابتك بالبريد الإلكتروني وكلمة المرور اللذين أنشأتهما.
+          </p>
+        `;
+
+        document.getElementById('partner-page-form').reset();
+        alertContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      } catch (err) {
+        console.error('Partner submission error:', err);
+        alertContainer.className = "p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold leading-relaxed mb-4 block";
+        alertContainer.textContent = "حدث خطأ غير متوقع أثناء إرسال الطلب: " + (err.message || err);
+      } finally {
+        submitBtn.disabled = false;
+        if (spinner) spinner.classList.add('hidden');
+        if (label) label.textContent = 'تقديم طلب الانضمام والاعتماد';
+      }
+    }
+  </script>
+
 </body>
 </html>

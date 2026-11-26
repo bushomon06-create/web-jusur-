@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function(){
+      var lang = localStorage.getItem('jusoor_lang') || localStorage.getItem('jisr_lang') || 'ar';
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    })();
+  </script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <title>حجز موعد حضوري في المستشفيات والمراكز — جسور للتأهيل</title>
+  <meta name="description" content="حجز موعد سريري حضوري مباشر في المستشفيات ومراكز التأهيل الطبي المعتمدة والمشتركة مع منصة جسور للتأهيل.">
+
+  <!-- Google Fonts: IBM Plex Sans Arabic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00507d',
+            'primary-dark': '#003756',
+            'primary-fixed': '#cde5ff',
+            secondary: '#006a61',
+            'secondary-dark': '#004d46',
+            'secondary-fixed': '#89f5e7',
+            surface: '#ffffff',
+            'on-surface': '#0f172a',
+            'surface-subtle': '#f8fafd'
+          },
+          fontFamily: {
+            sans: ['"IBM Plex Sans Arabic"', 'sans-serif']
+          },
+          boxShadow: {
+            'card': '0 4px 20px -2px rgba(0, 80, 125, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02)',
+            'card-hover': '0 12px 30px -4px rgba(0, 80, 125, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Centralized Supabase Configuration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+
+  <style>
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #printable-voucher, #printable-voucher * {
+        visibility: visible !important;
+      }
+      #printable-voucher {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#f8fafd] text-on-surface antialiased selection:bg-primary-fixed selection:text-primary min-h-screen flex flex-col justify-between">
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- Medical Decorative Background (Fluid Waves, Dot Patterns, ECG, Crosses & Ambient Gradients) -->
+  <div class="medical-decor-bg pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <svg class="medical-decor-svg" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="b-wave-grad-1" x1="0%" y1="50%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.08" />
+        <stop offset="50%" stop-color="#2dd4bf" stop-opacity="0.06" />
+        <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.08" />
+      </linearGradient>
+
+      <linearGradient id="b-wave-stroke-teal" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.55" />
+        <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.50" />
+        <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.45" />
+      </linearGradient>
+
+      <linearGradient id="b-wave-stroke-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.45" />
+        <stop offset="50%" stop-color="#2dd4bf" stop-opacity="0.55" />
+        <stop offset="100%" stop-color="#14b8a6" stop-opacity="0.40" />
+      </linearGradient>
+
+      <pattern id="b-dots-sky" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.5" fill="#0ea5e9" opacity="0.32" />
+      </pattern>
+      <pattern id="b-dots-teal" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.5" fill="#14b8a6" opacity="0.30" />
+      </pattern>
+    </defs>
+
+    <!-- Translucent Wave Ribbon Glow -->
+    <path d="M 0,360 C 350,320 540,580 750,560 S 1120,400 1440,420 L 1440,520 C 1150,500 960,650 720,630 C 460,610 260,440 0,470 Z" 
+          fill="url(#b-wave-grad-1)" />
+
+    <!-- Wave Line 1 -->
+    <path d="M -20,380 C 340,340 530,600 750,580 C 970,560 1140,420 1460,440" 
+          stroke="url(#b-wave-stroke-teal)" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.52" />
+    
+    <!-- Wave Line 2 (+16px) -->
+    <path d="M -20,396 C 340,356 530,616 750,596 C 970,576 1140,436 1460,456" 
+          stroke="#0ea5e9" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.40" />
+
+    <!-- Wave Line 3 (-18px) -->
+    <path d="M -20,362 C 320,322 510,582 750,562 C 950,542 1120,402 1460,422" 
+          stroke="#2dd4bf" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.35" />
+
+    <!-- Wave Line 4 (+32px) -->
+    <path d="M -20,412 C 350,372 540,632 750,612 C 980,592 1150,452 1460,472" 
+          stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.30" />
+
+    <!-- Counter Wave 1 -->
+    <path d="M -20,480 C 350,520 540,360 780,380 C 1010,400 1180,540 1460,500" 
+          stroke="url(#b-wave-stroke-cyan)" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.48" />
+
+    <!-- Counter Wave 2 (+16px) -->
+    <path d="M -20,496 C 360,536 550,376 780,396 C 1020,416 1190,556 1460,516" 
+          stroke="#14b8a6" stroke-width="1.7" stroke-linecap="round" fill="none" opacity="0.38" />
+
+    <!-- Counter Wave 3 (-18px) -->
+    <path d="M -20,462 C 340,502 530,342 780,362 C 1000,382 1170,522 1460,482" 
+          stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.33" />
+
+    <!-- Dot Grids -->
+    <rect x="55" y="110" width="120" height="150" fill="url(#b-dots-sky)" />
+    <rect x="1265" y="650" width="130" height="140" fill="url(#b-dots-teal)" />
+    <rect x="65" y="690" width="115" height="120" fill="url(#b-dots-teal)" opacity="0.75" />
+
+    <!-- Medical Crosses -->
+    <g transform="translate(115, 260)" opacity="0.32">
+      <rect x="11" y="0" width="10" height="32" rx="4" fill="#38bdf8" />
+      <rect x="0" y="11" width="32" height="10" rx="4" fill="#38bdf8" />
+    </g>
+
+    <g transform="translate(1330, 240)" opacity="0.30">
+      <rect x="10" y="0" width="9" height="30" rx="3.5" fill="#14b8a6" />
+      <rect x="0" y="10" width="30" height="9" rx="3.5" fill="#14b8a6" />
+    </g>
+
+    <g transform="translate(120, 560)" opacity="0.28">
+      <rect x="9" y="0" width="8" height="26" rx="3" fill="#0ea5e9" />
+      <rect x="0" y="9" width="26" height="8" rx="3" fill="#0ea5e9" />
+    </g>
+
+    <!-- ECG Pulses -->
+    <g transform="translate(60, 730)" opacity="0.42">
+      <path d="M 0,25 L 35,25 Q 40,25 43,20 Q 46,25 50,25 L 62,25 L 70,38 L 80,4 L 90,52 L 98,25 L 112,25 Q 120,16 128,25 L 180,25" 
+            fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <g transform="translate(1220, 480)" opacity="0.40">
+      <path d="M 0,25 L 35,25 Q 40,25 43,20 Q 46,25 50,25 L 62,25 L 70,38 L 80,4 L 90,52 L 98,25 L 112,25 Q 120,16 128,25 L 180,25" 
+            fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- Concentric Circles -->
+    <g transform="translate(1300, 720)">
+      <circle cx="0" cy="0" r="42" fill="none" stroke="#2dd4bf" stroke-width="1.5" opacity="0.25" />
+      <circle cx="0" cy="0" r="24" fill="none" stroke="#0ea5e9" stroke-width="1.2" opacity="0.32" />
+      <circle cx="0" cy="0" r="3.5" fill="#14b8a6" opacity="0.38" />
+    </g>
+
+    <g transform="translate(180, 830)">
+      <circle cx="0" cy="0" r="34" fill="none" stroke="#38bdf8" stroke-width="1.4" opacity="0.22" />
+      <circle cx="0" cy="0" r="18" fill="none" stroke="#14b8a6" stroke-width="1" opacity="0.28" />
+      <circle cx="0" cy="0" r="2.5" fill="#0ea5e9" opacity="0.35" />
+    </g>
+  </svg>
+  </div>
+
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link" data-i18n="skipLink">التخطي إلى المحتوى الرئيسي</a>
+
+  <!-- ========================================================================
+       TOP HEADER / NAVBAR (5 UNIFIED LINKS)
+       ======================================================================== -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-white/85 backdrop-blur-md border-b border-slate-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Identity -->
+        <a href="index.html" class="flex items-center gap-3.5 group focus:outline-none">
+          <div class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center p-2 shadow-2xs border border-slate-200/80 group-hover:border-primary/40 transition">
+            <img src="assets/images/logo.png" alt="شعار منصة جسور للتأهيل" class="w-full h-full object-contain">
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold text-primary tracking-tight leading-none">جسور للتأهيل</span>
+            <span class="text-[11px] font-medium text-slate-500 mt-1 leading-tight tracking-wide">للرعاية والتأهيل عن بُعد</span>
+          </div>
+        </a>
+
+        <!-- Exactly 5 Dedicated Independent Page Links -->
+        <nav class="hidden md:flex items-center gap-7" aria-label="شريط التنقل الرئيسي">
+          <a href="about.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.about">عن جسور للتأهيل</a>
+          <a href="services.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.services">الخدمات</a>
+          <a href="booking.html" class="nav-link text-sm font-bold text-primary transition-colors py-1" data-i18n="nav.booking">حجز موعد</a>
+                    <a href="devices.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1 flex items-center gap-1.5" data-i18n="nav.devices">
+            <span class="material-symbols-outlined text-[17px] text-purple-600">storefront</span>
+            <span>بنك الأجهزة</span>
+          </a>
+<a href="partners.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.partners">الشركاء</a>
+          <a href="faq.html" class="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors py-1" data-i18n="nav.faq">الأسئلة الشائعة</a>
+        </nav>
+
+        <!-- Header Actions: Language Switch & Login -->
+        <div class="hidden md:flex items-center gap-3">
+          <button 
+            type="button" 
+            data-lang-toggle
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-primary hover:bg-slate-50 border border-slate-200/80 transition"
+            aria-label="تبديل اللغة"
+          >
+            <span class="material-symbols-outlined text-base">language</span>
+            <span data-i18n="nav.langSwitch">English</span>
+          </button>
+
+          <a href="login.html?tab=register" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-secondary bg-secondary/10 hover:bg-secondary hover:text-white transition shadow-2xs">
+            <span class="material-symbols-outlined text-base">person_add</span>
+            <span data-i18n="nav.register">إنشاء حساب جديد</span>
+          </a>
+          <a 
+            href="login.html" 
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-primary hover:bg-primary-dark transition shadow-2xs hover:shadow-subtle"
+          >
+            <span class="material-symbols-outlined text-base">login</span>
+            <span data-i18n="nav.login">تسجيل الدخول</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button 
+          type="button" 
+          id="mobile-menu-btn" 
+          class="md:hidden p-2 rounded-xl text-slate-600 hover:text-primary hover:bg-slate-100 transition"
+          aria-label="القائمة الرئيسية"
+          aria-expanded="false"
+        >
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-6 space-y-4 shadow-xl">
+      <nav class="flex flex-col space-y-2">
+        <a href="about.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.about">عن جسور للتأهيل</a>
+        <a href="services.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.services">الخدمات</a>
+        <a href="booking.html" class="px-3 py-2.5 rounded-xl text-sm font-bold text-primary bg-primary/5 transition" data-i18n="nav.booking">حجز موعد</a>
+                <a href="devices.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition flex items-center gap-2" data-i18n="nav.devices">
+          <span class="material-symbols-outlined text-base text-purple-600">storefront</span>
+          <span>بنك الأجهزة</span>
+        </a>
+<a href="partners.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.partners">الشركاء</a>
+        <a href="faq.html" class="px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-primary transition" data-i18n="nav.faq">الأسئلة الشائعة</a>
+      </nav>
+      <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+        <button type="button" data-lang-toggle class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold text-slate-600 border border-slate-200">
+          <span class="material-symbols-outlined text-base">language</span>
+          <span data-i18n="nav.langSwitch">English</span>
+        </button>
+        <a href="login.html" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition text-center shadow-2xs">
+          <span class="material-symbols-outlined text-base">login</span>
+            <span data-i18n="nav.login">تسجيل الدخول</span>
+        </a>
+        <a href="login.html?tab=register" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold text-secondary bg-secondary/10 hover:bg-secondary hover:text-white transition text-center shadow-2xs">
+          <span class="material-symbols-outlined text-base">person_add</span>
+            <span data-i18n="nav.register">إنشاء حساب جديد</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN CONTENT: IN-PERSON APPOINTMENT BOOKING WIZARD
+       ======================================================================== -->
+  <main id="main-content" class="flex-grow pt-28 pb-20 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+      <!-- --------------------------------------------------------------------
+           1. WELCOME BANNER & TELE-REHABILITATION DISCLAIMER
+           -------------------------------------------------------------------- -->
+      <section class="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/80 shadow-card relative overflow-hidden">
+        <div class="absolute -top-12 -left-12 w-48 h-48 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-12 -right-12 w-48 h-48 bg-secondary/5 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-3xl space-y-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            <span>الشبكة الطبية السريرية المعتمدة</span>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight leading-snug">
+            حجز موعد حضوري في المستشفيات والمراكز المشتركة
+          </h1>
+
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            مرحباً بك في خدمة حجز المواعيد والكشوفات السريرية الحضورية. نربطك مباشرة بنخبة المستشفيات ومراكز التأهيل الطبي الشريكة والمشتركة مع «جسور للتأهيل» لإجراء الفحص السريري المباشر وحصص العلاج الطبيعي الحضورية.
+          </p>
+
+          <!-- Gentle Callout for Tele-rehabilitation in App -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-200/80 text-amber-950 flex items-start gap-3.5 text-xs sm:text-sm leading-relaxed">
+            <span class="material-symbols-outlined text-amber-600 text-xl shrink-0 mt-0.5">info</span>
+            <div>
+              <span class="font-bold">تنويه لطيف:</span>
+              جلسات التأهيل المنزلي والمتابعة الطبية اليومية المستمرة عن بُعد (أونلاين) هي ميزة حصرية لمشتركي تطبيق <strong>«جسور للتأهيل»</strong>. هذه الصفحة مخصصة فقط لتنسيق وحجز المواعيد الحضورية الميدانية داخل مقار المستشفيات والمراكز المشتركة.
+            </div>
+          </div>
+        </div>
+
+        <!-- 4-Step Interactive Progress Stepper -->
+        <div class="mt-8 pt-8 border-t border-slate-100">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-xs font-semibold" id="booking-stepper">
+            <div class="step-item step-active flex items-center gap-2.5 p-3 rounded-2xl border transition-all" data-step-target="1">
+              <span class="step-num w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs bg-primary text-white">1</span>
+              <span class="step-text text-primary font-bold">المستشفيات المشتركة</span>
+            </div>
+            <div class="step-item flex items-center gap-2.5 p-3 rounded-2xl border border-slate-200/70 text-slate-400 transition-all" data-step-target="2">
+              <span class="step-num w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs bg-slate-100 text-slate-500">2</span>
+              <span class="step-text">المختص ومواعيد العمل</span>
+            </div>
+            <div class="step-item flex items-center gap-2.5 p-3 rounded-2xl border border-slate-200/70 text-slate-400 transition-all" data-step-target="3">
+              <span class="step-num w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs bg-slate-100 text-slate-500">3</span>
+              <span class="step-text">البيانات وتأكيد الدفع</span>
+            </div>
+            <div class="step-item flex items-center gap-2.5 p-3 rounded-2xl border border-slate-200/70 text-slate-400 transition-all" data-step-target="4">
+              <span class="step-num w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs bg-slate-100 text-slate-500">4</span>
+              <span class="step-text">إشعار الموعد وساعة الحضور</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- --------------------------------------------------------------------
+           STEP 1: DISPLAY SUBSCRIBED HOSPITALS ONLY (is_subscribed = true)
+           -------------------------------------------------------------------- -->
+      <section id="step-1-container" class="space-y-6">
+        
+        <!-- Filter and Search Controls -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-2xs">
+          <!-- City Filter Pills -->
+          <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0" id="city-filter-bar">
+            <button type="button" data-city="all" class="city-btn px-4 py-2 rounded-xl text-xs font-bold bg-primary text-white transition shrink-0">جميع المدن</button>
+            <button type="button" data-city="صنعاء" class="city-btn px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition shrink-0">صنعاء</button>
+            <button type="button" data-city="عدن" class="city-btn px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition shrink-0">عدن</button>
+            <button type="button" data-city="المكلا" class="city-btn px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition shrink-0">المكلا</button>
+            <button type="button" data-city="تعز" class="city-btn px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition shrink-0">تعز</button>
+          </div>
+
+          <!-- Quick Search -->
+          <div class="relative w-full sm:w-72">
+            <input 
+              type="text" 
+              id="hosp-search-input" 
+              placeholder="ابحث باسم المستشفى أو الحي..." 
+              class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:border-primary focus:ring-0 transition"
+            >
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg pointer-events-none">search</span>
+          </div>
+        </div>
+
+        <!-- Subscribed Hospitals Dynamic Grid -->
+        <div id="hospitals-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Loading Skeleton Placeholder -->
+          <div class="col-span-full py-16 text-center text-slate-400 flex flex-col items-center justify-center gap-3">
+            <span class="material-symbols-outlined text-4xl animate-spin text-primary">progress_activity</span>
+            <span class="text-xs font-semibold">جاري جلب المستشفيات والمراكز المشتركة من قاعدة البيانات...</span>
+          </div>
+        </div>
+
+        <!-- Empty State Container (If no subscribed hospital) -->
+        <div id="hospitals-empty-state" class="hidden bg-white rounded-3xl p-12 text-center border border-slate-200/80 shadow-card max-w-lg mx-auto space-y-4">
+          <div class="w-16 h-16 rounded-3xl bg-slate-100 text-slate-400 mx-auto flex items-center justify-center">
+            <span class="material-symbols-outlined text-3xl">domain_disabled</span>
+          </div>
+          <h3 class="text-base font-bold text-on-surface">لا توجد مستشفيات مشتركة مطابقة لبحثك حالياً</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            نعمل باستمرار على توسيع شبكتنا الطبية المعتمدة. إذا كنت تمثل مستشفى أو مركز تأهيل طبي، يسعدنا انضمامك لشبكة شركاء جسور للتأهيل.
+          </p>
+          <div class="pt-2">
+            <a href="partners.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-primary bg-primary/10 hover:bg-primary hover:text-white transition">
+              <span>تقديم طلب شراكة واعتماد مستشفى</span>
+              <span class="material-symbols-outlined text-sm">arrow_back</span>
+            </a>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- --------------------------------------------------------------------
+           STEP 2: SELECT SPECIALIST & AVAILABLE WORKING DAYS
+           -------------------------------------------------------------------- -->
+      <section id="step-2-container" class="hidden space-y-6">
+        
+        <!-- Hospital Bar Breadcrumb -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3 w-full sm:w-auto">
+            <button type="button" id="back-to-step-1-btn" class="p-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-primary transition" title="الرجوع لقائمة المستشفيات">
+              <span class="material-symbols-outlined text-xl">arrow_forward</span>
+            </button>
+            <div>
+              <span class="text-[11px] font-bold text-slate-400 block">المستشفى المختار:</span>
+              <h2 id="selected-hosp-title" class="text-base font-bold text-primary leading-tight">مركز التأهيل التخصصي المتطور</h2>
+              <span id="selected-hosp-address" class="text-xs text-slate-500">صنعاء، شارع الستين، حي الأصبحي</span>
+            </div>
+          </div>
+          <button type="button" id="change-hosp-btn" class="text-xs font-bold text-slate-500 hover:text-primary underline">
+            تغيير المستشفى
+          </button>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-sky-50 border border-sky-200 text-sky-900 text-xs flex items-center gap-2">
+          <span class="material-symbols-outlined text-sky-600 text-lg shrink-0">event_available</span>
+          <span>اختر الأخصائي المعالج المناسب لمعاينة تفاصيل خبرته وأيام دوامه المتاحة. (تنويه: الساعة الدقيقة للحضور تُحدّد وتظهر فور إتمام الدفع).</span>
+        </div>
+
+        <!-- Specialists List Container -->
+        <div id="specialists-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Dynamically populated -->
+        </div>
+
+      </section>
+
+      <!-- --------------------------------------------------------------------
+           STEP 3: PATIENT DATA, DAY SELECTION & PAYMENT (BEFORE REVEALING HOUR)
+           -------------------------------------------------------------------- -->
+      <section id="step-3-container" class="hidden space-y-6">
+        
+        <div class="flex items-center gap-3">
+          <button type="button" id="back-to-step-2-btn" class="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-primary transition">
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+          </button>
+          <div>
+            <h2 class="text-lg font-bold text-on-surface">إدخال بيانات المراجع وتأكيد الحجز</h2>
+            <span class="text-xs text-slate-500">اختر يوم الحضور المناسب وأدخل بيانات المراجع لإتمام الدفع</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Right Column: Booking & Patient Form -->
+          <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-card space-y-6">
+            <form id="public-booking-form" class="space-y-5">
+              
+              <!-- 1. Day Selection within Available Schedule -->
+              <div class="space-y-2">
+                <label class="block text-xs font-bold text-slate-700">
+                  تاريخ ويوم الحضور الحضوري *
+                </label>
+                <select 
+                  id="booking-date-select" 
+                  required 
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs font-medium bg-slate-50 focus:bg-white focus:border-primary focus:ring-0 transition cursor-pointer"
+                >
+                  <option value="">-- اختر يوماً متاحاً لدوام المختص --</option>
+                  <!-- Populated by JS based on specialist.available_days -->
+                </select>
+                <p class="text-[11px] text-slate-400">تظهر هنا فقط الأيام التي يتواجد فيها المختص سريرياً في المركز.</p>
+              </div>
+
+              <!-- 2. Patient Full Name -->
+              <div class="space-y-1.5">
+                <label for="patient-name" class="block text-xs font-bold text-slate-700">الاسم الكامل للمراجع (المستفيد) *</label>
+                <input 
+                  type="text" 
+                  id="patient-name" 
+                  required 
+                  placeholder="الاسم الثلاثي أو الرباعي" 
+                  class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:border-primary focus:ring-0 transition"
+                >
+              </div>
+
+              <!-- 3. Phone Number -->
+              <div class="space-y-1.5">
+                <label for="patient-phone" class="block text-xs font-bold text-slate-700">رقم الجوال لتأكيد الحضور واستلام الإشعار *</label>
+                <input 
+                  type="tel" 
+                  id="patient-phone" 
+                  required 
+                  placeholder="77XXXXXXX" 
+                  class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:border-primary focus:ring-0 transition text-left dir-ltr"
+                >
+              </div>
+
+              <!-- 4. Email (Optional) -->
+              <div class="space-y-1.5">
+                <label for="patient-email" class="block text-xs font-bold text-slate-700">البريد الإلكتروني (اختياري)</label>
+                <input 
+                  type="email" 
+                  id="patient-email" 
+                  placeholder="example@mail.com" 
+                  class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:border-primary focus:ring-0 transition text-left dir-ltr"
+                >
+              </div>
+
+              <!-- 5. Payment Method Selector -->
+              <div class="space-y-2 pt-2 border-t border-slate-100">
+                <label class="block text-xs font-bold text-slate-700">طريقة الدفع الإلكتروني *</label>
+                <div class="grid grid-cols-3 gap-3">
+                  <label class="flex items-center justify-center gap-2 p-3 rounded-xl border border-primary bg-primary/5 text-primary text-xs font-bold cursor-pointer transition">
+                    <input type="radio" name="payment-method" value="mada" checked class="hidden">
+                    <span class="material-symbols-outlined text-base">credit_card</span>
+                    <span>مدى (Mada)</span>
+                  </label>
+                  <label class="flex items-center justify-center gap-2 p-3 rounded-xl border border-slate-200 hover:border-slate-300 text-slate-700 text-xs font-medium cursor-pointer transition">
+                    <input type="radio" name="payment-method" value="visa" class="hidden">
+                    <span class="material-symbols-outlined text-base">payments</span>
+                    <span>فيزا / ماستر</span>
+                  </label>
+                  <label class="flex items-center justify-center gap-2 p-3 rounded-xl border border-slate-200 hover:border-slate-300 text-slate-700 text-xs font-medium cursor-pointer transition">
+                    <input type="radio" name="payment-method" value="apple_pay" class="hidden">
+                    <span class="material-symbols-outlined text-base">contactless</span>
+                    <span>Apple Pay</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="pt-4">
+                <button 
+                  type="submit" 
+                  id="confirm-pay-btn" 
+                  class="w-full py-4 px-6 rounded-2xl bg-primary hover:bg-primary-dark text-white text-sm font-bold transition shadow-card hover:shadow-card-hover flex items-center justify-center gap-2.5 cursor-pointer"
+                >
+                  <span class="material-symbols-outlined text-xl">verified_user</span>
+                  <span id="btn-pay-label">تأكيد الحجز والدفع الآن</span>
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Left Column: Order Summary & Exact Time Warning -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Summary Card -->
+            <div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200/80 shadow-card space-y-5">
+              <h3 class="text-sm font-bold text-on-surface border-b border-slate-100 pb-3 flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary text-lg">receipt_long</span>
+                <span>ملخص تفاصيل الحجز السريري</span>
+              </h3>
+
+              <div class="space-y-3 text-xs">
+                <div class="flex justify-between items-start">
+                  <span class="text-slate-500">المستشفى / المركز:</span>
+                  <span id="summary-hosp-name" class="font-bold text-slate-800 text-end">مركز التأهيل التخصصي</span>
+                </div>
+                <div class="flex justify-between items-start">
+                  <span class="text-slate-500">العنوان:</span>
+                  <span id="summary-hosp-address" class="text-slate-700 text-end">صنعاء</span>
+                </div>
+                <div class="flex justify-between items-start">
+                  <span class="text-slate-500">الأخصائي المعالج:</span>
+                  <span id="summary-spec-name" class="font-bold text-primary text-end">د. خالد المعالج</span>
+                </div>
+                <div class="flex justify-between items-start">
+                  <span class="text-slate-500">التخصص:</span>
+                  <span id="summary-spec-title" class="text-slate-700 text-end">طب طبيعي وتأهيل</span>
+                </div>
+              </div>
+
+              <!-- Crucial Note Regarding Exact Hour -->
+              <div class="p-4 rounded-2xl bg-primary/5 border border-primary/20 text-primary text-xs leading-relaxed space-y-1">
+                <div class="flex items-center gap-1.5 font-bold">
+                  <span class="material-symbols-outlined text-base">schedule</span>
+                  <span>كشف الساعة الدقيقة للحضور:</span>
+                </div>
+                <p class="text-slate-600 text-[11px]">
+                  سيتم تحديد وإظهار الساعة الدقيقة لحضورك (مثال: 10:30 ص إلى 11:15 ص) فور إتمام الدفع، وذلك لضمان توزيع المراجعين وتفادي الانتظار في العيادة.
+                </p>
+              </div>
+
+              <!-- Price Breakdown -->
+              <div class="pt-4 border-t border-slate-100 space-y-2 text-xs">
+                <div class="flex justify-between text-slate-600">
+                  <span>رسوم الكشف الحضوري:</span>
+                  <span id="summary-fee" class="font-bold text-slate-800">180.00 $</span>
+                </div>
+                <div class="flex justify-between text-slate-500 text-[11px]">
+                  <span>ضريبة القيمة المضافة (15%):</span>
+                  <span>مشمولة</span>
+                </div>
+                <div class="pt-2 border-t border-slate-200/80 flex justify-between text-sm font-bold text-primary">
+                  <span>المبلغ الإجمالي للدفع:</span>
+                  <span id="summary-total">180.00 $</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Guarantee Badge -->
+            <div class="bg-white p-4 rounded-2xl border border-slate-200/70 text-slate-500 text-xs flex items-center gap-3">
+              <span class="material-symbols-outlined text-secondary text-2xl shrink-0">security</span>
+              <span>دفع إلكتروني آمن 100% وفق معايير البنك المركزي السعودي ومحمي بتشفير SSL.</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- --------------------------------------------------------------------
+           STEP 4: CONFIRMATION SCREEN & EXACT ATTENDANCE HOUR REVEALED
+           -------------------------------------------------------------------- -->
+      <section id="step-4-container" class="hidden space-y-8 max-w-3xl mx-auto">
+        
+        <!-- Success Alert Header -->
+        <div class="bg-emerald-50 border border-emerald-200 rounded-3xl p-6 sm:p-8 text-center space-y-3 shadow-2xs">
+          <div class="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto shadow-md">
+            <span class="material-symbols-outlined text-3xl">check</span>
+          </div>
+          <h2 class="text-2xl font-bold text-emerald-950">تم تأكيد الحجز وإتمام الدفع بنجاح!</h2>
+          <p class="text-xs sm:text-sm text-emerald-800 max-w-xl mx-auto">
+            تم تسجيل موعدك الحضوري بنجاح في نظام المستشفى، وتخصيص الساعة الدقيقة لحضورك المباشر في العيادة.
+          </p>
+        </div>
+
+        <!-- Printable Official Appointment Voucher Card -->
+        <div id="printable-voucher" class="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-card space-y-6 relative overflow-hidden">
+          
+          <!-- Voucher Header -->
+          <div class="flex items-center justify-between border-b border-slate-100 pb-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center p-1.5 border border-primary/20">
+                <img src="assets/images/logo.png" alt="شعار جسور" class="w-full h-full object-contain">
+              </div>
+              <div>
+                <span class="text-base font-bold text-primary leading-tight block">منصة جسور للتأهيل</span>
+                <span class="text-[11px] text-slate-400 block">إشعار حجز موعد سريري حضوري معتمد</span>
+              </div>
+            </div>
+            <div class="text-start sm:text-end">
+              <span class="text-[11px] text-slate-400 block">الرقم المرجعي للحجز:</span>
+              <span id="voucher-booking-ref" class="text-sm font-mono font-bold text-primary">JSR-INP-2026-8819</span>
+            </div>
+          </div>
+
+          <!-- Highlighted Exact Attendance Hour Card -->
+          <div class="bg-primary/5 rounded-2xl p-6 border-2 border-primary/20 text-center space-y-2">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block">الساعة الدقيقة المحددة لحضورك بالعيادة</span>
+            <div class="text-2xl sm:text-3xl font-extrabold text-primary flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-3xl text-secondary">alarm</span>
+              <span id="voucher-exact-time">10:30 صباحاً – 11:15 صباحاً</span>
+            </div>
+            <p class="text-xs text-slate-600">
+              تاريخ الحضور: <strong id="voucher-date" class="text-slate-800">الأحد 25 نوفمبر 2026</strong>
+            </p>
+          </div>
+
+          <!-- Clinical & Patient Details Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-2">
+            
+            <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-100 space-y-1">
+              <span class="text-slate-400 font-semibold block">المستشفى / المركز:</span>
+              <span id="voucher-hosp-name" class="font-bold text-slate-800 block text-sm">مركز التأهيل التخصصي المتطور</span>
+              <span id="voucher-hosp-address" class="text-slate-500 block text-[11px]">صنعاء، حي الأصبحي</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-100 space-y-1">
+              <span class="text-slate-400 font-semibold block">الأخصائي المعالج:</span>
+              <span id="voucher-spec-name" class="font-bold text-primary block text-sm">د. خالد المعالج</span>
+              <span id="voucher-spec-title" class="text-slate-500 block text-[11px]">استشاري طب طبيعي وتأهيل</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-100 space-y-1">
+              <span class="text-slate-400 font-semibold block">اسم المراجع:</span>
+              <span id="voucher-patient-name" class="font-bold text-slate-800 block text-sm">أحمد بن محمد</span>
+              <span id="voucher-patient-phone" class="text-slate-500 block text-[11px] dir-ltr text-end">7701234567</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-100 space-y-1">
+              <span class="text-slate-400 font-semibold block">حالة الدفع والرسوم:</span>
+              <span id="voucher-payment-status" class="font-bold text-emerald-700 block text-sm">مدفوع بالكامل (مدى)</span>
+              <span id="voucher-fee" class="text-slate-500 block text-[11px]">180.00 $ (شاملة الضريبة)</span>
+            </div>
+
+          </div>
+
+          <!-- Reception Instructions -->
+          <div class="p-4 rounded-xl bg-slate-100/60 text-slate-600 text-xs leading-relaxed space-y-1">
+            <span class="font-bold text-slate-800">تعليمات الحضور للمستشفى:</span>
+            <ul class="list-disc list-inside space-y-0.5 text-[11px] text-slate-600">
+              <li>يرجى التواجد في مكتب استقبال المستشفى قبل موعدك بـ 15 دقيقة على الأقل.</li>
+              <li>أبرز هذا الإشعار الرقمي أو رقمه المرجعي لموظف الاستقبال لطباعة تذكرة الدخول للعيادة فوراً.</li>
+              <li>لأي استفسار أو تعديل، يمكنك التواصل مع هاتف المستشفى المباشر المذكور في الإشعار.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Action Buttons (Print & Return) -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 no-print">
+          <button 
+            type="button" 
+            onclick="window.print()" 
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl bg-primary text-white text-xs sm:text-sm font-bold hover:bg-primary-dark transition shadow-2xs cursor-pointer"
+          >
+            <span class="material-symbols-outlined text-lg">print</span>
+            <span>طباعة إشعار الموعد</span>
+          </button>
+
+          <button 
+            type="button" 
+            id="book-another-btn" 
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-white border border-slate-200 text-slate-700 text-xs sm:text-sm font-bold hover:bg-slate-50 transition cursor-pointer"
+          >
+            <span class="material-symbols-outlined text-lg">calendar_add_on</span>
+            <span>حجز موعد آخر</span>
+          </button>
+
+          <a 
+            href="index.html" 
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl text-slate-500 text-xs sm:text-sm font-semibold hover:text-primary transition"
+          >
+            <span>العودة للرئيسية</span>
+          </a>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       UNIFIED FOOTER
+       ======================================================================== -->
+  <footer class="bg-white border-t border-slate-200/80 pt-16 pb-12 text-slate-600 no-print relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        
+        <div class="md:col-span-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center p-2 border border-primary/20">
+              <img src="assets/images/logo.png" alt="شعار جسور للتأهيل" class="w-full h-full object-contain">
+            </div>
+            <div>
+              <span class="text-lg font-bold text-primary block leading-none">جسور للتأهيل</span>
+              <span class="text-[11px] text-slate-500 mt-1 block">منظومة الرعاية والتأهيل الطبي المنزلي وعن بُعد</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed max-w-md">
+            مشروع رقمي صحي متخصص يربط أصحاب الاحتياجات التأهيلية بنخبة من المختصين والمشرفين الحركيين والجهات المانحة والمستشفيات لتقديم رعاية منزلية وسريرية موثوقة ومستمرة.
+          </p>
+        </div>
+
+        <div class="md:col-span-3 space-y-3">
+          <h3 class="text-xs font-bold text-slate-800 tracking-wider uppercase">استكشف المنصة</h3>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li><a href="about.html" class="hover:text-primary transition">عن المنصة ورسالتها</a></li>
+            <li><a href="services.html" class="hover:text-primary transition">الخدمات التأهيلية</a></li>
+            <li><a href="booking.html" class="text-primary font-bold">حجز موعد حضوري</a></li>
+            <li><a href="partners.html" class="hover:text-primary transition">شبكة الشركاء والاعتماد</a></li>
+            <li><a href="faq.html" class="hover:text-primary transition">الأسئلة الشائعة</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3 space-y-3">
+          <h3 class="text-xs font-bold text-slate-800 tracking-wider uppercase">السياسات والحوكمة</h3>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li><a href="privacy.html" class="hover:text-primary transition">سياسة الخصوصية وحماية البيانات</a></li>
+            <li><a href="terms.html" class="hover:text-primary transition">الشروط والأحكام</a></li>
+            <li>
+              <button 
+                type="button" 
+                id="footer-a11y-btn" 
+                class="hover:text-primary transition text-start inline-flex items-center gap-1.5"
+              >
+                <span class="material-symbols-outlined text-sm">accessibility_new</span>
+                <span>أدوات تيسير الوصول الرقمي</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 text-center sm:text-start">
+        <p>جميع الحقوق محفوظة لجسور للتأهيل والرعاية عن بُعد © 2026</p>
+        <div class="flex items-center gap-3">
+          <a href="privacy.html" class="hover:text-primary transition">الخصوصية</a>
+          <span>•</span>
+          <a href="terms.html" class="hover:text-primary transition">الشروط</a>
+          <span>•</span>
+          <a href="login.html" class="text-primary font-bold hover:underline">بوابة تسجيل الدخول</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Accessibility Settings Modal -->
+  <div id="a11y-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs" aria-modal="true" role="dialog">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200/80 space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div class="flex items-center gap-2 text-primary font-bold">
+          <span class="material-symbols-outlined text-xl">accessibility_new</span>
+          <h3 class="text-sm font-bold text-on-surface">أدوات تيسير الوصول</h3>
+        </div>
+        <button type="button" id="a11y-close-btn" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 transition">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+      <div class="space-y-4 text-xs font-semibold">
+        <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50">
+          <span>حجم الخط:</span>
+          <div class="flex items-center gap-1">
+            <button type="button" id="a11y-font-dec" class="w-8 h-8 rounded-lg bg-white border border-slate-200 font-bold hover:bg-slate-100">-A</button>
+            <button type="button" id="a11y-font-reset" class="px-2 h-8 rounded-lg bg-white border border-slate-200 hover:bg-slate-100">افتراضي</button>
+            <button type="button" id="a11y-font-inc" class="w-8 h-8 rounded-lg bg-white border border-slate-200 font-bold hover:bg-slate-100">+A</button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50">
+          <span>التباين اللوني العالي:</span>
+          <button type="button" id="a11y-contrast-toggle" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700">تفعيل</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Download Modal -->
+  <div id="app-download-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs" aria-modal="true" role="dialog">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200/80 space-y-6 text-center">
+      <div class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto">
+        <span class="material-symbols-outlined text-3xl">phone_iphone</span>
+      </div>
+      <div class="space-y-2">
+        <h3 class="text-base font-bold text-on-surface">تطبيق جسور للتأهيل المنزلي</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          التطبيق متوفر لمشتركي المنصة على متاجر التطبيقات لمتابعة الجلسات عن بُعد والتواصل المستمر مع الأخصائيين.
+        </p>
+      </div>
+      <div class="pt-2">
+        <button type="button" id="app-modal-close" class="w-full py-2.5 rounded-xl bg-slate-100 text-xs font-bold text-slate-700 hover:bg-slate-200 transition">
+          إغلاق النافذة
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button 
+    type="button" 
+    id="back-to-top" 
+    class="fixed bottom-6 left-6 z-30 p-3 rounded-2xl bg-white border border-slate-200/80 text-primary shadow-card hover:bg-slate-50 transition-all opacity-0 pointer-events-none translate-y-3 cursor-pointer"
+    aria-label="العودة للأعلى"
+  >
+    <span class="material-symbols-outlined text-xl">arrow_upward</span>
+  </button>
+
+  <!-- Scripts -->
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- In-person Booking Controller Logic -->
+  <script>
+    (function () {
+      'use strict';
+
+      // Application State
+      const state = {
+        currentStep: 1,
+        hospitals: [],
+        filteredHospitals: [],
+        selectedHospital: null,
+        specialists: [],
+        selectedSpecialist: null,
+        selectedDate: null,
+        bookingResult: null,
+        selectedCity: 'all',
+        searchQuery: ''
+      };
+
+      // DOM Elements
+      const step1Container = document.getElementById('step-1-container');
+      const step2Container = document.getElementById('step-2-container');
+      const step3Container = document.getElementById('step-3-container');
+      const step4Container = document.getElementById('step-4-container');
+
+      const hospitalsGrid = document.getElementById('hospitals-grid');
+      const hospitalsEmptyState = document.getElementById('hospitals-empty-state');
+      const cityFilterBar = document.getElementById('city-filter-bar');
+      const hospSearchInput = document.getElementById('hosp-search-input');
+
+      const specialistsGrid = document.getElementById('specialists-grid');
+      const selectedHospTitle = document.getElementById('selected-hosp-title');
+      const selectedHospAddress = document.getElementById('selected-hosp-address');
+      const backToStep1Btn = document.getElementById('back-to-step-1-btn');
+      const changeHospBtn = document.getElementById('change-hosp-btn');
+
+      const backToStep2Btn = document.getElementById('back-to-step-2-btn');
+      const bookingDateSelect = document.getElementById('booking-date-select');
+      const publicBookingForm = document.getElementById('public-booking-form');
+      const confirmPayBtn = document.getElementById('confirm-pay-btn');
+      const btnPayLabel = document.getElementById('btn-pay-label');
+
+      // Summary elements
+      const summaryHospName = document.getElementById('summary-hosp-name');
+      const summaryHospAddress = document.getElementById('summary-hosp-address');
+      const summarySpecName = document.getElementById('summary-spec-name');
+      const summarySpecTitle = document.getElementById('summary-spec-title');
+      const summaryFee = document.getElementById('summary-fee');
+      const summaryTotal = document.getElementById('summary-total');
+
+      // Voucher elements
+      const voucherBookingRef = document.getElementById('voucher-booking-ref');
+      const voucherExactTime = document.getElementById('voucher-exact-time');
+      const voucherDate = document.getElementById('voucher-date');
+      const voucherHospName = document.getElementById('voucher-hosp-name');
+      const voucherHospAddress = document.getElementById('voucher-hosp-address');
+      const voucherSpecName = document.getElementById('voucher-spec-name');
+      const voucherSpecTitle = document.getElementById('voucher-spec-title');
+      const voucherPatientName = document.getElementById('voucher-patient-name');
+      const voucherPatientPhone = document.getElementById('voucher-patient-phone');
+      const voucherPaymentStatus = document.getElementById('voucher-payment-status');
+      const voucherFee = document.getElementById('voucher-fee');
+      const bookAnotherBtn = document.getElementById('book-another-btn');
+
+      // Stepper Navigator
+      function setStep(stepNum) {
+        state.currentStep = stepNum;
+
+        // Hide all steps
+        step1Container.classList.add('hidden');
+        step2Container.classList.add('hidden');
+        step3Container.classList.add('hidden');
+        step4Container.classList.add('hidden');
+
+        // Show target step
+        if (stepNum === 1) step1Container.classList.remove('hidden');
+        if (stepNum === 2) step2Container.classList.remove('hidden');
+        if (stepNum === 3) step3Container.classList.remove('hidden');
+        if (stepNum === 4) step4Container.classList.remove('hidden');
+
+        // Update stepper UI
+        const stepItems = document.querySelectorAll('#booking-stepper .step-item');
+        stepItems.forEach(item => {
+          const target = Number(item.getAttribute('data-step-target'));
+          const numBadge = item.querySelector('.step-num');
+          const textSpan = item.querySelector('.step-text');
+
+          if (target === stepNum) {
+            item.className = 'step-item step-active flex items-center gap-2.5 p-3 rounded-2xl border border-primary/30 bg-primary/5 transition-all';
+            numBadge.className = 'step-num w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs bg-primary text-white shadow-2xs';
+            textSpan.className = 'step-text text-primary font-bold';
+          } else if (target < stepNum) {
+            item.className = 'step-item flex items-center gap-2.5 p-3 rounded-2xl border border-emerald-200 bg-emerald-50/50 text-emerald-800 transition-all';
+            numBadge.className = 'step-num w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs bg-emerald-600 text-white';
+            textSpan.className = 'step-text font-bold text-emerald-900';
+          } else {
+            item.className = 'step-item flex items-center gap-2.5 p-3 rounded-2xl border border-slate-200/70 text-slate-400 transition-all';
+            numBadge.className = 'step-num w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs bg-slate-100 text-slate-500';
+            textSpan.className = 'step-text font-medium text-slate-500';
+          }
+        });
+
+        // Smooth scroll to top of wizard
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+      }
+
+      // 1. Fetch & Render Subscribed Hospitals
+      async function loadHospitals() {
+        if (!window.jisrDB) return;
+        try {
+          // Strictly fetch only is_subscribed = true
+          const list = await window.jisrDB.fetchSubscribedHospitals();
+          state.hospitals = Array.isArray(list) ? list.filter(h => h.is_subscribed === true) : [];
+          applyFilters();
+        } catch (err) {
+          console.error('Error loading subscribed hospitals:', err);
+          hospitalsGrid.innerHTML = `
+            <div class="col-span-full p-8 text-center text-red-600 bg-red-50 rounded-2xl border border-red-200 text-xs font-semibold">
+              تعذر الاتصال بقاعدة البيانات لجلب المستشفيات المشتركة. يرجى المحاولة لاحقاً.
+            </div>
+          `;
+        }
+      }
+
+      function applyFilters() {
+        let results = [...state.hospitals];
+
+        // Filter by City
+        if (state.selectedCity !== 'all') {
+          results = results.filter(h => h.city && h.city.includes(state.selectedCity));
+        }
+
+        // Filter by Search Query
+        if (state.searchQuery) {
+          const q = state.searchQuery.toLowerCase();
+          results = results.filter(h => 
+            (h.name && h.name.toLowerCase().includes(q)) ||
+            (h.address && h.address.toLowerCase().includes(q)) ||
+            (h.city && h.city.toLowerCase().includes(q)) ||
+            (h.district && h.district.toLowerCase().includes(q))
+          );
+        }
+
+        state.filteredHospitals = results;
+        renderHospitals();
+      }
+
+      function renderHospitals() {
+        if (state.filteredHospitals.length === 0) {
+          hospitalsGrid.innerHTML = '';
+          hospitalsGrid.classList.add('hidden');
+          hospitalsEmptyState.classList.remove('hidden');
+          return;
+        }
+
+        hospitalsEmptyState.classList.add('hidden');
+        hospitalsGrid.classList.remove('hidden');
+
+        hospitalsGrid.innerHTML = state.filteredHospitals.map(h => {
+          const featuresList = Array.isArray(h.features) ? h.features : [];
+          const featureTags = featuresList.slice(0, 3).map(f => `
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 text-slate-700">
+              <span class="material-symbols-outlined text-[13px] text-secondary">check_circle</span>
+              <span>${f}</span>
+            </span>
+          `).join('');
+
+          return `
+            <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between space-y-5">
+              <div class="space-y-4">
+                
+                <div class="flex items-start justify-between gap-3">
+                  <div class="space-y-1">
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                      <span>شريك طبي مشترك ومعتمد</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-on-surface leading-tight pt-1">${h.name}</h3>
+                    <div class="flex items-center gap-1.5 text-xs text-slate-500">
+                      <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                      <span>${h.address || (h.city + ' - ' + (h.district || ''))}</span>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-amber-50 text-amber-800 text-xs font-bold shrink-0">
+                    <span class="material-symbols-outlined text-amber-500 text-sm">star</span>
+                    <span>${h.rating || '4.9'}</span>
+                  </div>
+                </div>
+
+                <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                  ${h.description || 'صرح طبي متخصص يقدم خدمات التأهيل الطبي والرعاية السريرية الشاملة بأحدث الوسائل والأجهزة الطبية المعتمدة.'}
+                </p>
+
+                <!-- Features Tags -->
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                  ${featureTags}
+                </div>
+
+              </div>
+
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                <span class="text-[11px] text-slate-400 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">verified</span>
+                  <span>كشف سريري حضوري</span>
+                </span>
+                <button 
+                  type="button" 
+                  data-select-hospital="${h.id}" 
+                  class="select-hosp-btn inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-xs font-bold transition shadow-2xs hover:shadow-subtle cursor-pointer"
+                >
+                  <span>استعراض المختصين والحجز</span>
+                  <span class="material-symbols-outlined text-sm">arrow_back</span>
+                </button>
+              </div>
+
+            </div>
+          `;
+        }).join('');
+
+        // Bind Hospital Selection
+        document.querySelectorAll('.select-hosp-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const hospId = btn.getAttribute('data-select-hospital');
+            const found = state.hospitals.find(h => h.id === hospId);
+            if (found) selectHospital(found);
+          });
+        });
+      }
+
+      // 2. Select Hospital & Load Specialists
+      async function selectHospital(hospital) {
+        state.selectedHospital = hospital;
+        selectedHospTitle.textContent = hospital.name;
+        selectedHospAddress.textContent = hospital.address || hospital.city;
+
+        specialistsGrid.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-400 flex flex-col items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-3xl animate-spin text-primary">progress_activity</span>
+            <span class="text-xs font-semibold">جاري جلب أطباء ومختصي ${hospital.name}...</span>
+          </div>
+        `;
+
+        setStep(2);
+
+        try {
+          const specs = await window.jisrDB.fetchSpecialistsByHospital(hospital.id);
+          state.specialists = specs;
+          renderSpecialists();
+        } catch (e) {
+          console.error(e);
+          specialistsGrid.innerHTML = `
+            <div class="col-span-full p-6 text-center text-red-600 bg-red-50 rounded-2xl text-xs font-semibold">
+              تعذر جلب الأطباء حالياً. يرجى إعادة المحاولة.
+            </div>
+          `;
+        }
+      }
+
+      function renderSpecialists() {
+        if (!state.specialists || state.specialists.length === 0) {
+          specialistsGrid.innerHTML = `
+            <div class="col-span-full p-8 text-center text-slate-500 bg-white rounded-2xl border border-slate-200 space-y-2">
+              <span class="material-symbols-outlined text-3xl text-slate-400">person_off</span>
+              <p class="text-xs font-bold">لا يوجد أخصائيون متاحون للحجز الحضوري في هذا المركز حالياً.</p>
+              <button type="button" onclick="setStep(1)" class="text-xs text-primary underline font-bold">الرجوع لاختيار مستشفى آخر</button>
+            </div>
+          `;
+          return;
+        }
+
+        specialistsGrid.innerHTML = state.specialists.map(s => {
+          const daysNames = Array.isArray(s.available_day_names) && s.available_day_names.length > 0 
+            ? s.available_day_names.join('، ')
+            : 'الأحد، الثلاثاء، الخميس';
+
+          const fee = s.in_person_fee_sar ? `${s.in_person_fee_sar} $` : '180.00 $';
+
+          return `
+            <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between space-y-5">
+              
+              <div class="space-y-4">
+                
+                <div class="flex items-start gap-3.5">
+                  <div class="w-13 h-13 rounded-2xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center font-bold text-lg shrink-0 overflow-hidden">
+                    <span class="material-symbols-outlined text-2xl">medical_services</span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-on-surface leading-tight">${s.full_name}</h4>
+                    <span class="text-xs text-primary font-semibold block mt-0.5">${s.specialty_title}</span>
+                    <span class="text-[11px] text-slate-400 block">${s.sub_specialty || 'تأهيل سريري متقدم'}</span>
+                  </div>
+                </div>
+
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  ${s.bio || 'مختص معتمد حاصل على ترخيص وزارة الصحة العامة والسكان ومؤهل في برامج التأهيل الحركي السريري.'}
+                </p>
+
+                <div class="space-y-2 pt-2 border-t border-slate-100 text-xs">
+                  <div class="flex justify-between items-center text-slate-600">
+                    <span class="text-[11px] text-slate-500">سنوات الخبرة:</span>
+                    <span class="font-bold text-slate-800">${s.experience_years || 5} سنوات</span>
+                  </div>
+                  <div class="flex justify-between items-center text-slate-600">
+                    <span class="text-[11px] text-slate-500">رسوم الكشف الحضوري:</span>
+                    <span class="font-bold text-primary text-sm">${fee}</span>
+                  </div>
+                </div>
+
+                <!-- Available Days Schedule -->
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
+                  <div class="flex items-center gap-1.5 text-[11px] font-bold text-slate-700">
+                    <span class="material-symbols-outlined text-xs text-secondary">calendar_today</span>
+                    <span>أيام الدوام الحضوري المتاحة:</span>
+                  </div>
+                  <p class="text-[11px] text-slate-600 leading-relaxed font-medium">
+                    ${daysNames}
+                  </p>
+                </div>
+
+                <!-- Note regarding exact hour -->
+                <div class="flex items-center gap-1.5 text-[10px] text-amber-700 bg-amber-50/70 p-2 rounded-lg border border-amber-200/50">
+                  <span class="material-symbols-outlined text-xs">schedule</span>
+                  <span>تُكشف الساعة الدقيقة فور إتمام الدفع</span>
+                </div>
+
+              </div>
+
+              <div class="pt-3 border-t border-slate-100">
+                <button 
+                  type="button" 
+                  data-select-specialist="${s.id}" 
+                  class="select-spec-btn w-full py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-xs font-bold transition shadow-2xs cursor-pointer flex items-center justify-center gap-1.5"
+                >
+                  <span>اختيار المختص وتحديد الموعد</span>
+                  <span class="material-symbols-outlined text-sm">arrow_back</span>
+                </button>
+              </div>
+
+            </div>
+          `;
+        }).join('');
+
+        // Bind Specialist Selection
+        document.querySelectorAll('.select-spec-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const specId = btn.getAttribute('data-select-specialist');
+            const found = state.specialists.find(s => s.id === specId);
+            if (found) selectSpecialist(found);
+          });
+        });
+      }
+
+      // 3. Select Specialist & Setup Step 3 (Date Picker, Summary & Form)
+      function selectSpecialist(specialist) {
+        state.selectedSpecialist = specialist;
+
+        // Fill Summary Card
+        summaryHospName.textContent = state.selectedHospital.name;
+        summaryHospAddress.textContent = state.selectedHospital.address || state.selectedHospital.city;
+        summarySpecName.textContent = specialist.full_name;
+        summarySpecTitle.textContent = specialist.specialty_title;
+
+        const feeNum = specialist.in_person_fee_sar || 180.00;
+        summaryFee.textContent = `${feeNum.toFixed(2)} $`;
+        summaryTotal.textContent = `${feeNum.toFixed(2)} $`;
+        btnPayLabel.textContent = `تأكيد الحجز والدفع (${feeNum.toFixed(2)} $)`;
+
+        // Populate Date Options based on specialist available_days
+        populateDateOptions(specialist.available_days || [0, 1, 2, 3, 4]);
+
+        setStep(3);
+      }
+
+      function populateDateOptions(allowedDays) {
+        bookingDateSelect.innerHTML = '<option value="">-- اختر يوماً متاحاً لدوام المختص --</option>';
+
+        const dayNamesMap = {
+          0: 'الأحد',
+          1: 'الإثنين',
+          2: 'الثلاثاء',
+          3: 'الأربعاء',
+          4: 'الخميس',
+          5: 'الجمعة',
+          6: 'السبت'
+        };
+
+        const today = new Date();
+        let addedCount = 0;
+
+        // Generate dates for the next 14 days
+        for (let i = 1; i <= 14; i++) {
+          const d = new Date();
+          d.setDate(today.getDate() + i);
+          const dow = d.getDay();
+
+          if (allowedDays.includes(dow)) {
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            const dateStr = `${year}-${month}-${day}`;
+            const label = `${dayNamesMap[dow]} (${day}/${month}/${year})`;
+
+            const opt = document.createElement('option');
+            opt.value = dateStr;
+            opt.textContent = label;
+            bookingDateSelect.appendChild(opt);
+            addedCount++;
+          }
+        }
+
+        if (addedCount === 0) {
+          const opt = document.createElement('option');
+          opt.value = '';
+          opt.textContent = 'لا توجد مواعيد متاحة خلال الأسبوعين القادمين';
+          bookingDateSelect.appendChild(opt);
+        }
+      }
+
+      // 4. Handle Booking Submission & Payment
+      publicBookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const dateVal = bookingDateSelect.value;
+        const patientName = document.getElementById('patient-name').value.trim();
+        const patientPhone = document.getElementById('patient-phone').value.trim();
+        const patientEmail = document.getElementById('patient-email').value.trim();
+        const paymentMethodEl = document.querySelector('input[name="payment-method"]:checked');
+        const paymentMethod = paymentMethodEl ? paymentMethodEl.value : 'mada';
+
+        if (!dateVal) {
+          alert('يرجى اختيار تاريخ ويوم الحضور من القائمة المتاحة.');
+          bookingDateSelect.focus();
+          return;
+        }
+
+        if (!patientName || !patientPhone) {
+          alert('يرجى إدخال اسم المراجع ورقم الجوال للتواصل.');
+          return;
+        }
+
+        // Show Processing State
+        confirmPayBtn.disabled = true;
+        const originalBtnContent = confirmPayBtn.innerHTML;
+        confirmPayBtn.innerHTML = `
+          <span class="material-symbols-outlined text-lg animate-spin">progress_activity</span>
+          <span>جاري معالجة الدفع وتخصيص الساعة الدقيقة...</span>
+        `;
+
+        try {
+          const payload = {
+            hospital_id: state.selectedHospital.id,
+            specialist_id: state.selectedSpecialist.id,
+            appointment_date: dateVal,
+            patient_name: patientName,
+            patient_phone: patientPhone,
+            patient_email: patientEmail,
+            payment_method: paymentMethod
+          };
+
+          const response = await window.jisrDB.confirmPublicInPersonBooking(payload);
+
+          if (response && response.data && response.data.success) {
+            state.bookingResult = response.data;
+            showConfirmationVoucher(response.data);
+          } else {
+            alert('حدث خطأ أثناء معالجة الحجز. يرجى المحاولة مرة أخرى.');
+            confirmPayBtn.disabled = false;
+            confirmPayBtn.innerHTML = originalBtnContent;
+          }
+        } catch (err) {
+          console.error('Booking submission error:', err);
+          alert('نعتذر، حدث خطأ أثناء تنفيذ الحجز. يرجى التأكد من اتصالك.');
+          confirmPayBtn.disabled = false;
+          confirmPayBtn.innerHTML = originalBtnContent;
+        }
+      });
+
+      // 5. Show Step 4 Confirmation & Exact Time
+      function showConfirmationVoucher(b) {
+        voucherBookingRef.textContent = b.booking_reference;
+        voucherExactTime.textContent = `${b.start_time} – ${b.end_time}`;
+        voucherDate.textContent = b.appointment_date;
+        voucherHospName.textContent = b.hospital_name;
+        voucherHospAddress.textContent = b.hospital_address;
+        voucherSpecName.textContent = b.specialist_name;
+        voucherSpecTitle.textContent = b.specialty_title;
+        voucherPatientName.textContent = b.patient_name;
+        voucherPatientPhone.textContent = b.patient_phone;
+        voucherPaymentStatus.textContent = `مدفوع بالكامل (${b.payment_method === 'mada' ? 'مدى' : b.payment_method === 'apple_pay' ? 'Apple Pay' : 'بطاقة ائتمانية'})`;
+        voucherFee.textContent = `${Number(b.fee_sar).toFixed(2)} $ (شاملة الضريبة)`;
+
+        setStep(4);
+      }
+
+      // Step Navigation Listeners
+      backToStep1Btn.addEventListener('click', () => setStep(1));
+      changeHospBtn.addEventListener('click', () => setStep(1));
+      backToStep2Btn.addEventListener('click', () => setStep(2));
+      bookAnotherBtn.addEventListener('click', () => {
+        publicBookingForm.reset();
+        setStep(1);
+      });
+
+      // City Filter Buttons
+      cityFilterBar.querySelectorAll('.city-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          cityFilterBar.querySelectorAll('.city-btn').forEach(b => {
+            b.className = 'city-btn px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition shrink-0';
+          });
+          btn.className = 'city-btn px-4 py-2 rounded-xl text-xs font-bold bg-primary text-white transition shrink-0';
+          state.selectedCity = btn.getAttribute('data-city');
+          applyFilters();
+        });
+      });
+
+      // Search Input
+      hospSearchInput.addEventListener('input', (e) => {
+        state.searchQuery = e.target.value.trim();
+        applyFilters();
+      });
+
+      // Reactive Event Listener: Automatic update if hospital updates profile or new hospital approved
+      window.addEventListener('jisr:hospitals_updated', () => {
+        console.info('Jusoor: Subscribed hospitals list updated reactively.');
+        loadHospitals();
+      });
+
+      // Initialize
+      document.addEventListener('DOMContentLoaded', () => {
+        loadHospitals();
+      });
+
+    })();
+  </script>
+
+</body>
+</html>

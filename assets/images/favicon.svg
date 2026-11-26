@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00507d" />
+      <stop offset="100%" stop-color="#00a396" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#ffffff" />
+  <!-- Bridge Arches -->
+  <path d="M 20 68 C 24 38, 52 28, 76 34" fill="none" stroke="#00507d" stroke-width="7" stroke-linecap="round" />
+  <path d="M 32 68 C 36 44, 60 36, 80 44" fill="none" stroke="#00a396" stroke-width="6" stroke-linecap="round" />
+  <!-- Pulse Line -->
+  <path d="M 72 58 L 78 48 L 84 66 L 90 42 L 96 64 L 108 64" fill="none" stroke="#00a396" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Caring Figures -->
+  <circle cx="80" cy="24" r="7" fill="#00507d" />
+  <path d="M 72 35 C 72 31, 88 31, 88 35 L 85 46 L 75 46 Z" fill="#00507d" />
+  <circle cx="98" cy="28" r="6" fill="#00a396" />
+  <path d="M 91 38 C 91 34, 105 34, 105 38 L 102 47 L 94 47 Z" fill="#00a396" />
+  <line x1="82" y1="38" x2="94" y2="38" stroke="#00a396" stroke-width="3" stroke-linecap="round" />
+</svg>

@@ -4,7 +4,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول — منصة جسور للتأهيل والرعاية عن بُعد</title>
+  <script>
+    (function(){
+      var lang = localStorage.getItem('jusoor_lang') || localStorage.getItem('jisr_lang') || 'ar';
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    })();
+  </script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <title>تسجيل الدخول — جسور للتأهيل</title>
   <meta name="description"
     content="تسجيل الدخول الموحد لبوابات منصة جسور للتأهيل: المستفيدون، الكوادر الطبية، والمؤسسات الشريكة.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +61,7 @@
 
   <!-- Simple Calm Header -->
   <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
-    <!-- Right: Jisr Logo & Brand -->
+    <!-- Right: Jusoor Logo & Brand -->
     <a href="index.html" class="flex items-center gap-3 group focus:outline-none">
       <div
         class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center p-2 shadow-sm border border-outline-variant group-hover:border-primary/40 transition">
@@ -64,21 +74,45 @@
     </a>
 
     <!-- Left: Return to Home Only -->
-    <a href="index.html"
-      class="inline-flex items-center gap-1.5 text-xs font-semibold text-on-surface-variant hover:text-primary transition px-4 py-2 rounded-xl bg-white border border-outline-variant shadow-sm">
-      <span class="material-symbols-outlined text-base">arrow_forward</span>
-      <span>العودة للرئيسية</span>
-    </a>
+    <div class="flex items-center gap-2.5">
+      <button 
+        type="button" 
+        data-lang-toggle 
+        class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-primary hover:bg-slate-100 transition border border-outline-variant shadow-xs"
+        aria-label="تبديل لغة الموقع"
+      >
+        <span class="material-symbols-outlined text-base">language</span>
+        <span class="text-[11px] font-bold" data-i18n="nav.langSwitch">EN</span>
+      </button>
+
+      <a href="index.html"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-on-surface-variant hover:text-primary transition px-3.5 py-1.5 rounded-xl bg-white border border-outline-variant shadow-xs">
+        <span class="material-symbols-outlined text-base rtl:rotate-180">arrow_forward</span>
+        <span data-i18n="nav.backHome">العودة للرئيسية</span>
+      </a>
+    </div>
   </header>
 
   <!-- Centered Single White Card: Sign In -->
   <main class="flex-grow flex items-center justify-center px-4 sm:px-6 py-6">
     <div class="w-full max-w-md bg-white rounded-3xl border border-outline-variant shadow-card p-8 sm:p-10 space-y-6">
 
+      <!-- Tab Switcher: Login | Register -->
+      <div class="grid grid-cols-2 p-1 bg-slate-100 rounded-2xl mb-2">
+        <button type="button" id="tab-login-btn" onclick="switchLoginTab('login')" 
+          class="py-2.5 text-xs font-bold rounded-xl transition bg-white text-primary shadow-xs" data-i18n="login.tabLogin">
+          تسجيل الدخول
+        </button>
+        <button type="button" id="tab-register-btn" onclick="switchLoginTab('register')" 
+          class="py-2.5 text-xs font-bold rounded-xl transition text-slate-500 hover:text-slate-900" data-i18n="login.tabRegister">
+          إنشاء حساب جديد
+        </button>
+      </div>
+
       <!-- Card Title & Subtitle -->
       <div class="text-center space-y-1.5">
-        <h1 class="text-2xl font-bold text-on-surface tracking-tight">تسجيل الدخول</h1>
-        <p class="text-xs text-on-surface-variant">أدخل بريدك الإلكتروني وكلمة المرور للمتابعة إلى بوابتك</p>
+        <h1 id="login-card-title" class="text-2xl font-bold text-on-surface tracking-tight" data-i18n="login.cardTitle">تسجيل الدخول</h1>
+        <p id="login-card-subtitle" class="text-xs text-on-surface-variant" data-i18n="login.cardSubtitle">أدخل بريدك الإلكتروني وكلمة المرور للمتابعة إلى بوابتك</p>
       </div>
 
       <!-- Alert / Status Notice Area (Hidden by default) -->
@@ -92,11 +126,11 @@
       <form id="unified-login-form" class="space-y-4" onsubmit="handleUnifiedLogin(event)">
         <!-- Email Field -->
         <div class="space-y-1.5">
-          <label for="login-email" class="block text-xs font-semibold text-on-surface">البريد الإلكتروني</label>
+          <label for="login-email" class="block text-xs font-semibold text-on-surface" data-i18n="login.emailLabel">البريد الإلكتروني</label>
           <div class="relative">
             <span
               class="material-symbols-outlined absolute start-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">mail</span>
-            <input type="email" id="login-email" required placeholder="name@example.com"
+            <input type="email" id="login-email" required placeholder="name@example.com" data-i18n-placeholder="login.emailPlaceholder"
               class="w-full ps-11 pe-4 py-3 rounded-xl border border-outline-variant bg-[#fcfdff] text-xs text-on-surface placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition">
           </div>
         </div>
@@ -104,14 +138,14 @@
         <!-- Password Field -->
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
-            <label for="login-password" class="block text-xs font-semibold text-on-surface">كلمة المرور</label>
+            <label for="login-password" class="block text-xs font-semibold text-on-surface" data-i18n="login.passwordLabel">كلمة المرور</label>
             <a href="javascript:void(0)" onclick="handleForgotPassword()"
-              class="text-[11px] font-medium text-primary hover:underline">نسيت كلمة المرور؟</a>
+              class="text-[11px] font-medium text-primary hover:underline" data-i18n="login.forgotPassword">نسيت كلمة المرور؟</a>
           </div>
           <div class="relative">
             <span
               class="material-symbols-outlined absolute start-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">lock</span>
-            <input type="password" id="login-password" required placeholder="••••••••"
+            <input type="password" id="login-password" required placeholder="••••••••" data-i18n-placeholder="login.passwordPlaceholder"
               class="w-full ps-11 pe-11 py-3 rounded-xl border border-outline-variant bg-[#fcfdff] text-xs text-on-surface placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition">
             <button type="button" onclick="togglePasswordVisibility()"
               class="absolute end-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface focus:outline-none">
@@ -125,7 +159,104 @@
           class="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-xs sm:text-sm font-bold shadow-sm transition-all flex items-center justify-center gap-2 mt-2">
           <span id="btn-login-spinner"
             class="material-symbols-outlined text-lg animate-spin hidden">progress_activity</span>
-          <span id="btn-login-label">دخول</span>
+          <span id="btn-login-label" data-i18n="login.btnSubmit">دخول</span>
+        </button>
+      </form>
+
+      <!-- Beneficiary Registration Form -->
+      <form id="unified-register-form" class="space-y-4 hidden" onsubmit="handleUnifiedRegister(event)">
+        <!-- Notice Pill -->
+        <div class="p-3 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center gap-2 text-secondary text-xs font-semibold">
+          <span class="material-symbols-outlined text-base">person</span>
+          <span data-i18n="login.regNotice">حساب مستفيد جديد — رعاية وتأهيل منزلي</span>
+        </div>
+
+        <!-- Full Name -->
+        <div class="space-y-1.5">
+          <label for="reg-fullname" class="block text-xs font-semibold text-on-surface" data-i18n="login.regFullName">الاسم الكامل للمستفيد <span class="text-rose-500">*</span></label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute start-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">badge</span>
+            <input type="text" id="reg-fullname" required placeholder="أحمد محمد علي صالح" data-i18n-placeholder="login.regFullNamePlaceholder"
+              class="w-full ps-11 pe-4 py-3 rounded-xl border border-outline-variant bg-[#fcfdff] text-xs text-on-surface placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition">
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="space-y-1.5">
+          <label for="reg-email" class="block text-xs font-semibold text-on-surface">البريد الإلكتروني <span class="text-rose-500">*</span></label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute start-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">mail</span>
+            <input type="email" id="reg-email" required placeholder="name@example.com"
+              class="w-full ps-11 pe-4 py-3 rounded-xl border border-outline-variant bg-[#fcfdff] text-xs text-on-surface placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition">
+          </div>
+        </div>
+
+        <!-- Phone & City Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Phone -->
+          <div class="space-y-1.5">
+            <label for="reg-phone" class="block text-xs font-semibold text-on-surface" data-i18n="login.regPhone">رقم الجوال / واتساب <span class="text-rose-500">*</span></label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute start-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">phone</span>
+              <input type="tel" id="reg-phone" required placeholder="77XXXXXXX"
+                class="w-full ps-11 pe-4 py-3 rounded-xl border border-outline-variant bg-[#fcfdff] text-xs text-on-surface placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition text-right">
+            </div>
+          </div>
+
+          <!-- City -->
+          <div class="space-y-1.5">
+            <label for="reg-city" class="block text-xs font-semibold text-on-surface" data-i18n="login.regCity">المدينة / المحافظة <span class="text-rose-500">*</span></label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute start-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">location_on</span>
+              <select id="reg-city" required
+                class="w-full ps-11 pe-4 py-3 rounded-xl border border-outline-variant bg-[#fcfdff] text-xs text-on-surface focus:outline-none focus:border-primary focus:bg-white transition">
+                <option value="صنعاء">صنعاء</option>
+                <option value="عدن">عدن</option>
+                <option value="تعز">تعز</option>
+                <option value="المكلا">المكلا / حضرموت</option>
+                <option value="إب">إب</option>
+                <option value="الحديدة">الحديدة</option>
+                <option value="مأرب">مأرب</option>
+                <option value="سيئون">سيئون</option>
+                <option value="مدينة أخرى">مدينة أخرى</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="space-y-1.5">
+          <label for="reg-password" class="block text-xs font-semibold text-on-surface" data-i18n="login.regPassword">كلمة المرور (6 خانات على الأقل) <span class="text-rose-500">*</span></label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute start-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">lock</span>
+            <input type="password" id="reg-password" minlength="6" required placeholder="••••••••"
+              class="w-full ps-11 pe-11 py-3 rounded-xl border border-outline-variant bg-[#fcfdff] text-xs text-on-surface placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition">
+            <button type="button" onclick="toggleRegPassword('reg-password', 'reg-pwd-toggle-icon')"
+              class="absolute end-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface focus:outline-none" aria-label="إظهار أو إخفاء كلمة المرور">
+              <span id="reg-pwd-toggle-icon" class="material-symbols-outlined text-lg">visibility</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="space-y-1.5">
+          <label for="reg-password-confirm" class="block text-xs font-semibold text-on-surface" data-i18n="login.regPasswordConfirm">تأكيد كلمة المرور <span class="text-rose-500">*</span></label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute start-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">lock_reset</span>
+            <input type="password" id="reg-password-confirm" minlength="6" required placeholder="••••••••"
+              class="w-full ps-11 pe-11 py-3 rounded-xl border border-outline-variant bg-[#fcfdff] text-xs text-on-surface placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition">
+            <button type="button" onclick="toggleRegPassword('reg-password-confirm', 'reg-confirm-pwd-toggle-icon')"
+              class="absolute end-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface focus:outline-none" aria-label="إظهار أو إخفاء تأكيد كلمة المرور">
+              <span id="reg-confirm-pwd-toggle-icon" class="material-symbols-outlined text-lg">visibility</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="btn-reg-submit"
+          class="w-full py-3.5 rounded-xl bg-secondary hover:bg-secondary-dark text-white text-xs sm:text-sm font-bold shadow-sm transition-all flex items-center justify-center gap-2 mt-2">
+          <span id="btn-reg-spinner" class="material-symbols-outlined text-lg animate-spin hidden">progress_activity</span>
+          <span id="btn-reg-label" data-i18n="login.regBtnSubmit">إنشاء الحساب والبدء في التأهيل</span>
         </button>
       </form>
 
@@ -133,7 +264,7 @@
       <div class="border-t border-outline-variant/80 my-5"></div>
 
       <!-- Exactly Two Options for Newcomers -->
-      <div class="space-y-3 pt-1">
+      <div id="login-secondary-options" class="space-y-3 pt-1">
         <!-- Option 1: Beneficiary Sign Up / App -->
         <div class="text-center">
           <p class="text-xs text-on-surface-variant">
@@ -166,6 +297,11 @@
               class="material-symbols-outlined text-sm group-open:rotate-180 transition-transform">expand_more</span>
           </summary>
           <div class="grid grid-cols-2 gap-1.5 pt-2">
+            <button type="button" onclick="fillAndLogin('admin@jusoor.ye', '123456')"
+              class="col-span-2 p-2 rounded-xl bg-primary text-center text-xs font-bold text-white hover:bg-primary-dark transition shadow-2xs flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">shield_person</span>
+              <span>👑 مدير المنصة (Owner Admin)</span>
+            </button>
             <button type="button" onclick="fillAndLogin('beneficiary@jisr.sa', '123456')"
               class="p-1.5 rounded-lg bg-surface-container text-right text-[11px] font-semibold text-primary hover:bg-primary/10 transition">
               👤 مستفيد (لوحة التطبيق)
@@ -199,7 +335,7 @@
 
   <!-- Clean Bottom Sub-footer -->
   <footer class="w-full text-center py-4 text-xs text-slate-400">
-    <p>© 2026 منصة جسور للتأهيل والرعاية عن بُعد. جميع الحقوق محفوظة.</p>
+    <p>© 2026 جسور للتأهيل والرعاية عن بُعد. جميع الحقوق محفوظة.</p>
   </footer>
 
   <!-- Script Logic -->
@@ -281,26 +417,155 @@
       label.textContent = 'جارٍ التحقق...';
 
       try {
-        const result = await window.jisrDB.login(email, password);
+        const supabase = window.jisrSupabase || (window.jisrDB && window.jisrDB.getClient ? window.jisrDB.getClient() : null) || window.supabaseClient || window.supabase;
 
-        if (result.error) {
-          showAlert(result.error.message, result.error.code || 'error');
+        let user = null;
+        let profile = null;
+
+        // محاولة تسجيل الدخول عبر Supabase Auth الحي
+        if (supabase && supabase.auth && typeof supabase.auth.signInWithPassword === 'function' && window.jisrDB && window.jisrDB.isLive()) {
+          const { data: authData, error: authErr } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+          });
+
+          if (authErr) {
+            console.error('Supabase Auth error:', authErr);
+            showAlert(authErr.message || 'فشل تسجيل الدخول. يرجى التحقق من البريد وكلمة المرور.', 'error');
+            submitBtn.disabled = false;
+            spinner.classList.add('hidden');
+            label.textContent = 'دخول';
+            return;
+          }
+
+          user = authData?.user;
+          if (!user) {
+            console.error('No auth user returned after signInWithPassword');
+            showAlert('لم يتم العثور على بيانات المستخدم بعد تسجيل الدخول.', 'error');
+            submitBtn.disabled = false;
+            spinner.classList.add('hidden');
+            label.textContent = 'دخول';
+            return;
+          }
+
+          // 1. بعد نجاح تسجيل الدخول في login.html، اقرأ دور المستخدم مباشرةً من جدول profiles في Supabase باستخدام الاستعلام:
+          // .from('profiles').select('*').or(`auth_user_id.eq.${user.id},id.eq.${user.id},email.eq.${user.email}`).limit(1).maybeSingle()
+          // ولا تعتمد على user.user_metadata.role وحده.
+          label.textContent = 'جارٍ قراءة الصلاحيات...';
+          const { data: profileData, error: profErr } = await supabase
+            .from('profiles')
+            .select('*')
+            .or(`auth_user_id.eq.${user.id},id.eq.${user.id},email.eq.${user.email}`)
+            .limit(1)
+            .maybeSingle();
+
+          // 3. إذا حدث أي خطأ أثناء قراءة جدول profiles، اعرض الخطأ في رسالة واضحة على الشاشة واطبعه في console.error بدلاً من التحويل الصامت إلى صفحة المستفيدين.
+          if (profErr) {
+            console.error('Error fetching profile from profiles table:', profErr);
+            showAlert(`حدث خطأ أثناء قراءة جدول الملفات الشخصية (profiles): ${profErr.message || JSON.stringify(profErr)}`, 'error');
+            submitBtn.disabled = false;
+            spinner.classList.add('hidden');
+            label.textContent = 'دخول';
+            return;
+          }
+
+          profile = profileData;
+
+          if (!profile) {
+            console.error('No profile record found in profiles table for user:', user);
+            showAlert('تم تسجيل الدخول بنجاح، لكن لم يتم العثور على سجل في جدول profiles لتحديد صلاحياتك. يرجى التواصل مع إدارة النظام.', 'error');
+            submitBtn.disabled = false;
+            spinner.classList.add('hidden');
+            label.textContent = 'دخول';
+            return;
+          }
+
+        } else {
+          // الوضع التجريبي أو المحلي الموحد
+          const result = await window.jisrDB.login(email, password);
+
+          if (result.error) {
+            showAlert(result.error.message, result.error.code || 'error');
+            submitBtn.disabled = false;
+            spinner.classList.add('hidden');
+            label.textContent = 'دخول';
+            return;
+          }
+
+          profile = result.profile;
+          user = result.user || { id: profile?.id, email: profile?.email };
+        }
+
+        // فحص حالة الحساب إن كان معطلاً
+        if (profile.is_active === false) {
+          showAlert('هذا الحساب معطل حالياً من قِبل إدارة منصة جسور للتأهيل.', 'error');
+          if (supabase && supabase.auth && typeof supabase.auth.signOut === 'function') {
+            await supabase.auth.signOut();
+          }
           submitBtn.disabled = false;
           spinner.classList.add('hidden');
           label.textContent = 'دخول';
           return;
         }
 
-        const profile = result.profile;
+        // فحص حالة الاعتماد
+        if (profile.approval_status === 'pending') {
+          showAlert('طلبك قيد المراجعة من الإدارة، سيتم فتح بواباتك فور الاعتماد.', 'warning');
+          if (supabase && supabase.auth && typeof supabase.auth.signOut === 'function') {
+            await supabase.auth.signOut();
+          }
+          submitBtn.disabled = false;
+          spinner.classList.add('hidden');
+          label.textContent = 'دخول';
+          return;
+        }
+
+        if (profile.approval_status === 'rejected') {
+          showAlert('نعتذر، لم يتم اعتماد هذا الحساب. يرجى مراجعة إدارة منصة جسور للتأهيل أو التواصل مع الدعم الفني.', 'error');
+          if (supabase && supabase.auth && typeof supabase.auth.signOut === 'function') {
+            await supabase.auth.signOut();
+          }
+          submitBtn.disabled = false;
+          spinner.classList.add('hidden');
+          label.textContent = 'دخول';
+          return;
+        }
+
+        // حفظ بيانات الجلسة محلياً لضمان تناسق التبويبات و Auth Guard
+        const sessionUser = {
+          id: profile.id,
+          auth_user_id: user?.id || profile.auth_user_id || profile.id,
+          email: user?.email || profile.email,
+          full_name: profile.full_name || 'مستخدم منصة جسور',
+          role: profile.role,
+          approval_status: profile.approval_status || 'approved',
+          is_active: profile.is_active !== false
+        };
+
+        if (window.jisrDB && typeof window.jisrDB.setCurrentUser === 'function') {
+          window.jisrDB.setCurrentUser(sessionUser);
+        } else {
+          sessionStorage.setItem('jisr_auth_user', JSON.stringify(sessionUser));
+          localStorage.setItem('jisr_auth_user', JSON.stringify(sessionUser));
+        }
+
         label.textContent = 'تم التحقق! جارٍ التوجيه...';
 
-        // التوجيه الفوري وفق الدور السريري / المؤسسي المعتمد
+        // 2. تحقّق من الشرط profile?.role === 'owner_admin' أولاً قبل أي شرط آخر وقبل أي تحويل افتراضي لمسار المستفيدين، ووجّهه فوراً إلى ./admin/index.html
+        if (profile?.role === 'owner_admin' || profile?.role === 'owner' || profile?.role === 'admin') {
+          console.info('Jusoor Login: Role verified as owner_admin. Navigating immediately to ./admin/index.html');
+          window.location.href = './admin/index.html';
+          return;
+        }
+
+        // التوجيه الفوري لبقية الأدوار
         setTimeout(async () => {
           await routeUserByRole(profile);
         }, 400);
 
       } catch (err) {
-        showAlert('حدث خطأ غير متوقع أثناء تسجيل الدخول: ' + err.message, 'error');
+        console.error('Unexpected login error:', err);
+        showAlert('حدث خطأ غير متوقع أثناء تسجيل الدخول: ' + (err.message || err), 'error');
         submitBtn.disabled = false;
         spinner.classList.add('hidden');
         label.textContent = 'دخول';
@@ -308,13 +573,20 @@
     }
 
     async function routeUserByRole(profile) {
-      const role = profile.role || 'beneficiary';
+      // 2. تحقّق من الشرط profile?.role === 'owner_admin' أولاً قبل أي شرط آخر وقبل أي تحويل افتراضي لمسار المستفيدين، ووجّهه فوراً إلى ./admin/index.html
+      if (profile?.role === 'owner_admin' || profile?.role === 'owner' || profile?.role === 'admin') {
+        window.location.href = './admin/index.html';
+        return;
+      }
+
+      const role = profile?.role || 'beneficiary';
 
       switch (role) {
-        case 'beneficiary':
-          window.location.href = '../المستفيد/الصفحة الرئيسية/الرئيسية/code.html';
+        case 'owner_admin':
+        case 'owner':
+        case 'admin':
+          window.location.href = 'admin/index.html';
           break;
-
         case 'specialist':
           window.location.href = '../المختص/الرئيسية/index.html';
           break;
@@ -341,9 +613,8 @@
           }
           break;
 
-        case 'owner':
-        case 'admin':
-          window.location.href = '../لوحة تحكم المالك/index.html';
+        case 'beneficiary':
+          window.location.href = '../المستفيد/الصفحة الرئيسية/الرئيسية/code.html';
           break;
 
         default:
@@ -361,10 +632,242 @@
         showAlert('لا تملك الصلاحيات الكافية للوصول إلى تلك البوابة. يرجى تسجيل الدخول بالحساب المناسب.', 'error');
       } else if (reason === 'not_approved') {
         showAlert('حسابك بانتظار اعتماد الإدارة الطبية. سيتم إشعاركم فور تفعيل الحساب.', 'warning');
+      } else if (reason === 'account_inactive') {
+        showAlert('تم إيقاف هذا الحساب من قِبل إدارة المنصة. يرجى مراجعة الدعم الفني.', 'error');
       }
       sessionStorage.removeItem('jisr_redirect_reason');
     });
   </script>
+
+  <script>
+    // Tab switching logic
+    function switchLoginTab(tab) {
+      const loginBtn = document.getElementById('tab-login-btn');
+      const regBtn = document.getElementById('tab-register-btn');
+      const loginForm = document.getElementById('unified-login-form');
+      const regForm = document.getElementById('unified-register-form');
+      const cardTitle = document.getElementById('login-card-title');
+      const cardSub = document.getElementById('login-card-subtitle');
+      const optionsDiv = document.getElementById('login-secondary-options');
+
+      if (tab === 'register') {
+        if (loginBtn) {
+          loginBtn.className = "py-2.5 text-xs font-bold rounded-xl transition text-slate-500 hover:text-slate-900";
+          loginBtn.setAttribute('aria-selected', 'false');
+        }
+        if (regBtn) {
+          regBtn.className = "py-2.5 text-xs font-bold rounded-xl transition bg-white text-secondary shadow-xs";
+          regBtn.setAttribute('aria-selected', 'true');
+        }
+        if (loginForm) loginForm.classList.add('hidden');
+        if (regForm) regForm.classList.remove('hidden');
+        const isEn = (window.jisrI18n && window.jisrI18n.currentLang === 'en') || document.documentElement.getAttribute('lang') === 'en';
+        if (cardTitle) {
+          cardTitle.textContent = isEn ? "Create Beneficiary Account" : "إنشاء حساب مستفيد جديد";
+          cardTitle.setAttribute('data-i18n', 'login.regTitle');
+        }
+        if (cardSub) {
+          cardSub.textContent = isEn ? "Join Jusoor Rehab to start your recovery plan and track sessions" : "انضم إلى جسور للتأهيل لبدء رحلتك العلاجية ومتابعة جلساتك";
+          cardSub.setAttribute('data-i18n', 'login.regSubtitle');
+        }
+        if (optionsDiv) optionsDiv.classList.add('hidden');
+      } else {
+        const isEn = (window.jisrI18n && window.jisrI18n.currentLang === 'en') || document.documentElement.getAttribute('lang') === 'en';
+        if (loginBtn) {
+          loginBtn.className = "py-2.5 text-xs font-bold rounded-xl transition bg-white text-primary shadow-xs";
+          loginBtn.setAttribute('aria-selected', 'true');
+        }
+        if (regBtn) {
+          regBtn.className = "py-2.5 text-xs font-bold rounded-xl transition text-slate-500 hover:text-slate-900";
+          regBtn.setAttribute('aria-selected', 'false');
+        }
+        if (loginForm) loginForm.classList.remove('hidden');
+        if (regForm) regForm.classList.add('hidden');
+        if (cardTitle) {
+          cardTitle.textContent = isEn ? "Sign In" : "تسجيل الدخول";
+          cardTitle.setAttribute('data-i18n', 'login.cardTitle');
+        }
+        if (cardSub) {
+          cardSub.textContent = isEn ? "Enter your email and password to proceed to your portal" : "أدخل بريدك الإلكتروني وكلمة المرور للمتابعة إلى بوابتك";
+          cardSub.setAttribute('data-i18n', 'login.cardSubtitle');
+        }
+        if (optionsDiv) optionsDiv.classList.remove('hidden');
+      }
+    }
+
+    // Toggle password visibility in registration form
+    function toggleRegPassword(fieldId, iconId) {
+      const input = document.getElementById(fieldId);
+      const icon = document.getElementById(iconId);
+      if (!input || !icon) return;
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+
+    // Handle beneficiary registration
+    async function handleUnifiedRegister(e) {
+      e.preventDefault();
+      const fullName = document.getElementById('reg-fullname').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const phone = document.getElementById('reg-phone').value.trim();
+      const city = document.getElementById('reg-city').value;
+      const password = document.getElementById('reg-password').value;
+      const passwordConfirm = document.getElementById('reg-password-confirm').value;
+
+      if (password !== passwordConfirm) {
+        showAlert('كلمتا المرور غير متطابقتين. يرجى التأكد وإعادة المحاولة.', 'error');
+        return;
+      }
+      if (password.length < 6) {
+        showAlert('يجب أن تتكون كلمة المرور من 6 خانات على الأقل.', 'error');
+        return;
+      }
+
+      const submitBtn = document.getElementById('btn-reg-submit');
+      const spinner = document.getElementById('btn-reg-spinner');
+      const label = document.getElementById('btn-reg-label');
+
+      submitBtn.disabled = true;
+      spinner.classList.remove('hidden');
+      label.textContent = 'جارٍ إنشاء الحساب...';
+
+      try {
+        let supabase = null;
+        if (window.jisrDB && typeof window.jisrDB.getClient === 'function') {
+          supabase = window.jisrDB.getClient();
+        }
+
+        let authUser = null;
+        let newProfile = null;
+
+        if (supabase && supabase.auth && typeof supabase.auth.signUp === 'function') {
+          const { data: authData, error: authErr } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+              data: {
+                full_name: fullName,
+                phone: phone,
+                city: city,
+                role: 'beneficiary'
+              }
+            }
+          });
+
+          if (authErr) {
+            console.error('Registration Supabase auth error:', authErr);
+            showAlert(authErr.message || 'فشل إنشاء الحساب. قد يكون هذا البريد مستخدماً مسبقاً.', 'error');
+            submitBtn.disabled = false;
+            spinner.classList.add('hidden');
+            label.textContent = 'إنشاء الحساب والبدء في التأهيل';
+            return;
+          }
+
+          authUser = authData?.user;
+          const userId = authUser?.id || ('usr_' + Date.now());
+
+          // Insert or upsert profile into Supabase
+          const { data: profData, error: profErr } = await supabase.from('profiles').upsert([{
+            id: userId,
+            auth_user_id: userId,
+            email: email,
+            full_name: fullName,
+            phone: phone,
+            city: city,
+            role: 'beneficiary',
+            approval_status: 'approved',
+            is_active: true
+          }]).select().maybeSingle();
+
+          if (profErr) {
+            console.warn('Profile upsert warning:', profErr);
+          }
+          newProfile = profData || {
+            id: userId,
+            auth_user_id: userId,
+            email: email,
+            full_name: fullName,
+            phone: phone,
+            city: city,
+            role: 'beneficiary',
+            approval_status: 'approved',
+            is_active: true
+          };
+        } else {
+          // Local fallback
+          const userId = 'usr_' + Date.now();
+          newProfile = {
+            id: userId,
+            auth_user_id: userId,
+            email: email,
+            full_name: fullName,
+            phone: phone,
+            city: city,
+            role: 'beneficiary',
+            approval_status: 'approved',
+            is_active: true
+          };
+        }
+
+        // Save session locally
+        sessionStorage.setItem('jisr_auth_user', JSON.stringify(newProfile));
+        localStorage.setItem('jisr_auth_user', JSON.stringify(newProfile));
+
+        showAlert('تم إنشاء حسابك بنجاح! جاري تحويلك إلى بوابة التأهيل...', 'success');
+        label.textContent = 'تم بنجاح! جاري التحويل...';
+
+        setTimeout(() => {
+          window.location.href = '../المستفيد/الصفحة الرئيسية/الرئيسية/code.html';
+        }, 800);
+
+      } catch (err) {
+        console.error('Registration unexpected error:', err);
+        showAlert('حدث خطأ غير متوقع أثناء إنشاء الحساب: ' + (err.message || err), 'error');
+        submitBtn.disabled = false;
+        spinner.classList.add('hidden');
+        label.textContent = 'إنشاء الحساب والبدء في التأهيل';
+      }
+    }
+
+    // Attach event listeners for tabs and check query parameters
+    function setupTabListeners() {
+      const loginBtn = document.getElementById('tab-login-btn');
+      const regBtn = document.getElementById('tab-register-btn');
+
+      if (loginBtn) {
+        loginBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          switchLoginTab('login');
+        });
+      }
+
+      if (regBtn) {
+        regBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          switchLoginTab('register');
+        });
+      }
+
+      // Check ?tab=register from URL
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('tab') === 'register') {
+        switchLoginTab('register');
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupTabListeners);
+    } else {
+      setupTabListeners();
+    }
+  </script>
+
+  <script src="assets/js/i18n.js"></script>
 </body>
 
 </html>

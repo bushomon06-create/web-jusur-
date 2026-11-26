@@ -574,38 +574,11 @@ function initPartnershipModal() {
    6. App Download & QR Modal
    ========================================================================== */
 function initAppModal() {
-  const modal = document.getElementById('app-qr-modal');
-  const openBtns = document.querySelectorAll('[data-open-app-modal]');
-  const closeBtn = document.getElementById('close-app-modal');
-
-  if (!modal) return;
-
-  function openModal() {
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.style.overflow = 'hidden';
+  if (typeof initAppModalDelegation === 'function') {
+    initAppModalDelegation();
   }
-
-  function closeModal() {
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    document.body.style.overflow = '';
-  }
-
-  openBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-    });
-  });
-
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  window.openAppModal = openModal;
-  window.closeAppModal = closeModal;
+  window.openAppModal = window.openAppDownloadModal;
+  window.closeAppModal = window.closeAppDownloadModal;
 }
 
 /* ==========================================================================
@@ -709,7 +682,7 @@ function initPartnerPageForm() {
       license_number: licenseInput ? licenseInput.value.trim() : '',
       phone: phoneInput ? phoneInput.value.trim() : '',
       email: emailInput ? emailInput.value.trim() : '',
-      city: cityInput ? cityInput.value.trim() : 'الرياض',
+      city: cityInput ? cityInput.value.trim() : 'صنعاء',
       notes: notesInput ? notesInput.value.trim() : ''
     };
 
@@ -1415,4 +1388,763 @@ function initRehabAnimationStages() {
       resetToAutoplay();
     });
   }
+}
+
+
+// ======================================================================
+// رابط التحميل المركزي الموحد لتطبيق جسور للتأهيل (Flutter App)
+// نافذة تحميل التطبيق والمزامنة اللغوية والـ Event Delegation الموحد
+// ======================================================================
+window.JUSOOR_APP_DOWNLOAD_URL = window.JUSOOR_APP_DOWNLOAD_URL || "https://jusoor-rehab.vercel.app/download-app";
+
+window.openAppDownloadModal = function() {
+  let modal = document.getElementById('app-download-modal') || document.getElementById('app-qr-modal');
+  
+  // If modal doesn't exist in DOM, create and mount it dynamically immediately
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'app-download-modal';
+    modal.className = 'fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs transition-opacity';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'app-modal-title');
+    modal.innerHTML = `
+      <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 shadow-2xl space-y-6 text-center relative animate-in fade-in zoom-in-95 duration-200">
+        <button type="button" id="app-modal-close-btn" data-close-app-modal class="absolute top-5 end-5 text-slate-400 hover:text-slate-600 transition" aria-label="إغلاق النافذة">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+        <div class="space-y-3">
+          <div class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto shadow-2xs">
+            <span class="material-symbols-outlined text-3xl">phone_iphone</span>
+          </div>
+          <div class="space-y-1.5">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[11px] font-bold">
+              <span class="material-symbols-outlined text-xs">verified</span>
+              <span data-i18n="appModal.badge">تطبيق الهواتف الذكية (Android & iOS)</span>
+            </div>
+            <h2 id="app-modal-title" data-i18n="appModal.title" class="text-xl font-bold text-on-surface">تطبيق جسور للتأهيل المنزلي</h2>
+            <p id="app-modal-desc" data-i18n="appModal.desc" class="text-xs text-slate-600 leading-relaxed px-2">
+              تطبيق «جسور للتأهيل» متاح الآن للأجهزة الذكية لتقديم خدمات الرعاية والحجز والتأهيل المتكاملة ومتابعة الخطط العلاجية المنزلية مع نخبة الأخصائيين المعتمدين.
+            </p>
+          </div>
+        </div>
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 inline-block mx-auto">
+          <img 
+            id="app-modal-qr" 
+            src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(window.JUSOOR_APP_DOWNLOAD_URL)}" 
+            alt="QR Code لتحميل تطبيق جسور للتأهيل" 
+            class="w-40 h-40 rounded-xl border border-slate-200 p-2 bg-white mx-auto shadow-2xs"
+          >
+          <p class="text-[11px] text-slate-500 font-medium flex items-center justify-center gap-1">
+            <span class="material-symbols-outlined text-sm text-primary">qr_code_scanner</span>
+            <span data-i18n="appModal.scanHint">امسح الرمز بكاميرا هاتفك للتحميل المباشر</span>
+          </p>
+        </div>
+        <div class="space-y-2.5 pt-1">
+          <a 
+            id="app-modal-primary-btn" 
+            href="${window.JUSOOR_APP_DOWNLOAD_URL}" 
+            target="_blank" 
+            rel="noopener" 
+            class="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-xs sm:text-sm font-bold shadow-sm transition flex items-center justify-center gap-2"
+          >
+            <span class="material-symbols-outlined text-lg">download</span>
+            <span data-i18n="appModal.downloadBtn">تحميل تطبيق جسور للتأهيل</span>
+          </a>
+          <a 
+            id="app-modal-portal-btn"
+            href="../المستفيد/الصفحة الرئيسية/الرئيسية/code.html" 
+            class="w-full py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition flex items-center justify-center gap-2"
+          >
+            <span class="material-symbols-outlined text-base">visibility</span>
+            <span data-i18n="appModal.portalBtn">الانتقال إلى بوابة المستفيدين (نسخة العرض)</span>
+          </a>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+
+  // Determine active language (ar vs en) and direction
+  const currentLang = (window.jisrI18n && window.jisrI18n.currentLang) 
+    || document.documentElement.getAttribute('lang') 
+    || localStorage.getItem('jusoor_lang')
+    || localStorage.getItem('jisr_lang') 
+    || 'ar';
+  const isEn = currentLang === 'en';
+
+  // Modal localized strings
+  const strings = {
+    badge: isEn ? 'Mobile Application (Android & iOS)' : 'تطبيق الهواتف الذكية (Android & iOS)',
+    title: isEn ? 'Jusoor Home Rehabilitation App' : 'تطبيق جسور للتأهيل المنزلي',
+    desc: isEn 
+      ? 'The Jusoor Rehab app is now available on mobile devices to provide integrated tele-rehabilitation, booking, and home therapy plan tracking with certified specialists.' 
+      : 'تطبيق «جسور للتأهيل» متاح الآن للأجهزة الذكية لتقديم خدمات الرعاية والحجز والتأهيل المتكاملة ومتابعة الخطط العلاجية المنزلية مع نخبة الأخصائيين المعتمدين.',
+    scanHint: isEn ? 'Scan the QR code with your phone camera for direct download' : 'امسح الرمز بكاميرا هاتفك للتحميل المباشر',
+    downloadBtn: isEn ? 'Download Jusoor Rehabilitation App' : 'تحميل تطبيق جسور للتأهيل',
+    portalBtn: isEn ? 'Go Directly to Beneficiary Portal' : 'الانتقال لبوابة المستفيد مباشرة',
+    closeAria: isEn ? 'Close window' : 'إغلاق النافذة',
+    qrAlt: isEn ? 'QR Code to download Jusoor Rehabilitation App' : 'رمز الاستجابة السريعة QR لتحميل تطبيق جسور للتأهيل'
+  };
+
+  // Sync localized text inside the modal dialog
+  const badgeEl = modal.querySelector('[data-i18n="appModal.badge"]');
+  if (badgeEl) badgeEl.textContent = strings.badge;
+
+  const titleEl = modal.querySelector('#app-modal-title') || modal.querySelector('[data-i18n="appModal.title"]');
+  if (titleEl) titleEl.textContent = strings.title;
+
+  const descEl = modal.querySelector('#app-modal-desc') || modal.querySelector('[data-i18n="appModal.desc"]');
+  if (descEl) descEl.textContent = strings.desc;
+
+  const scanHintEl = modal.querySelector('[data-i18n="appModal.scanHint"]');
+  if (scanHintEl) scanHintEl.textContent = strings.scanHint;
+
+  const downloadBtn = modal.querySelector('#app-modal-primary-btn');
+  if (downloadBtn) {
+    const downloadSpan = downloadBtn.querySelector('[data-i18n="appModal.downloadBtn"]') || downloadBtn.querySelector('span:not(.material-symbols-outlined)');
+    if (downloadSpan) downloadSpan.textContent = strings.downloadBtn;
+  }
+
+  const portalBtn = modal.querySelector('#app-modal-portal-btn') || modal.querySelector('a[href*="المستفيد"]');
+  if (portalBtn) {
+    const portalSpan = portalBtn.querySelector('[data-i18n="appModal.portalBtn"]') || portalBtn.querySelector('span:not(.material-symbols-outlined)');
+    if (portalSpan) portalSpan.textContent = strings.portalBtn;
+  }
+
+  const closeBtn = modal.querySelector('[data-close-app-modal], #app-modal-close-btn, #close-app-modal');
+  if (closeBtn) {
+    closeBtn.setAttribute('aria-label', strings.closeAria);
+  }
+
+  // Central Download URL and QR Code generation
+  const downloadUrl = window.JUSOOR_APP_DOWNLOAD_URL || "https://jusoor-rehab.vercel.app/download-app";
+  window.JUSOOR_APP_DOWNLOAD_URL = downloadUrl;
+  if (downloadBtn) downloadBtn.href = downloadUrl;
+
+  const qrImg = modal.querySelector('#app-modal-qr');
+  if (qrImg) {
+    qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=' + encodeURIComponent(downloadUrl);
+    qrImg.alt = strings.qrAlt;
+    qrImg.style.imageRendering = 'pixelated';
+  }
+
+  // Sync modal content direction (LTR for en, RTL for ar)
+  const dialogBox = modal.querySelector('.bg-white');
+  if (dialogBox) {
+    dialogBox.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+  }
+
+  // Bring to absolute front and display
+  modal.style.zIndex = '99999';
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  console.log('✅ [Jusoor Modal] تم فتح نافذة تحميل التطبيق وتوليد رمز الـ QR بنجاح');
+};
+
+window.closeAppDownloadModal = function() {
+  const modal = document.getElementById('app-download-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    modal.style.display = 'none';
+  }
+  const qrModal = document.getElementById('app-qr-modal');
+  if (qrModal) {
+    qrModal.classList.add('hidden');
+    qrModal.classList.remove('flex');
+    qrModal.style.display = 'none';
+  }
+  document.body.style.overflow = '';
+};
+
+// Aliases for unified invocation
+window.openAppModal = window.openAppDownloadModal;
+window.closeAppModal = window.closeAppDownloadModal;
+window.showAppQrModal = window.openAppDownloadModal;
+
+// Unified Event Delegation on `document` with Click Intercept Logger
+function initAppModalDelegation() {
+  if (window._appModalDelegationInitialized) return;
+  window._appModalDelegationInitialized = true;
+
+  document.addEventListener('click', function(e) {
+    // 1. Direct or closest matching trigger for Start Journey / App Download Modal
+    const triggerStart = e.target.closest(
+      '[data-action="start-journey"], [data-open-app-modal], [data-open-app-download-modal], #hero-cta-start, .hero-cta-start-btn'
+    );
+    let matchedStart = triggerStart;
+
+    // Fallback check for any button or link whose text or data-i18n matches "ابدأ رحلتك" / "Start Your Journey"
+    if (!matchedStart) {
+      const candidateBtn = e.target.closest('button, a');
+      if (candidateBtn) {
+        const hasI18n = candidateBtn.matches('[data-i18n="hero.ctaStart"]') ||
+                        candidateBtn.querySelector('[data-i18n="hero.ctaStart"]');
+        const text = (candidateBtn.textContent || '').trim();
+        const hasTextMatch = text.includes('ابدأ رحلتك') || text.includes('Start Your Journey');
+        if (hasI18n || hasTextMatch) {
+          matchedStart = candidateBtn;
+        }
+      }
+    }
+
+    if (matchedStart) {
+      e.preventDefault();
+      console.log('✅ [Jusoor Click] نقرة على زر «ابدأ رحلتك الآن»');
+      if (typeof window.openAppDownloadModal === 'function') {
+        window.openAppDownloadModal();
+      }
+      return;
+    }
+
+    // 2. Direct or closest matching trigger for Services button / link
+    const triggerServices = e.target.closest(
+      '#hero-cta-services, .hero-cta-services-btn, [data-action="explore-services"]'
+    );
+    let matchedServices = triggerServices;
+    if (!matchedServices) {
+      const candidateBtn = e.target.closest('button, a');
+      if (candidateBtn) {
+        const hasI18n = candidateBtn.matches('[data-i18n="hero.ctaServices"]') ||
+                        candidateBtn.querySelector('[data-i18n="hero.ctaServices"]');
+        const text = (candidateBtn.textContent || '').trim();
+        const hasTextMatch = text.includes('استكشف خدماتنا') || text.includes('Explore Services');
+        if (hasI18n || hasTextMatch) {
+          matchedServices = candidateBtn;
+        }
+      }
+    }
+
+    if (matchedServices) {
+      const servicesSection = document.getElementById('services');
+      if (servicesSection) {
+        e.preventDefault();
+        console.log('✅ [Jusoor Services] الانتقال السلس إلى قسم #services');
+        servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        console.log('✅ [Jusoor Services] الانتقال إلى صفحة services.html');
+        // Let natural link navigation happen, or enforce if needed
+      }
+      return;
+    }
+
+    // 3. Intercept Detection: Check if click was inside the hero CTA button bounds but intercepted by an overlay
+    const ctaGroup = document.getElementById('hero-cta-group');
+    const startBtn = document.getElementById('hero-cta-start');
+    const servicesBtn = document.getElementById('hero-cta-services');
+
+    if (ctaGroup && e.clientX && e.clientY) {
+      const startRect = startBtn ? startBtn.getBoundingClientRect() : null;
+      const servicesRect = servicesBtn ? servicesBtn.getBoundingClientRect() : null;
+
+      // Check Start button bounding area
+      if (startRect && e.clientX >= startRect.left && e.clientX <= startRect.right && e.clientY >= startRect.top && e.clientY <= startRect.bottom) {
+        console.warn('⚠️ [Jusoor Click Intercepted] نقرة فوق زر «ابدأ رحلتك الآن» التقطها عنصر آخر:', {
+          interceptingElement: e.target,
+          tagName: e.target.tagName,
+          id: e.target.id || '(no-id)',
+          className: e.target.className || '(no-class)',
+          zIndex: window.getComputedStyle(e.target).zIndex,
+          pointerEvents: window.getComputedStyle(e.target).pointerEvents
+        });
+        e.preventDefault();
+        window.openAppDownloadModal();
+        return;
+      }
+
+      // Check Services button bounding area
+      if (servicesRect && e.clientX >= servicesRect.left && e.clientX <= servicesRect.right && e.clientY >= servicesRect.top && e.clientY <= servicesRect.bottom) {
+        console.warn('⚠️ [Jusoor Click Intercepted] نقرة فوق زر «استكشف خدماتنا» التقطها عنصر آخر:', {
+          interceptingElement: e.target,
+          tagName: e.target.tagName,
+          id: e.target.id || '(no-id)',
+          className: e.target.className || '(no-class)',
+          zIndex: window.getComputedStyle(e.target).zIndex,
+          pointerEvents: window.getComputedStyle(e.target).pointerEvents
+        });
+        const servicesSection = document.getElementById('services');
+        if (servicesSection) {
+          e.preventDefault();
+          servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.location.href = 'services.html';
+        }
+        return;
+      }
+    }
+
+    // 4. Modal close button delegation
+    const closeBtn = e.target.closest(
+      '[data-close-app-modal], #app-modal-close-btn, #close-app-modal, #app-modal-close'
+    );
+    if (closeBtn) {
+      e.preventDefault();
+      if (typeof window.closeAppDownloadModal === 'function') {
+        window.closeAppDownloadModal();
+      }
+      return;
+    }
+
+    // 5. Modal backdrop click delegation
+    if (e.target && (e.target.id === 'app-download-modal' || e.target.id === 'app-qr-modal')) {
+      if (typeof window.closeAppDownloadModal === 'function') {
+        window.closeAppDownloadModal();
+      }
+    }
+  });
+
+  // Re-sync modal text dynamically if active language changes while open
+  window.addEventListener('languageChanged', function() {
+    const modal = document.getElementById('app-download-modal') || document.getElementById('app-qr-modal');
+    if (modal && (!modal.classList.contains('hidden') || modal.style.display === 'flex')) {
+      window.openAppDownloadModal();
+    }
+  });
+}
+
+// Global escape key listener
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if (typeof window.closeAppDownloadModal === 'function') window.closeAppDownloadModal();
+  }
+});
+
+
+// ==========================================================================
+// HOMEPAGE SAAS BIDIRECTIONAL SCROLL & MICRO-INTERACTIONS
+// ==========================================================================
+
+/**
+ * Modern Bidirectional Scroll Animation Engine (Enter & Exit on Scroll)
+ * Elements animate into view when entering, and gracefully fade out when leaving,
+ * re-triggering smoothly whenever the user scrolls up or down.
+ */
+function initBidirectionalScrollAnimations() {
+  const animatedElements = document.querySelectorAll('.scroll-reveal, [data-animate]');
+  if (!animatedElements.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    // Fallback if browser doesn't support IntersectionObserver
+    animatedElements.forEach(el => el.classList.add('is-in-view'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in-view');
+      } else {
+        // Bidirectional exit: remove class so it can re-animate smoothly on revisit
+        entry.target.classList.remove('is-in-view');
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  animatedElements.forEach(el => observer.observe(el));
+}
+
+/**
+ * Smooth Scroll for Hero Mouse Indicator
+ */
+function initHeroScrollIndicator() {
+  const indicator = document.getElementById('hero-scroll-indicator');
+  if (!indicator) return;
+
+  indicator.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetSection = document.getElementById('section-features') || document.querySelector('main > section:nth-of-type(2)');
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+}
+
+/**
+ * Click Ripple Micro-interaction for SaaS Buttons
+ */
+function initButtonRippleEffect() {
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.btn-ripple, button.bg-primary, a.bg-primary, button.bg-secondary, a.bg-secondary');
+    if (!btn) return;
+
+    // Do not attach duplicate ripples rapidly
+    const existing = btn.querySelector('.ripple-wave');
+    if (existing) existing.remove();
+
+    const rect = btn.getBoundingClientRect();
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple-wave';
+    
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+
+    btn.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+}
+
+// Auto-initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    initBidirectionalScrollAnimations();
+    initHeroScrollIndicator();
+    initButtonRippleEffect();
+  });
+} else {
+  initBidirectionalScrollAnimations();
+  initHeroScrollIndicator();
+  initButtonRippleEffect();
+}
+
+
+// ==========================================================================
+// ABOUT & SERVICES MODERN INTERACTIVE SUITE (HOVER-EXPAND, SLIDING PILL, STAGGER FILTER)
+// ==========================================================================
+
+/**
+ * 1. Zero-Flicker Central Card Preview Overlay
+ * Clones card content into a perfectly centered modal attached directly to document.body.
+ * Desktop: Hover with 130ms open debounce, 140ms close debounce.
+ * Mobile/Touch: Tap to open, click backdrop or close button to dismiss.
+ */
+function initCentralCardPreview() {
+  const cards = document.querySelectorAll('.expandable-card');
+  if (!cards.length) return;
+
+  // Ensure overlay is attached directly to document.body
+  let overlay = document.getElementById('central-card-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'central-card-overlay';
+    overlay.className = 'central-card-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.innerHTML = '<div class="central-card-container" id="central-card-container" role="dialog" aria-modal="true"><button type="button" class="central-card-close-btn" id="central-card-close-btn" aria-label="إغلاق العرض"><span class="material-symbols-outlined text-lg">close</span></button><div id="central-card-body" class="space-y-4 pt-1"></div></div>';
+    document.body.appendChild(overlay);
+  }
+
+  const container = document.getElementById('central-card-container');
+  const cardBody = document.getElementById('central-card-body');
+  const closeBtn = document.getElementById('central-card-close-btn');
+
+  let openTimer = null;
+  let closeTimer = null;
+  let isMouseOverCard = false;
+  let isMouseOverModal = false;
+  let isTouchActive = false;
+
+  function showPreview(card) {
+    if (!card) return;
+    if (closeTimer) {
+      clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+
+    const iconEl = card.querySelector('.material-symbols-outlined');
+    const titleEl = card.querySelector('h2, h3, h4');
+    const descEl = card.querySelector('p');
+    const listEl = card.querySelector('ul');
+    const badgeEl = card.querySelector('.border-t, .bg-primary\\/10, .bg-secondary\\/10, .bg-teal-50, .bg-amber-50');
+
+    let iconHtml = '';
+    if (iconEl) {
+      const iconName = iconEl.textContent.trim();
+      iconHtml = '<div class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center border border-primary/20 shadow-2xs shrink-0"><span class="material-symbols-outlined text-3xl">' + iconName + '</span></div>';
+    }
+
+    let titleText = titleEl ? titleEl.textContent.trim() : '';
+    let descHtml = '';
+    if (descEl) {
+      descHtml = '<p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">' + descEl.innerHTML + '</p>';
+    }
+    if (listEl) {
+      descHtml += '<ul class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 space-y-2 list-disc list-inside leading-relaxed mt-2">' + listEl.innerHTML + '</ul>';
+    }
+
+    let footerHtml = '';
+    if (badgeEl) {
+      footerHtml = '<div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2 text-xs font-semibold text-primary">' + badgeEl.innerHTML + '</div>';
+    }
+
+    cardBody.innerHTML = '<div class="flex items-start gap-4">' + iconHtml + '<div class="flex-1"><h3 class="text-xl font-bold text-on-surface dark:text-white leading-tight mb-2">' + titleText + '</h3>' + descHtml + '</div></div>' + footerHtml;
+
+    overlay.classList.remove('is-closing');
+    overlay.classList.add('is-active');
+  }
+
+  function hidePreview(immediate = false) {
+    if (openTimer) {
+      clearTimeout(openTimer);
+      openTimer = null;
+    }
+    if (immediate) {
+      overlay.classList.remove('is-active', 'touch-active', 'is-closing');
+      isTouchActive = false;
+      return;
+    }
+    overlay.classList.add('is-closing');
+    setTimeout(() => {
+      overlay.classList.remove('is-active', 'touch-active', 'is-closing');
+      isTouchActive = false;
+    }, 280);
+  }
+
+  function scheduleClose() {
+    if (closeTimer) clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => {
+      if (!isMouseOverCard && !isMouseOverModal && !isTouchActive) {
+        hidePreview();
+      }
+    }, 140);
+  }
+
+  container.addEventListener('mouseenter', () => {
+    isMouseOverModal = true;
+    if (closeTimer) {
+      clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+  });
+
+  container.addEventListener('mouseleave', () => {
+    isMouseOverModal = false;
+    scheduleClose();
+  });
+
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      isMouseOverCard = true;
+      if (closeTimer) {
+        clearTimeout(closeTimer);
+        closeTimer = null;
+      }
+      openTimer = setTimeout(() => {
+        if (isMouseOverCard) {
+          showPreview(card);
+        }
+      }, 130);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      isMouseOverCard = false;
+      if (openTimer) {
+        clearTimeout(openTimer);
+        openTimer = null;
+      }
+      scheduleClose();
+    });
+
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      isTouchActive = true;
+      overlay.classList.add('touch-active');
+      showPreview(card);
+    });
+  });
+
+  closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    hidePreview(true);
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      hidePreview(true);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-active')) {
+      hidePreview(true);
+    }
+  });
+}
+
+// Backward compatibility alias
+function initExpandableCards() {
+  initCentralCardPreview();
+}
+
+/**
+ * 2. Directional Scroll Reveal (Right to Left on Scroll)
+ * Elements slide in from right (+80px) and exit towards left (-80px) on scrolling past.
+ */
+function initDirectionalScrollObserver() {
+  const elements = document.querySelectorAll('.directional-reveal');
+  if (!elements.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('is-in-view'));
+    return;
+  }
+
+  let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+  let scrollDirection = 'down';
+
+  window.addEventListener('scroll', () => {
+    const currentY = window.pageYOffset || document.documentElement.scrollTop;
+    scrollDirection = currentY > lastScrollY ? 'down' : 'up';
+    lastScrollY = currentY <= 0 ? 0 : currentY;
+  }, { passive: true });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const el = entry.target;
+      if (entry.isIntersecting) {
+        el.classList.add('is-in-view');
+        el.classList.remove('exited-left', 'exited-right');
+      } else {
+        el.classList.remove('is-in-view');
+        if (scrollDirection === 'down') {
+          el.classList.add('exited-left');
+          el.classList.remove('exited-right');
+        } else {
+          el.classList.add('exited-right');
+          el.classList.remove('exited-left');
+        }
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -30px 0px'
+  });
+
+  elements.forEach(el => observer.observe(el));
+}
+
+/**
+ * 3. Services Sliding Active Pill & Sequential Cards Filter
+ * Sliding indicator glides behind the active category tab.
+ * Old cards exit left (-60px, 250ms), then new cards slide in from right (60px, stagger 80ms).
+ */
+function initServicesCategorySlidingFilter() {
+  const tabsTrack = document.querySelector('.services-tabs-track');
+  const pills = document.querySelectorAll('.service-filter-pill');
+  const serviceCards = Array.from(document.querySelectorAll('[data-service-category]'));
+
+  if (!pills.length || !serviceCards.length) return;
+
+  // Add card-item styling to all cards
+  serviceCards.forEach(c => c.classList.add('service-card-item'));
+
+  // Ensure sliding indicator element exists in track
+  let slidingIndicator = tabsTrack ? tabsTrack.querySelector('.sliding-category-indicator') : null;
+  if (tabsTrack && !slidingIndicator) {
+    slidingIndicator = document.createElement('div');
+    slidingIndicator.className = 'sliding-category-indicator';
+    tabsTrack.insertBefore(slidingIndicator, tabsTrack.firstChild);
+  }
+
+  function moveIndicatorTo(activePill) {
+    if (!slidingIndicator || !tabsTrack || !activePill) return;
+    const pillRect = activePill.getBoundingClientRect();
+    const trackRect = tabsTrack.getBoundingClientRect();
+    const left = pillRect.left - trackRect.left;
+    const top = pillRect.top - trackRect.top;
+
+    slidingIndicator.style.left = left + 'px';
+    slidingIndicator.style.top = top + 'px';
+    slidingIndicator.style.width = pillRect.width + 'px';
+    slidingIndicator.style.height = pillRect.height + 'px';
+  }
+
+  // Set initial position on active pill
+  const initialActive = document.querySelector('.service-filter-pill.is-active') || pills[0];
+  if (initialActive) {
+    initialActive.classList.add('is-active', 'text-white');
+    // Delay slightly to ensure layout is measured
+    setTimeout(() => moveIndicatorTo(initialActive), 60);
+    window.addEventListener('resize', () => moveIndicatorTo(document.querySelector('.service-filter-pill.is-active') || pills[0]));
+  }
+
+  let isTransitioning = false;
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      if (isTransitioning && pill.classList.contains('is-active')) return;
+      isTransitioning = true;
+
+      // Update pills active styling
+      pills.forEach(p => {
+        p.classList.remove('is-active', 'text-white', 'bg-primary');
+        p.classList.add('text-slate-600');
+      });
+      pill.classList.add('is-active', 'text-white');
+      pill.classList.remove('text-slate-600');
+
+      moveIndicatorTo(pill);
+
+      const cat = pill.getAttribute('data-category');
+
+      // 1. Current cards exit towards the left
+      const currentlyVisible = serviceCards.filter(c => c.style.display !== 'none');
+      currentlyVisible.forEach((card, idx) => {
+        card.style.transition = 'transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1)';
+        card.style.transitionDelay = (idx * 25) + 'ms';
+        card.classList.add('service-card-exit');
+        card.classList.remove('service-card-enter-active');
+      });
+
+      // 2. After exit, switch visibility and animate in from right
+      setTimeout(() => {
+        const nextVisible = [];
+        serviceCards.forEach(card => {
+          const cardCats = card.getAttribute('data-service-category') || '';
+          const matches = cat === 'all' || cardCats.includes(cat);
+          if (matches) {
+            card.style.display = '';
+            card.classList.remove('service-card-exit');
+            card.classList.add('service-card-enter-start');
+            card.classList.remove('service-card-enter-active');
+            nextVisible.push(card);
+          } else {
+            card.style.display = 'none';
+            card.classList.remove('service-card-exit', 'service-card-enter-start', 'service-card-enter-active');
+          }
+        });
+
+        // Trigger reflow
+        void document.body.offsetHeight;
+
+        // 3. Staggered entrance from right to place
+        nextVisible.forEach((card, i) => {
+          card.style.transition = 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1)';
+          card.style.transitionDelay = (i * 80) + 'ms';
+          card.classList.remove('service-card-enter-start');
+          card.classList.add('service-card-enter-active');
+        });
+
+        setTimeout(() => {
+          isTransitioning = false;
+        }, nextVisible.length * 80 + 350);
+
+      }, 250);
+    });
+  });
+}
+
+// Auto-initialize suite
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    initExpandableCards();
+    initDirectionalScrollObserver();
+    initServicesCategorySlidingFilter();
+  });
+} else {
+  initExpandableCards();
+  initDirectionalScrollObserver();
+  initServicesCategorySlidingFilter();
 }

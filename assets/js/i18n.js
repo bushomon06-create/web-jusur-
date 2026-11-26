@@ -7,8 +7,10 @@ const translations = {
   ar: {
     // Navigation & Header
     "nav.home": "الرئيسية",
-    "nav.about": "من نحن",
-    "nav.services": "خدماتنا",
+    "nav.about": "عن جسور للتأهيل",
+    "nav.services": "الخدمات",
+    "nav.booking": "حجز موعد",
+    "nav.devices": "بنك الأجهزة",
     "nav.matcher": "محدد المسار",
     "nav.howItWorks": "كيف تعمل المنصة؟",
     "nav.forWhom": "لمن صُممت جسور للتأهيل؟",
@@ -26,7 +28,7 @@ const translations = {
     // Hero Section
     "hero.badge": "منصة وطنية متخصصة في الرعاية التأهيلية عن بُعد",
     "hero.title": "جسور للتأهيل يربطك برحلة تأهيل أكثر سهولة وأمانًا من منزلك",
-    "hero.subtitle": "منصة رقمية متخصصة تُمكّن الأشخاص ذوي الاحتياجات التأهيلية وأسرهم من الحصول على خطط تأهيلية متكاملة ومتابعة مستمرة بإشراف نخبة من الأخصائيين المعتمدين والمشرفين الحركيين والمؤسسات الصحية.",
+    "hero.subtitle": "نربط ذوي الاحتياجات التأهيلية وأسرهم بنخبة من الأخصائيين المعتمدين والمشرفين الحركيين لتنفيذ خطط علاجية موجهة ومتابعة دورية بكل أمان وسهولة.",
     "hero.ctaStart": "ابدأ رحلتك الآن",
     "hero.ctaServices": "استكشف خدماتنا",
     "hero.ctaDownload": "تحميل التطبيق",
@@ -42,6 +44,16 @@ const translations = {
     "hero.nodeSpecialist": "الأخصائي المعالج",
     "hero.nodeSupervisor": "المشرف الحركي",
     "hero.nodeHospital": "المستشفيات والجمعيات",
+
+    // App Download Modal
+    "appModal.badge": "تطبيق الهواتف الذكية (Android & iOS)",
+    "appModal.title": "تطبيق جسور للتأهيل المنزلي",
+    "appModal.desc": "تطبيق «جسور للتأهيل» متاح الآن للأجهزة الذكية لتقديم خدمات الرعاية والحجز والتأهيل المتكاملة ومتابعة الخطط العلاجية المنزلية مع نخبة الأخصائيين المعتمدين.",
+    "appModal.scanHint": "امسح الرمز بكاميرا هاتفك للتحميل المباشر",
+    "appModal.downloadBtn": "تحميل تطبيق جسور للتأهيل",
+    "appModal.portalBtn": "الانتقال لبوابة المستفيد مباشرة",
+    "appModal.closeAria": "إغلاق النافذة",
+    "appModal.qrAlt": "رمز الاستجابة السريعة QR لتحميل تطبيق جسور للتأهيل",
 
     // About Section
     "about.tag": "من نحن",
@@ -336,7 +348,7 @@ const translations = {
     "contact.phoneTitle": "مركز العناية بالمستفيدين",
     "contact.phoneVal": "920000000 (الأحد - الخميس: 8ص - 5م)",
     "contact.locationTitle": "المقر الرئيسي للمنظومة",
-    "contact.locationVal": "المملكة العربية السعودية — الرياض",
+    "contact.locationVal": "الجمهورية اليمنية — الرياض",
     "contact.supportDeskTitle": "بوابة الدعم الفني المباشر",
     "contact.supportDeskVal": "متاحة على مدار الساعة عبر المنصة",
 
@@ -375,13 +387,149 @@ const translations = {
     "footer.clinicalEthics": "ميثاق الأخلاقيات السريرية",
     "footer.rights": "جميع الحقوق محفوظة لمنصة جسور للتأهيل والرعاية عن بُعد © 2026",
     "footer.badge": "مشروع رقمي إنساني للتأهيل والرعاية عن بُعد"
+,
+
+    // Enhanced Nav & Brand
+    "nav.register": "حساب جديد",
+    "nav.registerFull": "إنشاء حساب جديد",
+    "nav.tagline": "الرعاية والتأهيل الحركي عن بُعد",
+    "nav.brand": "جسور للتأهيل",
+    "nav.backHome": "العودة للرئيسية",
+    "nav.storeTitle": "بنك الأجهزة",
+    "hero.statGovernance": "حوكمة طبية متكاملة",
+    "hero.scrollText": "تمرير",
+
+    // Section 2: Core Value Proposition
+    "features.badge": "رعاية مبنية على الأدلة والنتائج",
+    "features.title": "ركائز المنظومة التأهيلية في جسور للتأهيل",
+    "features.subtitle": "صُممت المنصة وفق معايير الحوكمة السريرية لتمنح المستفيد وعائلته تجربة تعافٍ موجهة وشاملة داخل المنزل.",
+    "features.card1Badge": "التقييم الأولي",
+    "features.card1Title": "تقييم سريري شامل عن بُعد",
+    "features.card1Desc": "دراسة مستفيضة للحالة الحركية والوظيفية من قِبل نخبة الأخصائيين المعتمدين لتحديد الأهداف العلاجية بدقة.",
+    "features.card1Link": "بدء التقييم",
+    "features.card2Badge": "الخطة المنزلية",
+    "features.card2Title": "خطط تمارين منزلية تفاعلية",
+    "features.card2Desc": "تمارين مصممة بالفيديو عالي الدقة تراعي القدرات الفردية وتضمن التدرج السليم للمستفيد مع إرشادات مبسطة للأسرة.",
+    "features.card2Link": "استكشاف النماذج",
+    "features.card3Badge": "الإشراف المستمر",
+    "features.card3Title": "إشراف ومتابعة أسبوعية دقيقة",
+    "features.card3Desc": "ربط المستفيد بمشرف حركي ميداني وأخصائي معالج لمراجعة مؤشرات الأداء الحركي وتعديل الخطط دورياً.",
+    "features.card3Link": "التعرف على المشرفين",
+
+    // Section 3: Assistive Devices Store
+    "store.badge": "متجر وتدوير الأجهزة الطبية في اليمن",
+    "store.title": "بنك الأجهزة المساعدة — متجر جسور للتأهيل",
+    "store.subtitle": "متجر ومجتمع متكامل لتوفير وإعادة تدوير الأجهزة الطبية والتأهيلية المعتمدة بأسعار ميسرة وتبرعات موثقة للمحتاجين.",
+    "store.catAll": "جميع الأجهزة",
+    "store.catWheelchairs": "كراسي متحركة",
+    "store.catBeds": "أسِرّة طبية",
+    "store.catWalkers": "مشايات وعكازات",
+    "store.catStimulators": "أجهزة تحفيز وتمارين",
+    "store.catCushions": "وسائد طبية",
+    "store.viewAll": "تصفح المتجر الكامل وجميع التصنيفات",
+    "store.sellerHint": "هل أنت مشترك معنا؟ يمكنك رفع أجهزتك الطبية للبيع والربح مباشرة عبر المتجر.",
+    "store.sellerLink": "تصفح شروط الرفع والبيع",
+    "store.priceLabel": "السعر:",
+    "store.viewDetails": "عرض التفاصيل والشراء",
+    "store.requestDonation": "طلب التبرع",
+    "store.donationBadge": "مجاناً (تبرع)",
+    "store.forSaleBadge": "معروض للبيع",
+    "store.verifiedCheck": "فحص معتمد",
+    "store.currency": "$ USD",
+
+    // Section 4: Final CTA & Ecosystem
+    "cta.badge": "انطلاقة جديدة للرعاية الرقمية",
+    "cta.title": "جاهز لبدء رحلة التعافي أو التعاون المؤسسي؟",
+    "cta.subtitle": "سواء كنت مستفيداً يبحث عن خطة منزلية آمنة، أو أخصائياً، أو ممثلاً لمنشأة صحية ترغب في الشراكة؛ جسور هو بوابتك الموثوقة.",
+    "cta.btnRegister": "إنشاء حساب مستفيد مجاني",
+    "cta.btnPartner": "طلب شراكة للمؤسسات والمراكز",
+    "cta.btnServices": "استكشاف دليل الخدمات والتخصصات",
+    "cta.trust1": "رعاية معتمدة سريرياً",
+    "cta.trust2": "سرية وأمان البيانات 100%",
+    "cta.trust3": "دعم عائلي وإرشاد مستمر",
+
+    // Marquee Ticker
+    "marquee.item1": "استشارات تأهيلية عن بُعد",
+    "marquee.item2": "مستشفيات ومراكز شريكة معتمدة",
+    "marquee.item3": "متجر بنك الأجهزة والمستلزمات الطبية",
+    "marquee.item4": "حجز مواعيد سريرية وزيارات منزلية",
+    "marquee.item5": "خطط علاجية وتمارين بالفيديو",
+    "marquee.item6": "مجتمع داعم وتواصل مباشر",
+
+    // Unified Login & Registration
+    "login.tabLogin": "تسجيل الدخول",
+    "login.tabRegister": "إنشاء حساب جديد",
+    "login.cardTitle": "تسجيل الدخول",
+    "login.cardSubtitle": "أدخل بريدك الإلكتروني وكلمة المرور للمتابعة إلى بوابتك",
+    "login.emailLabel": "البريد الإلكتروني",
+    "login.emailPlaceholder": "name@example.com",
+    "login.passwordLabel": "كلمة المرور",
+    "login.passwordPlaceholder": "••••••••",
+    "login.forgotPassword": "نسيت كلمة المرور؟",
+    "login.btnSubmit": "دخول",
+    "login.regNotice": "تسجيل فوري ومجاني للمستفيدين وأسرهم لبدء برامج الرعاية المنزلية وحجز الجلسات.",
+    "login.regFullName": "الاسم الرباعي للمستفيد *",
+    "login.regFullNamePlaceholder": "أحمد محمد علي صالح",
+    "login.regPhone": "رقم الهاتف / الواتساب *",
+    "login.regPhonePlaceholder": "777123456",
+    "login.regCity": "المحافظة / المدينة *",
+    "login.regCitySelect": "اختر المحافظة أو المدينة",
+    "login.regCitySanaa": "صنعاء والأمانة",
+    "login.regCityAden": "عدن",
+    "login.regCityTaiz": "تعز",
+    "login.regCityHodeidah": "الحديدة",
+    "login.regCityIbb": "إب",
+    "login.regCityMukalla": "المكلا وحضرموت",
+    "login.regCityOther": "محافظة أخرى",
+    "login.regCondition": "التشخيص أو الحالة التأهيلية *",
+    "login.regConditionSelect": "اختر الحالة التأهيلية الرئيسية",
+    "login.regConditionMotor": "تأهيل حركي / شلل نصفي أو رباعي",
+    "login.regConditionStroke": "تأهيل ما بعد الجلطات الدماغية",
+    "login.regConditionCerebral": "ضمور أو شلل دماغي للأطفال (CP)",
+    "login.regConditionFracture": "تأهيل الكسور والإصابات الرياضية",
+    "login.regConditionNerve": "إصابات الأعصاب وجراحة العظام",
+    "login.regConditionOther": "حالات أخرى تحتاج متابعة منزلية",
+    "login.regPassword": "كلمة المرور *",
+    "login.regPasswordPlaceholder": "8 أحرف على الأقل",
+    "login.regPasswordConfirm": "تأكيد كلمة المرور *",
+    "login.regPasswordConfirmPlaceholder": "أعد إدخال كلمة المرور",
+    "login.regBtnSubmit": "إنشاء الحساب والبدء في التأهيل",
+
+    // Partners Page Extra Keys
+    "partners.heroBadge": "برنامج الشراكة السريرية والمؤسسية",
+    "partners.heroTitle": "كن شريكاً معتمداً في منظومة جسور للتأهيل",
+    "partners.heroSubtitle": "نفتح آفاق التعاون الطبي والمجتمعي مع المستشفيات والمراكز والأخصائيين وموردي الأجهزة لتوسيع نطاق الرعاية التأهيلية الشاملة.",
+    "partners.btnApply": "تقديم طلب انضمام كشريك",
+    "partners.btnBrowse": "تصفح دليل الشركاء",
+    "partners.categoryHospitals": "المستشفيات والمراكز الطبية",
+    "partners.categorySpecialists": "الأخصائيون المعالجون",
+    "partners.categorySupervisors": "المشرفون الحركيون الميدانيون",
+    "partners.categoryCharities": "الجمعيات والمؤسسات المانحة",
+    "partners.categoryPharmacies": "الصيدليات الشريكة",
+    "partners.categoryDevices": "مراكز بيع وصيانة الأجهزة",
+    "partners.directoryTitle": "دليل الشركاء المعتمدين والمشتركين",
+    "partners.directorySubtitle": "قائمة المنشآت الطبية والكوادر السريرية والجهات المعتمدة في شبكة جسور للتأهيل.",
+    "partners.filterAll": "الكل",
+    "partners.filterHospitals": "المستشفيات والمراكز",
+    "partners.filterSpecialists": "الأخصائيون",
+    "partners.filterCharities": "الجمعيات المانحة",
+    "partners.filterDevices": "متاجر الأجهزة",
+    "partners.metricsHospitals": "مستشفيات ومراكز شريكة",
+    "partners.metricsSpecialists": "أخصائي واستشاري معتمد",
+    "partners.metricsPatients": "مستفيد يتلقى الرعاية",
+    "partners.metricsSuccess": "نسبة رضا المستفيدين والشركاء",
+    "partners.detailsTitle": "تفاصيل ومجالات الشراكة المعتمدة",
+    "partners.btnJoin": "طلب الانضمام كشريك",
+    "partners.btnViewProfile": "عرض الملف المعتمد",
   },
 
   en: {
     // Navigation & Header
     "nav.home": "Home",
-    "nav.about": "About Us",
+    "nav.about": "About Jusoor",
     "nav.services": "Services",
+    "nav.booking": "Book Appointment",
+    "nav.devices": "Devices Bank",
     "nav.matcher": "Care Matcher",
     "nav.howItWorks": "How It Works",
     "nav.forWhom": "Who It's For",
@@ -398,8 +546,8 @@ const translations = {
 
     // Hero Section
     "hero.badge": "Dedicated Platform for Tele-Rehabilitation & Home Care",
-    "hero.title": "A Bridge Connecting You to a Smoother Rehabilitation Journey",
-    "hero.subtitle": "A specialized digital platform empowering individuals with rehabilitation needs and their families to receive comprehensive care and consistent home follow-up under the supervision of certified specialists, motor supervisors, and healthcare entities.",
+    "hero.title": "Jusoor Rehab: Connecting You to a Smoother Rehabilitation Journey from Home",
+    "hero.subtitle": "Connecting individuals with rehabilitation needs and their families to certified specialists and motor supervisors for targeted home therapy plans and continuous care.",
     "hero.ctaStart": "Start Your Journey Now",
     "hero.ctaServices": "Explore Services",
     "hero.ctaDownload": "Download App",
@@ -415,6 +563,16 @@ const translations = {
     "hero.nodeSpecialist": "Treating Specialist",
     "hero.nodeSupervisor": "Motor Supervisor",
     "hero.nodeHospital": "Hospitals & Associations",
+
+    // App Download Modal
+    "appModal.badge": "Mobile Application (Android & iOS)",
+    "appModal.title": "Jusoor Home Rehabilitation App",
+    "appModal.desc": "The Jusoor Rehab app is now available on mobile devices to provide integrated tele-rehabilitation, booking, and home therapy plan tracking with certified specialists.",
+    "appModal.scanHint": "Scan the QR code with your phone camera for direct download",
+    "appModal.downloadBtn": "Download Jusoor Rehabilitation App",
+    "appModal.portalBtn": "Go Directly to Beneficiary Portal",
+    "appModal.closeAria": "Close window",
+    "appModal.qrAlt": "QR Code to download Jusoor Rehabilitation App",
 
     // About Section
     "about.tag": "About Us",
@@ -748,12 +906,146 @@ const translations = {
     "footer.clinicalEthics": "Clinical Ethics Charter",
     "footer.rights": "All rights reserved to Jusoor Platform for Tele-Rehabilitation © 2026",
     "footer.badge": "A Humanitarian & Digital Health Initiative"
+,
+
+    // Enhanced Nav & Brand
+    "nav.register": "New Account",
+    "nav.registerFull": "Create New Account",
+    "nav.tagline": "Tele-Rehabilitation & Home Care",
+    "nav.brand": "Jusoor Rehab",
+    "nav.backHome": "Back to Home",
+    "nav.storeTitle": "Devices Bank",
+    "hero.statGovernance": "Integrated Clinical Governance",
+    "hero.scrollText": "Scroll",
+
+    // Section 2: Core Value Proposition
+    "features.badge": "Evidence-Based & Outcome-Driven Care",
+    "features.title": "Pillars of the Jusoor Rehabilitation Ecosystem",
+    "features.subtitle": "Designed under strict clinical governance standards to offer beneficiaries and families a guided, comprehensive in-home recovery journey.",
+    "features.card1Badge": "Initial Assessment",
+    "features.card1Title": "Comprehensive Tele-Clinical Evaluation",
+    "features.card1Desc": "In-depth functional and motor status assessment by certified specialists to accurately define individualized therapeutic milestones.",
+    "features.card1Link": "Start Assessment",
+    "features.card2Badge": "Home Regimen",
+    "features.card2Title": "Interactive Home Exercise Plans",
+    "features.card2Desc": "HD video tutorials calibrated to individual capabilities, ensuring safe gradual progression with intuitive family coaching cues.",
+    "features.card2Link": "Explore Regimens",
+    "features.card3Badge": "Continuous Oversight",
+    "features.card3Title": "Precise Weekly Oversight & Follow-up",
+    "features.card3Desc": "Direct alignment between treating specialists, field supervisors, and families to track functional metrics and refine regimens dynamically.",
+    "features.card3Link": "Meet Supervisors",
+
+    // Section 3: Assistive Devices Store
+    "store.badge": "Assistive Devices & Recycling Store in Yemen",
+    "store.title": "Assistive Devices Bank — Jusoor Rehab Store",
+    "store.subtitle": "An integrated marketplace and community providing certified medical and rehabilitation equipment at accessible prices and verified donations.",
+    "store.catAll": "All Devices",
+    "store.catWheelchairs": "Wheelchairs",
+    "store.catBeds": "Hospital Beds",
+    "store.catWalkers": "Walkers & Crutches",
+    "store.catStimulators": "TENS & Rehab Bikes",
+    "store.catCushions": "Medical Cushions",
+    "store.viewAll": "Browse Full Store & Categories",
+    "store.sellerHint": "Are you registered? You can list your medical devices for sale or donation directly on our store.",
+    "store.sellerLink": "View Listing Terms",
+    "store.priceLabel": "Price:",
+    "store.viewDetails": "View Details & Purchase",
+    "store.requestDonation": "Request Donation",
+    "store.donationBadge": "Free Donation",
+    "store.forSaleBadge": "For Sale",
+    "store.verifiedCheck": "Certified Inspection",
+    "store.currency": "$ USD",
+
+    // Section 4: Final CTA & Ecosystem
+    "cta.badge": "A New Horizon in Digital Care",
+    "cta.title": "Ready to Begin Your Recovery Journey or Institutional Partnership?",
+    "cta.subtitle": "Whether you are a beneficiary seeking a safe home regimen, a clinician, or a healthcare institution aiming to partner; Jusoor is your trusted gateway.",
+    "cta.btnRegister": "Create Free Beneficiary Account",
+    "cta.btnPartner": "Institutional Partnership Request",
+    "cta.btnServices": "Explore Services Directory",
+    "cta.trust1": "Clinically Certified Care",
+    "cta.trust2": "100% Data Confidentiality & Security",
+    "cta.trust3": "Continuous Family Guidance & Support",
+
+    // Marquee Ticker
+    "marquee.item1": "Tele-Rehabilitation Consultations",
+    "marquee.item2": "Certified Partner Hospitals & Clinics",
+    "marquee.item3": "Assistive Equipment & Supply Store",
+    "marquee.item4": "Clinical Bookings & Home Visits",
+    "marquee.item5": "HD Video-Guided Therapy Plans",
+    "marquee.item6": "Supportive Community & Direct Guidance",
+
+    // Unified Login & Registration
+    "login.tabLogin": "Sign In",
+    "login.tabRegister": "Create Account",
+    "login.cardTitle": "Sign In",
+    "login.cardSubtitle": "Enter your email and password to proceed to your portal",
+    "login.emailLabel": "Email Address",
+    "login.emailPlaceholder": "name@example.com",
+    "login.passwordLabel": "Password",
+    "login.passwordPlaceholder": "••••••••",
+    "login.forgotPassword": "Forgot Password?",
+    "login.btnSubmit": "Sign In",
+    "login.regNotice": "Instant free registration for beneficiaries and families to access home care plans and session bookings.",
+    "login.regFullName": "Beneficiary Full Name *",
+    "login.regFullNamePlaceholder": "John Doe",
+    "login.regPhone": "Phone / WhatsApp *",
+    "login.regPhonePlaceholder": "777123456",
+    "login.regCity": "Governorate / City *",
+    "login.regCitySelect": "Select Governorate or City",
+    "login.regCitySanaa": "Sana'a & Capital",
+    "login.regCityAden": "Aden",
+    "login.regCityTaiz": "Taiz",
+    "login.regCityHodeidah": "Al-Hodeidah",
+    "login.regCityIbb": "Ibb",
+    "login.regCityMukalla": "Al-Mukalla & Hadramout",
+    "login.regCityOther": "Other Governorate",
+    "login.regCondition": "Primary Rehabilitation Diagnosis *",
+    "login.regConditionSelect": "Select Primary Rehabilitation Condition",
+    "login.regConditionMotor": "Motor Rehabilitation / Hemiplegia or Quadriplegia",
+    "login.regConditionStroke": "Post-Stroke Recovery",
+    "login.regConditionCerebral": "Pediatric Cerebral Palsy (CP)",
+    "login.regConditionFracture": "Post-Fracture & Sports Injuries",
+    "login.regConditionNerve": "Nerve Lesions & Orthopedic Surgery",
+    "login.regConditionOther": "Other Conditions Requiring Home Care",
+    "login.regPassword": "Password *",
+    "login.regPasswordPlaceholder": "Minimum 8 characters",
+    "login.regPasswordConfirm": "Confirm Password *",
+    "login.regPasswordConfirmPlaceholder": "Re-enter your password",
+    "login.regBtnSubmit": "Create Account & Start Rehab",
+
+    // Partners Page Extra Keys
+    "partners.heroBadge": "Clinical & Institutional Partnership",
+    "partners.heroTitle": "Become an Accredited Partner with Jusoor Rehab",
+    "partners.heroSubtitle": "Expanding medical and humanitarian collaborations with hospitals, rehab centers, clinicians, and equipment vendors to broaden community care.",
+    "partners.btnApply": "Apply for Partnership",
+    "partners.btnBrowse": "Browse Partners Directory",
+    "partners.categoryHospitals": "Hospitals & Medical Centers",
+    "partners.categorySpecialists": "Treating Specialists",
+    "partners.categorySupervisors": "Field Motor Supervisors",
+    "partners.categoryCharities": "Charities & Donor Foundations",
+    "partners.categoryPharmacies": "Partner Pharmacies",
+    "partners.categoryDevices": "Equipment & Maintenance Centers",
+    "partners.directoryTitle": "Directory of Certified & Participating Partners",
+    "partners.directorySubtitle": "Accredited healthcare institutions, clinical staff, and verified providers within the Jusoor network.",
+    "partners.filterAll": "All",
+    "partners.filterHospitals": "Hospitals & Clinics",
+    "partners.filterSpecialists": "Specialists",
+    "partners.filterCharities": "Donor Foundations",
+    "partners.filterDevices": "Device Vendors",
+    "partners.metricsHospitals": "Partner Hospitals & Centers",
+    "partners.metricsSpecialists": "Certified Specialists & Consultants",
+    "partners.metricsPatients": "Active Care Beneficiaries",
+    "partners.metricsSuccess": "Beneficiary & Partner Satisfaction",
+    "partners.detailsTitle": "Accredited Partnership Scope & Details",
+    "partners.btnJoin": "Apply to Join as Partner",
+    "partners.btnViewProfile": "View Accredited Profile",
   }
 };
 
 class I18nManager {
   constructor() {
-    this.currentLang = localStorage.getItem('jisr_lang') || 'ar';
+    this.currentLang = localStorage.getItem('jusoor_lang') || localStorage.getItem('jisr_lang') || 'ar';
     this.init();
   }
 
@@ -775,6 +1067,7 @@ class I18nManager {
   setLanguage(lang) {
     if (!translations[lang]) return;
     this.currentLang = lang;
+    localStorage.setItem('jusoor_lang', lang);
     localStorage.setItem('jisr_lang', lang);
     this.applyLanguage(lang);
   }
@@ -802,6 +1095,30 @@ class I18nManager {
       const key = el.getAttribute('data-i18n-placeholder');
       if (translations[lang] && translations[lang][key]) {
         el.placeholder = translations[lang][key];
+      }
+    });
+
+    // Update all elements with data-i18n-aria
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (translations[lang] && translations[lang][key]) {
+        el.setAttribute('aria-label', translations[lang][key]);
+      }
+    });
+
+    // Update all elements with data-i18n-title
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+      const key = el.getAttribute('data-i18n-title');
+      if (translations[lang] && translations[lang][key]) {
+        el.setAttribute('title', translations[lang][key]);
+      }
+    });
+
+    // Update all elements with data-i18n-alt
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      const key = el.getAttribute('data-i18n-alt');
+      if (translations[lang] && translations[lang][key]) {
+        el.setAttribute('alt', translations[lang][key]);
       }
     });
 
